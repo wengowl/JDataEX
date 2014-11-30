@@ -1,0 +1,329 @@
+package org.jdataex.util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.channels.FileLock;
+import java.util.Collection;
+import java.util.Properties;
+import java.util.zip.CRC32;
+import java.util.zip.Checksum;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
+import org.apache.commons.io.filefilter.CanWriteFileFilter;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.TrueFileFilter;
+
+public class FileUtil {
+
+	/*
+	 * \a 警报（ Alert (ANSI C) ） \b 退格（Backspace） \f 换页（Form feed） \n 换行（Newline）
+	 * \r 回车（Carriage return） \t 程度制表符（Horizontal tab） \v 垂直制表符（Vertical tab） \\
+	 * 反斜杆（ Backslash (\) ） \' 单引号
+	 */
+	public static String SYMBOL_CARRIAGE_RETURN = "\r";
+	public static String SYMBOL_NEWLINE = "\n";
+
+	/**
+	 * 获取文件的校验信息。
+	 * 
+	 * @param file
+	 *            校验的文件。
+	 * @return 校验信息.
+	 * @throws IOException
+	 *             无法读取文件。
+	 */
+	public static Checksum checksum(File file) throws IOException {
+		return FileUtils.checksum(file, new CRC32());
+	}
+
+	@Deprecated
+	public static String convertFileSeparator(String path) {
+		AssertUtil.assertNull("Path is null.", path);
+		return path.replaceAll("\\\\", "\\" + File.separator);
+	}
+
+	public static void copyFile(File srcFile, File destFile) throws IOException {
+		FileUtils.copyFile(srcFile, destFile);
+	}
+
+	public static void copyFileToDirectory(File srcFile, File destDir)
+			throws IOException {
+		FileUtils.copyFileToDirectory(srcFile, destDir);
+	}
+
+	public static void deleteDirectory(File dir) throws IOException {
+		FileUtils.deleteDirectory(dir);
+	}
+
+	public static boolean deleteQuietly(File file) {
+		return FileUtils.deleteQuietly(file);
+	}
+    public static void closeQuietly(FileInputStream fileInputStream){
+         IOUtils.closeQuietly(fileInputStream);
+    }
+    public static void closeQuietly(FileOutputStream fileOutputStream){
+        IOUtils.closeQuietly(fileOutputStream);
+    }
+	/**
+	 * 通过校验方式比较2个文件内容是否一致。
+	 * 
+	 * @param file
+	 *            文件一
+	 * @param file2
+	 *            文件二
+	 * @return 内容一致返回true，否则返回false
+	 * @throws IOException
+	 *             无法读取文件。
+	 */
+	public static boolean equalFileByChecksum(File file, File file2)
+			throws IOException {
+		long checksum = checksum(file).getValue();
+		long checksum2 = checksum(file2).getValue();
+
+		return checksum == checksum2;
+	}
+
+	public static File findAbsoluteFile(Class<?> clazz) {
+		return FileUtil.findAbsoluteFile(clazz.getPackage(), "");
+	}
+
+	public static File findAbsoluteFile(Class<?> clazz, String relativePath) {
+		return FileUtil.findAbsoluteFile(clazz.getPackage(), relativePath);
+	}
+
+	public static File findAbsoluteFile(Package iPackage, String relativePath) {
+		String localPath = convertFileSeparator(relativePath);
+
+		return new File(FileUtil.findPackagePath(iPackage),localPath).getAbsoluteFile();
+	}
+
+	public static String findPackagePath(Package iPackage) {
+		AssertUtil.assertNull("Package is null.", iPackage);
+		String path = iPackage.getName().replaceAll("\\.", "\\/");// 使用系统文件分隔符URI不认。;
+		// String path = iPackage.getName().replaceAll("\\.", "\\" +
+		// File.separator );
+
+		return findRealPathByClasspath(path).getPath();
+	}
+
+	/**
+	 * 以class的路径作为根路径来找寻文件的绝对路径。<br>
+	 * 注意class路径和运行路径有区别。class路径是lib包所在的路径。例如运行路径是X:/yy/，lib包路径是X:/yy/lib，
+	 * 则class的路径为X:/yy/lib。
+	 * 
+	 * @param relativePath
+	 * @return
+	 */
+	public static URI findRealPathByClasspath(String relativePath) {
+		try {
+			return new URI(FileUtil.class.getResource("/") + relativePath);
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static File findRealPathByClasspath4File(String relativePath) {
+		File file = new File(findRealPathByClasspath(relativePath));
+		return file;
+	}
+
+	/**
+	 * 根据上级文件找到该文件的相对路径。如果没有找到相对路径则返回该文件的路径。
+	 * 
+	 * @param file
+	 *            目标文件。
+	 * @param superFile
+	 *            目标文件的上级文件。
+	 * @return 返回改文件的相对路径。未找到则返回该文件路径。
+	 */
+	public static String findRelativePath(File file, File superFile) {
+		String parentPath = superFile.getPath();
+		String filePath = file.getPath();
+		int index = filePath.indexOf(parentPath);
+		if (index == 0) {
+			return filePath.substring(parentPath.length());
+		}
+
+		return filePath;
+	}
+
+	public static void forceDelete(File file) throws IOException {
+		FileUtils.forceDelete(file);
+	}
+
+	public static void forceMoveFile(File srcFile, File destFile)
+			throws IOException {
+		if (destFile.exists()) {
+			deleteQuietly(destFile);
+		}
+		FileUtils.moveFile(srcFile, destFile);
+	}
+
+	/**
+	 * 文件是否被锁定。被锁定则返回true。
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public static boolean isLock(File file) {
+		FileLock fl;
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(file);
+			fl = fis.getChannel().tryLock(0, Long.MAX_VALUE, true);
+
+			// tryLock是尝试获取锁，不为空就说明没有被锁定。
+			if (fl != null) {
+				fl.release();// 释放锁
+				fis.close();
+				return false;
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		return true;
+	}
+
+	/**
+	 * 获取指定目录下所有可以使用的文件。
+	 * 
+	 * @param directory
+	 *            指定目录
+	 * @return 所有可以使用的文件。
+	 */
+	public static Collection<File> listAllFiles(File directory) {
+		return FileUtils.listFiles(directory, TrueFileFilter.TRUE,
+				DirectoryFileFilter.DIRECTORY);
+	}
+
+	public static Collection<File> listFiles(File directory,
+			IOFileFilter fileFilter, IOFileFilter dirFilter) {
+		if (CommonUtil.isNull(fileFilter))
+			fileFilter = CanWriteFileFilter.CAN_WRITE;
+
+		return FileUtils.listFiles(directory, fileFilter, dirFilter);
+	}
+
+	public static void moveFile(File srcFile, File destFile) throws IOException {
+		FileUtils.moveFile(srcFile, destFile);
+	}
+
+	/**
+	 * 根据包路径读取文件内容。
+	 * 
+	 * @param iPackage
+	 *            文件所在的包。
+	 * @param fileName
+	 *            相对路径。
+	 * @return 返回文件内容。
+	 * @throws IOException
+	 */
+	public static String readByPackagePath(Package iPackage, String fileName)
+			throws IOException {
+		String fileDir = FileUtil.findPackagePath(iPackage);
+		File file = new File(fileDir, fileName);
+
+		return FileUtil.readFileToString(file);
+	}
+
+	/**
+	 * 根据相对路径读取文件内容。
+	 * 
+	 * @param relativePath
+	 *            相对路径。
+	 * @return 返回文件内容。
+	 * @throws IOException
+	 */
+	public static String readByRealPathWithClasspath(String relativePath)
+			throws IOException {
+		File file = new File(FileUtil.findRealPathByClasspath(relativePath));
+
+		return FileUtil.readFileToString(file);
+	}
+
+	public static String readFileToString(File file) throws IOException {
+		return FileUtils.readFileToString(file);
+	}
+
+	public static String readFileToString(String filePath) throws IOException {
+		return FileUtils.readFileToString(new File(filePath));
+	}
+
+	public static String readFileToStringByClassPath(String relativePath)
+			throws IOException {
+		File file = FileUtil.findRealPathByClasspath4File(relativePath);
+		return FileUtil.readFileToString(file);
+	}
+
+	public static void writeStringToFile(File file, String data)
+			throws IOException {
+		FileUtils.writeStringToFile(file, data);
+	}
+
+	public static boolean createFile(File file) throws IOException{
+		if(CommonUtil.isNull(file)){
+			return false;
+		}
+		if(file.exists()){
+			if(file.isDirectory()){
+				return false;
+			}
+			return true;
+		} else {
+			creatDirectories(file.getParentFile());
+			
+			return file.createNewFile();
+		}
+	}
+	
+	public static boolean creatDirectories(File dir){
+		if(CommonUtil.isNull(dir)){
+			return false;
+		}
+		
+		if(dir.exists()){
+			if(dir.isFile()){
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			creatDirectories(dir.getParentFile());
+			return dir.mkdir();
+		}
+	}
+
+	/**
+	 * 跳过无用的数据行，比如空行，回车行等。返回最近的可用行的内容。
+	 * 
+	 * @param lineIterator
+	 * @return 可用行的内容，如果没有可以行的内容返回空字符串。
+	 */
+	public static String skipUselessLine(LineIterator lineIterator) {
+		String line = "";
+		while (lineIterator.hasNext() && CommonUtil.isBlank(line)) {
+			line = lineIterator.nextLine();
+		}
+		return line;
+	}
+	
+	public static Properties loadProperties(File file) throws FileNotFoundException, IOException{
+		if(null == file){
+			throw new FileNotFoundException("File instance is null.");
+		}
+		Properties result = new Properties();
+		
+		result.load(new FileInputStream(file));
+		
+		return result;
+	}
+}

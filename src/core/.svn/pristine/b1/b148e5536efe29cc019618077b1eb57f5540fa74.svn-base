@@ -1,0 +1,5 @@
+package org.jdataex.flow.controller;
+
+public interface IComponentController {
+
+}

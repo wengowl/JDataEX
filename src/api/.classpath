@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test/org.jdataex.message"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="var" path="APPLICATION_HOME_DIR/lib/junit-4.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="lib"/>
+	<classpathentry kind="output" path="out/production/api"/>
+</classpath>

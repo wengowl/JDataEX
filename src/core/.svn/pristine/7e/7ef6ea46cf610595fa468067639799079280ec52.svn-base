@@ -1,0 +1,43 @@
+package org.jdataex.flow.component.trigger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by wengxf on 14-4-28.
+ * <p/>
+ * 数据获取处理线程
+ */
+public class DataHandlerThread implements Runnable {
+    private int msgid;
+    private TriggerDataBean triggerDataBean = new TriggerDataBean();
+
+    public DataHandlerThread() {
+
+
+        //this.triggerDataBean = triggerDataBean;
+    }
+     public void  setMsgid(String loc){
+           String sql = "select * from Tr_Msgids;";
+         DBOperation dbOperation = new DBOperation();
+         ResultSet resultSet = dbOperation.sqlQuery(sql);
+         try {
+             msgid = resultSet.getInt(loc) ;
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
+
+    @Override
+    public void run() {
+        setMsgid(Thread.currentThread().getName());
+        for (; ; msgid++) {
+            DataHandler dataHandler = new DataHandler(triggerDataBean);
+            triggerDataBean = dataHandler.middleDataGet(msgid, Thread.currentThread().getName());
+            dataHandler.souDataGet(triggerDataBean);
+            dataHandler.SouToDest();
+            dataHandler.updateMsgid(msgid+1,Thread.currentThread().getName());
+
+        }
+    }
+}

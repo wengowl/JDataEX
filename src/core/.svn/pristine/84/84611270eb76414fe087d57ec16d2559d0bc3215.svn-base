@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+
+  <CASE:include schemaLocation="_0_结构行政一审.xsd"/>
+
+  <CASE:complexType name="行政一审">
+<CASE:sequence>
+		<CASE:elementname="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SKSQK" type="上抗诉情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_BAQX" type="办案期限" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_YSQK" type="原审情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SFJY" type="司法建议" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_HBQK" type="回避情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_FYCL" type="复议处理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_FASSXWCL" type="妨碍诉讼行为处理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SPZZCY" type="审判组织成员" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SWHTL" type="审委会讨论" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_YCSXJL" type="延长审限记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_DSR" type="当事人" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_DSRSSHD" type="当事人诉讼活动" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_KCSXJL" type="扣除审限记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_PBJL" type="批办记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_KBYJ" type="控辩意见" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SAHLAXX" type="收案和立案信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_AJCLQK" type="案件处理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_AJSLQK" type="案件审理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_AJPY" type="案件评议" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_FTSYJL" type="法庭使用记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_LAYJHTAQK" type="立案移交和退案情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_GXCLQK" type="管辖处理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_JAQK" type="结案情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_QTHJTSSQK" type="群体或集团诉讼情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_BGXZXW" type="被告行政行为" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_ZRXX" type="证人信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_ZJXX" type="证据信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_ZJLT" type="证据链条" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SSBQHXYZX" type="诉讼保全和先予执行" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SSFJNJL" type="诉讼费交纳记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SSFJCDQK" type="诉讼费及承担情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SSFSFJZQK" type="诉讼费司法救助情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_SDJL" type="送达记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_JDXX" type="鉴定信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_LTZDZJ" type="链条中的证据" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="XZYS_XAQK" type="销案情况" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  
+  </CASE:complexType>
+
+  <CASE:element name="行政一审案件" type="行政一审"/>
+
+</CASE:schema>

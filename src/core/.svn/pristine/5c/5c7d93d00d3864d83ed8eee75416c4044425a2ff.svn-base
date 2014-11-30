@@ -1,0 +1,42 @@
+package org.jdataex.channel.event;
+
+import org.jdataex.channel.common.ChannelEventType;
+
+public class DefaultEvent<E> implements IEvent<E> {
+	
+	private ChannelEventType eventType;
+	
+	private E msg;
+	
+	private Object target;
+	
+	private String props;
+	
+	public DefaultEvent(E msg,Object target,ChannelEventType eventType,String props){
+		this.eventType = eventType;
+		this.msg = msg;
+		this.target = target;
+		this.props = props;
+	}
+
+	@Override
+	public ChannelEventType getEventType() {
+		return eventType;
+	}
+
+	@Override
+	public String getStringProps() {
+		return props;
+	}
+
+	@Override
+	public Object getTargetObject() {
+		return target;
+	}
+
+	@Override
+	public E getMsg() {
+		return msg;
+	}
+
+}

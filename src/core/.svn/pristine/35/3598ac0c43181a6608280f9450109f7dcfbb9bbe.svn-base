@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+	<id>fidl</id>
+	<type>transition</type>
+	<controller id="controller" class="1">
+		<component id="cid1" class="org.jdataex.flow.component.step.MockStep">
+			<handler></handler>
+			<runner></runner>
+			<station-ref type="input" id="stid1" />
+			<station-ref type="output" id="stid2" />
+			<attCheck>attCheckValue</attCheck>
+			<att3>att3</att3>
+			<complexAtt>
+				<catt1>catt1Value</catt1>
+				<catt2>catt2</catt2>
+				<cc>
+					<ccatt>ccatt</ccatt>
+				</cc>
+			</complexAtt>
+		</component>
+		<component id="cid2" class="org.jdataex.flow.component.step.MockStep">
+			<station-ref type="input" id="stid21" />
+			<station-ref type="output" id="stid22" />
+			<att4>att4</att4>
+		</component>
+		<component id="cid3" class="org.jdataex.flow.component.step.MockStep">
+			<station-ref type="input" id="stid31" />
+			<station-ref type="output" id="stid32" />
+			<attCheck3>att3</attCheck3>
+		</component>
+
+	</controller>
+	
+	<controller id="comsetother" class="2">
+		<component id="cidother" class="org.jdataex.flow.component.step.MockStep">
+			<station-ref type="input" id="stid-other1" />
+			<station-ref type="output" id="stid-other2" />
+			<att4>att4</att4>
+		</component>
+		
+	</controller>
+</flow>

@@ -1,0 +1,57 @@
+package org.jdataex.flow.component.trigger;
+
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.flow.row.IRow;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by wengxf on 14-4-28.
+ * <p/>
+ * 数据获取处理线程
+ */
+public class DataHandlerThread implements Runnable {
+    private int msgid;
+    private TriggerDataBean triggerDataBean = new TriggerDataBean();
+
+
+    public DataHandlerThread() {
+
+
+        //this.triggerDataBean = triggerDataBean;
+    }
+
+    public void setMsgid(String loc) {
+        String sql = "select * from Tr_Msgids";
+        DBOperation dbOperation = new DBOperation();
+        ResultSet resultSet = dbOperation.sqlQuery(sql,null);
+        try {
+            while (resultSet.next()) {
+                msgid = resultSet.getInt(loc);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        setMsgid(Thread.currentThread().getName());
+        for (; ; msgid++) {
+            DataHandler dataHandler = new DataHandler(triggerDataBean);
+            triggerDataBean = dataHandler.middleDataGet(msgid+1, Thread.currentThread().getName());
+            if (triggerDataBean!=null) {
+                dataHandler.souDataGet(triggerDataBean);
+                IRow iRow = dataHandler.SouToDest();
+                dataHandler.updateMsgid(msgid + 1, Thread.currentThread().getName());
+                System.out.println("row ******tablename" + iRow.getHeader().get("tablename"));
+                System.out.println("row ******coloumnsize" + iRow.getColumnsSize());
+            }
+            else{
+                System.out.println("*******no data******");
+                break;
+            }
+        }
+    }
+}

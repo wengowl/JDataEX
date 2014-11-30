@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+    <id>triggerdataget</id>
+    <type>transition</type>
+    <controller id="controller">
+        <component id="triggerget0"
+                   class="org.jdataex.flow.component.step.trigger.TriggerDataGetStep">
+            <station-ref type="input" id="sid1"/>
+            <station-ref type="output" id="sid2"/>
+            <pool-name>pool</pool-name>
+            <table-name>Tr_Msg0</table-name>
+        </component>
+        <component id="triggerget1"
+                   class="org.jdataex.flow.component.step.trigger.TriggerDataGetStep">
+            <station-ref type="input" id="sid1"/>
+            <station-ref type="output" id="sid2"/>
+            <pool-name>pool</pool-name>
+            <table-name>Tr_Msg1</table-name>
+        </component>
+
+        <component id="dbaccess"
+                   class="org.jdataex.flow.component.step.dataaccess.RowDataAccessStep">
+            <station-ref type="input" id="sid2"/>
+            <station-ref type="output" id="sid3"/>
+            <pool-name>pool</pool-name>
+        </component>
+
+        <station id="sid1" class="org.jdataex.flow.station.queue.FirstQueueStation"/>
+        <station id="sid2" class="org.jdataex.flow.station.queue.QueueStation"/>
+        <station id="sid3" class="org.jdataex.flow.station.queue.QueueStation"/>
+    </controller>
+</flow>

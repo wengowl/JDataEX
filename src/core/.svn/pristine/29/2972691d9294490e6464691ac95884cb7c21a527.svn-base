@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<司法行政装备管理系统 xmlnss="http://dataexchange.court.gov.cn/2009/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dataexchange.court.gov.cn/2009/data 司法行政装备管理系统.xsd" ACTION_TYPE="delete" DEPT_CODE="GF2009－01" APP_CODE="GF2009－01">
+  <SFXZZBGLXT_BGYPXX>
+    <FYBM>1</FYBM>
+    <BGYPBS>1</BGYPBS>
+    <BH>编号</BH>
+    <PM>品名</PM>
+    <XH>型号</XH>
+    <GG>规格</GG>
+    <DW>单位</DW>
+    <DJ>123.123</DJ>
+    <SL>1</SL>
+    <JE>123.123</JE>
+    <BJKCL>1</BJKCL>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BGYPXX>
+  <SFXZZBGLXT_BGYPPDZB>
+    <FYBM>1</FYBM>
+    <PDBH>1</PDBH>
+    <PDND>1</PDND>
+    <SXBN>上下半年</SXBN>
+    <PDSJ>2014-6-9 12:12:12</PDSJ>
+    <PDRBS>1</PDRBS>
+    <PDR>盘点人</PDR>
+    <SHRBS>1</SHRBS>
+    <SHR>审核人</SHR>
+  </SFXZZBGLXT_BGYPPDZB>
+  <SFXZZBGLXT_BGYPPDMXB>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <ZBH>1</ZBH>
+    <BGYPBS>1</BGYPBS>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <KCSL>123.123</KCSL>
+    <PDSL>123.123</PDSL>
+    <PDJG>盘点结果</PDJG>
+  </SFXZZBGLXT_BGYPPDMXB>
+  <SFXZZBGLXT_BGYPLYZB>
+    <FYBM>1</FYBM>
+    <LYBH>1</LYBH>
+    <LYBM>领用部门</LYBM>
+    <LYRBS>1</LYRBS>
+    <LYR>领用人</LYR>
+    <SQSJ>2014-6-9 12:12:12</SQSJ>
+    <HJJE>123.123</HJJE>
+    <LYSY>领用事由</LYSY>
+    <BMLDSPR>部门领导审批人</BMLDSPR>
+    <BMLDSPSJ>2014-6-9 12:12:12</BMLDSPSJ>
+    <BMLDSPYJ>部门领导审批意见</BMLDSPYJ>
+    <BMLDSPJG>1</BMLDSPJG>
+    <SXCLDSPJG>1</SXCLDSPJG>
+    <SXCLDSPYJ>司行处领导审批意见</SXCLDSPYJ>
+    <SXCLDSPSJ>2014-6-9 12:12:12</SXCLDSPSJ>
+    <SXCLDSPR>司行处领导审批人</SXCLDSPR>
+    <FFRBS>1</FFRBS>
+    <FFR>发放人</FFR>
+    <FFRQ>2014-6-9 12:12:12</FFRQ>
+    <ZT>状态</ZT>
+    <ZTBZ>1</ZTBZ>
+    <DSPDJ>1</DSPDJ>
+    <DSPR>待审批人</DSPR>
+    <SFZJFF>1</SFZJFF>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BGYPLYZB>
+  <SFXZZBGLXT_BGYPLYMXB>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <ZBBS>1</ZBBS>
+    <BGYPBS>1</BGYPBS>
+    <PM>品名</PM>
+    <BH>编号</BH>
+    <XH>型号</XH>
+    <GG>规格</GG>
+    <DW>单位</DW>
+    <DJ>123.123</DJ>
+    <SL>123.123</SL>
+    <JE>123.123</JE>
+    <SFZJFF>1</SFZJFF>
+  </SFXZZBGLXT_BGYPLYMXB>
+  <SFXZZBGLXT_ABJQ>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+    <BM>部门</BM>
+    <SJ>2014-6-9 12:12:12</SJ>
+    <JQR>接洽人</JQR>
+    <JBQK>基本情况</JBQK>
+    <XYRS>1</XYRS>
+    <SFLXGAPCS>1</SFLXGAPCS>
+    <TCYJHQTBMYJ>庭、处意见或其他部门意见</TCYJHQTBMYJ>
+    <TCSPBZ>1</TCSPBZ>
+    <TCSPSJ>2014-6-9 12:12:12</TCSPSJ>
+    <TCSPR>庭、处审批人</TCSPR>
+    <TCSPSM>庭、处审批说明</TCSPSM>
+    <YWWLDXZYJ>院维稳领导小组意见</YWWLDXZYJ>
+    <YWWLDXZSPBZ>1</YWWLDXZSPBZ>
+    <YWWLDXZSPR>院维稳领导小组审批人</YWWLDXZSPR>
+    <YWWLDXZSPSJ>2014-6-9 12:12:12</YWWLDXZSPSJ>
+    <YWWLDXZSPSM>院维稳领导小组审批说明</YWWLDXZSPSM>
+    <YLDYJ>院领导意见</YLDYJ>
+    <YLDSPBZ>1</YLDSPBZ>
+    <YLDSPSJ>2014-6-9 12:12:12</YLDSPSJ>
+    <YLDSPR>院领导审批人</YLDSPR>
+    <YLDSPSM>院领导审批说明</YLDSPSM>
+    <BZ>备注</BZ>
+    <SFWCSP>1</SFWCSP>
+  </SFXZZBGLXT_ABJQ>
+  <SFXZZBGLXT_WYSBWXXX>
+    <FYBM>1</FYBM>
+    <WXBH>1</WXBH>
+    <SQBM>申请部门</SQBM>
+    <SQRBS>1</SQRBS>
+    <SQR>申请人</SQR>
+    <SQSJ>2014-6-9 12:12:12</SQSJ>
+    <DH>电话</DH>
+    <FJH>房间号</FJH>
+    <GHHC>更换耗材</GHHC>
+    <HCLB>耗材类别</HCLB>
+    <JX>机型</JX>
+    <JQWX>机器维修</JQWX>
+    <SL>123.123</SL>
+    <WXJQXK>维修机器现况</WXJQXK>
+    <WXQK>维修情况</WXQK>
+    <BMLDSPJG>1</BMLDSPJG>
+    <BMLDSPYJ>部门领导审批意见</BMLDSPYJ>
+    <BMLDSPSJ>2014-6-9 12:12:12</BMLDSPSJ>
+   
+    <SXCLDSPJG>1</SXCLDSPJG>
+    <SXCLDSPYJ>司行处领导审批意见</SXCLDSPYJ>
+    <SXCLDSPSJ>2014-6-9 12:12:12</SXCLDSPSJ>
+    <SXCLDSPR>司行处领导审批人</SXCLDSPR>
+    <XGKSPJG>1</XGKSPJG>
+    <XGKSPYJ>行管科审批意见</XGKSPYJ>
+    <XGKSPSJ>2014-6-9 12:12:12</XGKSPSJ>
+    <XGKSPR>行管科审批人</XGKSPR>
+    <DSPDJ>123.123</DSPDJ>
+    <HJJE>123.123</HJJE>
+    <DJR>登记人</DJR>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+    <HZ>回执</HZ>
+    <SFHZ>1</SFHZ>
+    <ZDSPR>指定审批人</ZDSPR>
+    <ZDSPYJ>指定审批意见</ZDSPYJ>
+    <ZDSPJG>1</ZDSPJG>
+    <ZDSPSJ>2014-6-9 12:12:12</ZDSPSJ>
+    <ZDSPSM>指定审批说明</ZDSPSM>
+  </SFXZZBGLXT_WYSBWXXX>
+  <SFXZZBGLXT_YDXHHZDJZB>
+  <R>
+    <FYBM>1</FYBM>
+    <ZBBS>1</ZBBS>
+    <ND>1</ND>
+    <YF>1</YF>
+    <HJJE>123.123</HJJE>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+	</R>
+	<R>
+    <FYBM>1</FYBM>
+    <ZBBS>1</ZBBS>
+    <ND>1</ND>
+    <YF>1</YF>
+    <HJJE>123.123</HJJE>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+	</R>
+  </SFXZZBGLXT_YDXHHZDJZB>
+  <SFXZZBGLXT_YDXHHZDJMXB>
+  <R>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <ZBBS>1</ZBBS>
+    <BM>部门</BM>
+    <MH>1</MH>
+    <XG>1</XG>
+    <SD>1</SD>
+    <HPJE>123.123</HPJE>
+	</R>
+  </SFXZZBGLXT_YDXHHZDJMXB>
+  <SFXZZBGLXT_SDGLXX>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <ND>1</ND>
+    <YF>1</YF>
+    <HPMC>耗品名称</HPMC>
+    <DW>单位</DW>
+    <DJ>123.123</DJ>
+    <SL>123.123</SL>
+    <ZJE>123.123</ZJE>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_SDGLXX>
+  <SFXZZBGLXT_FGTZXX>
+    <FYBM>1</FYBM>
+    <FYMC>法院名称</FYMC>
+    <BH>1</BH>
+    <RYBS>1</RYBS>
+    <XM>姓名</XM>
+    <BM>部门</BM>
+    <XB>性别</XB>
+    <NL>1</NL>
+    <SG>123.123</SG>
+    <CLY>测量员</CLY>
+    <CLSJ>2014-6-9 12:12:12</CLSJ>
+    <GXSJ>2014-6-9 12:12:12</GXSJ>
+    <XFXH>西服型号</XFXH>
+    <XZXH>下装型号</XZXH>
+    <FFSJ>2014-6-9 12:12:12</FFSJ>
+    <CYXH>衬衣型号</CYXH>
+    <FZZL>服装种类</FZZL>
+    <BZ>备注</BZ>
+    <TZ1>123.123</TZ1>
+    <TZ2>123.123</TZ2>
+    <TZ3>123.123</TZ3>
+    <TZ4>123.123</TZ4>
+    <TZ5>123.123</TZ5>
+    <TZ6>123.123</TZ6>
+    <TZ7>123.123</TZ7>
+    <TZ8>123.123</TZ8>
+    <TZ9>123.123</TZ9>
+    <TZ10>123.123</TZ10>
+    <TZ11>123.123</TZ11>
+    <TZ13>123.123</TZ13>
+    <TZ12>123.123</TZ12>
+    <TZ14>123.123</TZ14>
+    <TZ15>123.123</TZ15>
+    <TZ16>123.123</TZ16>
+    <TZ17>123.123</TZ17>
+    <TZ18>123.123</TZ18>
+    <TZ19>123.123</TZ19>
+    <TZ20>123.123</TZ20>
+    <TZ21>123.123</TZ21>
+    <TZ22>123.123</TZ22>
+    <TZ23>123.123</TZ23>
+    <TZ24>123.123</TZ24>
+    <TZ25>123.123</TZ25>
+    <TZ26>123.123</TZ26>
+    <TZ27>123.123</TZ27>
+    <TZ28>123.123</TZ28>
+    <TZ29>123.123</TZ29>
+    <TZ30>123.123</TZ30>
+    <TZ31>123.123</TZ31>
+    <TZ32>123.123</TZ32>
+    <TZ33>123.123</TZ33>
+    <TZ34>123.123</TZ34>
+    <TZ35>123.123</TZ35>
+    <TZ36>123.123</TZ36>
+    <TZ37>123.123</TZ37>
+    <TZ38>123.123</TZ38>
+    <TZ39>123.123</TZ39>
+    <TZ40>123.123</TZ40>
+  </SFXZZBGLXT_FGTZXX>
+  <SFXZZBGLXT_FGTZBGSQ>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <SQRBS>1</SQRBS>
+    <SQR>申请人</SQR>
+    <SQNR>申请内容</SQNR>
+    <SQSJ>2014-6-9 12:12:12</SQSJ>
+    <ZT>状态</ZT>
+    <CLRBS>1</CLRBS>
+    <CLR>处理人</CLR>
+    <CLSJ>2014-6-9 12:12:12</CLSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_FGTZBGSQ>
+  <SFXZZBGLXT_FYFTTP>
+    <FYBM>1</FYBM>
+    <TPBH>1</TPBH>
+    <LX>类型</LX>
+    <TPXSMC>图片显示名称</TPXSMC>
+    <TPSM>图片说明</TPSM>
+    <TPCFDZ>图片存放地址</TPCFDZ>
+    <SLTDZ>缩略图地址</SLTDZ>
+    <SFXS>1</SFXS>
+    <XSSX>1</XSSX>
+    <TPYSGD>123.123</TPYSGD>
+    <TPYSKD>123.123</TPYSKD>
+    <CJSJ>2014-6-9 12:12:12</CJSJ>
+    <CJYH>创建用户</CJYH>
+  </SFXZZBGLXT_FYFTTP>
+  <SFXZZBGLXT_FYFTJSXX>
+    <FYBM>1</FYBM>
+    <FYMC>法院名称</FYMC>
+    <FTXZ>法庭性质</FTXZ>
+    <DQXZ>地区性质</DQXZ>
+    <GXDY>管辖地域</GXDY>
+    <GXDYMJ>123.123</GXDYMJ>
+    <GXRKS>1</GXRKS>
+    <ZLDZ>坐落地址</ZLDZ>
+    <HYTS>1</HYTS>
+    <ZSRYBZS>1</ZSRYBZS>
+    <PYRYBZS>1</PYRYBZS>
+    <SPFTJSFS>审判法庭建设方式</SPFTJSFS>
+    <KGRQ>2014-6-9 12:12:12</KGRQ>
+    <JGRQ>2014-6-9 12:12:12</JGRQ>
+    <JZZTZ>123.123</JZZTZ>
+    <GJBK>123.123</GJBK>
+    <SJBK>123.123</SJBK>
+    <ZCZJ>123.123</ZCZJ>
+    <GZZJ>123.123</GZZJ>
+    <LLNQGZL>1</LLNQGZL>
+    <ZHZJL>1</ZHZJL>
+    <LJNXZL>1</LJNXZL>
+    <QTXMLB>其它项目类别</QTXMLB>
+    <XJFS>新建方式</XJFS>
+    <GJFS>改建方式</GJFS>
+    <QTJSFS>其它建设方式</QTJSFS>
+    <JZZMJ>123.123</JZZMJ>
+    <ZDMJ>123.123</ZDMJ>
+    <SPYFMJ>123.123</SPYFMJ>
+    <BGYFMJ>123.123</BGYFMJ>
+    <SHYFMJ>123.123</SHYFMJ>
+    <FSYFMJ>123.123</FSYFMJ>
+    <CLS>1</CLS>
+    <QTZB>其它装备</QTZB>
+    <NSSSF>123.123</NSSSF>
+    <LRSJ>2014-6-9 12:12:12</LRSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_FYFTJSXX>
+  <SFXZZBGLXT_HSTJB>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <XH>1</XH>
+    <JCJS>1</JCJS>
+    <SAJS>1</SAJS>
+    <JAJS>1</JAJS>
+    <PJJS>1</PJJS>
+    <CHCDJS>1</CHCDJS>
+    <BHSQCDJS>1</BHSQCDJS>
+    <ZJCDJS>1</ZJCDJS>
+    <QTCDJS>1</QTCDJS>
+    <SABDZJE>2.21</SABDZJE>
+    <SWJS>1</SWJS>
+    <SGJS>1</SGJS>
+    <SAJSsaan>1</SAJSsaan>
+    <STJS>1</STJS>
+    <WJJS>1</WJJS>
+    <WJZZJS>1</WJZZJS>
+  </SFXZZBGLXT_HSTJB>
+  <SFXZZBGLXT_WZCGGYS>
+    <FYBM>1</FYBM>
+    <CGSBS>1</CGSBS>
+    <CGBH>1</CGBH>
+    <GYS>供应商</GYS>
+    <BJ>123.123</BJ>
+  </SFXZZBGLXT_WZCGGYS>
+  <SFXZZBGLXT_WZCGXX>
+    <FYBM>1</FYBM>
+    <CGBH>1</CGBH>
+    <CGDH>1</CGDH>
+    <SQBM>申请部门</SQBM>
+    <SQRBS>1</SQRBS>
+    <SQR>申请人</SQR>
+    <SQSJ>2014-6-9 12:12:12</SQSJ>
+    <SYRBS>1</SYRBS>
+    <SYR>使用人</SYR>
+    <WZLB>物资类别</WZLB>
+    <PM>品名</PM>
+    <XH>型号</XH>
+    <LB>类别</LB>
+    <DW>单位</DW>
+    <DJ>123.123</DJ>
+    <SL>123.123</SL>
+    <HJJE>123.123</HJJE>
+    <XQYY>需求原因</XQYY>
+    <BMLDSPJG>1</BMLDSPJG>
+    <BMLDSPYJ>部门领导审批意见</BMLDSPYJ>
+    <BMLDSPSJ>2014-6-9 12:12:12</BMLDSPSJ>
+    <BMLDSPR>部门领导审批人</BMLDSPR>
+    <ZGJSBMLDSPJG>1</ZGJSBMLDSPJG>
+    <ZGJSBMLDSPYJ>主管技术部门领导审批意见</ZGJSBMLDSPYJ>
+    <ZGJSBMLDSPSJ>2014-6-9 12:12:12</ZGJSBMLDSPSJ>
+    <ZGJSBMLDSPR>主管技术部门领导审批人</ZGJSBMLDSPR>
+    <GDZCGLBMLDSPJG>1</GDZCGLBMLDSPJG>
+    <GDZCGLBMLDSPYJ>固定资产管理部门领导审批意见</GDZCGLBMLDSPYJ>
+    <GDZCGLBMLDSPSJ>2014-6-9 12:12:12</GDZCGLBMLDSPSJ>
+    <GDZCGLBMLDSPR>固定资产管理部门领导审批人</GDZCGLBMLDSPR>
+    <ZGCWBMLDSPJG>1</ZGCWBMLDSPJG>
+    <ZGCWBMLDSPYJ>主管财务部门领导审批意见</ZGCWBMLDSPYJ>
+    <ZGCWBMLDSPSJ>2014-6-9 12:12:12</ZGCWBMLDSPSJ>
+    <ZGCWBMLDSPR>主管财务部门领导审批人</ZGCWBMLDSPR>
+    <FGCWYLDSPJG>1</FGCWYLDSPJG>
+    <FGCWYLDSPYJ>分管财务院领导审批意见</FGCWYLDSPYJ>
+    <FGCWYLDSPSJ>2014-6-9 12:12:12</FGCWYLDSPSJ>
+    <FGCWYLDSPR>分管财务院领导审批人</FGCWYLDSPR>
+    <YKJHSQ>用款计划申请</YKJHSQ>
+    <CGFS>采购方式</CGFS>
+    <ZBS>中标商</ZBS>
+    <CGJ>123.123</CGJ>
+    <QDHTSJ>2014-6-9 12:12:12</QDHTSJ>
+    <CGRDB>采购人代表</CGRDB>
+    <GHSJ>2014-6-9 12:12:12</GHSJ>
+    <YHR>验货人</YHR>
+    <FKSJ>2014-6-9 12:12:12</FKSJ>
+    <JE>123.123</JE>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_WZCGXX>
+  <SFXZZBGLXT_BZRKZB>
+    <FYBM>1</FYBM>
+    <RKBH>1</RKBH>
+    <FYMC>法院名称</FYMC>
+    <RKDH>入库单号</RKDH>
+    <RKRQ>2014-6-9 12:12:12</RKRQ>
+    <JBRBS>1</JBRBS>
+    <JBR>经办人</JBR>
+    <HJJE>123.123</HJJE>
+    <DJBS>1</DJBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <CKBGYBS>1</CKBGYBS>
+    <CKBGY>仓库保管员</CKBGY>
+    <BGYQRSJ>2014-6-9 12:12:12</BGYQRSJ>
+    <CKGLYBS>1</CKGLYBS>
+    <CKGLY>仓库管理员</CKGLY>
+    <GLYQRSJ>2014-6-9 12:12:12</GLYQRSJ>
+    <ZGLDBS>1</ZGLDBS>
+    <ZGLD>主管领导</ZGLD>
+    <LDSHSJ>2014-6-9 12:12:12</LDSHSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZRKZB>
+  <SFXZZBGLXT_BZRKMXB>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <RKBH>1</RKBH>
+    <BZBM>被装编码</BZBM>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <XH>型号</XH>
+    <HFBZ>换发标准</HFBZ>
+    <JG>2.21</JG>
+    <SL>1</SL>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZRKMXB>
+  <SFXZZBGLXT_BZCKZB>
+    <FYBM>1</FYBM>
+    <FYMC>法院名称</FYMC>
+    <CKBH>1</CKBH>
+    <CKDH>出库单号</CKDH>
+    <CKRQ>2014-6-9 12:12:12</CKRQ>
+    <FWDW>发物单位</FWDW>
+    <SWDW>收物单位</SWDW>
+    <LWRBS>1</LWRBS>
+    <LWR>领物人</LWR>
+    <CWSTKRBS>财务收（退）款人标识</CWSTKRBS>
+    <CWSTKR>财务收（退）款人</CWSTKR>
+    <HJJE>123.123</HJJE>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <CKBGYBS>1</CKBGYBS>
+    <CKBGY>仓库保管员</CKBGY>
+    <BGYQRSJ>2014-6-9 12:12:12</BGYQRSJ>
+    <CKGLYBS>1</CKGLYBS>
+    <CKGLY>仓库管理员</CKGLY>
+    <GLYQRSJ>2014-6-9 12:12:12</GLYQRSJ>
+    <ZGLDBS>1</ZGLDBS>
+    <ZGLD>主管领导</ZGLD>
+    <LDSHSJ>2014-6-9 12:12:12</LDSHSJ>
+    <BZ>备注</BZ>
+    <ZT>1</ZT>
+    <GLFJE>123.123</GLFJE>
+  </SFXZZBGLXT_BZCKZB>
+  <SFXZZBGLXT_BZCKMXB>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <CKBH>1</CKBH>
+    <BZBM>被装编码</BZBM>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <XH>型号</XH>
+    <HFBZ>换发标准</HFBZ>
+    <JG>2.21</JG>
+    <SL>1</SL>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZCKMXB>
+  <SFXZZBGLXT_BZFFJL>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <RYBM>1</RYBM>
+    <XM>姓名</XM>
+    <BM>部门</BM>
+    <FYMC>法院名称</FYMC>
+    <BZBM>被装编码</BZBM>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <XH>型号</XH>
+    <HFBZ>换发标准</HFBZ>
+    <JG>2.21</JG>
+    <SL>123.123</SL>
+    <FFSJ>2014-6-9 12:12:12</FFSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZFFJL>
+  <SFXZZBGLXT_BZNDJHZB>
+    <FYBM>1</FYBM>
+    <JHBH>1</JHBH>
+    <FYMC>法院名称</FYMC>
+    <ND>1</ND>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+    <HJJE>123.123</HJJE>
+    <SBRQ>2014-6-9 12:12:12</SBRQ>
+    <QRSJ>2014-6-9 12:12:12</QRSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZNDJHZB>
+  <SFXZZBGLXT_BZNDJHMXB>
+    <FYBM>1</FYBM>
+    <JHBH>1</JHBH>
+    <MXBH>1</MXBH>
+    <BZBM>被装编码</BZBM>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <DJ>2.21</DJ>
+    <HJSL>1</HJSL>
+    <ND>1</ND>
+    <f1>1</f1>
+    <f2>1</f2>
+    <f3>1</f3>
+    <f4>1</f4>
+    <f5>1</f5>
+    <f6>1</f6>
+    <f7>1</f7>
+    <f8>1</f8>
+    <f9>1</f9>
+    <f10>1</f10>
+    <f11>1</f11>
+    <f12>1</f12>
+    <f13>1</f13>
+    <f14>1</f14>
+    <f15>1</f15>
+    <f16>1</f16>
+    <f17>1</f17>
+    <f18>1</f18>
+    <f19>1</f19>
+    <f20>1</f20>
+    <f21>1</f21>
+    <f22>1</f22>
+    <f23>1</f23>
+    <f24>1</f24>
+    <f25>1</f25>
+  </SFXZZBGLXT_BZNDJHMXB>
+  <SFXZZBGLXT_BZKCXXB>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <FYMC>法院名称</FYMC>
+    <BZBM>被装编码</BZBM>
+    <PM>品名</PM>
+    <DW>单位</DW>
+    <XH>型号</XH>
+    <HFBZ>换发标准</HFBZ>
+    <JG>2.21</JG>
+    <KCSL>1</KCSL>
+    <ZDKCSL>1</ZDKCSL>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_BZKCXXB>
+  <SFXZZBGLXT_CWGLcc>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <RYBS>1</RYBS>
+    <XM>姓名</XM>
+    <BM>部门</BM>
+    <CCSY>出差事由</CCSY>
+    <DDDD>到达地点</DDDD>
+    <YJKSSJ>2014-6-9 12:12:12</YJKSSJ>
+    <YJDDSJ>2014-6-9 12:12:12</YJDDSJ>
+    <SQGZJTGJ>申请乖坐交通工具</SQGZJTGJ>
+    <BMLDSPYJ>部门领导审批意见</BMLDSPYJ>
+    <BMLDSPBZ>1</BMLDSPBZ>
+    <BMLDSPSM>部门领导审批说明</BMLDSPSM>
+    <BMLDSPR>1</BMLDSPR>
+    <BMLDSPRBS>部门领导审批人标识</BMLDSPRBS>
+    <BMLDSPSJ>2014-6-9 12:12:12</BMLDSPSJ>
+    <FGYLDSPYJ>分管院领导审批意见</FGYLDSPYJ>
+    <FGYLDSPR>分管院领导审批人</FGYLDSPR>
+    <FGYLDSPRBS>1</FGYLDSPRBS>
+    <FGYLDSPBZ>1</FGYLDSPBZ>
+    <FGYLDSPSM>分管院领导审批说明</FGYLDSPSM>
+    <FGYLDSPSJ>2014-6-9 12:12:12</FGYLDSPSJ>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJSJ>2014-6-9 12:12:12</DJSJ>
+    <BZ>备注</BZ>
+  </SFXZZBGLXT_CWGLcc>
+  <SFXZZBGLXT_CWGLflfg>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <MC>名称</MC>
+    <NR>内容</NR>
+    <FJ>附件</FJ>
+  </SFXZZBGLXT_CWGLflfg>
+  <SFXZZBGLXT_CWGLjk>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <RYBS>1</RYBS>
+    <XM>姓名</XM>
+    <BM>部门</BM>
+    <JKLB>借款类别</JKLB>
+    <JKYY>借款原由</JKYY>
+    <JKJEDX>借款金额大写</JKJEDX>
+    <JKJEXX>123.123</JKJEXX>
+    <LDSPBZ>1</LDSPBZ>
+    <LDSPR>领导申批人</LDSPR>
+    <LDSPYJ>领导申批意见</LDSPYJ>
+    <LDSPSJ>2014-6-9 12:12:12</LDSPSJ>
+    <LDSPSM>领导申批说明</LDSPSM>
+    <ZGCWFZRSPRBS>1</ZGCWFZRSPRBS>
+    <ZGCWFZRSPR>主管财务负责人审批人</ZGCWFZRSPR>
+    <ZGCWFZRSPSM>主管财务负责人审批说明</ZGCWFZRSPSM>
+    <ZGCWFZRSPSJ>2014-6-9 12:12:12</ZGCWFZRSPSJ>
+    <ZGCWFZRSPYJ>主管财务负责人审批意见</ZGCWFZRSPYJ>
+    <ZGCWFZRSPBZ>1</ZGCWFZRSPBZ>
+    <BZ>备注</BZ>
+    <CNBS>1</CNBS>
+    <CN>出纳</CN>
+    <JKRBS>1</JKRBS>
+    <JKR>借款人</JKR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <JKRQ>2014-6-9 12:12:12</JKRQ>
+    <SFWCSP>1</SFWCSP>
+    <YJKJE>123.123</YJKJE>
+    <BMSPRBS>1</BMSPRBS>
+    <BMSPR>部门审批人</BMSPR>
+    <BMSPSJ>2014-6-9 12:12:12</BMSPSJ>
+    <BMSPSM>部门审批说明</BMSPSM>
+    <BMSPYJ>部门审批意见</BMSPYJ>
+    <BMSPBZ>1</BMSPBZ>
+    <SXCSPRBS>1</SXCSPRBS>
+    <SXCSPR>司行处审批人</SXCSPR>
+    <SXCSPSJ>2014-6-9 12:12:12</SXCSPSJ>
+    <SXCSPYJ>司行处审批意见</SXCSPYJ>
+    <SXCSPSM>司行处审批说明</SXCSPSM>
+    <SXCSPBZ>1</SXCSPBZ>
+  </SFXZZBGLXT_CWGLjk>
+  <SFXZZBGLXT_CWGLkz>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <KM>123.123</KM>
+    <QCFSSJ>2014-6-9 12:12:12</QCFSSJ>
+    <BZ>备注</BZ>
+    <QCYE>2.21</QCYE>
+    <BQFSE>2.21</BQFSE>
+    <HJ>123.123</HJ>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <QMJSSJ>2014-6-9 12:12:12</QMJSSJ>
+  </SFXZZBGLXT_CWGLkz>
+  <SFXZZBGLXT_ZCRKZB>
+    <FYBM>1</FYBM>
+    <RKBH>1</RKBH>
+    <RKDH>入库单号</RKDH>
+    <RKRQ>2014-6-9 12:12:12</RKRQ>
+    <LB>类别</LB>
+    <RKLY>入库来源</RKLY>
+    <JBRBS>1</JBRBS>
+    <JBR>经办人</JBR>
+    <HJJE>2.21</HJJE>
+    <HSYY>回收原因</HSYY>
+    <HSBM>回收部门</HSBM>
+    <BZ>备注</BZ>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <LX>1</LX>
+    <SHRBS>1</SHRBS>
+    <SHR>审核人</SHR>
+    <SHRQ>2014-6-9 12:12:12</SHRQ>
+  </SFXZZBGLXT_ZCRKZB>
+  <SFXZZBGLXT_ZCRKMX>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <RKBH>1</RKBH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <PP>品牌</PP>
+    <XH>型号</XH>
+    <DW>单位</DW>
+    <DJ>2.21</DJ>
+    <SL>123.123</SL>
+    <SCRQJGRQ>2014-6-9 12:12:12</SCRQJGRQ>
+    <SYNX>123.123</SYNX>
+    <HSYY>回收原因</HSYY>
+    <SYZK>使用状况</SYZK>
+    <CD>产地</CD>
+    <CPH>车牌号</CPH>
+    <FDJH>发动机号</FDJH>
+    <CJH>车架号</CJH>
+    <PQL>123.123</PQL>
+    <YTFL>用途分类</YTFL>
+  </SFXZZBGLXT_ZCRKMX>
+  <SFXZZBGLXT_ZCCKZB>
+    <FYBM>1</FYBM>
+    <CKBH>1</CKBH>
+    <CKDH>出库单号</CKDH>
+    <CKRQ>2014-6-9 12:12:12</CKRQ>
+    <CKYT>出库用途</CKYT>
+    <JBRBS>1</JBRBS>
+    <JBR>经办人</JBR>
+    <HJJE>2.21</HJJE>
+    <BZ>备注</BZ>
+    <LYBM>领用部门</LYBM>
+    <LYRBS>1</LYRBS>
+    <LYR>领用人</LYR>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <LX>1</LX>
+    <SHRBS>1</SHRBS>
+    <SHR>审核人</SHR>
+    <SHRQ>2014-6-9 12:12:12</SHRQ>
+  </SFXZZBGLXT_ZCCKZB>
+  <SFXZZBGLXT_ZCCKMX>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <CKBH>1</CKBH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <PP>品牌</PP>
+    <XH>型号</XH>
+    <DW>单位</DW>
+    <DJ>2.21</DJ>
+    <SL>123.123</SL>
+    <SYRBS>1</SYRBS>
+    <SYR>使用人</SYR>
+    <FZDD>放置地点</FZDD>
+  </SFXZZBGLXT_ZCCKMX>
+  <SFXZZBGLXT_ZCBDB>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <BDDJH>变动单据号</BDDJH>
+    <ZCBH>资产编号</ZCBH>
+    <YSYRBS>1</YSYRBS>
+    <YSYR>原使用人</YSYR>
+    <XSYRBS>1</XSYRBS>
+    <XSYR>现使用人</XSYR>
+    <YCFDD>原存放地点</YCFDD>
+    <XCFDD>现存放地点</XCFDD>
+    <YSYZK>原使用状况</YSYZK>
+    <XSYZK>现使用状况</XSYZK>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+  </SFXZZBGLXT_ZCBDB>
+  <SFXZZBGLXT_ZCTZ>
+    <FYBM>1</FYBM>
+    <ZJ>1</ZJ>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <DJH>单据号</DJH>
+    <DJLX>单据类型</DJLX>
+    <BDSL>1</BDSL>
+    <KFSL>1</KFSL>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+  </SFXZZBGLXT_ZCTZ>
+  <SFXZZBGLXT_ZCCZZB>
+    <FYBM>1</FYBM>
+    <CZBH>1</CZBH>
+    <CZDH>处置单号</CZDH>
+    <SBRQ>2014-6-9 12:12:12</SBRQ>
+    <SBBM>申报部门</SBBM>
+    <CZFS>处置方式</CZFS>
+    <JBRjbr>经办人jbr</JBRjbr>
+    <JBR>经办人</JBR>
+    <HJJE>123.123</HJJE>
+    <BZ>备注</BZ>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+    <SPR1BS>1</SPR1BS>
+    <SPR1>审批人1</SPR1>
+    <SPYJ1>1</SPYJ1>
+    <SPYJBZ1>审批意见备注1</SPYJBZ1>
+    <SPSJ1>2014-6-9 12:12:12</SPSJ1>
+    <SPR2BS>1</SPR2BS>
+    <SPR2>审批人2</SPR2>
+    <SPYJ2>1</SPYJ2>
+    <SPYJBZ2>审批意见备注2</SPYJBZ2>
+    <SPSJ2>2014-6-9 12:12:12</SPSJ2>
+    <SPR3BS>1</SPR3BS>
+    <SPR3>审批人3</SPR3>
+    <SPYJ3>1</SPYJ3>
+    <SPYJBZ3>审批意见备注3</SPYJBZ3>
+    <SPSJ3>2014-6-9 12:12:12</SPSJ3>
+    <SPR4BS>1</SPR4BS>
+    <SPR4>审批人4</SPR4>
+    <SPYJ4>1</SPYJ4>
+    <SPYJBZ4>审批意见备注4</SPYJBZ4>
+    <SPSJ4>2014-6-9 12:12:12</SPSJ4>
+    <SPR5BS>1</SPR5BS>
+    <SPR5>审批人5</SPR5>
+    <SPYJ5>1</SPYJ5>
+    <SPYJBZ5>审批意见备注5</SPYJBZ5>
+    <SPSJ5>2014-6-9 12:12:12</SPSJ5>
+  </SFXZZBGLXT_ZCCZZB>
+  <SFXZZBGLXT_ZCCZMX>
+    <FYBM>1</FYBM>
+    <CZBH>1</CZBH>
+    <MXBH>1</MXBH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <PP>品牌</PP>
+    <XH>型号</XH>
+    <DW>单位</DW>
+    <DJ>2.21</DJ>
+    <SL>123.123</SL>
+    <SYQK>使用情况</SYQK>
+  </SFXZZBGLXT_ZCCZMX>
+  <SFXZZBGLXT_ZCKCB>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <DW>单位</DW>
+    <SL>1</SL>
+  </SFXZZBGLXT_ZCKCB>
+  <SFXZZBGLXT_ZCDJB>
+    <FYBM>1</FYBM>
+    <BH>1</BH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <DW>单位</DW>
+    <LB>类别</LB>
+    <XH>型号</XH>
+    <PP>品牌</PP>
+    <DJ>2.21</DJ>
+    <SCRQJGRQ>2014-6-9 12:12:12</SCRQJGRQ>
+    <SYNX>123.123</SYNX>
+    <LYBM>领用部门</LYBM>
+    <CFDDZLWZ>存放地点坐落位置</CFDDZLWZ>
+    <SYRBS>1</SYRBS>
+    <SYR>使用人</SYR>
+    <SYZK>使用状况</SYZK>
+    <CD>产地</CD>
+    <CPH>车牌号</CPH>
+    <FDJH>发动机号</FDJH>
+    <CJH>车架号</CJH>
+    <PQL>123.123</PQL>
+    <YTFL>用途分类</YTFL>
+    <BZQK>编制情况</BZQK>
+    <JZMJ>123.123</JZMJ>
+    <SYMJ>123.123</SYMJ>
+    <RKDH>1</RKDH>
+    <CKDH>1</CKDH>
+    <CZDH>1</CZDH>
+    <PDDH>1</PDDH>
+    <GQTS>1</GQTS>
+    <DQRQ>2014-6-9 12:12:12</DQRQ>
+  </SFXZZBGLXT_ZCDJB>
+  <SFXZZBGLXT_ZCPDZB>
+    <FYBM>1</FYBM>
+    <PDBH>1</PDBH>
+    <PDDH>盘点单号</PDDH>
+    <PDRQ>2014-6-9 12:12:12</PDRQ>
+    <PDRBS>1</PDRBS>
+    <PDR>盘点人</PDR>
+    <SHRQ>2014-6-9 12:12:12</SHRQ>
+    <SHRBS>1</SHRBS>
+    <SHR>审核人</SHR>
+    <DJRBS>1</DJRBS>
+    <DJR>登记人</DJR>
+    <DJRQ>2014-6-9 12:12:12</DJRQ>
+  </SFXZZBGLXT_ZCPDZB>
+  <SFXZZBGLXT_ZCPDMX>
+    <FYBM>1</FYBM>
+    <MXBH>1</MXBH>
+    <PDBH>1</PDBH>
+    <ZCBH>资产编号</ZCBH>
+    <MC>名称</MC>
+    <DW>单位</DW>
+    <KFSL>1</KFSL>
+    <PDSL>1</PDSL>
+  </SFXZZBGLXT_ZCPDMX>
+</司法行政装备管理系统>

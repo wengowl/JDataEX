@@ -1,0 +1,46 @@
+package org.jdataex.flow;
+
+import java.util.Map;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.util.AssertUtil;
+
+public class Flow implements IFlow {
+
+	private Map<GUIC, IComponentController> controllers;
+	
+	public Flow(Map<GUIC, IComponentController> controllers) {
+		AssertUtil.assertNull("Controllers is null.", controllers);
+		this.controllers = controllers;
+	}
+
+	@Override
+	public void putComponentController(IComponentController controller) {
+		if (null != controller) {
+			controllers.put(controller.getGUIC(), controller);
+		}
+	}
+
+	@Override
+	public IComponentController getComponentController(GUIC guic) {
+		if (null != guic) {
+			return controllers.get(guic);
+		}
+		return null;
+	}
+
+	@Override
+	public void startAll() {
+		for (IComponentController controller : this.controllers.values()) {
+			controller.startAll();
+		}
+	}
+
+	@Override
+	public void stopAll() {
+		for (IComponentController controller : this.controllers.values()) {
+			controller.stopAll();
+		}
+	}
+}

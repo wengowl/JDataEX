@@ -1,0 +1,247 @@
+package org.jdataex.flow.row;
+
+import static org.jdataex.util.CommonUtil.isBlank;
+import static org.jdataex.util.CommonUtil.isNull;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Row implements IRow {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6440190967320082013L;
+
+	/** 是否忽略这个row */
+	private boolean ignore;
+
+	private List<IColumn> columns;
+	
+	private IRowHeader header;
+	
+	/**
+	 * 创建一个新的空row（没有任何值）。
+	 */
+	public Row() {
+		ignore = false;
+		columns = new ArrayList<IColumn>();
+		header = new RowHeader();
+	}
+
+	/**
+	 * 创建一个新的row，而row的值都是从原有row中拷贝的。
+	 * 
+	 * @param r
+	 *            被拷贝值的row。
+	 */
+	// Copy values in row!
+	public Row(Row r) {
+		this();
+		this.columns.addAll(r.columns);
+	}
+
+	public boolean isIgnore() {
+		return ignore;
+	}
+
+	public void setIgnore(boolean ignore) {
+		this.ignore = ignore;
+	}
+
+	@Override
+	public int compareTo(IRow o) {
+		// TODO Auto-generated method stub
+		throw new RuntimeException("Not implempent");
+		// return 0;
+	}
+
+	@Override
+	public IColumn getColumn(String name) {
+		if (isBlank(name)) {
+			return null;
+		}
+
+		for (IColumn col : this.columns) {
+			if (name.equalsIgnoreCase(col.getName())) {
+				return col;
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public IColumn getColumn(int index) {
+		if (index < this.columns.size()) {
+			return this.columns.get(index);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean insertColumn(IColumn column) {
+		if (isNull(column)) {
+			return false;
+		}
+		return this.columns.add(column);
+	}
+
+	@Override
+	public boolean insertColumn(String name, Object value) {
+		if (isBlank(name)) {
+			return false;
+		}
+		return this.insertColumn(new Column(name, value));
+	}
+
+	@Override
+	public boolean updateColumn(IColumn column) {
+		if(isNull(column) || isBlank(column.getName())){
+			return false;
+		}
+		
+		for (int i = 0; i < this.columns.size(); i++) {
+			if(column.getName().equalsIgnoreCase(columns.get(i).getName())){
+				this.columns.set(i, column);
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean updateColumn(String name, Object value) {
+		if(isBlank(name)){
+			return false;
+		}
+		
+		for (IColumn col : this.columns) {
+			if(name.equalsIgnoreCase(col.getName())){
+				col.setName(name);
+				col.setValue(value);
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean updateColumn(int index, Object value) {
+		if(this.columns.size() > index){
+			this.columns.get(index).setValue(value);
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteColumn(IColumn column) {
+		if(isNull(column)){
+			return false;
+		}
+		
+		return deleteColumn(column.getName());
+	}
+
+	@Override
+	public boolean deleteColumn(String name) {
+		if(isBlank(name)){
+			return false;
+		}
+		
+		int index = getColumnIndex(name);
+		
+		return deleteColumn(index);
+	}
+
+	@Override
+	public boolean deleteColumn(int index) {
+		if(index > -1 && this.columns.size() > index){
+			this.columns.remove(index);
+			
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean putColumn(IColumn column) {
+		if(isNull(column) || isBlank(column.getName())){
+			return false;
+		}
+		
+		int index = getColumnIndex(column.getName());
+		
+		if(index > -1){
+			return updateColumn(column);
+		} else {
+			return insertColumn(column);
+		}
+	}
+
+	@Override
+	public boolean putColumn(String name, Object value) {
+		if(isNull(name)){
+			return false;
+		}
+		
+		int index = getColumnIndex(name);
+		
+		if(index > -1){
+			return updateColumn(name, value);
+		} else {
+			return insertColumn(name, value);
+		}
+	}
+
+	@Override
+	public boolean containsColumn(String name) {
+		if(isBlank(name)){
+			return true;
+		}
+		
+		for (IColumn col : this.columns) {
+			if(name.equalsIgnoreCase(col.getName())){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void clearColumns() {
+		this.columns.clear();
+	}
+	
+	private int getColumnIndex(String name){
+		for (int i = 0; i < this.columns.size(); i++) {
+			if(name.equalsIgnoreCase(columns.get(i).getName())){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+
+	@Override
+	public int getColumnsSize() {
+		return this.columns.size();
+	}
+	
+	@Override
+	public IRowHeader getHeader() {
+		return header;
+	}
+
+	@Override
+	public void setHeader(IRowHeader header) {
+		this.header = header;
+	}
+}

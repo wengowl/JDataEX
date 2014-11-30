@@ -1,0 +1,43 @@
+package org.jdataex.flow.row;
+
+public enum ColumnType {
+
+	STRING("String"),//
+	BIGDECIMAL("BigDecimal"),//
+	BOOLEAN("boolean"),//
+	BYTE("byte"),//
+	SHORT("short"),//
+	INT("int"),//
+	LONG("long"),//
+	FLOAT("float"),//
+	BYTES("byte[]"),//
+	DOUBLE("double"),//
+	DATE("Date"),//
+	TIME("Time"),//
+	TIMESTAMP("Timestamp"),//
+	CLOB("Clob"),//
+	BLOB("Blob"),//
+	ARRAY("Array"),//
+	//DISTINCT	mapping of underlying type
+	STRUCT("Struct"),
+	REF("Ref"),//
+	URL("URL"),//
+	JAVA_OBJECT("underlying Java class"),//
+	FILE("File"),//
+	ComplexRow("ComplexRow"),  //一条记录 TODO 改成都是大写。
+	ComplexRowSet("ComplexRowSet"); //多条记录
+	
+	private String name;
+
+	private ColumnType(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}

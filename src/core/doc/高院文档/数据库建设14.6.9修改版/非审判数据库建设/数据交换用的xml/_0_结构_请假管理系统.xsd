@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="在岗情况表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZBM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RYBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RYXM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZGZT" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZZW" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZDH" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QJQYY" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QTJQQK" type="C200" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="年工作日">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ND" type="SN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="法定节假日">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JJRMC" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="KSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="C200" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="请假情况表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LX" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZFY" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZBM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RYBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RYXM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SYTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ND" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="请假申请表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SQBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LX" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SQRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SQR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZBM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZFY" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SQSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QJLX" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XJFS" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CMBY" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SYES" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LCTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="KXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XJKSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XJJSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZXM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZZW" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DZDH" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QJQYY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QTJQQK" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR1BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR1" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJ1" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJBZ1" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPSJ1" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJKSSJ1" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJJSSJ1" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJTS1" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR2BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR2" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJ2" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJBZ2" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPSJ2" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJKSSJ2" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJJSSJ2" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJTS2" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR3BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPR3" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJ3" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPYJBZ3" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPSJ3" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJKSSJ3" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJJSSJ3" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPQJTS3" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXKSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXJSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXSPRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXSPR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXSPYJBZ" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXSPYJ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXSPSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPBXKSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPBXJSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJQJKSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJQJJSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJQJTS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XJQK" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XJYY" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CCLX" type="C100" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

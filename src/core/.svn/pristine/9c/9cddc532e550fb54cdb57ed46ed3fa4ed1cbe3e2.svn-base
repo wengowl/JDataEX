@@ -1,0 +1,79 @@
+package org.jdataex.channel.local;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jdataex.channel.IChannelContainer;
+import org.jdataex.channel.IChannelInput;
+import org.jdataex.channel.IChannelOutput;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.metadata.Metadata;
+
+public class LocalChannelContainer implements IChannelContainer{
+	
+	private String name;
+	
+	private List<IChannelOutput> outputs = new ArrayList<IChannelOutput>();
+
+	private IChannelInput input;
+	
+	public LocalChannelContainer(Metadata meta){
+		this.setInput(new LocalChannelInput());
+		this.addOutput(new LocalChannelOutput());
+	}
+	
+	@Override
+	public Metadata getMetadata() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	@Override
+	public IChannelOutput getOutput(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelInput getInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<?> closeInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<?> closeAllOutput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<?> closeOutput(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@SuppressWarnings("unused")
+	private void addOutput(IChannelOutput localOutput){
+		outputs.add(localOutput);
+	}
+	
+	@SuppressWarnings("unused")
+	private void setInput(IChannelInput input){
+		this.input = input;
+	}
+	
+	
+
+}

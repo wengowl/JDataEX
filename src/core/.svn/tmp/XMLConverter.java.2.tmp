@@ -1,0 +1,304 @@
+package org.jdataex.flow.component.step.xml;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.Namespace;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
+import org.jdataex.flow.component.step.dataquery.DataQuery;
+import org.jdataex.flow.component.step.dataquery.ReadDataConfig;
+import org.jdataex.flow.row.Column;
+import org.jdataex.flow.row.ColumnType;
+import org.jdataex.flow.row.IColumn;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.Row;
+import org.jdataex.flow.row.RowSet;
+import org.jdataex.util.CommonUtil;
+import org.jdataex.util.logger.LoggerFactory;
+
+/**
+ * 读取特定的xml文件转换为流程数据对象的相关方法
+ * 
+ * @author zhourh
+ */
+public class XMLConverter {
+
+	/*用于存储公共字段*/
+	private HashMap<String,String> finalColumns = new HashMap<String,String>();
+	
+	public XMLConverter(){
+		/*设置常用过滤字段*/
+		finalColumns.put("APP_CODE", "APP_CODE");
+		finalColumns.put("DEPT_CODE", "DEPT_CODE");
+	}
+	
+	/**
+	 * 根据固定格式的XML文件转换为流程数据对象
+	 * @param file 文件路径
+	 * @return 返回创建的数据对象 RowSet
+	 * @throws DocumentException
+	 * @Description 
+	 * 1、解析逻辑:一个XML就是一个Row，Row是root节点,root下一级是Column，Column的值可能是Row、
+	 * RowSet，Row的值就是RowSet。 每个子节点是一个Row，每个Row下面有两种情况
+	 * a、如果子节点下面没有R，则每个Row下面的子节点认为是Colunm
+	 * b、如果子节点下面有R，则认为每个R是一个Row，多个Row组成RowSet，而上节Row节点包括数据是RowSet
+	 * 按照上逻辑重复解析
+	 */
+	public Row toRow(File file) throws DocumentException {
+		/*加载XML配置文件 */
+		SAXReader xmlReader = new SAXReader();
+		Document document = null;
+		document = xmlReader.read(file);
+		/*构建Row结构 */
+		Row row = new Row();
+		Element rootElement = document.getRootElement();
+		row.getHeader().put("LX", rootElement.getName());
+		
+		/*封装Namespaces到hearder中*/
+		List<Namespace> namespaces = rootElement.additionalNamespaces();
+		for(int i=0;i<namespaces.size();i++){
+			Namespace namespace = namespaces.get(i);
+			row.getHeader().put(namespace.getPrefix(),namespace.getURI());
+		}
+		
+		/*获取root节点属性全部放到header中*/
+		Iterator<Attribute> rootAttribute = rootElement.attributeIterator();
+		while(rootAttribute.hasNext()){
+			Attribute attr = rootAttribute.next();
+			/*为了通用和生成XML时不好区分属性，每个属性都带上attr用于区分是否是元素的属性*/
+			LoggerFactory.getRootLogger().info(" xml attribute:"+attr.getName()+"     "+attr.getValue());
+			row.getHeader().put(attr.getName(),attr.getValue().trim());
+		}
+
+		/*根据rootRow name 获取是否存在公共标识，如果存在则暂存添加到每个下级Row中*/
+		String keyName = ReadDataConfig.getInstance().getBSByLX(rootElement.getName());
+		  System.out.println("keyName:"+keyName) ;
+		/*根据ACTION_TYPE执行不同的解析XML文件方法*/
+		if("delete".equals(row.getHeader().get("ACTION_TYPE"))&&!CommonUtil.isNullValue(keyName)&&rootElement.elements().size()<=1){
+			createRowAtDelete(row,rootElement);
+			return row;
+		}
+		
+		/*封装root子节点到Column中*/
+		Iterator<Element> childElement = rootElement.elementIterator();
+		while (childElement.hasNext()) {
+			Element rowElement = childElement.next();
+			/* 迭代 column */
+			row.putColumn(toColumn(rowElement,row,keyName));
+		}
+		return row;
+	}
+	
+	/**
+	 * 当ACTION_TYPE为delete时，XML中只有案件标识字段，需要根据LX到ReadDataConfig
+	 * 中查询出所有的表，再把标识加到每个表中组装成Row
+	 * @param row 
+	 * @param root xml根节点，删除时只有一个column
+	 */
+	private void createRowAtDelete(IRow row,Element root) {
+		/*得到案件表示字段名称和值，并封装到column中*/
+		Element key = root.elementIterator().next();
+		IColumn keyColumn = new Column(key.getName(),key.getData().toString().trim());
+		
+		/*获取案件类型所关联的所有表*/
+		List<String> tableNames = ReadDataConfig.getInstance().getTablesByLX(root.getName());
+		for(int i=0;i<tableNames.size();i++){
+			/*每一个表一个Row，把keyColumn封装到childRow里面，再把childRow封装到最上层Row的rootColumn中*/
+			String tableName = tableNames.get(i);
+			/*根据每个表明查询出ColumnType*/
+			String columnType = ReadDataConfig.getInstance().getColumnAndTypesByTable(tableName).get(keyColumn.getName());
+			//System.out.println("columnType:"+columnType);
+            keyColumn.setType(ColumnType.valueOf(columnType.toUpperCase()));
+			
+			IRow childRow = new Row();
+			childRow.putColumn(keyColumn);
+            childRow.getHeader().put("tableName",tableName);
+			
+			IColumn rootColumn = new Column(tableName,childRow,ColumnType.ComplexRow);
+			row.putColumn(rootColumn);
+		}
+	}
+
+	/**
+	 * 解析每个叶子节点直到不能在解析为止
+	 * @param element 根节点下需要解析的XML节点
+	 * @param rootRow 顶级Row
+	 * @param keyName 公共标识字段名
+	 * @return
+	 */
+	private IColumn toColumn(Element element,IRow rootRow,String keyName) {
+		Iterator<Element> childElement = element.elementIterator();
+		/**
+		 * 根据当前节点是否包含下级节点判断后续操作
+		 * 1、下级节点数为0，则按column处理
+		 * 2、下级节点数为大于0节点名不等于R，则按照Row处理
+		 * 3、下级节点数为大于0节点名等于R，按照RowSet处理
+		 */
+		if(element.elements().size() == 0){
+			/*去除值前后空格*/
+			String val = (String)element.getData();
+			if(!CommonUtil.isNullValue(val)){
+				val = val.trim();
+			}
+			//System.out.println("去空格：|"+val+"|");
+			return new Column(element.getName(),val);
+		}else{
+			RowSet rs = new RowSet();
+			while (childElement.hasNext()){
+				Element el = childElement.next();
+				if("R".equals(el.getName())){
+					rs.putRow(createRow(el,rootRow,keyName));
+				}else{
+					return new Column(element.getName(),createRow(element,rootRow,keyName),ColumnType.ComplexRow);
+				}
+			}
+			return new Column(element.getName(), rs,ColumnType.ComplexRowSet);
+		}
+	}
+	
+	/**
+	 * 根据传入的节点解析成Row结构
+	 * @param element
+	 * @return
+	 */
+	private IRow createRow(Element element,IRow rootRow,String keyName) {
+		IRow row = new Row();
+		
+		/*获取Row节点下的Column对应数据库表的各字段类型*/
+//		System.out.println("表名："+element.getName());
+		Map<String,String> columnType = null;
+		
+		if("R".equals(element.getName())){
+			/*设置tableName*/
+			row.getHeader().put("tableName", element.getParent().getName());
+			columnType = ReadDataConfig.getInstance().getColumnAndTypesByTable(element.getParent().getName());
+		}else{
+			/*设置tableName*/
+			row.getHeader().put("tableName", element.getName());
+			columnType = ReadDataConfig.getInstance().getColumnAndTypesByTable(element.getName());
+		}
+		
+		Iterator<Element> childElement = element.elementIterator();
+		while (childElement.hasNext()) {
+			IColumn column = toColumn(childElement.next(),rootRow,keyName);
+			/*设置每个Column的ColumnType类型供下个出来组建使用*/
+            System.out.println("Column名："+column.getName());
+			System.out.println("Column名："+column.getName()+" ,值:"+column.getValue()+",类型："+ColumnType.valueOf(columnType.get(column.getName().toUpperCase())!=null?columnType.get(column.getName().toUpperCase()).toUpperCase():"STRING")+" :"+ColumnType.valueOf(columnType.get(column.getName().toUpperCase())!=null?columnType.get(column.getName().toUpperCase()).toUpperCase():"STRING").getName());
+			column.setType(ColumnType.valueOf(columnType.get(column.getName().toUpperCase())!=null?columnType.get(column.getName().toUpperCase()).toUpperCase():"STRING"));
+			row.putColumn(column);
+		}
+		
+		/*增加公共标识字段*/
+		if(!CommonUtil.isNullValue(keyName) && columnType != null){
+			IColumn keyColumn = rootRow.getColumn(keyName);
+			keyColumn.setType(ColumnType.valueOf(columnType.get(keyName).toUpperCase()));
+			row.putColumn(keyColumn);
+		} 
+		
+		return row;
+	}
+
+	/**
+	 * 根据流程数据对象生成XML配置文件
+	 * @param row
+	 * @throws IOException 
+	 */
+	public void fromRow(IRow row,File targetFile) throws IOException {
+		/* 生成Document对象 */
+		Document document = DocumentHelper.createDocument();
+		Element rootElement = document.addElement(row.getHeader().get("LX"));
+		rootElement.addAttribute("ACTION_TYPE",row.getHeader().get("ACTION_TYPE"));
+		
+		/*创建XML节点*/
+		for (int i = 0; i < row.getColumnsSize(); i++) {
+			createXMLByColumn(rootElement,row.getColumn(i));
+		}
+
+		XMLWriter writer = new XMLWriter(new FileWriter(targetFile), OutputFormat.createPrettyPrint());
+		writer.write(document);
+		writer.close();
+	}
+
+	/**
+	 * 根据Row下面的column创建XML节点
+	 * @param root
+	 * @param column
+	 */
+	private void createXMLByColumn(Element root, IColumn column) {
+		/*优先创建公共字段*/
+		String keyName = ReadDataConfig.getInstance().getBSByLX(root.getName());
+		Object obj = column.getValue();
+		if(obj instanceof Row){
+			if(keyName != null && root.isRootElement() && root.element(keyName) == null){
+				root.addElement(keyName);
+			}
+			
+			Row row = (Row)obj;
+			Element child_column = root.addElement(column.getName());
+			for(int i=0;i<row.getColumnsSize();i++){
+				 IColumn tempColum = row.getColumn(i);
+				/*把Row里面的 APP_CODE、DEPT_CODE放到root的attribute里面，不创建Column*/
+				if(finalColumns.containsKey(tempColum.getName())){
+					/*先判断是否已添加属性*/
+					Attribute addAtt = root.attribute(tempColum.getName());
+					if(addAtt == null){
+						if(root.isRootElement()){
+							root.addAttribute(tempColum.getName(), (String)tempColum.getValue());
+						}else{
+							root.getParent().addAttribute(tempColum.getName(), (String)tempColum.getValue());
+						}	
+					}
+					continue;
+				}
+				/*设置公共字段*/
+				if(tempColum.getName().equals(keyName)){
+					root.element(keyName).setText(tempColum.getValue().toString());
+					continue;
+				}
+				createXMLByColumn(child_column,tempColum);
+			}
+		}else if(obj instanceof RowSet){
+			Element child_column = root.addElement(column.getName());
+			RowSet rowSet =(RowSet)obj;
+			while(rowSet.hasNextRow()){
+				IRow row = rowSet.nextRow();
+				Element childRow = child_column.addElement("R");
+				for(int i=0;i<row.getColumnsSize();i++){
+					createXMLByColumn(childRow,row.getColumn(i));
+				}
+			}
+		}else{
+			Element child = root.addElement(column.getName());
+			if(!CommonUtil.isNullValue(obj)){
+				child.setText(obj.toString());
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		XMLConverter converter = new XMLConverter();
+//		Row row = converter.toRow(new File("C:/Users/zhourh/Desktop/纪检监察T.xml"));
+//		converter.fromRow(row, new File("D:/ts.xml"));
+////	    DataQuery query = new DataQuery();
+////        IRow row = query.getAllSP("纪检监察",2428342);
+////        converter.fromRow(row, new File("d:/ts.xml"));
+//		//Row row = converter.toRow(new File("F:\\公司\\四川高院\\分类\\司法行政装备管理系统.xml"));
+////		converter.fromRow(row, new File("F:/ts.xml"));
+        DataQuery query = new DataQuery();
+        IRow row = query.getAllSP("执行案件",1231212423);
+        converter.fromRow(row, new File("F:/ts.xml"));
+	}
+}

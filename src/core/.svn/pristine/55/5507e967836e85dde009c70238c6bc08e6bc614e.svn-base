@@ -1,0 +1,112 @@
+package org.jdataex.flow.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.IComponentRunner.RunnerState;
+import org.jdataex.flow.runner.SchedulerRunner;
+
+/**
+ * 用于代码备份。
+ * @deprecated
+ * @author TwelveFoldEr
+ *
+ */
+public class BackupComponentController  {
+
+	private GUIC guic = new GUIC(UUID.randomUUID());
+
+	private List<List<IComponentHandler>> componentHandlerList = new ArrayList<>();
+
+	private Map<String, IComponentRunner> componentRunners = new HashMap<>();
+
+	public boolean addComponentHanlder(int index, IComponentHandler handler) {
+		if (this.componentHandlerList.size() > index) {
+			return this.componentHandlerList.get(index).add(handler);
+		} else if (this.componentHandlerList.size() == index) {
+			ArrayList<IComponentHandler> list = new ArrayList<IComponentHandler>();
+			list.add(handler);
+			return this.componentHandlerList.add(list);
+		} else {
+			return false;
+		}
+	}
+
+	public IComponentHandler getComponentHandler(int listIndex, int index) {
+		if (this.componentHandlerList.size() > listIndex) {
+			List<IComponentHandler> list = this.componentHandlerList
+					.get(listIndex);
+
+			if (list.size() > index) {
+				return list.get(index);
+			}
+		}
+
+		return null;
+	}
+
+	public boolean startAll() {
+		for (List<IComponentHandler> list : this.componentHandlerList) {
+			for (IComponentHandler handler : list) {
+
+				IComponentRunner runner = this.componentRunners.get(handler
+						.getGUIC().getUUID().toString());
+
+				if (runner == null
+						|| !RunnerState.RUNNING.equals(runner.getState())) {
+					runner = new SchedulerRunner(handler);
+					this.componentRunners.put(handler.getGUIC().getUUID()
+							.toString(), runner);
+					// TODO 改成线程池？？？
+					new Thread(runner).start();
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public boolean stopAll() {
+		boolean result = true;
+		for (List<IComponentHandler> list : this.componentHandlerList) {
+			for (IComponentHandler handler : list) {
+
+				IComponentRunner runner = this.componentRunners.get(handler
+						.getGUIC().getUUID().toString());
+
+				if (runner != null
+						&& RunnerState.RUNNING.equals(runner.getState())) {
+					if (!runner.notifyStopping()) {
+						result = false;
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public Map<String, IComponentRunner> getComponentRunners() {
+		return componentRunners;
+	}
+
+	public void setComponentRunners(
+			Map<String, IComponentRunner> componentRunners) {
+		this.componentRunners = componentRunners;
+	}
+
+	public void setGUIC(GUIC guic) {
+		this.guic = guic;
+	}
+
+	public GUIC getGUIC() {
+		return this.guic;
+	}
+
+}

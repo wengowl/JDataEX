@@ -1,0 +1,40 @@
+package org.jdataex.flow.component.step.trigger;
+
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.loader.FlowLoader;
+import org.jdataex.engine.loader.IFlowLoader;
+import org.jdataex.flow.IFlow;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.resource.databasepool.ShutDownPool;
+import org.jdataex.util.FileUtil;
+import org.junit.Test;
+
+import java.io.File;
+
+public class TriggerDataGetStepTest extends BaseJDataExTest {
+    private static File basedir = FileUtil
+            .findAbsoluteFile(TriggerDataGetStepTest.class);
+
+    @Test
+    public void test() throws InitializationException {
+        File file = new File(basedir, "TriggerDataGet-config.xml");
+        IFlowLoader loader = new FlowLoader();
+        IFlow flow = loader.load(file);
+
+        IComponentController controller = flow
+                .getFirstComponentController();
+        controller.startAll();
+
+
+        try {
+            Thread.sleep(50000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+
+    }
+
+
+}

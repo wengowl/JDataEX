@@ -1,0 +1,23 @@
+package org.jdataex.flow.controller;
+
+import java.util.Map;
+
+import org.jdataex.core.card.IGUICable;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+
+public interface IComponentController extends IGUICable{
+
+	public abstract boolean addComponentHanlder(int index, IComponentHandler handler);
+
+	public abstract IComponentHandler getComponentHandler(int stepIndex, int index);
+
+	public abstract boolean startAll();
+
+	public abstract void setComponentRunners(Map<String, IComponentRunner> componentRunners);
+
+	public abstract Map<String, IComponentRunner> getComponentRunners();
+
+	public abstract boolean stopAll();
+
+}

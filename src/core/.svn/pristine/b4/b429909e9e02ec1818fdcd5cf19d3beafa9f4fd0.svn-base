@@ -1,0 +1,10 @@
+package org.jdataex.engine.loader;
+
+import org.jdataex.flow.controller.IComponentController;
+
+public interface IComponentHandlersLoader {
+
+	// 装载XML读取配置。
+	public abstract IComponentController load();
+
+}

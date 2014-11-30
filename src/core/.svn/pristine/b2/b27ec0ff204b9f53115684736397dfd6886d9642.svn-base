@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="批办事项信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBH" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJR" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LWRQ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LWDW" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LWNRZY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LWLB" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PBRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PBSX" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSQK" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PSYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LJBZ" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LJSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GLDBBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GLDBBT" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GLSGKBT" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GLSGKBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZBDW" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WCQX" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="批办办理情况登记信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBH" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSQK" type="BB" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="批办实体">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PBBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WJMC" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="STWJM" type="BB" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="批办审批记录信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LSSXBH" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QZNR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QZSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XGSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

@@ -1,0 +1,125 @@
+package org.jdataex.engine.config;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.util.FileUtil;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class FlowConfigTest {
+	private static FlowConfig config;
+	private static String controllerName = "controller";
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		File file = FileUtil.findAbsoluteFile(FlowConfigTest.class,
+				"flow-config-test.xml");
+		String content = FileUtil.readFileToString(file);
+		config = new FlowConfig(content);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	private ControllerItem getControllerItem() {
+		for (GUIC guic : config.getControllers().keySet()) {
+			if (controllerName.equalsIgnoreCase(guic.getID())) {
+				return config.getControllers().get(guic);
+			}
+		}
+		return null;
+	}
+
+	@Test
+	public void testGetController() {
+		String controllerName = "controller";
+		String expected = controllerName;
+
+		ControllerItem item = getControllerItem();
+		String actual = item.getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetInputStation() {
+		String expected = "stid1";
+
+		ComponentItem item = getControllerItem().getComponents().get("cid1");
+		String actual = item.getInputStationRefItem().getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetAttribute() {
+		String expected = "attCheckValue";
+
+		ComponentItem item = getControllerItem().getComponents().get("cid1");
+		String actual = item.getAttributes().get("attCheck");
+
+		assertEquals(expected, actual);
+
+		String expected2 = "att3";
+		ComponentItem item2 = getControllerItem().getComponents().get("cid3");
+		String actual2 = item2.getAttributes().get("attCheck3");
+
+		assertEquals(expected2, actual2);
+	}
+
+	@Test
+	public void testGetAttributeItem() {
+		String expected = "catt1Value";
+
+		ComponentItem item = getControllerItem().getComponents().get("cid1");
+		String actual = item.getAttributeItems().get("complexAtt")
+				.getAttribute("catt1");
+
+		assertEquals(expected, actual);
+
+		expected = "ccatt";
+		actual = item.getAttributeItems().get("complexAtt")
+				.getAttributeItem("cc").getAttribute("ccatt");
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetStationRef() {
+		String expected = "stid1";
+
+		ComponentItem item = getControllerItem().getComponents().get("cid1");
+		String actual = item.getInputStationRefItem().getId();
+
+		assertEquals(expected, actual);
+
+		String expected2 = "stid22";
+		ComponentItem item2 = getControllerItem().getComponents().get("cid2");
+		String actual2 = item2.getOutputStationRefItem().getId();
+
+		assertEquals(expected2, actual2);
+	}
+
+	@Test
+	public void testGetStation() {
+		StationItem item = getControllerItem().getStations().get("stid2");
+
+		assertEquals("stid2", item.getId());
+		assertEquals("org.jdataex.flow.station.MockStation", item.getClazz());
+	}
+}

@@ -1,0 +1,64 @@
+package org.jdataex.engine.loader;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.card.GUIC;
+import org.jdataex.core.entity.EntityFactory;
+import org.jdataex.engine.config.FlowConfig;
+import org.jdataex.engine.config.StationItem;
+import org.jdataex.engine.config.StationRefItem;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.station.IStation;
+
+@Deprecated
+public class ComponentControllerLoader implements IComponentControllerLoader {
+
+	@Override
+	public IComponentController load(String configContent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IComponentController load(FlowConfig config)
+			throws InitializationException {
+		if (config == null) {
+			return null;// TODO other handle,ex throw exception;
+		}
+
+//		Map<String, StationItem> sris = config.getStations();
+//		loadStations(sris);
+
+		
+		return null;
+	}
+
+	private void loadStations(Map<String, StationItem> sris
+			) throws InitializationException {
+		Map<String, IStation> stations = new HashMap<>();
+		StationItem item;
+		IStation st;
+		for (String key : sris.keySet()) {
+			item = sris.get(key);
+
+			if (item != null) {
+				try {
+					st = (IStation) ClassLoader.getSystemClassLoader()
+							.loadClass(item.getClazz()).newInstance();
+				
+					stations.put(key, st);
+				} catch (InstantiationException | IllegalAccessException
+						| ClassNotFoundException e) {
+					throw new InitializationException("Initialization station "
+							+ e.getMessage(), e);
+				}
+			}
+
+		}
+	}
+
+}

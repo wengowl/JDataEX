@@ -1,0 +1,96 @@
+package org.jdataex.channel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.jdataex.channel.future.IChannelFuture;
+
+public class DefaultChannelContainer<T> implements IChannelContainer<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3129092996841777266L;
+
+	private String name;
+
+	private final Map<String, IChannelOutput<T>> outputs = new HashMap<String, IChannelOutput<T>>();
+
+	private IChannelInput<T> input;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public IChannelOutput<T> getOutput(String name) {
+		return outputs.get(name);
+	}
+
+	@Override
+	public IChannelInput<T> getInput() {
+		return this.input;
+	}
+
+	@Override
+	public IChannelFuture<T> closeInput() {
+		return this.input.close();
+	}
+
+	@Override
+	public List<IChannelFuture<T>> closeAllOutput() {
+
+		Iterator<String> it = outputs.keySet().iterator();
+		List<IChannelFuture<T>> list = new ArrayList<IChannelFuture<T>>();
+		while (it.hasNext()) {
+			IChannelOutput<T> output = outputs.get(it.next());
+			output.setWrite(false);
+			list.add(output.disConnect());
+		}
+		return list;
+	}
+
+	@Override
+	public IChannelFuture<T> closeOutput(String name) {
+		outputs.get(name).setWrite(false);
+		return outputs.get(name).disConnect();
+	}
+
+	public void addOutput(IChannelOutput<T> localOutput) {
+		outputs.put(localOutput.getName(), localOutput);
+	}
+
+	public void setInput(IChannelInput<T> input) {
+		this.input = input;
+	}
+
+	@Override
+	public List<IChannelOutput<T>> getOutputs() {
+		Iterator<String> it = this.outputs.keySet().iterator();
+		List<IChannelOutput<T>> list = new ArrayList<IChannelOutput<T>>();
+		while (it.hasNext()) {
+			list.add(outputs.get(it.next()));
+		}
+		return list;
+	}
+
+	@Override
+	public void registerStage(IChannelStage<T> stage) {
+		if (this.input != null) {
+			input.registerStage(stage);
+		}
+		Iterator<String> it = outputs.keySet().iterator();
+		while (it.hasNext()) {
+			outputs.get(it.next()).registerStage(stage);
+		}
+	}
+
+}

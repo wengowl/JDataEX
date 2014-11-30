@@ -1,0 +1,37 @@
+package org.jdataex;
+
+import org.jdataex.core.GlobalInitializer;
+import org.jdataex.core.InitializationException;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+
+public class BaseJDataExTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		init();
+	}
+	
+	public static void init(){
+		try {
+			GlobalInitializer.initialization();
+		} catch (InitializationException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+	
+}

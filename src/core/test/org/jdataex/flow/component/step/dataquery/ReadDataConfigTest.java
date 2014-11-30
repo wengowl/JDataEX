@@ -1,0 +1,77 @@
+package org.jdataex.flow.component.step.dataquery;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+
+public class ReadDataConfigTest {
+
+	@Test
+	public void testGetTablesByLX() throws Exception {
+		ReadDataConfig readDataConfig = ReadDataConfig.getInstance();
+		List<String> tables = readDataConfig.getTablesByLX("信访案件");
+		List<String> exceptedtables = new ArrayList<>();
+		exceptedtables.add("XFAJ_XFR");
+		exceptedtables.add("XFAJ_BLQK");
+		exceptedtables.add("XFAJ_YSQK");
+		exceptedtables.add("XFAJ_YADSR");
+		exceptedtables.add("XFAJ_FYWTQK");
+		exceptedtables.add("XFAJ_STWJ");
+		exceptedtables.add("XFAJ_SLJD");
+		exceptedtables.add("XFAJ_SAQK");
+		exceptedtables.add("XFAJ_WS");
+		exceptedtables.add("XFAJ_FTSYJL");
+		exceptedtables.add("XFAJ_SAQKSHE");
+		exceptedtables.add("XFAJ_SSDAGL");
+		exceptedtables.add("XFAJ_SDJL");
+		exceptedtables.add("XFAJ_XAQK");
+
+		assertEquals(exceptedtables, tables);
+	}
+
+	@Test
+	public void testGetColumnAndTypesByTable() throws Exception {
+		ReadDataConfig readDataConfig = ReadDataConfig.getInstance();
+		Map<String, String> column_types = readDataConfig
+				.getColumnAndTypesByTable("XFAJ_XAQK");
+		Map<String, String> expected = new HashMap<>();
+		expected.put("AJBS", "long");
+		expected.put("SQXARQ", "date");
+		expected.put("XASY", "int");
+		expected.put("XAYY", "String");
+		expected.put("SQXABG", "int");
+		expected.put("TYXARQ", "date");
+		expected.put("SPR", "int");
+		
+		assertEquals(expected, column_types);
+	}
+
+	@Test
+	public void testGetColumnsByTable() throws Exception {
+		ReadDataConfig readDataConfig = ReadDataConfig.getInstance();
+		List<String> columns = readDataConfig.getColumnsByTable("XFAJ_XAQK");
+		List<String> expected = new ArrayList<>();
+		expected.add("AJBS");
+		expected.add("SQXARQ");
+		expected.add("XASY");
+		expected.add("XAYY");
+		expected.add("SQXABG");
+		expected.add("TYXARQ");
+		expected.add("SPR");
+		
+		assertEquals(expected, columns);
+	}
+
+	@Test
+	public void testGetBSByLX() throws Exception {
+		ReadDataConfig readDataConfig = ReadDataConfig.getInstance();
+		String bs = readDataConfig.getBSByLX("信访案件");
+		
+		assertEquals("AJBS", bs);
+	}
+}

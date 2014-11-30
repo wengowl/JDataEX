@@ -1,0 +1,12 @@
+package org.jdataex.engine.loader;
+
+public class MonitorFileLoader {
+
+	// 装载XML读取配置。
+	public void load(){
+
+		
+		
+	}
+	
+}

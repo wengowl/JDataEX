@@ -1,0 +1,30 @@
+package org.jdataex.channel.net;
+
+import java.net.SocketAddress;
+
+public class LocalAddress extends SocketAddress{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7451591474210088091L;
+	
+	private String name;
+	
+	public LocalAddress(String name){
+		setJndiName(name);
+	}
+
+	public String getJndiName() {
+		return name;
+	}
+
+	public void setJndiName(String name) {
+		this.name = name;
+	}
+	
+	public String toString(){
+		return name;
+	}
+	
+}

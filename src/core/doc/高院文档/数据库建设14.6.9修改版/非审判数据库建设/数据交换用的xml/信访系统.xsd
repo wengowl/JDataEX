@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_信访系统.xsd"/>
+<CASE:complexType name="信访系统">
+
+<CASE:sequence>
+ <CASE:element name="XFXT_XFZTXX" type="信访主体信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFHFH" type="信访回复函" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFSTWJ" type="信访实体文件" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFYQSQB" type="信访延期申请表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFDSRJL" type="信访当事人记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFJDAP" type="信访接待安排" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFJDSPB" type="信访接待审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFRZJL" type="信访日志记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFLCXX" type="信访流程信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFSJAH" type="信访涉及案号" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XFZFJL" type="信访转发记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_CFJDHFD" type="初访接待回复单" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_CFJDTZD" type="初访接待通知单" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_CFDFH" type="初访答复函" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_LCXFSJFY" type="历次信访涉及法院" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_LCXFDJ" type="历次信访登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_TZTZS" type="听证通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_XSTZS" type="息诉通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="XFXT_CZJL" type="操作记录" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+</CASE:complexType>
+
+  <CASE:element name="信访系统" type="信访系统"/>
+
+</CASE:schema>
+

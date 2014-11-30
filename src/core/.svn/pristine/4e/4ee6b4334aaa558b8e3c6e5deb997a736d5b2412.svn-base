@@ -1,0 +1,178 @@
+package org.jdataex.flow.component.step.xml;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
+import org.jdataex.flow.row.Column;
+import org.jdataex.flow.row.IColumn;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.Row;
+import org.jdataex.flow.row.RowSet;
+import org.jdataex.util.PropersUtil;
+/**
+ * 读取特定的xml文件转换为流程数据对象的相关方法
+ * @author zhourh
+ */
+public class ReadXmlToRowSet {
+	
+	/**
+	 * 根据xml文件转换为流程数据对象
+	 * @return 流程数据对象
+	 */
+	public RowSet convertXMLToRowSet(String filepath){
+		
+		SAXReader xmlReader = new SAXReader();
+		Document document = null;
+		try {
+			document = xmlReader.read(new File(filepath));
+		} catch (DocumentException e){
+			e.printStackTrace();
+		}
+		Element rootElement = document.getRootElement();
+		List<Element> elements = rootElement.elements();
+		RowSet rowSet = new RowSet();
+		for(int i=0;i<elements.size();i++){
+			System.out.println("添加前"+rowSet.size());
+			xmlToRow(elements.get(i),rowSet);
+			System.out.println("添加后"+rowSet.size());
+		}
+		
+		return rowSet;
+	}
+	
+	/**
+	 * 使用迭代方式循环到最后一级
+	 * @param element 需要循环的元素
+	 * @param rowSet 多个row 组成的结果集
+	 */
+	private void xmlToRow(Element element,RowSet rowSet){
+		IRow row = new Row();
+		List<Element> childElements = element.elements();
+		int childElementSize = childElements.size();
+		for(int i=0;i<childElementSize;i++){
+			Element childElement = childElements.get(i);
+			System.out.println(childElement.getName());
+			String tableName = childElement.getName();
+			
+			if(tableName.equals("R")){
+				IRow rowMore = new Row();
+				Iterator<Element> childChildElements = childElement.elementIterator();
+				while(childChildElements.hasNext()){
+					Element childChildElement = childChildElements.next();
+					System.out.println(childChildElement.getName());
+					IColumn column = new Column(childChildElement.getName(),childChildElement.getStringValue());
+					rowMore.putColumn(column);
+				}
+				rowMore.getHeader().put("tableName", childElement.getParent().getName());
+				rowMore.getHeader().put("root",element.getParent().getName());
+				rowMore.getHeader().put("many","Y");
+				rowSet.putRow(rowMore);
+			}else{
+				row.getHeader().put("tableName", element.getName());
+				row.getHeader().put("root",element.getParent().getName());
+				IColumn column = new Column(childElement.getName(),childElement.getStringValue());
+				row.putColumn(column);
+				if(childElementSize == (i+1)){
+					rowSet.putRow(row);
+					return;
+				}
+			}
+		}
+		
+		if(childElementSize != 0){
+			return;
+		}
+		
+		System.out.println(element.getName());
+		
+		if(element.hasContent()){
+			row.getHeader().put("rootValue",element.getText());
+		}
+		
+		row.getHeader().put("tableName", element.getName());
+		row.getHeader().put("root",element.getParent().getName());
+		rowSet.putRow(row);
+	}
+	
+	
+	public void convertRowSetToXml(RowSet rowSet,String filepath){
+		//创建xml
+		Document document = DocumentHelper.createDocument();
+		Element rootElement = document.addElement(rowSet.getRow(0).getHeader().get("root"));
+		while(rowSet.hasNextRow()){
+			IRow row = rowSet.nextRow();
+			//子节点数量
+			int columnSize = row.getColumnsSize();
+			System.out.println(PropersUtil.getColumnName(row.getHeader().get("tableName")));
+			//是否多行记录
+			if(row.getHeader().get("many") != null){
+				//先查找是否已经创建了节点
+				Element oldElement = rootElement.element(row.getHeader().get("tableName"));
+				Element rElement = null;
+				if(oldElement != null){
+					 //添加R节点
+					 rElement = oldElement.addElement("R");
+				}else{
+					oldElement = rootElement.addElement(row.getHeader().get("tableName"));
+					//添加R节点
+					rElement = oldElement.addElement("R");
+				}
+				
+				//向R节点中加数据
+				for(int i=0;i<columnSize;i++){
+					IColumn column = row.getColumn(i);
+					System.out.println(PropersUtil.getColumnName(row.getHeader().get("tableName")+"."+column.getName()));
+					Element node = rElement.addElement(column.getName());
+					node.addText((String) column.getValue());
+				 }
+			}else {
+				Element childElement = rootElement.addElement(row.getHeader().get("tableName"));
+				
+				if(row.getHeader().get("rootValue") != null){
+					childElement.addText(row.getHeader().get("rootValue"));
+				}
+				
+				for(int i=0;i<columnSize;i++){
+					IColumn column = row.getColumn(i);
+					Element node = childElement.addElement(column.getName());
+					node.addText((String) column.getValue());
+				}
+			}
+		}
+		
+		XMLWriter writer = null;
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		try {
+			writer = new XMLWriter(new FileWriter(new File(filepath)),format);
+			writer.write(document);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}finally{
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+		ReadXmlToRowSet convert = new ReadXmlToRowSet();
+		RowSet rowSet = convert.convertXMLToRowSet("C:\\Users\\zhourh\\Desktop\\22_185000000197838.xml");
+		
+		convert.convertRowSetToXml(rowSet,"d:/ceshi.xml");
+		
+		
+	}
+}

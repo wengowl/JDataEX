@@ -1,0 +1,30 @@
+package org.jdataex.flow.row;
+
+import java.util.List;
+import java.util.UUID;
+
+public class ColumnSet extends Column implements IColumnSet{
+
+	public ColumnSet(String name, Object value) {
+		this(name, value, ColumnType.ComplexColumnSet,UUID.randomUUID());
+	}
+
+	public ColumnSet(String name, Object value, ColumnType type, UUID uuid) {
+		super(name, value, type, uuid);
+	}
+
+	public ColumnSet(IColumn an) {
+		this(an.getName(), an.getValue());
+	}
+
+	public List<IColumn> getColumns(){
+		@SuppressWarnings("unchecked")
+		List<IColumn> result = (List<IColumn>) getValue();
+		return result;
+	}
+	
+	public void setColumns(List<IColumn> list){
+		setValue(list);
+	}
+
+}

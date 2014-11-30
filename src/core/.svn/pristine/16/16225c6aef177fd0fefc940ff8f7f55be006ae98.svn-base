@@ -1,0 +1,66 @@
+package org.jdataex.flow.handler;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.step.BaseStep;
+
+public class MockStep extends BaseStep {
+
+	@Override
+	public void beforeStep() {
+		System.out.println("beforeStep");
+	}
+
+	@Override
+	public void afterStep() {
+		System.out.println("afterStep");
+	}
+
+	@Override
+	public void beforeProcess() {
+		System.out.println("beforeProcess");
+	}
+
+	@Override
+	public void afterProcess() {
+		System.out.println("afterProcess");
+	}
+
+	@Override
+	public void beforeRowSet() {
+		System.out.println("beforeRowSet");
+	}
+
+	@Override
+	public void afterRowSet() {
+		System.out.println("afterRowSet");
+	}
+
+	@Override
+	public void beforeRow() {
+		System.out.println("beforeRow");
+	}
+
+	@Override
+	public void afterRow() {
+		System.out.println("afterRow");
+	}
+
+	@Override
+	public void init() throws InitializationException {
+		System.out.println("init");
+		
+	}
+
+	@Override
+	public void release() throws ReleaseException {
+		System.out.println("release");
+	}
+
+	@Override
+	public void processRow() throws ComponentException {
+		System.out.println("processRow");
+	}
+
+}

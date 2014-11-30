@@ -1,0 +1,57 @@
+<ds-config>
+    <pool>
+        <poolname>poolxxx</poolname>
+        <jdbcdriver>oracle.jdbc.driver.OracleDriver</jdbcdriver>
+        <databasetype>oracle</databasetype>
+        <dburl>jdbc:oracle:thin:@10.10.20.12:1521:ORCL</dburl>
+        <dbusername>sgy</dbusername>
+        <dbpassword>sgy</dbpassword>
+        <minconnections>1</minconnections>
+        <maxconnections>100</maxconnections>
+    </pool>
+    <pool>
+        <poolname>pool</poolname>
+        <jdbcdriver>oracle.jdbc.driver.OracleDriver</jdbcdriver>
+        <databasetype>oracle</databasetype>
+        <dburl>jdbc:oracle:thin:@10.10.22.12:1521:ORCL</dburl>
+        <dbusername>sgy</dbusername>
+        <dbpassword>sgy</dbpassword>
+        <minconnections>1</minconnections>
+        <maxconnections>100</maxconnections>
+    </pool>
+    <!--<pool>
+        <poolname>pool</poolname>
+        <jdbcdriver>oracle.jdbc.driver.OracleDriver</jdbcdriver>
+        <databasetype>oracle</databasetype>
+        <dburl>jdbc:oracle:thin:@192.168.54.220:1521:ORCL</dburl>
+        <dbusername>fwgl</dbusername>
+        <dbpassword>fwgl</dbpassword>
+        <minconnections>1</minconnections>
+        <maxconnections>100</maxconnections>
+    </pool>-->
+<!--    <pool>
+        <poolname>poolx</poolname>
+        <jdbcdriver>oracle.jdbc.driver.OracleDriver</jdbcdriver>
+        <databasetype>oracle</databasetype>
+        <dburl>jdbc:oracle:thin:@10.10.20.57:1521:ORCL</dburl>
+        <dbusername>sgy</dbusername>
+        <dbpassword>sgy</dbpassword>
+        <initconnections>2</initconnections>
+        <incrconnections>1</incrconnections>
+        <maxconnections>100</maxconnections>
+    </pool>-->
+   <!-- <pool>
+        <poolname>newpool</poolname>
+        <jdbcdriver>com.sybase.jdbc4.jdbc.SybDriver</jdbcdriver>
+        <databasetype>sybase</databasetype>
+        <dburl>jdbc:sybase:Tds:10.10.22.21:5000/test</dburl>
+        <dbusername>datatest</dbusername>
+        <dbpassword>datatest</dbpassword>
+        <initconnections>2</initconnections>
+        <incrconnections>1</incrconnections>
+        <maxconnections>10</maxconnections>
+    </pool>   -->
+</ds-config>
+
+
+

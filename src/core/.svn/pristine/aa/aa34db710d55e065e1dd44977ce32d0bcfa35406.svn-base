@@ -1,0 +1,361 @@
+package org.jdataex.flow.component.dataaccess;
+
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.flow.row.ColumnType;
+import org.jdataex.flow.row.IRow;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
+
+
+/**
+ * Created by wengxf on 14-5-6.
+ * 数据入库操作处理
+ */
+public class ComplexDataAccessProcess {
+    private SqlProcess sqlProcess = new SqlProcess();
+    private DBOperation dbOperation = new DBOperation();
+
+
+    /**
+     * 数据插入
+     */
+    public int insertProcess(IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        if ((row.getHeader().get("referencekey"))!=null) {
+            size = size-1;
+        }
+        System.out.println("Size    "+size);
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+            System.out.println(values[i]);
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+        }
+
+        String sql = sqlProcess.insertSQL(row.getHeader().get("tablename"), names);
+        int i = dbOperation.sqlUpdate(sql, values, types,row.getHeader().get("database"));
+        return i;
+    }
+
+    /**
+     * 数据更新
+     */
+    public int updateProcess(IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        String referencekey = row.getHeader().get("referencekey");
+        if (referencekey!=null){
+            size = size -1;
+        }
+        String[] names = new String[size + 1];
+        Object[] values = new Object[size + 1];
+
+        int[] types = new int[size + 1];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+        }
+        if (referencekey != null) {
+            names[size] = referencekey;
+            values[size] = row.getColumn(size).getValue(); //最后一个值为参考的字段值
+            types[size] = columnTypetoSQLType(row.getColumn(referencekey).getType());
+        } else {
+            names[size] = names[0];
+            values[size] = values[0];
+            types[size] = types[0];
+        }
+
+
+        String sql = sqlProcess.updateSQL(row.getHeader().get("tablename"), names);
+        int i = dbOperation.sqlUpdate(sql, values, types,row.getHeader().get("database"));
+        return i;
+
+
+    }
+    public int deleteProcessInUpdate(IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        String referencekey = row.getHeader().get("referencekey");
+        if (referencekey!=null){
+            size = 1;
+        }
+        String[] names = new String[ size];
+        Object[] values = new Object[size];
+
+        int[] types = new int[ size];
+        for (int i = 0; i < types.length; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+        }
+        if (referencekey != null) {
+            names[0] = referencekey;
+            values[0] = row.getColumn( row.getColumnsSize()-1).getValue();
+            types[0] = columnTypetoSQLType(row.getColumn(referencekey).getType());
+        }
+
+        String sql = sqlProcess.deleteSQL(row.getHeader().get("tablename"), names);
+        int i = dbOperation.sqlUpdate(sql, values, types,row.getHeader().get("database"));
+        return i;
+
+
+    }
+
+    /**
+     * 数据删除
+     */
+    public int deleteProcess(IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        String referencekey = row.getHeader().get("referencekey");
+         if (referencekey!=null){
+             size=size-1;
+         }
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+
+        int[] types = new int[size ];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+        }
+//        if (referencekey != null) {
+//            names[size] = referencekey;
+//            values[size] = row.getColumn(referencekey).getValue();
+//            types[size] = columnTypetoSQLType(row.getColumn(referencekey).getType());
+//        } else {
+//            names[size] = names[0];
+//            values[size] = values[0];
+//            types[size] = types[0];
+//        }
+
+        String sql = sqlProcess.deleteSQL(row.getHeader().get("tablename"), names);
+        int i = dbOperation.sqlUpdate(sql, values, types,row.getHeader().get("database"));
+        return i;
+
+
+    }
+
+    public int columnTypetoSQLType(ColumnType columnType) {
+        //String type = columnType.getName();
+        switch (columnType) {
+            case STRING:
+                return Types.VARCHAR;
+            case BIGDECIMAL:
+                return Types.DECIMAL;
+            case BOOLEAN:
+                return Types.BOOLEAN;
+            case BYTE:
+                return Types.TINYINT;
+            case SHORT:
+                return Types.SMALLINT;
+            case INT:
+                return Types.INTEGER;
+            case LONG:
+                return Types.BIGINT;
+            case FLOAT:
+                return Types.FLOAT;
+            case BYTES:
+                return Types.VARBINARY;
+            case DOUBLE:
+                return Types.DOUBLE;
+            case DATE:
+                return Types.DATE;
+            case TIME:
+                return Types.TIME;
+            case TIMESTAMP:
+                return Types.TIMESTAMP;
+            case CLOB:
+                return Types.CLOB;
+            case BLOB:
+                return Types.BLOB;
+            case ARRAY:
+                return Types.ARRAY;
+            case STRUCT:
+                return Types.STRUCT;
+            case REF:
+                return Types.REF;
+            case URL:
+                return Types.VARCHAR;
+            case JAVA_OBJECT:
+                return Types.JAVA_OBJECT;
+
+        }
+
+        return Types.JAVA_OBJECT;
+    }
+
+    /**
+     * 插入到缓存表
+     */
+    public int insertMsgCacheProcess(IRow row, String failedtxt, String operationtype) {
+        int i = 0;
+        Object[] objects = new Object[8];
+        int[] types = new int[8];
+        //objects[0] = row.getHeader().get("tablename");      typename
+        //types[0]   = columnTypetoSQLType(ColumnType.STRING);
+        objects[1] = new Timestamp(System.currentTimeMillis()); //MsgQueuedAt
+        types[0] = columnTypetoSQLType(ColumnType.TIMESTAMP);
+        objects[2] = "NEW";                                    // MsgStatus
+        types[2] = columnTypetoSQLType(ColumnType.STRING);
+        objects[3] = 0;                                        //MsgRetryTimes
+        types[3] = columnTypetoSQLType(ColumnType.INT);
+        objects[4] = new Timestamp(System.currentTimeMillis());//MsgDeliveredAt
+        types[4] = columnTypetoSQLType(ColumnType.TIMESTAMP);
+        objects[5] = failedtxt;                                  // MsgFailedText
+        types[5] = columnTypetoSQLType(ColumnType.STRING);
+        objects[6] = operationtype;                             //OperationType
+        types[6] = columnTypetoSQLType(ColumnType.STRING);
+        objects[7] = "";                                       //  MsgContent，row的所有数据保存为一条记录
+        types[7] = Types.LONGNVARCHAR;                        //对应TEXT
+        String sql = "INSERT INTO MsgCacheTable"
+                + "( MsgTypeName, MsgQueuedAt, MsgStatus, "
+                + "MsgRetryTimes, MsgDeliveredAt, MsgFailedText, OperationType, MsgContent) "
+                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            i = dbOperation.sqlUpdate(sql, objects, types,row.getHeader().get("database"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
+    /**
+     * 用于一张表的数据批处理插入
+     * 重复造轮子啊^^_^^
+     */
+    public String getSQL(IRow row) {
+        String sql = new String();
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_INSERT)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size];
+            Object[] values = new Object[size];
+            int[] types = new int[size];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+
+            sql = sqlProcess.insertSQL(row.getHeader().get("tablename"), names);
+
+        }
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_UPDATE)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size + 1];
+            Object[] values = new Object[size + 1];
+            String referencekey = row.getHeader().get("referencekey");
+            int[] types = new int[size + 1];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+            if (referencekey != null) {
+                names[size] = referencekey;
+                values[size] = row.getColumn(referencekey).getValue();
+                types[size] = columnTypetoSQLType(row.getColumn(referencekey).getType());
+            } else {
+                names[size] = names[0];
+                values[size] = values[0];
+                types[size] = types[0];
+            }
+
+
+            sql = sqlProcess.updateSQL(row.getHeader().get("tablename"), names);
+
+        }
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_DELETE)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size + 1];
+            Object[] values = new Object[size + 1];
+            String referencekey = row.getHeader().get("referencekey");
+            int[] types = new int[size + 1];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+
+            sql = sqlProcess.deleteSQL(row.getHeader().get("tablename"), names);
+        }
+        return sql;
+
+    }
+
+    public PreparedStatement preparedStatement(PreparedStatement preparedStatement, IRow row) throws SQLException {
+        // String sql = new String();
+        // PreparedStatement preparedStatement=null;
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_INSERT)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size];
+            Object[] values = new Object[size];
+            int[] types = new int[size];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+
+            //sql =  sqlProcess.insertSQL(row.getHeader().get("tablename"),names);
+            //  preparedStatement= connection.prepareStatement(sql) ;
+            for (int i = 1; i <= values.length; i++) {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+        }
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_UPDATE)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size + 1];
+            Object[] values = new Object[size + 1];
+            String referencekey = row.getHeader().get("referencekey");
+            int[] types = new int[size + 1];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+            if (referencekey != null) {
+                names[size] = referencekey;
+                values[size] = row.getColumn(referencekey).getValue();
+                types[size] = columnTypetoSQLType(row.getColumn(referencekey).getType());
+            } else {
+                names[size] = names[0];
+                values[size] = values[0];
+                types[size] = types[0];
+            }
+
+
+            //  sql =  sqlProcess.updateSQL(row.getHeader().get("tablename"), names);
+            //  preparedStatement= connection.prepareStatement(sql) ;
+            for (int i = 1; i <= values.length; i++) {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+        }
+        if (row.getHeader().get("operation").equalsIgnoreCase(MsgCacheBean.OPERATION_TYPE_DELETE)) {
+            int size = row.getColumnsSize();
+            String[] names = new String[size + 1];
+            Object[] values = new Object[size + 1];
+            String referencekey = row.getHeader().get("referencekey");
+            int[] types = new int[size + 1];
+            for (int i = 0; i < size; i++) {
+                names[i] = row.getColumn(i).getName();
+                values[i] = row.getColumn(i).getValue();
+                types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            }
+
+            // sql =  sqlProcess.deleteSQL(row.getHeader().get("tablename"), names);
+            // preparedStatement= connection.prepareStatement(sql) ;
+            for (int i = 1; i <= values.length; i++) {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+        }
+        return preparedStatement;
+
+    }
+}

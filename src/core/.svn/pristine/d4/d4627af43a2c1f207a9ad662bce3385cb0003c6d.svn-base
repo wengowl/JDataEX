@@ -1,0 +1,46 @@
+package org.jdataex.flow.component.step.trigger;
+
+/**
+ * Created by wengxf on 14-4-25.
+ * 相关配置的Bean
+ */
+public class ConfigBean {
+    private String path;
+    private int threadnum;
+    private int poolconnectionnum;
+    private TriggerDataBean triggerDataBean = new TriggerDataBean();
+
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getThreadnum() {
+        return threadnum;
+    }
+
+    public void setThreadnum(int threadnum) {
+        this.threadnum = threadnum;
+    }
+
+    public int getPoolconnectionnum() {
+        return poolconnectionnum;
+    }
+
+    public void setPoolconnectionnum(int poolconnectionnum) {
+        this.poolconnectionnum = poolconnectionnum;
+    }
+
+   /* public TriggerDataBean getTriggerDataBean() {
+        return triggerDataBean;
+    }
+
+    public void setTriggerDataBean(TriggerDataBean triggerDataBean) {
+
+        this.triggerDataBean = triggerDataBean;
+    }*/
+}

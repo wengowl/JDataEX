@@ -1,0 +1,2023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYSIS_IN_BACKGROUND" value="true" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="JDataEx Core:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="0aad2f1f-b2e8-4469-abe4-4fffeff07d2b" name="Default" comment="测试用例数据文件修改">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/resource/ts.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/jdataex/util/JDBCUtil.java" afterPath="$PROJECT_DIR$/src/org/jdataex/util/JDBCUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database/dsconfig.xml" afterPath="$PROJECT_DIR$/config/database/dsconfig.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/logback.xml" afterPath="$PROJECT_DIR$/config/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/node.properties" afterPath="$PROJECT_DIR$/config/node.properties" />
+    </list>
+    <list id="9a631ff8-b09d-4b91-a254-8f394f5a3f9a" name="reaccess" comment="">
+      <change type="MODIFICATION" beforePath="G:\code\j2se\workspace\JDataEx\src\core\src\org\jdataex\flow\row\ColumnSet.java" afterPath="G:\code\j2se\workspace\JDataEx\src\core\src\org\jdataex\flow\row\ColumnSet.java" />
+    </list>
+    <ignored path="core.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/core$Test.coverage" NAME="Test Coverage Results" MODIFIED="1404197511493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.jdataex.flow.component.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/org/jdataex/flow/component/trigger/ExcelConfigLoad.java" line="235" class="org.jdataex.flow.component.trigger.ExcelConfigLoad" package="org.jdataex.flow.component.trigger">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/org/jdataex/flow/component/trigger/ExcelConfigLoad.java" line="243" class="org.jdataex.flow.component.trigger.ExcelConfigLoad" package="org.jdataex.flow.component.trigger">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/org/jdataex/flow/component/dataaccess/DataAccessProcess.java" line="155" class="org.jdataex.flow.component.dataaccess.DataAccessProcess" package="org.jdataex.flow.component.dataaccess">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="core" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="XMLConverter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/xml/XMLConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.6493506" vertical-offset="7086" max-vertical-offset="8250">
+              <caret line="351" column="70" selection-start-line="351" selection-start-column="56" selection-end-line="351" selection-end-column="56" />
+              <folding>
+                <element signature="docComment;class#XMLConverter#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IColumn.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/row/IColumn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="875">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestXMLConverter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/TestXMLConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="2900">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataQueryTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/DataQueryTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2400" max-vertical-offset="2550">
+              <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TriggerDataGetStepTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/trigger/TriggerDataGetStepTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="725">
+              <caret line="17" column="101" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RowDataAccess.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="11000" max-vertical-offset="11225">
+              <caret line="440" column="38" selection-start-line="440" selection-start-column="9" selection-end-line="440" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataQuery.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataquery/DataQuery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5675" max-vertical-offset="7200">
+              <caret line="227" column="31" selection-start-line="227" selection-start-column="31" selection-end-line="227" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="民事二审.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/resource/民事二审.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3762" max-vertical-offset="13400">
+              <caret line="528" column="21" selection-start-line="528" selection-start-column="14" selection-end-line="528" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ThreadHandler.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/resource/databasepool/ConnectionPool.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/Test.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerDataGet.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerCreateStep.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/AutoDataAccess.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/trigger/TriggerDataGet-config.xml" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/DataHandlerThread.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerDataBean.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/DataHandler.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/trigger/TriggerDataGetStepTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataquery/ReadDataConfig.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/channel/tlq/TLQChannelOutput.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/resource/databasepool/DBManager.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/resource/databasepool/ShutDownPool.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/resource/databasepool/ParseDSConfig.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/resource/databasepool/ConfigDatabasePoolBean.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerCreateThread.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerDataGetStep.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerSqlHandler.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerComponent.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/TestXMLConverter.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/DBOperation.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/MaintTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/xml2db-config.xml" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/scene/xml2db/XML2DBTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/util/JDBCUtil.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/ReadDataConfigTest.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/ReDataAccessTest.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/民事一审.xml" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/民事一审_delete.xml" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataquery/DataQuery.java" />
+        <option value="$PROJECT_DIR$/doc/高院文档/数据库增量修改.sql" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccessProcess.java" />
+        <option value="$PROJECT_DIR$/doc/高院文档/数据库建设14.6.9修改版/非审判.sql" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/民事一审_delete_onlyAJBS.xml" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/RowDataAccessTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/SqlProcess.java" />
+        <option value="$PROJECT_DIR$/config/data/fspyw.xml" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccess.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/DataQueryTest.java" />
+        <option value="$PROJECT_DIR$/config/logback.xml" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/MakeMoreXML.java" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/司法行政装备管理系统_delete.xml" />
+        <option value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/司法行政装备管理系统_insert.xml" />
+        <option value="$PROJECT_DIR$/config/database/dsconfig.xml" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/flow/component/step/xml/XMLConverter.java" />
+        <option value="$PROJECT_DIR$/config/node.properties" />
+        <option value="$PROJECT_DIR$/src/org/jdataex/MainTest.java" />
+        <option value="$PROJECT_DIR$/doc/高院文档/入库和查询相关文档/说明.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="true" id="Undo Check Out" />
+    <OptionsSetting value="true" id="Get Latest Version" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jdataex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JDataEx Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JDataEx Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.jdataex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JDataEx Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.jdataex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JDataEx Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.jdataex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config/class.properties" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="SearchEverywhereHistory" value="&#10;T" />
+    <property name="LayoutCode.rearrangeEntriesXML" value="false" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth5" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/test/org/jdataex/flow/component/step/trigger" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.jdataex.flow.component.step.trigger" />
+      <recent name="org.jdataex.flow.component.step.dataquery" />
+      <recent name="org.jdataex.flow.component.step.dataaccess" />
+      <recent name="org.jdataex.flow.component.dataaccess" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.jdataex.flow.component.dataaccess" />
+      <recent name="org.jdataex.resource.databasepool" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\doc\高院文档\入库和查询相关文档" />
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\test\org\jdataex\flow\component\step\dataaccess" />
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\test\org\jdataex\flow\component\step\dataquery" />
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\src\org\jdataex" />
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\test\org\jdataex\flow\component\step\trigger" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.jdataex.flow.component.dataaccess" />
+      <recent name="org.jdataex.flow.component.trigger" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.jdataex.flow.component" />
+      <recent name="org.jdataex.flow.component.step" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\config\databaseconfig" />
+      <recent name="G:\code\j2se\workspace\JDataEx\src\core\config\dataconfig" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.TestXMLConverter.CalibrationData">
+    <configuration default="false" name="MakeMoreXML" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.jdataex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="org.jdataex.MakeMoreXML" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="JDataEx Core" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="RowDataAccessTest.testDoProcessRowinsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.jdataex.flow.component.step.dataaccess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JDataEx Core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jdataex.flow.component.step.dataaccess" />
+      <option name="MAIN_CLASS_NAME" value="org.jdataex.flow.component.step.dataaccess.RowDataAccessTest" />
+      <option name="METHOD_NAME" value="testDoProcessRowinsert" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DataQueryTest.testGetAllSP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.jdataex.flow.component.step.dataquery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JDataEx Core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jdataex.flow.component.step.dataquery" />
+      <option name="MAIN_CLASS_NAME" value="org.jdataex.flow.component.step.dataquery.DataQueryTest" />
+      <option name="METHOD_NAME" value="testGetAllSP" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DataQueryTest.testGetAllFSP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.jdataex.flow.component.step.dataquery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JDataEx Core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jdataex.flow.component.step.dataquery" />
+      <option name="MAIN_CLASS_NAME" value="org.jdataex.flow.component.step.dataquery.DataQueryTest" />
+      <option name="METHOD_NAME" value="testGetAllFSP" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestXMLConverter.CalibrationData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.jdataex.flow.component.step.xml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JDataEx Core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jdataex.flow.component.step.xml" />
+      <option name="MAIN_CLASS_NAME" value="org.jdataex.flow.component.step.xml.TestXMLConverter" />
+      <option name="METHOD_NAME" value="CalibrationData" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.MakeMoreXML" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.RowDataAccessTest.testDoProcessRowinsert" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DataQueryTest.testGetAllSP" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DataQueryTest.testGetAllFSP" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestXMLConverter.CalibrationData" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestXMLConverter.CalibrationData" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DataQueryTest.testGetAllFSP" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.RowDataAccessTest.testDoProcessRowinsert" />
+        <item index="3" class="java.lang.String" itemvalue="Application.MakeMoreXML" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.DataQueryTest.testGetAllSP" />
+      </list>
+    </recent_temporary>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="SQLPlugin.ProjectConfiguration">
+    <queries />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
+  <component name="SqlCodeAssistantSettings">
+    <option name="dbBrowserSelectedConnection" value="core" />
+  </component>
+  <component name="SvnConfiguration" myUseAcceleration="nothing" cleanupOnStartRun="true">
+    <configuration>C:\Users\wengxf.TONG\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\code\j2se\workspace\JDataEx\src\core" />
+          <option name="myCopyRoot" value="G:\code\j2se\workspace\JDataEx\src\core" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\code\j2se\workspace\JDataEx\src\core" />
+          <option name="myCopyRoot" value="G:\code\j2se\workspace\JDataEx\src\core" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0aad2f1f-b2e8-4469-abe4-4fffeff07d2b" name="Default" comment="" />
+      <changelist id="9a631ff8-b09d-4b91-a254-8f394f5a3f9a" name="reaccess" comment="" />
+      <created>1398150866027</created>
+      <updated>1398150866027</updated>
+      <workItem from="1398150879652" duration="7985000" />
+      <workItem from="1398158895559" duration="3052000" />
+      <workItem from="1398229325981" duration="10926000" />
+      <workItem from="1398303461599" duration="2630000" />
+      <workItem from="1398306916069" duration="134000" />
+      <workItem from="1398307081594" duration="43000" />
+      <workItem from="1398307232355" duration="1492000" />
+      <workItem from="1398308733660" duration="10452000" />
+      <workItem from="1398324848893" duration="9050000" />
+      <workItem from="1398390613638" duration="20483000" />
+      <workItem from="1398649185415" duration="17665000" />
+      <workItem from="1398676027281" duration="3479000" />
+      <workItem from="1398684769071" duration="2669000" />
+      <workItem from="1398687547002" duration="2072000" />
+      <workItem from="1398734849246" duration="29681000" />
+      <workItem from="1398821386639" duration="25349000" />
+      <workItem from="1399178707459" duration="1854000" />
+      <workItem from="1399184542543" duration="14293000" />
+      <workItem from="1399214343983" duration="1644000" />
+      <workItem from="1399254051736" duration="1830000" />
+      <workItem from="1399256172170" duration="1513000" />
+      <workItem from="1399257865005" duration="5435000" />
+      <workItem from="1399266300620" duration="13931000" />
+      <workItem from="1399285270717" duration="940000" />
+      <workItem from="1399289786357" duration="343000" />
+      <workItem from="1399290561905" duration="482000" />
+      <workItem from="1399340295143" duration="25488000" />
+      <workItem from="1399426868690" duration="5567000" />
+      <workItem from="1399434799711" duration="1606000" />
+      <workItem from="1399437484628" duration="8299000" />
+      <workItem from="1399448181136" duration="10500000" />
+      <workItem from="1399462555696" duration="4023000" />
+      <workItem from="1399513756435" duration="24868000" />
+      <workItem from="1399599487747" duration="10018000" />
+      <workItem from="1399614778847" duration="6396000" />
+      <workItem from="1399859133838" duration="118000" />
+      <workItem from="1399878779800" duration="4388000" />
+      <workItem from="1399883609283" duration="1032000" />
+      <workItem from="1399945350523" duration="7986000" />
+      <workItem from="1399957097117" duration="12211000" />
+      <workItem from="1400031795865" duration="6300000" />
+      <workItem from="1400058846353" duration="3695000" />
+      <workItem from="1400138709518" duration="10402000" />
+      <workItem from="1400204613571" duration="9500000" />
+      <workItem from="1400216519878" duration="14015000" />
+      <workItem from="1400463531208" duration="7131000" />
+      <workItem from="1400475406948" duration="7313000" />
+      <workItem from="1400488379762" duration="1363000" />
+      <workItem from="1400490195888" duration="3137000" />
+      <workItem from="1400549767297" duration="20153000" />
+      <workItem from="1400576218775" duration="5597000" />
+      <workItem from="1400638071313" duration="6139000" />
+      <workItem from="1400651233674" duration="13941000" />
+      <workItem from="1400724389335" duration="842000" />
+      <workItem from="1400725378350" duration="55000" />
+      <workItem from="1400725463388" duration="5533000" />
+      <workItem from="1400735037546" duration="1690000" />
+      <workItem from="1400739737247" duration="5836000" />
+      <workItem from="1400746674052" duration="442000" />
+      <workItem from="1400747182456" duration="5358000" />
+      <workItem from="1400809512173" duration="11087000" />
+      <workItem from="1400830649081" duration="9258000" />
+      <workItem from="1401068494351" duration="17980000" />
+      <workItem from="1401155541468" duration="18340000" />
+      <workItem from="1401241217196" duration="147000" />
+      <workItem from="1401242229315" duration="591000" />
+      <workItem from="1401242910822" duration="18645000" />
+      <workItem from="1401327872346" duration="21834000" />
+      <workItem from="1401413508916" duration="7929000" />
+      <workItem from="1401426493093" duration="14753000" />
+      <workItem from="1401760460762" duration="19910000" />
+      <workItem from="1401846085023" duration="21090000" />
+      <workItem from="1401932761106" duration="21434000" />
+      <workItem from="1402019363466" duration="10039000" />
+      <workItem from="1402035354860" duration="13730000" />
+      <workItem from="1402278259970" duration="7997000" />
+      <workItem from="1402289105395" duration="10923000" />
+      <workItem from="1402303363929" duration="5657000" />
+      <workItem from="1402364047132" duration="21757000" />
+      <workItem from="1402392611113" duration="2964000" />
+      <workItem from="1402450421855" duration="7830000" />
+      <workItem from="1402462629850" duration="16623000" />
+      <workItem from="1402537133572" duration="6871000" />
+      <workItem from="1402551968485" duration="15462000" />
+      <workItem from="1402623783401" duration="6331000" />
+      <workItem from="1402636050984" duration="13716000" />
+      <workItem from="1402883667045" duration="6413000" />
+      <workItem from="1402898775836" duration="12505000" />
+      <workItem from="1402969607636" duration="19873000" />
+      <workItem from="1403054578639" duration="7370000" />
+      <workItem from="1403228576534" duration="786000" />
+      <workItem from="1403487088331" duration="8600000" />
+      <workItem from="1403593661989" duration="4928000" />
+      <workItem from="1403666906888" duration="5128000" />
+      <workItem from="1403681801951" duration="2423000" />
+      <workItem from="1403684584337" duration="148000" />
+      <workItem from="1403684773034" duration="3041000" />
+      <workItem from="1403746160481" duration="19370000" />
+      <workItem from="1403832698575" duration="11829000" />
+      <workItem from="1404092662165" duration="12469000" />
+      <workItem from="1404178647358" duration="15713000" />
+      <workItem from="1404205415166" duration="1946000" />
+      <workItem from="1404264703150" duration="11367000" />
+      <workItem from="1404285104004" duration="8754000" />
+      <workItem from="1404299344933" duration="602000" />
+      <workItem from="1404300765678" duration="1263000" />
+      <workItem from="1404351046974" duration="8300000" />
+      <workItem from="1404363242459" duration="15394000" />
+      <workItem from="1404385185144" duration="2251000" />
+      <workItem from="1404437023014" duration="11798000" />
+      <workItem from="1404456038989" duration="2548000" />
+      <workItem from="1404459253033" duration="5852000" />
+      <workItem from="1404783624932" duration="4419000" />
+      <workItem from="1404794733069" duration="1313000" />
+      <workItem from="1404807826278" duration="210000" />
+      <workItem from="1404960213635" duration="87000" />
+      <workItem from="1404960716012" duration="1129000" />
+      <workItem from="1404963244610" duration="1989000" />
+      <workItem from="1404968267551" duration="884000" />
+      <workItem from="1404975483010" duration="2424000" />
+      <workItem from="1404981096953" duration="461000" />
+      <workItem from="1404983388140" duration="896000" />
+      <workItem from="1405306023033" duration="7958000" />
+      <workItem from="1405500065213" duration="643000" />
+      <workItem from="1405501082775" duration="401000" />
+      <workItem from="1405502301321" duration="639000" />
+      <workItem from="1405505112766" duration="129000" />
+      <workItem from="1405586411961" duration="3224000" />
+      <workItem from="1405651640957" duration="3397000" />
+      <workItem from="1405662850966" duration="10240000" />
+      <workItem from="1405907660327" duration="54000" />
+      <workItem from="1405910719428" duration="7695000" />
+      <workItem from="1405992192416" duration="9877000" />
+      <workItem from="1406005039457" duration="11506000" />
+      <workItem from="1406023670305" duration="804000" />
+      <workItem from="1406080430295" duration="22459000" />
+      <workItem from="1406164734292" duration="12450000" />
+      <workItem from="1406256091773" duration="780000" />
+      <workItem from="1406258095480" duration="10668000" />
+      <workItem from="1406393821502" duration="1246000" />
+      <workItem from="1406510945588" duration="5458000" />
+      <workItem from="1406527115056" duration="13414000" />
+      <workItem from="1406597784643" duration="5407000" />
+      <workItem from="1406607228994" duration="6245000" />
+      <workItem from="1406683860320" duration="13385000" />
+      <workItem from="1407738396030" duration="497000" />
+      <workItem from="1407898926019" duration="905000" />
+      <workItem from="1407914263327" duration="763000" />
+    </task>
+    <task id="LOCAL-00001">
+      <created>1399341306146</created>
+      <updated>1399341306146</updated>
+    </task>
+    <task id="LOCAL-00002">
+      <created>1399342453113</created>
+      <updated>1399342453113</updated>
+    </task>
+    <task id="LOCAL-00003">
+      <created>1399616662647</created>
+      <updated>1399616662647</updated>
+    </task>
+    <task id="LOCAL-00004">
+      <created>1399618946109</created>
+      <updated>1399618946109</updated>
+    </task>
+    <task id="LOCAL-00005">
+      <created>1400139123108</created>
+      <updated>1400139123108</updated>
+    </task>
+    <task id="LOCAL-00006">
+      <created>1400145802115</created>
+      <updated>1400145802115</updated>
+    </task>
+    <task id="LOCAL-00007">
+      <created>1400581678161</created>
+      <updated>1400581678161</updated>
+    </task>
+    <task id="LOCAL-00008">
+      <created>1401244618193</created>
+      <updated>1401244618193</updated>
+    </task>
+    <task id="LOCAL-00009">
+      <created>1401358456302</created>
+      <updated>1401358456302</updated>
+    </task>
+    <task id="LOCAL-00010">
+      <created>1401414682186</created>
+      <updated>1401414682186</updated>
+    </task>
+    <task id="LOCAL-00011">
+      <created>1401417358114</created>
+      <updated>1401417358114</updated>
+    </task>
+    <task id="LOCAL-00012">
+      <created>1401431282168</created>
+      <updated>1401431282168</updated>
+    </task>
+    <task id="LOCAL-00013">
+      <created>1401444706116</created>
+      <updated>1401444706116</updated>
+    </task>
+    <task id="LOCAL-00014">
+      <created>1401788236181</created>
+      <updated>1401788236181</updated>
+    </task>
+    <task id="LOCAL-00015">
+      <created>1401863917181</created>
+      <updated>1401863917181</updated>
+    </task>
+    <task id="LOCAL-00016" summary="把xmlConverter中的toRow把AJBS字段给放到第二级row的第一个Column，移了一下下面的代码&#10;/*把缺的ID字段补充进来*/&#10;&#9;&#9;IColumn idColumn = new Column(idName,idValue);&#10;&#9;&#9;row.putColumn(idColumn);">
+      <created>1401935912154</created>
+      <updated>1401935912154</updated>
+    </task>
+    <task id="LOCAL-00017">
+      <created>1402039199143</created>
+      <updated>1402039199143</updated>
+    </task>
+    <task id="LOCAL-00018">
+      <created>1402041813115</created>
+      <updated>1402041813115</updated>
+    </task>
+    <task id="LOCAL-00019">
+      <created>1402042458108</created>
+      <updated>1402042458108</updated>
+    </task>
+    <task id="LOCAL-00020">
+      <created>1402045907109</created>
+      <updated>1402045907109</updated>
+    </task>
+    <task id="LOCAL-00021">
+      <created>1402049185117</created>
+      <updated>1402049185117</updated>
+    </task>
+    <task id="LOCAL-00022">
+      <created>1402049723110</created>
+      <updated>1402049723110</updated>
+    </task>
+    <task id="LOCAL-00023">
+      <created>1402297228157</created>
+      <updated>1402297228157</updated>
+    </task>
+    <task id="LOCAL-00024">
+      <created>1402297931110</created>
+      <updated>1402297931110</updated>
+    </task>
+    <task id="LOCAL-00025">
+      <created>1402298576108</created>
+      <updated>1402298576108</updated>
+    </task>
+    <task id="LOCAL-00026">
+      <created>1402308851208</created>
+      <updated>1402308851208</updated>
+    </task>
+    <task id="LOCAL-00027">
+      <created>1402368178174</created>
+      <updated>1402368178174</updated>
+    </task>
+    <task id="LOCAL-00028">
+      <created>1402375320107</created>
+      <updated>1402375320107</updated>
+    </task>
+    <task id="LOCAL-00029">
+      <created>1402394520621</created>
+      <updated>1402394520621</updated>
+    </task>
+    <task id="LOCAL-00030" summary="删除时去除blob字段作为条件&#10;修改删除操作时读取xml封装row的逻辑,对非审判业务和含有表结构做了判断">
+      <created>1402453746184</created>
+      <updated>1402453746184</updated>
+    </task>
+    <task id="LOCAL-00031" summary="修改删除操作时读取xml封装row的逻辑,对审判业务封装AJBS的row，添加了ColumnType和表名">
+      <created>1402455268107</created>
+      <updated>1402455268107</updated>
+    </task>
+    <task id="LOCAL-00032">
+      <created>1402470388201</created>
+      <updated>1402470388201</updated>
+    </task>
+    <task id="LOCAL-00033">
+      <created>1402476551114</created>
+      <updated>1402476551114</updated>
+    </task>
+    <task id="LOCAL-00034" summary="blob字段base64解码">
+      <created>1402477515108</created>
+      <updated>1402477515108</updated>
+    </task>
+    <task id="LOCAL-00035" summary="修改了当单表多条记录时，生成xml时在R下不写入APP_CODE、AJBS、DEPT_CODE等字段">
+      <created>1402543047172</created>
+      <updated>1402543047172</updated>
+    </task>
+    <task id="LOCAL-00036">
+      <created>1402890230707</created>
+      <updated>1402890230707</updated>
+    </task>
+    <task id="LOCAL-00037">
+      <created>1402908172424</created>
+      <updated>1402908172424</updated>
+    </task>
+    <task id="LOCAL-00038" summary="清理了没用到的变量">
+      <created>1404099921155</created>
+      <updated>1404099921155</updated>
+    </task>
+    <task id="LOCAL-00039" summary="入库对应数据库的配置读取">
+      <created>1404293095218</created>
+      <updated>1404293095218</updated>
+    </task>
+    <task id="LOCAL-00040" summary="数据库连接池">
+      <created>1404294552108</created>
+      <updated>1404294552108</updated>
+    </task>
+    <task id="LOCAL-00041" summary="RowDataAccess添加了无参构造">
+      <created>1404353914252</created>
+      <updated>1404353914253</updated>
+    </task>
+    <task id="LOCAL-00042" summary="配置文件路径修改，全到config目录下">
+      <created>1404356475120</created>
+      <updated>1404356475120</updated>
+    </task>
+    <task id="LOCAL-00043" summary="去掉配置子目录的config">
+      <created>1404356967116</created>
+      <updated>1404356967116</updated>
+    </task>
+    <task id="LOCAL-00044" summary="RowDataAccessStep去掉默认连接池">
+      <created>1404370423225</created>
+      <updated>1404370423225</updated>
+    </task>
+    <task id="LOCAL-00045" summary="连接池改为BoneCP">
+      <created>1404376584120</created>
+      <updated>1404376584120</updated>
+    </task>
+    <task id="LOCAL-00046" summary="触发器获取修改">
+      <created>1404381341121</created>
+      <updated>1404381341121</updated>
+    </task>
+    <task id="LOCAL-00047" summary="触发器获取组件修改，根据配置文件来读取对应中间表">
+      <created>1404441594188</created>
+      <updated>1404441594188</updated>
+    </task>
+    <task id="LOCAL-00048" summary="注释">
+      <created>1404960859471</created>
+      <updated>1404960859471</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Test类移到test目录下">
+      <created>1404961005134</created>
+      <updated>1404961005134</updated>
+    </task>
+    <task id="LOCAL-00050" summary="flag属性作了空判断">
+      <created>1404963728187</created>
+      <updated>1404963728187</updated>
+    </task>
+    <task id="LOCAL-00051" summary="RowDataAccessTest入库xml文件路径修改，将其添加到了类当前目录下">
+      <created>1405913446154</created>
+      <updated>1405913446154</updated>
+    </task>
+    <task id="LOCAL-00052" summary="修改了RowDataAccess中原先封装的连接池连接的操作&#10;DataQuery类非审判业务查询占位符添加了类型&#10;其他类添加了注释">
+      <created>1406083477152</created>
+      <updated>1406083477152</updated>
+    </task>
+    <task id="LOCAL-00053" summary="测试用例更新">
+      <created>1406086927113</created>
+      <updated>1406086927113</updated>
+    </task>
+    <task id="LOCAL-00054" summary="测试用例修改">
+      <created>1406102974122</created>
+      <updated>1406102974122</updated>
+    </task>
+    <task id="LOCAL-00055" summary="查询获取blob字段时，11g数据库貌似不支持支持BinaryInputStream转换，改为InputStream了">
+      <created>1406103444110</created>
+      <updated>1406103444110</updated>
+    </task>
+    <task id="LOCAL-00056" summary="测试用例修改,添加删除只有一个AJBS的测试用例">
+      <created>1406260060112</created>
+      <updated>1406260060112</updated>
+    </task>
+    <task id="LOCAL-00057" summary="入库数据库操作逻辑修改，action_type为insert时改为先insert然后update，先update后insert为可选">
+      <created>1406684239211</created>
+      <updated>1406684239211</updated>
+    </task>
+    <task id="LOCAL-00058" summary="测试用例数据文件修改">
+      <created>1406691126127</created>
+      <updated>1406691126127</updated>
+    </task>
+    <task id="LOCAL-00059" summary="修改当查询的Row第一个Column为RowSet时，未创建公共字段导致的空指针问题">
+      <created>1406705077120</created>
+      <updated>1406705077120</updated>
+    </task>
+    <task id="LOCAL-00060" summary="修改xmlconver的Rowset添加公共标识的问题">
+      <created>1406705579118</created>
+      <updated>1406705579118</updated>
+    </task>
+    <task id="LOCAL-00061" summary="XMLConvert修改">
+      <created>1406705891120</created>
+      <updated>1406705891120</updated>
+    </task>
+    <task id="LOCAL-00062" summary="文档提交">
+      <created>1407899240128</created>
+      <updated>1407899240128</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1127994000" />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5632184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3136289" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6403941" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.500821" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6633826" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3318182" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3037879" sideWeight="0.49917898" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.61904764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DBHelper" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44663382" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="DatabaseBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.036363635" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6091954" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46141216" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="DBOutput" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5632184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="DBHelper" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6781609" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6633826" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44663382" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="DatabaseBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2840909" sideWeight="0.49917898" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.036363635" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.408867" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3136289" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.500821" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6091954" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3318182" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46141216" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="DBOutput" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="清理了没用到的变量" />
+    <MESSAGE value="入库对应数据库的配置读取" />
+    <MESSAGE value="数据库连接池" />
+    <MESSAGE value="RowDataAccess添加了无参构造" />
+    <MESSAGE value="配置文件路径修改，全到config目录下" />
+    <MESSAGE value="去掉配置子目录的config" />
+    <MESSAGE value="RowDataAccessStep去掉默认连接池" />
+    <MESSAGE value="连接池改为BoneCP" />
+    <MESSAGE value="触发器获取修改" />
+    <MESSAGE value="触发器获取组件修改，根据配置文件来读取对应中间表" />
+    <MESSAGE value="注释" />
+    <MESSAGE value="Test类移到test目录下" />
+    <MESSAGE value="flag属性作了空判断" />
+    <MESSAGE value="RowDataAccessTest入库xml文件路径修改，将其添加到了类当前目录下" />
+    <MESSAGE value="修改了RowDataAccess中原先封装的连接池连接的操作&#10;DataQuery类非审判业务查询占位符添加了类型&#10;其他类添加了注释" />
+    <MESSAGE value="测试用例更新" />
+    <MESSAGE value="测试用例修改" />
+    <MESSAGE value="查询获取blob字段时，11g数据库貌似不支持支持BinaryInputStream转换，改为InputStream了" />
+    <MESSAGE value="测试用例修改,添加删除只有一个AJBS的测试用例" />
+    <MESSAGE value="入库数据库操作逻辑修改，action_type为insert时改为先insert然后update，先update后insert为可选" />
+    <MESSAGE value="测试用例数据文件修改" />
+    <MESSAGE value="修改当查询的Row第一个Column为RowSet时，未创建公共字段导致的空指针问题" />
+    <MESSAGE value="修改xmlconver的Rowset添加公共标识的问题" />
+    <MESSAGE value="XMLConvert修改" />
+    <MESSAGE value="文档提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="文档提交" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccessStep.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/xml/XMLConverter.java</url>
+          <line>233</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccess.java</url>
+          <line>381</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerComponent.java</url>
+          <line>162</line>
+          <properties />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerCreateThread.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerComponent.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerComponent.java</url>
+          <line>73</line>
+          <properties />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/TriggerCreateThread.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/DBOperation.java</url>
+          <line>357</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java</url>
+          <line>121</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java</url>
+          <line>257</line>
+          <properties />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java</url>
+          <line>264</line>
+          <properties />
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java</url>
+          <line>271</line>
+          <properties />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/trigger/ExcelConfigLoad.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="70" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/xml2db-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6813187" vertical-offset="398" max-vertical-offset="950">
+          <caret line="6" column="67" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/AutoDataAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2183" max-vertical-offset="5075">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/xml/XMLConverterStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/scene/xml2db/xml2db-test-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47528517" vertical-offset="0" max-vertical-offset="950">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/resource/databasepool/DBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1750" max-vertical-offset="3925">
+          <caret line="31" column="30" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/util/JDBCUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="800">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataquery/ReadDataConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2437" max-vertical-offset="3325">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/XMLConverterorclTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="1750">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/BaseJDataExTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="900">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/resource/民事一审.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="9.875244" vertical-offset="2684" max-vertical-offset="13275">
+          <caret line="310" column="5" selection-start-line="310" selection-start-column="5" selection-end-line="310" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/ReadConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0037107" vertical-offset="3197" max-vertical-offset="3775">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/scene/xml2db/XML2DBTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8985507" vertical-offset="2125" max-vertical-offset="2825">
+          <caret line="49" column="43" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/util/AssertUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1355" max-vertical-offset="1975">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/民事一审_delete.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09276438" vertical-offset="0" max-vertical-offset="13275">
+          <caret line="2" column="202" selection-start-line="2" selection-start-column="202" selection-end-line="2" selection-end-column="202" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/ReadDataConfigTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="2200">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/民事一审.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13275">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/data/spyw.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="148360" max-vertical-offset="274925">
+          <caret line="5948" column="35" selection-start-line="5948" selection-start-column="35" selection-end-line="5948" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/民事一审_delete.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13275">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/resource/ts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.398" vertical-offset="7324" max-vertical-offset="15975">
+          <caret line="285" column="24" selection-start-line="285" selection-start-column="15" selection-end-line="285" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/util/XMLUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="1125">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/resource/databasepool/ShutDownPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Program Files (x86)/Java/jdk1.7.0_25/src.zip!/java/lang/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21725">
+          <caret line="38" column="78" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/高院文档/数据库建设14.6.9修改版/审判.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.06300813" vertical-offset="31" max-vertical-offset="1176525">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/民事一审.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41535434" vertical-offset="1289" max-vertical-offset="13275">
+          <caret line="60" column="13" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/民事一审_delete_onlyAJBS.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23191094" vertical-offset="0" max-vertical-offset="539">
+          <caret line="5" column="90" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/row/IRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1266" max-vertical-offset="3200">
+          <caret line="64" column="40" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/dom4j-2.0.0-ALPHA-2.jar!/org/dom4j/io/XMLWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.16" vertical-offset="2596" max-vertical-offset="43775">
+          <caret line="145" column="9" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/SqlProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="596" max-vertical-offset="2175">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/高院文档/数据库建设14.6.9修改版/非审判.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="354495" max-vertical-offset="997900">
+          <caret line="14184" column="35" selection-start-line="14184" selection-start-column="13" selection-end-line="14184" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/高院文档/数据库增量修改.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="4775">
+          <caret line="10" column="74" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccessStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9547101" vertical-offset="1523" max-vertical-offset="2450">
+          <caret line="88" column="41" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/data/fspyw.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6793478" vertical-offset="1850" max-vertical-offset="261700">
+          <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccessProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3195" max-vertical-offset="7225">
+          <caret line="138" column="69" selection-start-line="138" selection-start-column="61" selection-end-line="138" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2375">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/MakeMoreXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="3350">
+          <caret line="42" column="78" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/logback.xml.mine">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.451346" vertical-offset="0" max-vertical-offset="2350">
+          <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataaccess/RowDataAccessTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4100">
+          <caret line="28" column="64" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/DataQueryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2400" max-vertical-offset="2550">
+          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/司法行政装备管理系统_insert.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09746589" vertical-offset="0" max-vertical-offset="22300">
+          <caret line="2" column="181" selection-start-line="2" selection-start-column="181" selection-end-line="2" selection-end-column="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/dataquery/司法行政装备管理系统_delete.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07676349" vertical-offset="13" max-vertical-offset="22300">
+          <caret line="2" column="181" selection-start-line="2" selection-start-column="181" selection-end-line="2" selection-end-column="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/TestXMLConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="2900">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/row/IColumn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="875">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataquery/DataQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5012" max-vertical-offset="6775">
+          <caret line="227" column="31" selection-start-line="227" selection-start-column="31" selection-end-line="227" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/dataaccess/RowDataAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9961" max-vertical-offset="11000">
+          <caret line="440" column="38" selection-start-line="440" selection-start-column="9" selection-end-line="440" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/node.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27173913" vertical-offset="0" max-vertical-offset="552">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database/dsconfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5887681" vertical-offset="750" max-vertical-offset="1575">
+          <caret line="43" column="104" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/trigger/TriggerDataGetStepTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="725">
+          <caret line="17" column="101" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/org/jdataex/flow/component/step/xml/resource/民事二审.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3762" max-vertical-offset="13400">
+          <caret line="528" column="21" selection-start-line="528" selection-start-column="14" selection-end-line="528" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.107607" vertical-offset="486" max-vertical-offset="3525">
+          <caret line="127" column="24" selection-start-line="125" selection-start-column="47" selection-end-line="127" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/高院文档/入库和查询相关文档/说明.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.045289855" vertical-offset="0" max-vertical-offset="552">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jdataex/flow/component/step/xml/XMLConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6493506" vertical-offset="7086" max-vertical-offset="8250">
+          <caret line="351" column="70" selection-start-line="351" selection-start-column="56" selection-end-line="351" selection-end-column="56" />
+          <folding>
+            <element signature="docComment;class#XMLConverter#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>JDataEx Core:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Python 2.7.5 (E:/Python27/python.exe) interpreter library</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>JDataEx Core</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

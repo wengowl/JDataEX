@@ -1,0 +1,33 @@
+alter table SFXZZBGLXT_ABJQ  rename column TCYJHQTBMYJ to TCYJHQTBMYJHSXCYJ;
+alter table ZXPGXT_RYXX add(DLID NUMBER,YHM varchar2(100));
+comment on column ZXPGXT_RYXX.DLID is '登录ID';
+comment on column ZXPGXT_RYXX.YHM is '用户名';
+
+alter table SFTJJKXT_ZHQKTJB add(FYBM NUMBER,BM NUMBER,XH NUMBER,PSYCJ NUMBER ,HB NUMBER,SSCCBQ NUMBER,XYZX NUMBER ,SWHTL NUMBER,FLYZ NUMBER, ZGYJA NUMBER,
+ZGYSSBDZJE NUMBER,GYJA NUMBER,GYSSBDZJE NUMBER ,ZYJA NUMBER,ZYSSBDZJE NUMBER,JCYJA NUMBER ,JCYSSBDZJE NUMBER,RMFTJA NUMBER,RMFTSSBDZJE NUMBER ,HJJA NUMBER,HJSSBDZJE NUMBER);
+
+comment on column SFTJJKXT_ZHQKTJB.FYBM is '法院编码';
+comment on column SFTJJKXT_ZHQKTJB.BM is '编码';
+comment on column SFTJJKXT_ZHQKTJB.XH is '序号';
+comment on column SFTJJKXT_ZHQKTJB.PSYCJ is '陪审员参加';
+comment on column SFTJJKXT_ZHQKTJB.HB is '回避';
+comment on column SFTJJKXT_ZHQKTJB.SSCCBQ is '诉讼财产保全';
+comment on column SFTJJKXT_ZHQKTJB.XYZX is '先予执行';
+comment on column SFTJJKXT_ZHQKTJB.SWHTL is '审委会讨论';
+comment on column SFTJJKXT_ZHQKTJB.FLYZ is '法律援助';
+comment on column SFTJJKXT_ZHQKTJB.ZGYJA is '最高院结案';
+comment on column SFTJJKXT_ZHQKTJB.ZGYSSBDZJE is '最高院诉讼标的总金额';
+comment on column SFTJJKXT_ZHQKTJB.GYJA is '高院结案';
+comment on column SFTJJKXT_ZHQKTJB.GYSSBDZJE is '高院诉讼标的总金额';
+comment on column SFTJJKXT_ZHQKTJB.ZYJA is '中院结案';
+comment on column SFTJJKXT_ZHQKTJB.ZYSSBDZJE is '中院诉讼标的总金额';
+comment on column SFTJJKXT_ZHQKTJB.JCYJA is '基层院结案';
+comment on column SFTJJKXT_ZHQKTJB.JCYSSBDZJE is '基层院诉讼标的总金额';
+comment on column SFTJJKXT_ZHQKTJB.RMFTJA is '人民法庭结案';
+comment on column SFTJJKXT_ZHQKTJB.RMFTSSBDZJE is '人民法庭诉讼标的总金额';
+comment on column SFTJJKXT_ZHQKTJB.HJJA is '合计结案';
+comment on column SFTJJKXT_ZHQKTJB.HJSSBDZJE is '合计诉讼标的总金额';
+
+alter table SSXT_XSZSDJ  rename column JDLAJXSS to JDLAJXSSSCRI;
+
+alter table ZXXT_GSDJDC rename column S覅ZCCCCFKYDMSCD to SFZCCCCFKYDMSCD;

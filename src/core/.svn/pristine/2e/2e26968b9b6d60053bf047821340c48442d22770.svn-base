@@ -1,0 +1,64 @@
+package org.jdataex.channel.local;
+
+import java.net.SocketAddress;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.jdataex.channel.IChannelInput;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.util.ChannelClassUtil;
+
+/**
+ * 本地input本身基本没什么用处,上一节组件直接通过关联Executor来执行消息,channelOutput
+ * 的write方法通过jndi方式查找到下一级channelinput,再调用read的方法执行消息.
+ * 
+ * @author chaos
+ * 
+ */
+public class LocalChannelInput<T> implements IChannelInput<T> {
+
+	private String name;
+	/**
+	 * 
+	 */
+	private AtomicBoolean read = new AtomicBoolean(true);
+
+	public LocalChannelInput() {
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public void bind(SocketAddress address) {
+	}
+
+	@Override
+	public boolean canRead() {
+		return read.get();
+	}
+
+	@Override
+	public void setRead(boolean value) {
+		read.set(value);
+	}
+
+	/**
+	 * 针对于本地方式来说,doReadMsg本身没有设么用处
+	 */
+	@Override
+	public void doReadMsg(IEvent<T> event) {
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> close() {
+		setRead(false);
+		return (IChannelFuture<T>) ChannelClassUtil
+				.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+	}
+
+}

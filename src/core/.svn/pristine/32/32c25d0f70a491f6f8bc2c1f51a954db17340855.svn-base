@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+	<id>fidl</id>
+	<type>transition</type>
+	<controller id="controller" class="1">
+		<component id="cid3" class="org.jdataex.flow.component.step.MockStep">
+			<station-ref type="input" id="stid31" />
+			<station-ref type="output" id="stid32" />
+			<attCheck3>att3</attCheck3>
+		</component>
+
+		<station id="stid1" class="org.jdataex.flow.station.MockStation" />
+		<station id="stid2" class="org.jdataex.flow.station.MockStation" />
+		
+	</controller>
+</flow>

@@ -1,0 +1,66 @@
+package org.jdataex.channel.tlq;
+
+import org.jdataex.channel.IChannelInput;
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.net.INetAddress;
+
+public class TLQChannelInput<T> implements IChannelInput<T>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3730129133325509488L;
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void bind(INetAddress address) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean canRead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setRead(boolean value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean doReadMsg(IEvent<T> event) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public IChannelFuture<T> close() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void registerStage(IChannelStage<T> stage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isClosed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+}

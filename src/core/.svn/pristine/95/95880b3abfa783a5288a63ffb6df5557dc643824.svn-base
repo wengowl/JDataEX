@@ -1,0 +1,10 @@
+package org.jdataex.engine.loader;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.config.FlowConfig;
+import org.jdataex.flow.IFlow;
+
+public interface IFlowLoader {
+
+	public abstract IFlow load(FlowConfig config) throws InitializationException;
+}

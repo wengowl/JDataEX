@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dataexchange.court.gov.cn/2009/data" CASE:elementFormDefault="qualified" xsd:attributeFormDefault="unqualified">
+  <xsd:attribute name="ACTION_TYPE" type="c20" use="required"/>
+  <xsd:attribute name="DEPT_CODE" type="c20" use="required"/>
+  <xsd:attribute name="APP_CODE" type="c20" use="required"/>
+  <include schemaLocation="_0_结构信访案件.xsd"/>
+  <CASE:complexType name="信访案件">
+    <CASE:sequence>
+	 <CASE:element  name="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+      <CASE:element name="XFAJ_XFR" type="信访人" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_BLQK" type="办理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_YSQK" type="原审情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_YADSR" type="原案当事人" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_FYWTQK" type="反映问题情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_SAQK" type="收案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_FTSYJL" type="法庭使用记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_SAQKSHE" type="涉案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_SDJL" type="送达记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XFAJ_XAQK" type="销案情况" minOccurs="0" maxOccurs="1"/>
+    </CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="信访案件" type="信访案件"/>
+</CASE:schema>

@@ -1,0 +1,19 @@
+package org.jdataex.channel.common;
+
+/**
+ * 用于存储channel框架所有的默认值
+ * @author chaos
+ *
+ */
+public final class DefaultValues {
+	
+	
+	public final static int DEFAULT_THREAD_SIZE = 1;
+	
+	public final static int DEFAULT_CHANNEL_OUTPUT_RECONNECT_TIMES = 3;
+	
+	public final static int DEFAULT_CHANNEL_OUTPUT_RECONNECT_INTERVAL = 2000;
+	
+	public final static String NULL_STRING = "";
+
+}

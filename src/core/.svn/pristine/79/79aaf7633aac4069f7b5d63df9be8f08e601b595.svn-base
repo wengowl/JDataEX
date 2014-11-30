@@ -1,0 +1,56 @@
+package org.jdataex.channel.common;
+
+/**
+ * 用于存储channel框架所有的默认值
+ * @author chaos
+ *
+ */
+public final class DefaultValues {
+	
+	
+	public final static int DEFAULT_THREAD_SIZE = 1;
+	
+	public final static int DEFAULT_CHANNEL_OUTPUT_RECONNECT_TIMES = 3;
+	
+	public final static int DEFAULT_CHANNEL_OUTPUT_RECONNECT_INTERVAL = 2000;
+	
+	public final static String NULL_STRING = "";
+	
+	/**
+	 * event string properties 参数分隔符
+	 */
+	public final static String EVENT_DEFAULT_SEPARATOR = ";";
+	
+	/**
+	 * event string properties 参数等号符
+	 */
+	public final static String EVENT_DEFAULT_SIGN = "=";
+	
+	
+	public final static int TLQ_MSG = 1;
+	
+	public final static int TLQ_FILE = 2;
+	
+	public final static String TLQ_FILE_SIGN = "file";
+	
+	/**
+	 * 默认的qcu名称
+	 */
+	public final static String DEFAULT_QCU_NAME = "qcu1";
+	
+	/**
+	 * tlqchannelOutput默认的发送队列名称
+	 */
+	public final static String DEFAULT_SEND_QUEUE_NAME = "sq";
+	
+	/**
+	 * tlqchannelInput默认的接收队列名称
+	 */
+	public final static String DEFAULT_RECEIVE_QUEUE_NAME = "lq";
+	
+	/**
+	 * tlqchannelInput和output的系统通信队列,用于发心跳消息等...
+	 */
+	public final static String DEFAULT_TLQ_EVENT_QUEUE_NAME = "channelevent";
+
+}

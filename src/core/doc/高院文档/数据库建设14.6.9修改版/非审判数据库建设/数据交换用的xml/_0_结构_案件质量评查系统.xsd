@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="案件错误表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AJCWBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZZRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZZR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="NF" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBBM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCDL" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCXL" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TJQJ" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="KSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FBRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="质量评查主体信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZLPCBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AJBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AJLB" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AH" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="NH" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FYJC" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AZ" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JAAY" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LARQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JARQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJYBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJY" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LARBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LAR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBBM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXJSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JABS" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TQGDBZ" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GDRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPCBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SPC" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DSR" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QTHYTCY" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CQR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CQSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR1BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR1" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR2BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR2" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR3BS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR3" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCDL" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCXL" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCLY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCNR" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCJG" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZHDF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR1DF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR2DF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR3DF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR1CWS" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR2CWS" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR3CWS" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCLYs" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPRSPRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPRYJ" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPWSPRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPWSPR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPWSPRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPWSPYJ" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SWHJD" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TBRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCAJCWBBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FBRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFSQ" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SYZRR" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AJJCSS" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDPCYY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDZYDWT" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZPXZYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GLAJBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TJQJ" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TJNF" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SZWSDZT" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="质量评查实体">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZLPCBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WJMC" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="STWJM" type="BB" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="质量评查明细信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZLPCBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCXM" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJDF" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PCRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZRRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZRR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZRBM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CWLX" type="C20" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

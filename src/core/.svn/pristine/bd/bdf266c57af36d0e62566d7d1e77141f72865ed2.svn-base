@@ -1,0 +1,78 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.util.logger.LoggerFactory;
+
+import java.util.UUID;
+
+/**
+ * Created by wengxf on 14-4-30.
+ */
+public class SqlProcess {
+
+    /**
+     * 用于组合字符串
+     */
+    public String getSqlList(String[] args, String reg) {
+        String values = " ";
+        for (int i = 0; i < args.length - 1; i++) {
+            values = values + args[i] + reg;
+        }
+
+        return values + args[args.length - 1] + " ";
+    }
+
+    /**
+     * 组合插入语句
+     */
+    public String insertSQL(String inserttable, String[] field) {
+        String[] a = new String[field.length];
+        for (int i = 0; i < field.length; i++) {
+            a[i] = "?";
+        }
+       //TODO 添加UUID字段
+        String sql = "insert into " + inserttable + "(" + getSqlList(field, " , ") + ") values(" + getSqlList(a, ",") + ")";
+        LoggerFactory.getRootLogger().debug("insert SQL " + sql);
+        return sql;
+    }
+    public String insertSQLOraclein(String inserttable, String[] field) {
+        String[] a = new String[field.length];
+        for (int i = 0; i < field.length; i++) {
+            a[i] = "?";
+        }
+        String sql = "insert into " + inserttable + "(" + getSqlList(field, " , ") + ",ID,REG_TIME,UPDATE_TIME"+") values(" + getSqlList(a, ",") + ",sys_guid(),sysdate,sysdate"+ ")";
+        LoggerFactory.getRootLogger().debug("insert SQL " + sql);
+        return sql;
+    }
+
+    /**
+     * 组合更新语句
+     */
+    public String updateSQL(String updatetable, String[] field) {
+        String[] t = new String[field.length - 1];
+        for (int i = 0; i < field.length - 1; i++) {
+            t[i] = field[i];
+        }
+        String sql = "update " + updatetable + " set " + getSqlList(t, "=?, ") + "=?  where " + field[field.length-1] + " =?";
+        LoggerFactory.getRootLogger().debug("updateSQL " + sql);
+        return sql;
+    }
+    public String updateSQLinsert(String updatetable, String[] field,String[] con) {
+        String[] t = new String[con.length - 3];
+        for (int i = 0; i < con.length - 3; i++) {
+            t[i] = con[i];
+        }
+        String sql = "update " + updatetable + " set " + getSqlList(field, "=?, ") + "=?  where " + getSqlList(t, "=? and ") + " =?";
+        LoggerFactory.getRootLogger().debug("updateSQL "+(2*field.length-3)+":"+(field.length+t.length)+" ? " + sql);
+        return sql;
+    }
+    /**
+     * 组合删除语句
+     */
+    public String deleteSQL(String deletetable, String[] field) {
+        String sql = "DELETE FROM " + deletetable + " WHERE " + getSqlList(field, "=? and ") + " = ?";
+        LoggerFactory.getRootLogger().debug("deleteSQL " + sql);
+        return sql;
+    }
+
+
+}

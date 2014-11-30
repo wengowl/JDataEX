@@ -1,0 +1,220 @@
+package org.jdataex.channel;
+
+import static org.jdataex.util.AssertUtil.assertNull;
+
+import java.net.SocketAddress;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.naming.BinaryRefAddr;
+import javax.naming.Reference;
+
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.event.IListener;
+import org.jdataex.channel.exception.ChannelStagehasStartedException;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.executor.IExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.DefaultHandlerChain;
+import org.jdataex.channel.handler.IHandler;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.channel.util.ObjectAndByte;
+
+public class DefaultChannelStage<T> extends Thread implements IChannelStage<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2823981877725393445L;
+
+	private IExecutor<T> executor;
+
+	private IStageContext<T> context;
+
+	private IChannelContainer<T> container;
+
+	private IHandlerChain<T> chain;
+
+	public DefaultChannelStage() {
+		this.initializeHandlerChain();
+	}
+
+	@Override
+	public IExecutor<T> getExecutor() {
+		return this.executor;
+	}
+
+	@Override
+	public IStageContext<T> getContext() {
+		if (context == null) {
+			context = new DefaultStageContext<T>(this);
+		}
+		return context;
+	}
+
+	@Override
+	public IChannelStage<T> setChannelContainer(IChannelContainer<T> channel) {
+		assertNull(channel);
+		container = channel;
+		return this;
+	}
+
+	private void initializeHandlerChain() {
+		chain = new DefaultHandlerChain<T>();
+		chain.setContext(this.getContext());
+	}
+
+	@Override
+	public IChannelStage<T> addBefare(IHandler<T> handler) {
+		chain.addHead(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> addAfter(IHandler<T> handler) {
+		chain.addTail(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> setExecutor(IExecutor<T> executor) {
+		assertNull(executor);
+		return this;
+	}
+
+	@Override
+	public void shutdown() {
+		IChannelFuture<T> input = this.container.closeInput();
+		if (!input.isSuccess()) {
+			throw input.error();
+		}
+		for (IChannelFuture<T> icf : this.container.closeAllOutput()) {
+			if (!icf.isSuccess()) {
+				throw icf.error();
+			}
+		}
+		this.shutdownExecutor();
+	}
+
+	@Override
+	public IChannelFuture<T>[] writeEvent(IEvent<T> event,
+			String... channelOutputNames) {
+		@SuppressWarnings("unchecked")
+		IChannelFuture<T>[] ifs = new IChannelFuture[channelOutputNames.length];
+		for (int i = 0; i < channelOutputNames.length; i++) {
+			ifs[i] = this.container.getOutput(channelOutputNames[i])
+					.writeAndFlush(event);
+		}
+		return ifs;
+	}
+
+	@Override
+	public IChannelFuture<T>[] writeMsg(T msg, String... channelOutputName) {
+		return writeEvent(new DefaultEvent<T>(msg, this,
+				ChannelEventType.ChannelWrite, null), channelOutputName);
+	}
+
+	@Override
+	public IChannelContainer<T> getChannelContainer() {
+		return this.container;
+	}
+
+	@Override
+	public IHandlerChain<T> getHandlerChain() {
+		return this.chain;
+	}
+
+	@Override
+	public void start(SocketAddress inputAddress,
+			Map<String, SocketAddress> outputAddress) {
+		if(this.isAlive()){
+			throw new ChannelStagehasStartedException("");
+		}
+		this.container.getInput().bind(inputAddress);
+		assertNull(inputAddress);
+		assertNull(outputAddress);
+		assertNull(executor);
+		assertNull(container);
+		Iterator<String> it = outputAddress.keySet().iterator();
+		while (it.hasNext()) {
+			String name = it.next();
+			this.container.getOutput(name).connect(outputAddress.get(name));
+		}
+		//开始轮训获取消息
+		this.start();
+	}
+
+	private void shutdownExecutor() {
+		this.executor.shutdown();
+	}
+	
+	/**
+	 * 线程定时轮训
+	 */
+	public void run(){
+		while(!this.isInterrupted()){
+			IEvent<T> event = null;
+			//读取消息
+			if(this.container.getInput().doReadMsg(event)){
+				getExecutor().execute(new ExecutorTask<T>(this.chain,event,this.getContext()));
+			}
+		}
+	}
+
+	@Override
+	public void pauseInputRead() {
+		this.container.getInput().setRead(false);
+	}
+
+	@Override
+	public void runInputRead() {
+		this.container.getInput().setRead(true);
+	}
+
+	@Override
+	public void pauseAllOutputWrite() {
+		for(IChannelOutput<T> out:this.container.getOutputs()){
+			out.setWrite(false);
+		}
+	}
+
+	@Override
+	public void runAllOutputWrite() {
+		for(IChannelOutput<T> out:this.container.getOutputs()){
+			out.setWrite(true);
+		}
+	}
+
+	@Override
+	public void pauseStage() {
+		pauseInputRead();
+		pauseAllOutputWrite();
+	}
+
+	@Override
+	public void runStage() {
+		runInputRead();
+		runAllOutputWrite();
+	}
+	
+	@Override
+	public void addListener(IListener<T> listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeListener(IListener<T> listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Reference getReference(){
+        Reference ref = new Reference(this.getClass().getName(), ChannelStageFactory.class.getName(), null);  
+        ref.add(new BinaryRefAddr("channelStage",ObjectAndByte.toByteArray(this)));
+        return ref;
+	}
+}

@@ -1,0 +1,18 @@
+package org.jdataex.channel.exception;
+
+public class ChannelException extends BaseNestedException {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3068309377864642727L;
+
+	public ChannelException(String msg) {
+		super(msg);
+	}
+
+	public ChannelException(String msg,Throwable cause) {
+		super(msg,cause);
+	}
+
+}

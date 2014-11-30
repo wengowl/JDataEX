@@ -1,0 +1,75 @@
+package org.jdataex.channel.executor;
+
+import java.io.Serializable;
+
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.future.IChannelFuture;
+
+/**
+ * channel线程池接口
+ * @author chaos
+ *
+ */
+public interface IExecutor<T> extends Serializable{
+	
+	/**
+	 * 返回处理任务的总数
+	 * @return
+	 */
+	public long getTeskCount();
+	
+	/**
+	 * 返回最大线程数量
+	 * @return
+	 */
+	public int getMaxThreadNum();
+	
+	/**
+	 * 返回核心线程数量,当任务到来后会先拿给核心线程处理,当核心线程满后直接放入<br>
+	 * 线程队列,所以默认情况下core和max是一样的.之所以设置是为了灵活适应各种场景<br>
+	 * @return
+	 */
+	public int getCoreThreadNum();
+	
+	/**
+	 * 返回当前线程数
+	 * @return
+	 */
+	public int getCurrentThreadSize();
+	
+	/**
+	 * 返回当前活跃的线程数,就是正在处理task的线程
+	 * @return
+	 */
+	public int getActiveThreadSize();
+	
+	/**
+	 * 执行任务
+	 * @return {@link IChannelFuture} 返回任务是否加入线程池执行<br>
+	 * 后续可能会开发出带有回调的方法表示线程是否执行成功
+	 */
+	public IChannelFuture<T> execute(ITask<T> task);
+	
+	/**
+	 * 所有task是否执行完毕
+	 * @return
+	 */
+	public boolean isAllWorksFinish();
+	
+	/**
+	 * 关闭线程池,阻塞方法,如果还有线程在处理中,就会等待完毕后再停止;
+	 */
+	public void shutdown();
+	
+	/**
+	 * 查看线程池是否已经关闭
+	 * @return 
+	 */
+	public boolean isShutdown();
+	
+	/**
+	 * 执行查询,将从channelStage中查询出来的
+	 */
+	public IChannelFuture<T> select(IChannelStage<T> stage);
+	
+}

@@ -1,0 +1,116 @@
+package org.jdataex.channel.local;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.jdataex.channel.IChannelInput;
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.net.INetAddress;
+import org.jdataex.channel.util.ChannelClassUtil;
+
+/**
+ * 本地input本身基本没什么用处,上一节组件直接通过关联Executor来执行消息,channelOutput
+ * 的write方法通过jndi方式查找到下一级channelExecutor,再调用read的方法直接执行消息.不采用
+ * 中间queue的方式处理,这么做减少内存消耗,提高处理性能.
+ * 
+ * @author chaos
+ * 
+ */
+public class LocalChannelInput<T> implements IChannelInput<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8359901304334637264L;
+
+	private String name;
+
+	private IChannelStage<T> stage;
+	/**
+	 * 
+	 */
+	private AtomicBoolean read = new AtomicBoolean(true);
+
+	private AtomicBoolean stopped = new AtomicBoolean(false);
+
+	public LocalChannelInput(String name) {
+		setName(name);
+	}
+
+	void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * 本地channelInput不存在绑定的问题,所以本方法实际上是空的
+	 */
+	@Override
+	public void bind(INetAddress address) {
+		this.stage.getInputExecutor().execute(
+				new ExecutorTask<T>(stage.getHandlerChain(),
+						new DefaultEvent<T>(null, null,
+								ChannelEventType.ChannelBind, null), stage
+								.getContext()));
+	}
+
+	@Override
+	public boolean canRead() {
+		return read.get();
+	}
+
+	@Override
+	public void setRead(boolean value) {
+		read.set(value);
+	}
+
+	/**
+	 * 针对于本地方式来说,doReadMsg本身没有设么用处 为了调用的时候减少cpu利用率,直接wait
+	 */
+	@Override
+	public boolean doReadMsg(IEvent<T> event) {
+		try {
+			while (!this.isClosed()) {
+				synchronized (this) {
+					//System.out.println("wait");
+					this.wait();
+					//System.out.println("wait over...do soming");
+				}
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> close() {
+		setRead(false);
+		stopped.set(true);
+		synchronized (this) {
+			this.notifyAll();
+		}
+		return (IChannelFuture<T>) ChannelClassUtil
+				.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+	}
+
+	@Override
+	public void registerStage(IChannelStage<T> stage) {
+		this.stage = stage;
+	}
+
+	@Override
+	public boolean isClosed() {
+		return stopped.get();
+	}
+
+}

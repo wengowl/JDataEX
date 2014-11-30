@@ -1,0 +1,35 @@
+package org.jdataex.flow.handler;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.IComponent;
+import org.jdataex.flow.component.step.MockStep;
+import org.jdataex.util.logger.LoggerFactory;
+
+public class MockComponentHandler extends BaseComponentHandler implements IComponentHandler {
+
+
+	public MockComponentHandler(String name, MockStep mockStep) {
+		super(mockStep,new GUIC(name+ "ID",name));
+	}
+
+	@Override
+	public void init() throws InitializationException {
+
+	}
+
+	@Override
+	public void execute() throws ComponentException {
+		LoggerFactory.getDefaultLogger().info("{} executed.", getGUIC().getName());
+	}
+
+	@Override
+	public void release() throws ReleaseException {
+
+	}
+
+
+
+}

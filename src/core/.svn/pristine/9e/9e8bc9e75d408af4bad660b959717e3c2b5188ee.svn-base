@@ -1,0 +1,103 @@
+package org.jdataex.channel;
+
+import static org.jdataex.channel.common.DefaultValues.DEFAULT_CHANNEL_OUTPUT_RECONNECT_INTERVAL;
+import static org.jdataex.channel.common.DefaultValues.DEFAULT_CHANNEL_OUTPUT_RECONNECT_TIMES;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.jdataex.channel.net.INetAddress;
+import org.jdataex.util.AssertUtil;
+import org.jdataex.util.logger.ILogger;
+import org.jdataex.util.logger.LoggerFactory;
+/**
+ * 基本的channelOutput抽象类,主要实现一些基础方法,所有channeloutput具体实现类都应该继承
+ * 此类
+ * @author chaos
+ *
+ * @param <T>
+ */
+public abstract class BaseAbstractChannelOutput<T> implements IChannelOutput<T>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7543534133261627029L;
+	
+	private String name;
+	
+	private AtomicBoolean canWrite = new AtomicBoolean(true);
+	
+	private ILogger logger;
+	
+	private int times = DEFAULT_CHANNEL_OUTPUT_RECONNECT_TIMES;
+	
+	private int interval= DEFAULT_CHANNEL_OUTPUT_RECONNECT_INTERVAL;
+	
+	private IChannelStage<T> stage;
+	
+	private INetAddress address;
+	
+	public INetAddress getAddress() {
+		return address;
+	}
+
+	public void setAddress(INetAddress address) {
+		this.address = address;
+	}
+
+	public BaseAbstractChannelOutput(String name) {
+		AssertUtil.assertNullOrBlank(name);
+		setName(name);
+		logger = LoggerFactory.getLogger(this.getName());
+	}
+	
+	public ILogger getLogger(){
+		return this.logger;
+	}
+	
+	public IChannelStage<T> getStage(){
+		return stage;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public int getTimes(){
+		return this.times;
+	}
+	
+	public int getInterval(){
+		return this.interval;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public boolean canWrite() {
+		return canWrite.get();
+	}
+
+	@Override
+	public void setWrite(boolean value) {
+		this.canWrite.set(value);
+	}
+
+	@Override
+	public void registerStage(IChannelStage<T> stage) {
+		AssertUtil.assertNull(stage);
+		this.stage = stage;
+	}
+
+	@Override
+	public void setReConnectTimes(int times, int interval) {
+		AssertUtil.assertNegativeInt(times);
+		AssertUtil.assertNegativeInt(interval);
+		this.times = times;
+		this.interval = interval;
+	}
+
+}

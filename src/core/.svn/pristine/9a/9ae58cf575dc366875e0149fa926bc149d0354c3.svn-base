@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_执行系统.xsd"/>
+<CASE:complexType name="执行系统">
+
+<CASE:sequence>
+ <CASE:element name="ZXXT_BYZX" type="不予执行" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BYTJZXMYTJSPB" type="不予提交征信免于提交审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BYCZSPB" type="不宜处置审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCCDCKZQKGZS" type="专项财产调查控制情况告知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CAGXZB" type="串案关系子表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JBAJSPB" type="交办案件审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JBAJSPB2" type="交办案件审批表2" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YWDZJL" type="以物抵债记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_GLAJPGPMJL" type="关联案件评估拍卖记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_QTDC" type="其他调查" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZCLASPB" type="再次立案审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CCSPB" type="出差审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CCBGB" type="出差报告表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_DQZQZXJL" type="到期债权执行记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_XZDJCKTZS" type="协助冻结存款通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_XZZXXX" type="协助执行信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_XZCXCKTZS" type="协助查询存款通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_XZCXCCTZS" type="协助查询财产通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JZLB" type="卷宗列表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CYFPYASXHYYJJL" type="参与分配预案事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SQZXRBGJL" type="受权执行人变更记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BMSPB" type="变卖审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BMJL" type="变卖记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BGJCYZXCSSXHYYJJL" type="变更、解除原执行措施事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BGSQZXRJZJBGBZXRSXHYJL" type="变更申请执行人及追加、变更被执行人事项合议记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SFWSLSJLB" type="司法文书历史记录表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_TDDJDC" type="土地登记调查" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WTFYHF" type="委托复议回复" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WTZX" type="委托执行" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WTZXAJSPB" type="委托执行案件审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WTZXAJDJB" type="委托执行案件调卷表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WTPMSJJK" type="委托拍卖时间监控" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SJJL" type="审计记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SJJL1" type="审计记录1" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_DXWDZXJL" type="对行为的执行记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JWHYJJL" type="局务会意见记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_LXDSRDQZQSXHYYJJL" type="履行第三人到期债权事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_LXXW" type="履行行为" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_GSDJDC" type="工商登记调查" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YQZFAKSPB" type="延期支付案款审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YQPG" type="延期评估" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_HFPM" type="恢复拍卖" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_HFPM1" type="恢复拍卖1" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_HFPMSPB" type="恢复拍卖审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_HFTJZXXTSPB" type="恢复提交征信系统审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_HFPGSPB" type="恢复评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_KLTQGRSRCKJL" type="扣留 提取个人收入 存款记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXZXCCDCKZQKBG" type="执行专项财产调查控制情况报告" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCAGXZB " type="执行串案关系主表 " minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXQTGZJL" type="执行其他工作记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXDJJL" type="执行冻结记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXHBJL" type="执行划拨记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCYFPJL" type="执行参与分配记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXHJ" type="执行和解" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXSSZSCZXYYSXHYYJ" type="执行实施组审查执行异议事项合议研究" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXJZXCCDCKZWJYSSPB" type="执行局专项财产调查、控制完结移送审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXQZGLJL" type="执行强制管理记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXQZQCTCJL" type="执行强制迁出退出记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXYJSPB" type="执行意见审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXKYJL" type="执行扣押记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXDB" type="执行担保" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXPMCJKYFQSPB." type="执行拍卖成交款已付清审批表." minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXJCJL" type="执行拘传记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCSDJ" type="执行措施登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXSCJL" type="执行搜查记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXZKJL" type="执行支款记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCMCCJL" type="执行查明财产记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCXCKJL" type="执行查询存款记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJYWDZSXHYYJJL" type="执行案件以物抵债事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJBMSXHYYJJL" type="执行案件变卖事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJPMSXHYYJJL" type="执行案件拍卖事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJDJB" type="执行案件登记表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJZJBCZXSXHYJL" type="执行案件终结本次执行事项合议记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXAJJRCZJDQKGZS" type="执行案件进入处置阶段情况告知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXKWGLJL" type="执行款物管理记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXFKFYJL" type="执行罚款、复议记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXBZXRBGZJJL" type="执行被执行人变更追加记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXZJ" type="执行证据" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXPGJGJL" type="执行评估结果记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXCCDCJL" type="执行财产吊车记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXSDJL" type="执行送达记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BBJDFSPB" type="报备及吊废审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PMDZSPB" type="拍卖到账审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PMWTS" type="拍卖委托书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PMSPB" type="拍卖审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PMKQRS" type="拍卖款确认书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PMJL" type="拍卖记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JL" type="拘留(解除拘留)记录表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_TQJWHYJBG" type="提请局务会研究报告" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CHPM" type="撤回拍卖" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CHPMWTS" type="撤回拍卖委托书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CHPGWTS" type="撤回评估委托书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CHPGSPB" type="撤回评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CHPGJL" type="撤回评估记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CXPGSPB" type="撤销评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SKJL" type="收款记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WCCHXDKCSB" type="无财产后续调控措施表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_WCCKZAJZBCQQZCSSPB" type="无财产控制案件暂不采取强制措施审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_RZB" type="日志表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZTPM" type="暂停拍卖" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZTPM1" type="暂停拍卖1" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZTPGSPB" type="暂停评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZDWTFY" type="暂定委托法院" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZHWTPGSPB" type="暂缓委托评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZHZX" type="暂缓执行" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YCCKZZBQDPMSPB" type="有财产控制暂不启动拍卖审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YCCKZZBQDPGSPB" type="有财产控制暂不启动评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_YCCAJZQDPMSPB" type="有财产案件暂启动拍卖审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CFJL" type="查封记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_AWRYY" type="案外人异议" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_AKBZJHFDSQRSXHYYJJL" type="案款不直接划付到申请人事项合议研究记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_AKHBTZS" type="案款划拨通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_QRCXPGSPB" type="确认撤销评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_QRLBS" type="确认流标书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JASPB" type="结案审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JXZTPM" type="继续暂停拍卖" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JXZTPGSPB" type="继续暂停评估审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZDFAPZB" type="自动分案配置表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZDLXXWJL" type="自动履行行为记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_BZXRCCSBHS" type="被执行人财产申报核实" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_JCCFKYDJDQZZXCSCDS" type="解除查封、扣押、冻结等强制执行措施裁定书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGSXHYYJ" type="评估事项合议研究" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGPMLCJL" type="评估拍卖流程记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGCXTZ" type="评估撤销停止" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGBZ" type="评估补正" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGBZ1" type="评估补正1" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PGJL" type="评估记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_QZXRTGBZXRCCZKJXSDJB" type="请执行人提供被执行人财产状况及线索登记表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_DCQK" type="调查情况" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_DCJL" type="调查记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CCPMTLJL" type="财产拍卖讨论记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CCXS" type="财产详述" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CWSKDJ" type="财务收款登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_PCZRJL" type="赔偿责任记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_GCJLB" type="过程记录表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CQQZCSSPB" type="采取强制措施审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CQQZCSSPB2" type="采取强制措施审批表2" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_ZXQDZXCXSPB" type="重新启动执行程序审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SDJL" type="锁定记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_SDPZB" type="锁定配置表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_CBXXBGSPB" type="错报信息变更审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXXT_XZJL" type="限制记录" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="执行系统" type="执行系统"/>
+
+</CASE:schema>

@@ -1,0 +1,115 @@
+package org.jdataex.channel.executor;
+
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.tlq.TLQChannelInput;
+import org.jdataex.channel.util.ChannelClassUtil;
+
+/**
+ * 由于tlq事务提交的特殊情况,一个tlq连接接收端只能对应一个线程,否则 事务处理会存在问题. 所以不再是线程池,线程池关闭和判断是否完成工作的方法无效
+ * 
+ * @author chaos
+ * 
+ * @param <T>
+ */
+public class TLQInputExecutor<T> implements IExecutor<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3900130359069292000L;
+
+	private AtomicLong teskCount = new AtomicLong(0);
+
+	@Override
+	public long getTeskCount() {
+		return teskCount.get();
+	}
+
+	@Override
+	public int getMaxThreadNum() {
+		return 1;
+	}
+
+	@Override
+	public int getCoreThreadNum() {
+		return 1;
+	}
+
+	@Override
+	public int getCurrentThreadSize() {
+		return 1;
+	}
+
+	@Override
+	public int getActiveThreadSize() {
+		return 1;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> execute(ITask<T> task) {
+		try {
+			task.run();
+		} catch (BaseNestedException e) {
+			e.printStackTrace();
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(
+					ChannelClassUtil.ERROR_CHANNEL_FUTURE, e);
+		}
+		return (IChannelFuture<T>) ChannelClassUtil
+				.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+	}
+
+	@Override
+	/**
+	 * 这个方法没用
+	 */
+	public boolean isAllWorksFinish() {
+		return true;
+	}
+
+	@Override
+	/**
+	 * 这个方法没用
+	 */
+	public void shutdown() {
+	}
+
+	@Override
+	public IChannelFuture<T> select(IChannelStage<T> stage) {
+		return select(stage, (TLQChannelInput<T>) stage.getChannelContainer()
+				.getInput());
+	}
+
+	@SuppressWarnings("unchecked")
+	public IChannelFuture<T> select(IChannelStage<T> stage,
+			TLQChannelInput<T> input) {
+
+		IEvent<T> event = new DefaultEvent<T>();
+
+		input.beginTran();
+
+		// 必须是阻塞方法
+		if (input.doReadMsg(event)) {
+
+			IChannelFuture<T> future = execute(new ExecutorTask<T>(
+					stage.getHandlerChain(), event, stage.getContext()));
+			if (future.isSuccess()) {
+				input.commit();
+			} else {
+				input.rollBack();
+			}
+			return future;
+		} else {
+			input.commit();
+			return (IChannelFuture<T>) ChannelClassUtil
+					.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+		}
+	}
+
+}

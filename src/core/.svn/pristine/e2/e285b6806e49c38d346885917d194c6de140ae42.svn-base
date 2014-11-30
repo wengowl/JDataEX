@@ -1,0 +1,81 @@
+package org.jdataex.flow.component.step.trigger;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.flow.component.step.BaseStep;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.util.logger.LoggerFactory;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by wengxf on 14-4-28.
+ *
+ * 数据获取处理线程
+ */
+public class DataHandlerThread implements Runnable {
+    private int msgid;
+    private TriggerDataBean triggerDataBean = new TriggerDataBean();
+    private DBOperation dbOperation = new DBOperation();
+    private String poolname;
+    public DataHandlerThread(String poolname) {
+        this.poolname=poolname;
+    }
+
+    public void setMsgid(String loc) {
+        String sql = "select * from Tr_Msgids";
+        DBOperation dbOperation = new DBOperation();
+        ResultSet resultSet = dbOperation.sqlQuery(sql, poolname);
+        try {
+            while (resultSet.next()) {
+                msgid = resultSet.getInt(loc);
+            }
+        } catch (SQLException e) {
+            //TODO  e.printStackTrace();
+            //  LoggerFactory.getRootLogger().traceI18nc(DataHandlerThread.class,"SQLException",e);
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void run() {
+        setMsgid(Thread.currentThread().getName());
+        for (; ; msgid++) {
+            DataHandler dataHandler = new DataHandler(triggerDataBean,poolname);
+            String sqlbig = "select * from " + Thread.currentThread().getName() + " where MsgId > " + msgid;
+            ResultSet resultSet = dbOperation.sqlQuery(sqlbig, poolname);
+            boolean flag = false;
+            try {
+                flag = resultSet.next();
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (!flag) {
+                LoggerFactory.getRootLogger().info("*******no data******");
+                break;
+
+            }
+            triggerDataBean = dataHandler.middleDataGet(msgid + 1, Thread.currentThread().getName());
+            if (triggerDataBean != null) {
+                dataHandler.souDataGet(triggerDataBean);
+                IRow iRow = dataHandler.SouToDest();
+                dataHandler.updateMsgid(msgid + 1, Thread.currentThread().getName());
+                LoggerFactory.getRootLogger().debug("row ******tablename: " + iRow.getHeader().get("tableName"));
+                LoggerFactory.getRootLogger().debug("row ******coloumnsize: " + iRow.getColumnsSize());
+
+
+
+
+            } else if (flag) {
+                triggerDataBean = new TriggerDataBean();
+            } else {
+                LoggerFactory.getRootLogger().info("*******no data******");
+                break;
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+package org.jdataex.flow.component.dataaccess;
+
+/**
+ * Created by wengxf on 2014/5/7 0007.
+ * 数据入库组件
+ */
+public class DataAccessComponent {
+
+
+}

@@ -1,0 +1,27 @@
+package org.jdataex.channel.future;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.CanNotWriteChannelException;
+
+public class CanNotWriteChannelFuture<T> implements IChannelFuture<T>{
+	@Override
+	public boolean isSuccess() {
+		return false;
+	}
+
+	@Override
+	public List<BaseNestedException> errors() {
+		// TODO Auto-generated method stub
+		List<BaseNestedException> list = new ArrayList<BaseNestedException>();
+		list.add(new CanNotWriteChannelException("can not write msg to channel,because its not writeable!"));
+		return list;
+	}
+
+	@Override
+	public T msg() {
+		return null;
+	}
+}

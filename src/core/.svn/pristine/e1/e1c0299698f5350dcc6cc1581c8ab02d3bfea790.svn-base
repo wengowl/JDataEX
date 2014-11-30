@@ -1,0 +1,62 @@
+package org.jdataex.flow.component.step.file.monitor;
+
+import static org.junit.Assert.*;
+
+import org.jdataex.BaseTest;
+import org.jdataex.core.GlobalInitializer;
+import org.jdataex.core.InitializationException;
+import org.jdataex.flow.component.step.xml.XMLConverterStep;
+import org.jdataex.flow.handler.IStepHandler;
+import org.jdataex.flow.handler.MockStep;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.jdataex.flow.station.IStepStation;
+import org.jdataex.flow.station.queue.FirstQueueStepStation;
+import org.jdataex.flow.station.queue.QueueStepStation;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TestXMLComverterFlow extends BaseTest{
+
+	@Test
+	public void test() {
+		running();
+	}
+
+	protected void running() {
+		IStepStation st = new QueueStepStation();
+		IStepStation fst = new FirstQueueStepStation();
+		IStepStation last = new QueueStepStation();
+		
+		IStepHandler monitorHandler = new StepHandler(new MonitorFileStep(),fst,st);
+		((ILoggable)monitorHandler).setLogger(LoggerFactory.getDefaultLogger());
+		
+		
+		IStepHandler converterHandler = new StepHandler(new XMLConverterStep(),st,last);
+		((ILoggable)converterHandler).setLogger(LoggerFactory.getDefaultLogger());
+		
+		IComponentRunner converterRunner = new SchedulerRunner(converterHandler);
+		new Thread(converterRunner).start();
+		
+		IComponentRunner monitorRunner = new SchedulerRunner(monitorHandler);
+		new Thread(monitorRunner).start();
+		
+
+	}
+	
+	public static void main(String[] args) {
+		try {
+			GlobalInitializer.initialization();
+		} catch (InitializationException e) {
+			e.printStackTrace();
+		}
+		new TestXMLComverterFlow().running();
+	}
+
+}

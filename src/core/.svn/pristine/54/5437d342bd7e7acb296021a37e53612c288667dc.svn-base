@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<property file="config/node.properties" />
+	<!--定义一个名为STDOUT的appender，并将其关联到ch.qos.logback.core.ConsoleAppender -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders 作用是将logger事件转换成字节数组，并将字节数组写入到输出流 -->
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符 -->
+			<pattern>${node.logger.pattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- source <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender"> -->
+	<appender name="SIFT-COMMON"
+		class="org.jdataex.util.logger.SiftingWithLoggerNameAppender">
+		<discriminator>
+			<Key>jobId</Key>
+			<DefaultValue>common</DefaultValue>
+		</discriminator>
+		<sift>
+			<appender name="FILE-NORMAL-${jobId}"
+				class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<filter class="ch.qos.logback.classic.filter.LevelFilter">
+					<level>${node.logger.level}</level> <!-- 指定要对级别为ERROR日志信息过滤 -->
+					<OnMismatch>DENY</OnMismatch>     <!-- 如果不匹配，则拒绝处理 -->
+					<OnMatch>ACCEPT</OnMatch>         <!-- 如果匹配，则立即处理 -->
+				</filter>
+				<File>${node.logger.dir}/${jobId}/${jobId}-common.log</File>
+				<Append>false</Append>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<Pattern>${node.logger.pattern}
+					</Pattern>
+				</layout>
+				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+					<minIndex>1</minIndex>
+					<maxIndex>${node.logger.maxIndex}</maxIndex>
+					<fileNamePattern>${node.logger.dir}/${jobId}/${jobId}-common.T%d{yyyy-MM-dd}.N%i.log.zip
+					</fileNamePattern>
+					<!-- 限制文件最大保存时间为30天 -->
+					<maxHistory>${node.logger.maxHistory}</maxHistory>
+					<timeBasedFileNamingAndTriggeringPolicy
+						class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+						<maxFileSize>${node.logger.maxFileSize}</maxFileSize>
+					</timeBasedFileNamingAndTriggeringPolicy>
+				</rollingPolicy>
+			</appender>
+		</sift>
+	</appender>
+	<appender name="SIFT-ERROR"
+		class="org.jdataex.util.logger.SiftingWithLoggerNameAppender">
+		<discriminator>
+			<Key>jobId</Key>
+			<DefaultValue>common</DefaultValue>
+		</discriminator>
+		<sift>
+			<appender name="FILE-ERROR-${jobId}"
+				class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<filter class="ch.qos.logback.classic.filter.LevelFilter">
+					<level>ERROR</level> <!-- 指定要对级别为ERROR日志信息过滤 -->
+					<OnMismatch>DENY</OnMismatch>     <!-- 如果不匹配，则拒绝处理 -->
+					<OnMatch>ACCEPT</OnMatch>         <!-- 如果匹配，则立即处理 -->
+				</filter>
+				<File>${node.logger.dir}/${jobId}/${jobId}-error.log</File>
+				<Append>false</Append>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<Pattern>${node.logger.pattern}
+					</Pattern>
+				</layout>
+				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+					<minIndex>1</minIndex>
+					<maxIndex>${node.logger.maxIndex}</maxIndex>
+					<fileNamePattern>${node.logger.dir}/${jobId}/${jobId}-error.T%d{yyyy-MM-dd}.N%i.log.zip
+					</fileNamePattern>
+					<!-- 限制文件最大保存时间为30天 -->
+					<maxHistory>${node.logger.maxHistroy}</maxHistory>
+					<timeBasedFileNamingAndTriggeringPolicy
+						class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+						<maxFileSize>${node.logger.maxFileSize}</maxFileSize>
+					</timeBasedFileNamingAndTriggeringPolicy>
+				</rollingPolicy>
+			</appender>
+		</sift>
+	</appender>
+	<root level="${node.logger.level}">    <!-- root logger，定义级别为debug -->
+		<appender-ref ref="STDOUT" />    <!--将名为STDOUT的appender添加到root logger下 -->
+		<appender-ref ref="SIFT-COMMON" /><!-- 将名为STDOUT的appender添加到root 
+			logger下 -->
+		<appender-ref ref="SIFT-ERROR" />
+	</root>
+</configuration>

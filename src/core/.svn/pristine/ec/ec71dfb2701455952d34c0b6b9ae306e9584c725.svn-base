@@ -1,0 +1,111 @@
+package org.jdataex.channel.local;
+
+import java.net.SocketAddress;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.naming.NamingException;
+
+import org.jdataex.channel.IChannelContainer;
+import org.jdataex.channel.IChannelOutput;
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.channel.util.ChannelClassUtil;
+import org.jdataex.util.AssertUtil;
+
+public class LocalChannelOutput<T> implements IChannelOutput<T>{
+	
+	private IChannelStage<T> targetStage;
+
+	private IChannelContainer<T> container;
+	
+	private String name;
+	
+	private AtomicBoolean canWrite = new AtomicBoolean() ;
+	
+	private IHandlerChain<T> handers;
+	
+	public IChannelStage<T> getTargetStage() {
+		return targetStage;
+	}
+
+	public void setTargetStage(IChannelStage<T> targetStage) {
+		this.targetStage = targetStage;
+	}
+
+	public IHandlerChain<T> getHanders() {
+		return handers;
+	}
+
+	public void setHanders(IHandlerChain<T> handers) {
+		this.handers = handers;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public IChannelContainer<T> getContainer() {
+		return container;
+	}
+
+	public void setContainer(IChannelContainer<T> container) {
+		this.container = container;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public boolean canWrite() {
+		return canWrite.get();
+	}
+
+	@Override
+	public void setWrite(boolean canWrite) {
+		this.canWrite.set(canWrite);
+	}
+
+	/**
+	 * localOuput直接通过targetStage获取目标端的IChannelContainer并写入数据
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> writeAndFlush(IEvent<T> event) {
+		AssertUtil.assertNull(targetStage);
+		//执行完处理
+		handers.executeHandlers(event);
+		if(this.canWrite()){
+			return targetStage.getExecutor().execute(new ExecutorTask<T>(null,event,targetStage.getContext()));
+		}else{
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(ChannelClassUtil.CAN_NOT_WRITE_CHANNEL_FUTURE);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> connect(SocketAddress localjndiAddress) {
+		AssertUtil.assertNull(localjndiAddress);
+		AssertUtil.assertNull(localjndiAddress.toString());
+ 		try {
+ 			targetStage = (IChannelStage<T>) LocalNamingContext.getInstance().lookUp(localjndiAddress.toString());
+ 			return writeAndFlush(new DefaultEvent<T>(null,null,ChannelEventType.channelActive,"location=local"));
+ 		} catch (NamingException e) {
+			throw new BaseNestedException("",e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> disConnect() {
+		targetStage = null;
+		return  (IChannelFuture<T>) ChannelClassUtil.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+	}
+}

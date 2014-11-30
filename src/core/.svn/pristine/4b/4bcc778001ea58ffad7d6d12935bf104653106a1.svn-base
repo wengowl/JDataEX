@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+	<id>station-test</id>
+	<type>transition</type>
+	<controller id="controller">
+		<component id="first" class="org.jdataex.flow.framework.MockFirstStep">
+		</component>
+
+		<component id="second" class="org.jdataex.flow.framework.MockSecondStep">
+		</component>
+
+		<channel-stage id="cs01" entry="true"
+			class="org.jdataex.channel.DefaultChannelStage">
+			<input-executor>--默认加载，预留可配--</input-executor>
+			<output-executor>--默认加载，预留可配-</output-executor>
+			<container>--默认加载，预留可配--</container>
+			<input name="cs01Input" class="org.jdataex.channel.local.LocalChannelInput"></input>
+			<outputs>
+				<output name="cs01Output01" class="org.jdataex.channel.local.LocalChannelOutput" host="cs02" port="0"></output>
+			</outputs>
+			<handler-list>
+				<handler type="component" class="org.jdataex.flow.handler.ChannelStepHandler" component-ref="first"></handler>
+				<handler type="strategy">
+					<!-- 根据策略，包含多个有顺序的handler -->
+					<sub name="handler01"></sub>
+					<sub name="handler02"></sub>
+				</handler>
+			</handler-list>
+		</channel-stage>
+
+		<channel-stage id="cs02"
+			class="org.jdataex.channel.DefaultChannelStage">
+			<input name="cs02Input" class="org.jdataex.channel.local.LocalChannelInput"></input>
+			<outputs>
+				<output name="cs02Output01" class="org.jdataex.channel.local.LocalChannelOutput" host="${null}" port="0">
+				</output>
+			</outputs>
+			<handler-list>
+				<handler type="component" class="org.jdataex.flow.handler.ChannelStepHandler"
+					component-ref="second"></handler>
+				<handler type="strategy">
+					<!-- 根据策略，包含多个有顺序的handler -->
+					<sub name="handler01"></sub>
+					<sub name="handler02"></sub>
+				</handler>
+			</handler-list>
+		</channel-stage>
+	</controller>
+</flow>

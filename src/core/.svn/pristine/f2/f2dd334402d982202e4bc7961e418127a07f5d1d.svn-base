@@ -1,0 +1,38 @@
+package org.jdataex.channel.util;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jdataex.channel.future.CanNotReadChannelFuture;
+import org.jdataex.channel.future.CanNotWriteChannelFuture;
+import org.jdataex.channel.future.TrueChannelFuture;
+
+public final class ChannelClassUtil {
+	
+	public static final int TRUE_CHANNEL_FUTURE = 0;
+	
+	public static final int FALSE_CHANNEL_FUTURE = 1;
+	
+	public static final int CAN_NOT_WRITE_CHANNEL_FUTURE = 3;
+	
+	public static final int CAN_NOT_READ_CHANNEL_FUTURE = 4;
+	
+	private static final Map<Integer,Class> map = new HashMap<Integer,Class>();
+	
+	static{//后续可以采用配置文件的方式加载
+		map.put(TRUE_CHANNEL_FUTURE, TrueChannelFuture.class);
+		map.put(CAN_NOT_WRITE_CHANNEL_FUTURE, CanNotWriteChannelFuture.class);
+		map.put(CAN_NOT_READ_CHANNEL_FUTURE, CanNotReadChannelFuture.class);
+	}
+	
+	public  final static Object getInstance(int type){
+		try {
+			return map.get(type).newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

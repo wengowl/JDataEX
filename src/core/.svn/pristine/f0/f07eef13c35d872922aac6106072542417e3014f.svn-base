@@ -1,0 +1,33 @@
+package org.jdataex.flow.station;
+
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import org.jdataex.flow.row.IRowSet;
+
+public abstract class BaseStation implements IStation {
+
+	public abstract Queue<IRowSet> getQueue(String id);
+	
+	public abstract boolean addListener(String id);
+	
+	@Override
+	public IRowSet poll(String id){
+		return getQueue(id).poll();
+	}
+
+	@Override
+	public boolean offer(String id, IRowSet e) {
+		return getQueue(id).offer(e);
+	}
+
+	@Override
+	public IRowSet peek(String id) {
+		return getQueue(id).peek();
+	}
+	
+	public Queue<IRowSet> createQueue(){
+		return new LinkedBlockingQueue<IRowSet>();
+	}
+
+}

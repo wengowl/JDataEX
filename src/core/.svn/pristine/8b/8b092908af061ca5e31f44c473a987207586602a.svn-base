@@ -1,0 +1,50 @@
+package org.jdataex.flow.handler;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.step.IStep;
+
+public class StepHandler implements IComponentHandler{
+
+	private IStep step;
+	
+	public StepHandler(IStep step) {
+		super();
+		this.step = step;
+	}
+
+	public IStep getStep() {
+		return step;
+	}
+
+	public void setStep(IStep step) {
+		this.step = step;
+	}
+	
+	@Override
+	public void execute() throws ComponentException {
+		step.beforeStep();
+		step.beforeProcess();
+		step.beforeRowSet();
+		step.beforeRow();
+		
+		step.processRow();
+		
+		step.afterRow();
+		step.afterRowSet();
+		step.afterProcess();
+		step.afterStep();
+	}
+
+	@Override
+	public void init() throws InitializationException {
+		step.init();
+	}
+
+	@Override
+	public void release() throws ReleaseException {
+		step.release();
+	}
+	
+}

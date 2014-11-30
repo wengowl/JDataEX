@@ -1,0 +1,70 @@
+package org.jdataex.flow.component.step;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.IComponent;
+import org.jdataex.flow.row.IRow;
+
+public interface IStep extends IComponent {
+
+	public abstract void init() throws InitializationException;
+	
+	public abstract void release() throws ReleaseException;
+	
+	public abstract void processRow() throws ComponentException;
+	
+	/**
+	 * 在组件当次运行前，需要处理的事情。比如整理记录。
+	 * @throws ComponentException
+	 */
+	public abstract void beforeStep() throws ComponentException;
+	
+	/**
+	 * 在组件当次运行后，需要处理的事情。比如清理记录。 
+	 * @throws ComponentException
+	 */
+	public abstract void afterStep() throws ComponentException;
+	
+	/**
+	 * 在处理数据前，需要处理的事情。比如检查资源链接是否正常。
+	 * @throws ComponentException
+	 */
+	public abstract void beforeProcess() throws ComponentException;
+	
+	/**
+	 * 在处理数据后，需要处理的事情。比如可能需要关闭资源链接。
+	 * @throws ComponentException
+	 */
+	public abstract void afterProcess() throws ComponentException;
+	
+	/**
+	 * 在处理当前一批数据前，需要处理的事情。比如开启事务。
+	 * @throws ComponentException
+	 */
+	public abstract void beforeRowSet() throws ComponentException;
+	
+	/**
+	 * 在处理当前一批数据后，需要处理的事情。比如提交或者回滚事务。
+	 * @throws ComponentException
+	 */
+	public abstract void afterRowSet() throws ComponentException;
+	
+	/**
+	 * 在处理当前一条数据前，需要处理的事情。比如记录数据关键字。
+	 * @throws ComponentException
+	 */
+	public abstract void beforeRow() throws ComponentException;
+	
+	/**
+	 * 在处理当前一条数据后，需要处理的事情。比如清理数据关键字记录。
+	 * @throws ComponentException
+	 */
+	public abstract void afterRow() throws ComponentException;
+	
+	public abstract void putRow(IRow row) throws ComponentException;
+	
+	public abstract IRow getRow() throws ComponentException;
+	
+}
+

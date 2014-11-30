@@ -1,0 +1,274 @@
+package org.jdataex.flow.component.step.dataquery;
+
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.flow.row.*;
+import org.jdataex.util.FileUtil;
+import org.jdataex.util.logger.LoggerFactory;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.*;
+
+/**
+ * 数据查询
+ * Created by wengxf on 2014/5/28 0028.
+ */
+public class DataQuery {
+
+    private DBOperation dbOperation = new DBOperation();
+    private Map<String, List<String>> table_column = new HashMap<>();
+
+    /**
+     * 获取审判业务，相关案件类型表对应案件标识的所有记录
+     */
+    public RowSet getAllSP(String ajlx, int ajbs) {
+        List<String> tables = getTablenames(ajlx, true);
+        RowSet rowSet = new RowSet();
+        for (int i = 0; i < tables.size(); i++) {
+            RowSet rowSet1 = getRowSetSP(tables.get(i), ajbs);
+            while (rowSet1.hasNextRow()) {
+                rowSet.putRow(rowSet1.nextRow());
+            }
+        }
+        return rowSet;
+    }
+
+    /**
+     * 获取非审判业务，相应系统相关表对应条件的所有记录
+     */
+    public RowSet getALLFSP(String splx, Map<String, Object> tj) {
+        List<String> tables = getTablenames(splx, false);
+        RowSet rowSet = new RowSet();
+        for (int i = 0; i < tables.size(); i++) {
+            RowSet rowSet1 = getRowSetFSP(tables.get(i), tj);
+            while (rowSet1.hasNextRow()) {
+                rowSet.putRow(rowSet1.nextRow());
+            }
+        }
+        return rowSet;
+    }
+
+    public String querySQLByColumn(String tablename, String[] columns, String referencekey) {
+        String values = columns[0];
+        for (int i = 1; i < columns.length; i++) {
+            values = values + "," + columns[i];
+        }
+        String sql = "select " + values + " from " + tablename + " where " + referencekey + "=?";
+        return sql;
+    }
+
+    /**
+     * 根据案件标识获取表的所有记录，查询语句
+     */
+    public String querySQLAllByAjbs(String tablename, int ajbs) {
+        String sql = "select * from " + tablename + " where AJBS = " + ajbs;
+        return sql;
+    }
+
+    /**
+     * 根据条件map获取表的所有记录，查询语句
+     */
+    public String querySQLAllByConditions(String tablename, String[] conditionkey) {
+        String values = conditionkey[0] + "= ?";
+        for (int i = 1; i < conditionkey.length; i++) {
+            values = values + " and  " + conditionkey[i] + "=? ";
+        }
+        String sql = "select * from " + tablename + " where " + values;
+        return sql;
+    }
+
+    /**
+     * 获取相关表
+     *
+     * @param lx   类型，案件类型或者是系统类型
+     * @param flag 是否是审判业务的标识，审判为true，非审判为false
+     */
+    public List<String> getTablenames(String lx, boolean flag) {
+        List<String> tables = new ArrayList<>();
+        table_column.clear();
+        //TODO
+        if (flag) {
+            FileInputStream fi = null;
+            try {
+                fi = new FileInputStream("config/spyw.xml");//读取路径文件
+                SAXBuilder sb = new SAXBuilder();
+                Document doc = sb.build(fi);
+                Element root = doc.getRootElement();
+
+                List ajlxs = root.getChildren();
+                Element ajlx = null;
+                Iterator allajlx = ajlxs.iterator();
+                while (allajlx.hasNext()) {
+                    ajlx = (Element) allajlx.next();
+                    if (ajlx.getAttributeValue("name").equalsIgnoreCase(lx)) {  //获取对应案件类型的表
+                        List<Element> table = ajlx.getChildren();
+                        for (int i = 0; i < table.size(); i++) {
+                            tables.add(table.get(i).getAttributeValue("name"));
+                            if ((table.get(i).getChildren()) != null) {
+                                List<Element> list = table.get(i).getChildren();
+                                List<String> columns = new ArrayList<>();
+                                for (int n = 0; n < list.size(); n++) {
+                                    columns.add(list.get(n).getText());
+                                }
+                                table_column.put(table.get(i).getAttributeValue("name"), columns);
+                            }
+                        }
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                // e.printStackTrace();
+                //LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"FileNotFoundException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } catch (JDOMException e) {
+                // TODO Auto-generated catch block
+                // e.printStackTrace();
+                // LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"JDOMException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                //e.printStackTrace();
+                //LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"IOException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } finally {
+                FileUtil.closeQuietly(fi);
+            }
+        } else {
+
+            FileInputStream fi = null;
+            try {
+                fi = new FileInputStream("config/fspyw.xml");//读取路径文件
+                SAXBuilder sb = new SAXBuilder();
+                Document doc = sb.build(fi);
+                Element root = doc.getRootElement();
+                List xtlxs = root.getChildren();
+                //System.out.println("readConfigInfo get"+pools.size());
+                Element xtlx = null;
+                Iterator allxt = xtlxs.iterator();
+                while (allxt.hasNext()) {
+                    xtlx = (Element) allxt.next();
+                    if (xtlx.getAttributeValue("name").equalsIgnoreCase(lx)) {  //获取对应系统类型的表
+                        List<Element> table = xtlx.getChildren();
+                        for (int i = 0; i < table.size(); i++) {
+                            tables.add(table.get(i).getAttributeValue("name"));
+                            if ((table.get(i).getChildren()) != null) {
+                                List<Element> list = table.get(i).getChildren();
+                                List<String> columns = new ArrayList<>();
+                                for (int n = 0; n < list.size(); n++) {
+                                    columns.add(list.get(n).getText());
+                                }
+                                table_column.put(table.get(i).getAttributeValue("name"), columns);
+                            }
+                        }
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                // e.printStackTrace();
+                //LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"FileNotFoundException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } catch (JDOMException e) {
+                // TODO Auto-generated catch block
+                // e.printStackTrace();
+                // LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"JDOMException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                //e.printStackTrace();
+                //LoggerFactory.getRootLogger().traceI18nc(ParseDSConfig.class,"IOException",e);
+                LoggerFactory.getRootLogger().error(e.getMessage(), e);
+            } finally {
+                FileUtil.closeQuietly(fi);
+            }
+        }
+
+        return tables;
+    }
+
+    /**
+     * 获取非审判业务，表对应条件的所有记录
+     */
+    public RowSet getRowSetFSP(String tablename, Map<String, Object> conditions) {
+        String[] conditionkey = new String[conditions.size()];
+        conditions.keySet().toArray(conditionkey);
+        Object[] conditionvalue = conditions.values().toArray();
+        String sql = querySQLAllByConditions(tablename, conditionkey);
+        RowSet rowSet = new RowSet();
+        ResultSet resultSet = dbOperation.sqlQuery(sql, conditionvalue, null);
+        try {
+            while (resultSet.next()) {
+                IRow row = new Row();
+                IRowHeader rowHeader = new RowHeader();
+                rowHeader.put("tablename", tablename);
+                row.setHeader(rowHeader);
+                ResultSetMetaData rsm = resultSet.getMetaData();
+                if (table_column.containsKey(tablename)) { //表字段映射中包含该表，表示配置文件有字段要求
+                    List<String> columns = table_column.get(tablename);
+                    if (columns.get(0).equalsIgnoreCase("false")) {   //第一个列字段名为false ，表示这些字段时不需要的
+
+                        for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                            if (!columns.contains(rsm.getColumnName(i))) {
+                                row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+                            }
+                        }
+                    } else {    //第一个列字段名不为false ，表示这些字段时需要的
+                        for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                            if (columns.contains(rsm.getColumnName(i))) {
+                                row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+                            }
+                        }
+
+                    }
+                }
+                else{   //表字段映射中不包含该表
+                    for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                            row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+
+                    }
+                }
+                rowSet.putRow(row);
+            }
+        } catch (SQLException e) {
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+
+        return rowSet;
+    }
+
+    /**
+     * 获取审判业务，表对应案件标识的所有记录
+     */
+    public RowSet getRowSetSP(String tablename, int ajbs) {
+        String sql = querySQLAllByAjbs(tablename, ajbs);
+        ResultSet resultSet = dbOperation.sqlQuery(sql, null);
+        RowSet rowSet = new RowSet();
+        try {
+            while (resultSet.next()) {
+                IRow row = new Row();
+                IRowHeader rowHeader = new RowHeader();
+                rowHeader.put("tablename", tablename);
+                row.setHeader(rowHeader);
+                ResultSetMetaData rsm = resultSet.getMetaData();
+                for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                    row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+                }
+                rowSet.putRow(row);
+            }
+        } catch (SQLException e) {
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+        return rowSet;
+    }
+
+
+}

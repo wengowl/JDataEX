@@ -1,0 +1,5 @@
+package org.jdataex.flow.component;
+
+public interface IComponent {
+
+}

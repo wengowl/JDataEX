@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="邮件信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YJBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WJM" type="C250" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="邮件信息2">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BMMC" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BT" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="NR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="邮件接收信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YJBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YDBZ" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YDSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

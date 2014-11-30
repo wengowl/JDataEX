@@ -1,0 +1,65 @@
+package org.jdataex.flow.controller;
+
+import static org.junit.Assert.fail;
+
+import org.jdataex.BaseTest;
+import org.jdataex.flow.component.ComponentLinkInfo;
+import org.jdataex.flow.component.IComponentLinkInfo;
+import org.jdataex.flow.component.step.file.monitor.MonitorFileStep;
+import org.jdataex.flow.component.step.xml.XMLConverterStep;
+import org.jdataex.flow.handler.IStepHandler;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.jdataex.flow.station.IStepStation;
+import org.jdataex.flow.station.queue.FirstQueueStepStation;
+import org.jdataex.flow.station.queue.QueueStepStation;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+import org.junit.Test;
+
+public class TestComponentController extends BaseTest{
+
+	@Test
+	public void testRegister() {
+		
+//		IComponentLinkInfo cli = new ComponentLinkInfo();
+//		cli.setComponent(component)
+		
+		IStepStation st = new QueueStepStation();
+		IStepStation fst = new FirstQueueStepStation();
+		IStepStation last = new QueueStepStation();
+		
+		IStepHandler monitorHandler = new StepHandler(new MonitorFileStep(),fst,st);
+		((ILoggable)monitorHandler).setLogger(LoggerFactory.getDefaultLogger());
+		
+		
+		IStepHandler converterHandler = new StepHandler(new XMLConverterStep(),st,last);
+		((ILoggable)converterHandler).setLogger(LoggerFactory.getDefaultLogger());
+		
+		
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testManager() {
+		fail("Not yet implemented");
+	}
+
+	
+	@Test
+	public void testStart() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testStop() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testRestart() {
+		fail("Not yet implemented");
+	}
+	
+}

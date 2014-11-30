@@ -1,0 +1,248 @@
+package org.jdataex.flow.component.step.trigger;
+
+
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.util.logger.LoggerFactory;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by wengxf on 14-4-23.
+ * 触发器 sql组合执行
+ */
+public class TriggerSqlHandler {
+    private String user;
+
+    public TriggerSqlHandler(String user) {
+        this.user = user;
+    }
+    /**
+     * oracle创建触发器
+     *
+     * @param tablename   触发器的目的表名
+     * @param triggername 触发器名
+     * @param action     触发器执行的出发动作
+     * @param middletable 触发器插入的中间表名
+     * @param primarykey  表的主键
+     *
+     */
+    public void triggerCreateOrReplaceSql(String tablename, String triggername, String action, String middletable, String[] primarykey) {
+        //  action = Integer.parseInt(action)+"";
+        String msgparam = "MsgParam1";
+        String newprimarykeyparam = ":new." + primarykey[0];
+        String oldprimarykeyparam = ":old." + primarykey[0];
+        DBOperation dbOperation = new DBOperation();
+        for (int i = 1; i < primarykey.length; i++) {
+            msgparam = msgparam + ",MsgParam" + (i+1);
+            oldprimarykeyparam = oldprimarykeyparam + ",old." + primarykey[i];
+
+        }
+//        插入
+        if (action.equals("1.0") || action.equals("0.0") || action.equals("4.0")) {
+            String sql = "create or replace Trigger " + triggername + "_insert" + " after insert  on " + tablename
+                    + " for each row declare user_name varchar2(255); begin select username into user_name from v$session where audsid=userenv('sessionid'); if(user_name=\'"
+                    +user+"\'  ) then  insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ") values(\'" + triggername + "\',\'" + tablename +
+                    "\'  ,\'insert\', sysdate," + newprimarykeyparam + ") ;end if; end;";
+            // String  sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename + "\", \"" + triggername + "_insert\", \""+middletable+"\" )";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_insert";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器："+sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表："+sql1);
+            dbOperation.sqlExecute(sql,null);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            //dbOperation.sqlExecute(sql1);
+        }
+//        更新：先插入旧的用于删除，在插入新的用于插入，从而实现更新
+        if (action.equals("2.0") || action.equals("0.0") || action.equals("4.0")) {
+            String sql = "create or replace Trigger " + triggername + "_update after update  on " + tablename + " for each row declare user_name varchar2(255); begin select username into user_name from v$session where audsid=userenv('sessionid'); if(user_name=\'"+user+"\'  ) then insert into " + middletable
+                    + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")values( \'" + triggername + "\',\'" + tablename +
+                    "\'  ,\'delete\', sysdate," + oldprimarykeyparam + ")  ; insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")values( \'" + triggername + "\',\'" + tablename +
+                    "\'  ,\'insert\', sysdate," + newprimarykeyparam + "); end if; end;";
+            //  String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename + "\", \"" + triggername + "_update\", \""+middletable+"\" )";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_update";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器："+sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表："+sql1);
+            //dbOperation.sqlExecute(sql1);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            dbOperation.sqlExecute(sql,null);
+        }
+//       删除
+        if (action.equals("3.0") || action.equals("0.0")) {
+            String sql = "create or replace Trigger " + triggername + "_delete after delete  on " + tablename + " for each row declare user_name varchar2(255) ;begin select username into user_name from v$session where audsid=userenv('sessionid'); if(user_name=\'"+user+"\'  ) then insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")values(\'" + triggername + "\',\'" + tablename +
+                    "\'  ,\'delete\', sysdate," + oldprimarykeyparam + ") ;end if; end;";
+            // String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename +" \", \"" + triggername + "_delete\", \""+middletable+"\" )";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_delete";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器："+sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表："+sql1);
+            // dbOperation.sqlExecute(sql1);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            dbOperation.sqlExecute(sql,null);
+        }
+
+
+    }
+
+    /**
+     * 删除触发器
+     *
+     */
+    public void triggerDeleteSql(String triggername, String tablename) {
+        String sql = "drop trigger " + triggername + "on" + tablename;
+        DBOperation dbOperation = new DBOperation();
+        dbOperation.sqlExecute(sql,null);
+    }
+    /**
+     * 更新触发器
+     *
+     */
+    public void updateTrigger(String tablename, String triggername, String action, String[] primarykey) {
+        String sql = "select * from Tr_Trigger where service = " + triggername;
+        DBOperation dbOperation = new DBOperation();
+        ResultSet rs = dbOperation.sqlQuery(sql,null);
+        String middletablename = new String();
+        try {
+            while (rs.next()) {
+                triggerDeleteSql(rs.getString("MsgTriggerName"), rs.getString("MsgTableName"));
+                middletablename = rs.getString("MsgMiddleName");
+            }
+            triggerCreateOrReplaceSql(tablename, triggername, action, middletablename, primarykey);
+            rs.close();
+        } catch (SQLException e) {
+           //TODO e.printStackTrace();
+          //  LoggerFactory.getRootLogger().traceI18nc(TriggerSqlHandler.class,"SQLException",e);
+            LoggerFactory.getRootLogger().error(e.getMessage(),e);
+        }
+
+
+    }
+    /**
+     * Sybase创建触发器
+     *
+     * @param tablename   触发器的目的表名
+     * @param triggername 触发器名
+     * @param action     触发器执行的出发动作
+     * @param middletable 触发器插入的中间表名
+     * @param primarykey  表的主键
+     *
+     */
+    public void triggerCreateOrReplaceSqlSybase(String tablename, String triggername, String action, String middletable, String[] primarykey) {
+        //  action = Integer.parseInt(action)+"";
+        String msgparam = "MsgParam1";
+//        String newprimarykeyparam = "inserted." + primarykey[0];
+//        String oldprimarykeyparam = "deleted." + primarykey[0];
+        String primarykeyparam ="convert(varchar(255),"+ primarykey[0]+")";
+        DBOperation dbOperation = new DBOperation();
+        for (int i = 1; i < primarykey.length; i++) {
+            msgparam = msgparam + ",MsgParam" + (i+1);
+//            oldprimarykeyparam = oldprimarykeyparam + ",deleted." + primarykey[i];
+            primarykeyparam = primarykeyparam + ", " + "convert(varchar(255),"+ primarykey[1]+")";
+        }
+        if (action.equals("1.0") || action.equals("0.0") || action.equals("4.0")) {
+            //String  sql = "create  Trigger " + triggername + "_insert" + "  on " + tablename + " for insert as begin  insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction," + msgparam + ") values(" + triggername + "," + tablename +
+            //          "  ,insert," + newprimarykeyparam + ")  end;";
+            // String  sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename + "\", \"" + triggername + "_insert\", \""+middletable+"\" )";
+            String sql = "create trigger " + triggername + "_insert " + "  on " + tablename + " for insert as if not exists(select * from deleted) and exists(select * from inserted) and  (select suser_name())=\'"+user+"\'  begin insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")"
+                    + " select " + triggername + " , " + tablename + ", insert , " +"getdate(),"+ primarykeyparam + " from inserted  end";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_insert";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器：" + sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表：" + sql1);
+            dbOperation.sqlExecute(sql,null);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            //dbOperation.sqlExecute(sql1);
+        }
+        if (action.equals("2.0") || action.equals("0.0") || action.equals("4.0")) {
+            // String sql = "create Trigger " + triggername + "_update   on " + tablename + "  for  update as begin  insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction," + msgparam + ")values( " + triggername + "," + tablename +
+            //        "  ,update," + newprimarykeyparam + ")  end;";
+            //  String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename + "\", \"" + triggername + "_update\", \""+middletable+"\" )";
+            String sql = "create trigger " + triggername + "_update " + "  on " + tablename + " for update as if  exists(select * from deleted) and exists(select * from inserted) and  (select suser_name())=\'"+user+"\'  begin" +
+                    "insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")"
+                    + " select " + triggername + " , " + tablename + ", delete , " +"getdate(),"+ primarykeyparam + " from deleted"+
+                    "and insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")"
+                    + " select " + triggername + " , " + tablename + ", insert , " +"getdate(),"+ primarykeyparam + " from inserted  end";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_update";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器："+sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表："+sql1);
+            //dbOperation.sqlExecute(sql1);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            dbOperation.sqlExecute(sql,null);
+        }
+        if (action.equals("3.0") || action.equals("0.0")) {
+            // String sql = "create  Trigger " + triggername + "_delete   on " + tablename + " for delete as begin  insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction," + msgparam + ")values(" + triggername + "," + tablename +
+            //        "  ,delete," + oldprimarykeyparam + ")  end;";
+            // String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( \"" + triggername + "\", \"" + tablename +" \", \"" + triggername + "_delete\", \""+middletable+"\" )";
+            String sql = "create trigger " + triggername + "_delete " + "  on " + tablename + " for delete as if  exists(select * from deleted) and not exists(select * from inserted) and  (select suser_name())=\'"+user+"\'  begin insert into " + middletable + " (MsgServiceName, MsgSourceTableName,MsgAction,MsgInsertAt," + msgparam + ")"
+                    + " select " + triggername + " ," + tablename + ", delete , " +"getdate(),"+ primarykeyparam + " from deleted  end";
+            String sql1 = "insert into Tr_Trigger ( MsgServiceName , MsgTableName , MsgTriggerName , MsgMiddleName ) values( ?,?,?,? )";
+            String[] param = new String[4];
+            param[0] = triggername;
+            param[1] = tablename;
+            param[2] = triggername + "_delete";
+            param[3] = middletable;
+            LoggerFactory.getRootLogger().debug("创建触发器："+sql);
+            LoggerFactory.getRootLogger().debug("插入触发器表："+sql1);
+            // dbOperation.sqlExecute(sql1);
+            dbOperation.sqlStringUpdate(sql1, param,null);
+            dbOperation.sqlExecute(sql,null);
+        }
+
+
+    }
+
+    /**
+     * Sybase删除触发器
+     */
+    public void triggerDeleteSqlSybase(String triggername, String tablename) {
+        String sql = "drop trigger " + triggername + "on" + tablename;
+        DBOperation dbOperation = new DBOperation();
+        dbOperation.sqlExecute(sql,null);
+    }
+    /**
+     *Sybase 更新触发器
+     */
+    public void updateTriggerSybase(String tablename, String triggername, String action, String[] primarykey) {
+        String sql = "select * from Tr_Trigger where service =  \'" + triggername + "\'";
+        DBOperation dbOperation = new DBOperation();
+        ResultSet rs = dbOperation.sqlQuery(sql,null);
+        String middletablename = new String();
+        try {
+            while (rs.next()) {
+                triggerDeleteSqlSybase(rs.getString("MsgTriggerName"), rs.getString("MsgTableName"));
+                middletablename = rs.getString("MsgMiddleName");
+            }
+            triggerCreateOrReplaceSqlSybase(tablename, triggername, action, middletablename, primarykey);
+            rs.close();
+        } catch (SQLException e) {
+            //TODO e.printStackTrace();
+            // LoggerFactory.getRootLogger().traceI18nc(TriggerSqlHandler.class,"SQLException",e);
+            LoggerFactory.getRootLogger().error(e.getMessage(),e);
+        }
+
+
+    }
+
+}

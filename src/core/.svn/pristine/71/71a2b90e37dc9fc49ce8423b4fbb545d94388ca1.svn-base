@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+ 
+ 
+ 
+  <xsd:include schemaLocation="_A_类型_基础.xsd"/>
+  <xsd:simpleType name="案件标识">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:totalDigits value="15"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:group name="上抗诉情况">
+    <xsd:sequence>
+       <xsd:element name="SSFW" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="KSJG" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQSSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQSSCL" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CHSSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YSAJRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJJSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="办案期限">
+    <xsd:sequence>
+       <xsd:element name="SXQSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SXJMRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAQXJMRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SLJSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FDLAQX" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJLATS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LACQTS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FDSXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJSLTS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CSXTS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CSXBS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CSXYY" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="原审情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBFY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AH" type="C50" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SPCX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JAFS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SXRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQXALY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQXARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SXFLWSBH" type="C50" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YCPLX" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="司法建议">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TCRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JYDX" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JYS" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FKRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FKYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="回避情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQHBRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBSQR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBJDR" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBJDRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBJD" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="复议处理">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FYWS" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="妨碍诉讼行为处理">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XWR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XWLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLJG" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FKJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FKJNRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JLTS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JLCS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLWS" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="实体文件">
+    <xsd:sequence>
+       <xsd:element name="XH" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="STLB" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="STBH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XSMC" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WJMC" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WJGS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WJDX" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CJR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CJSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJXGR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJXGSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BZ" type="C240" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="审判组织成员">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YCY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XCY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGYY" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="审委会讨论">
+    <xsd:sequence>
+       <xsd:element name="AJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TLRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YTLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CJRY" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TLYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DSRYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TLBL" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TLJG" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="审理阶段">
+    <xsd:sequence>
+       <xsd:element name="AJJZJD" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="延长审限记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PZJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PZRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="KSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YCQJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XGWS" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="当事人">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSDW1" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSDW2" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSDW3" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DSR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XWNL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSDX" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YGQSLY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQPCJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGZYLDCT" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGLDXTCL" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="当事人诉讼活动">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TSR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BTSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DWTS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SLYQ" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQCS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZSS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DBRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CRTSSS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WCTCS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WCTYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBDTCS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WLTTCS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBDTHTTCL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JJDL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CSZDDX" type="BB" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="扣除审限记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YQSLSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QTSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XGWS" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="批办记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBJG" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBLD" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBWH" type="C50" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBYQ" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YBJGRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PBSX" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DQHB" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GPDB" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="控辩意见">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TCR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="NR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CN" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BCNLY" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="收案和立案信息">
+    <xsd:sequence>
+       <xsd:element name="AH" type="C50" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SATJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJLY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XZGLFW" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SDSZRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAAY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SAJZCL" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CXQS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSBDXW" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQXZPC" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSBDW" type="C200" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSBDJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJSLF" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LABMBS" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LABM" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SADJR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SCR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SCRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SCYJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SPR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LASPRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SPYJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LARQ" type="D" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="文书">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LB" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="MC" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="NR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="STWJ" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="案件处理情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CLFS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJFW" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZDDX" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WSLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJCLWS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TZLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZDJZQX" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QFR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DCQSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBQSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JA" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="案件审理情况">
+    <xsd:sequence>
+       <xsd:element name="JSRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBSPTBS" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBSPT" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GXYJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TQZJJH" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FYSJDQZJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DYSJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJSJ" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJDXYX" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GTSSLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HBSLSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SLBG" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GKSL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGKSLYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WTSX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="STFY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SZDHYSFY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="KTSL" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="案件评议">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PYLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PYRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBRYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SPZYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QTCYYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DSRYJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PYBL" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TLJG" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="法庭使用记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FTYT" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TC" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="KSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DD" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GKKT" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DTDSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBDTDSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WLTTDSR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DTSSDLR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CTZZZR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BHRWZBH" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JJBHHDL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DWXC" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PTRS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="RDDBPTRS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZXWYPTRS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SWHDTTA" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XPQK" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BL" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TZCJQK" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="立案移交和退案情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAYJTSBS" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAYJTS" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAYJR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBTBS" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CBSPT" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LAYJRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TAR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TAYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TAJSR" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="管辖处理情况">
+    <xsd:sequence>
+       <xsd:element name="AJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TCGXYYR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TCGXYYRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GXWTLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WGXQCL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GXQZYCL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GXYYCL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJFYHF" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SYSFY" type="N" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="结案情况">
+    <xsd:sequence>
+       <xsd:element name="JARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JAFS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BYSLYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CSLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGBSYY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SXRQ" type="D" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="群体或集团诉讼情况">
+    <xsd:sequence>
+       <xsd:element name="QTSSRS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QLDJGGKDRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GGQX" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QLDJRS" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="被告行政行为">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGXH" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XZXWZL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZCXZXWRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FYJG" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FYRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YGTQSSLY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SZGBXZXW" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XZXWPJJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XZXWWFBJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PCCL" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PCFS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PCJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGLX" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="证人信息">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YLF" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CTZZ" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="证据信息">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="MC" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YWYJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QZSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QZDD" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QZQD" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JZR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JZRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SZR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YLF" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJSS" type="C200" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WTJD" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JHRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JHZCR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JGZZ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZZTC" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="RZJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DTRZ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="RZLY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BRZLY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FZSY" type="BB" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="证据链条">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BHZJ" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LTMD" type="BB" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="诉讼保全和先予执行">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BQLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BQFDF" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BSQR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQSJ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJBH" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQCC" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CDSJ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CDJG" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BQCS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XYZXSY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZXRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJZXJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JCBQRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JCBQYY" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="诉讼档案管理">
+    <xsd:sequence>
+       <xsd:element name="JSR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="LJR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GDR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QZH" type="C20" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="MLH" type="C20" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JZH" type="C20" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GCPH" type="C30" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJCS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FJCS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJYS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="FJYS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BJQK" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="MJ" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BGQX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GDRQ" type="D" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="诉讼费交纳记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JNR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JNRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJHM" type="C50" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TF" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="诉讼费及承担情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CDR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="AJSLF" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQF" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QTFY" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YCDZE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YJJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JAQJNZE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BQQEQX" type="C40" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="BJFACSCL" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="诉讼费司法救助情况">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SJZR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQJZLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQJJJE" type="M" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="HJQX" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQJZYY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PZR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="PZRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JJAJLX" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JJDX" type="TN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="送达记录">
+    <xsd:sequence>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WS" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="YSDRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SDFS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="STFY" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="GGRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JYRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SDRQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SDR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SSDR" type="BB" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DQR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="QSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JBQS" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WSDYY" type="C200" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="鉴定信息">
+    <xsd:sequence>
+       <xsd:element name="AJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJXH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CXJD" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="CXJDLY" type="N" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WTJDR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="DSRWT" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="WTJDNR" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JDJG" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JDR" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JDYJJJS" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JDGCSM" type="C240" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="JDJL" type="C240" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="链条中的证据">
+    <xsd:sequence>
+       <xsd:element name="ZJL" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZJ" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SXH" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="ZXSSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+  <xsd:group name="销案情况">
+    <xsd:sequence>
+       <xsd:element name="AJBS" type="ID" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQXARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XASY" type="TN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="XAYY" type="C100" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SQXABG" type="SN" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="TYXARQ" type="D" minOccurs="0" maxOccurs="1"/>
+       <xsd:element name="SPR" type="SN" minOccurs="0" maxOccurs="1"/>
+    </ xsd:sequence>
+  </xsd:group>
+</xsd:schema>

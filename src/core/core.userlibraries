@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Python 2.7.5 (E:/Python27/python.exe) interpreter library">
+    <archive path="E:/Python27/Lib/site-packages/setuptools-1.1.6-py2.7.egg" />
+    <archive path="E:/Python27/Lib/site-packages/django-1.5.4-py2.7.egg" />
+    <archive path="E:/Python27/DLLs" />
+    <archive path="E:/Python27/Lib" />
+    <archive path="E:/Python27/Lib/lib-tk" />
+    <archive path="E:/Python27" />
+    <archive path="E:/Python27/Lib/site-packages" />
+    <archive path="E:/Python27/Lib/site-packages/win32" />
+    <archive path="E:/Python27/Lib/site-packages/win32/lib" />
+    <archive path="E:/Python27/Lib/site-packages/pythonwin" />
+  </library>
+</eclipse-userlibraries>
+

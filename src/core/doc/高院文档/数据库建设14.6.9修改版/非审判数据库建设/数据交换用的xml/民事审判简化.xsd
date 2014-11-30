@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_民事审判简化.xsd"/>
+<CASE:complexType name="民事审判简化">
+<CASE:sequence>
+ <CASE:element name="MSSPJH_QZJL" type="签字记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="MSSPJH_ZDYWS" type="自定义文书" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+ </CASE:complexType>
+
+  <CASE:element name="民事审判简化" type="民事审判简化"/>
+
+</CASE:schema>

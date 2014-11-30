@@ -1,0 +1,76 @@
+package org.jdataex.channel.executor;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import org.jdataex.channel.IChannelContainer;
+import org.jdataex.channel.common.DefaultValues;
+import org.jdataex.channel.future.DefaultChannelFuture;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.metadata.Metadata;
+
+/**
+ * 默认实现的线程池,他将包装java的ThreadPoolExecutor 
+ * 本地channel和TLQ采用默认线程池
+ * 
+ * @author chaos
+ * 
+ */
+public class DefaultExecutor<T> implements IExecutor<T> {
+
+	private ThreadPoolExecutor tp;
+
+	private Metadata em;
+
+	private IChannelContainer<T> channel;
+
+	public DefaultExecutor() {
+		tp = (ThreadPoolExecutor) Executors
+				.newFixedThreadPool(DefaultValues.DEFAULT_THREAD_SIZE);
+	}
+
+	public void init(Metadata em) {
+		// TODO 先不管,后续实现
+	}
+
+	@Override
+	public long getTeskCount() {
+		return tp.getTaskCount();
+	}
+
+	@Override
+	public int getMaxThreadNum() {
+		return 0;
+	}
+
+	@Override
+	public int getCoreThreadNum() {
+		return 0;
+	}
+
+	@Override
+	public int getCurrentThreadSize() {
+		return tp.getPoolSize();
+	}
+
+	@Override
+	public int getActiveThreadSize() {
+		return tp.getActiveCount();
+	}
+
+	public IChannelFuture<T> execute(Task<T> task) {
+		tp.execute(task);
+		return new DefaultChannelFuture<T>(task);
+	}
+
+	@Override
+	public IChannelContainer<T> getChannel() {
+		return channel;
+	}
+
+	@Override
+	public void register(IChannelContainer<T> channel) {
+		this.channel = channel;
+	}
+
+}

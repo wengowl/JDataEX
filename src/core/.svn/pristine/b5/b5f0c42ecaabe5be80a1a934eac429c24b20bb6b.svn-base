@@ -1,0 +1,169 @@
+package org.jdataex.channel;
+
+import static org.jdataex.util.AssertUtil.assertNull;
+
+import java.net.SocketAddress;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.event.IListener;
+import org.jdataex.channel.executor.IExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.DefaultHandlerChain;
+import org.jdataex.channel.handler.IHandler;
+import org.jdataex.channel.handler.IHandlerChain;
+
+public class DefaultChannelStage<T> implements IChannelStage<T> {
+
+	private IExecutor<T> executor;
+
+	private IStageContext<T> context;
+
+	private IChannelContainer<T> container;
+
+	private IHandlerChain<T> chain;
+	
+	public DefaultChannelStage(){
+		this.initializeHandlerChain();
+	}
+
+	@Override
+	public IExecutor<T> getExecutor() {
+		return this.executor;
+	}
+
+	@Override
+	public IStageContext<T> getContext() {
+		if (context == null) {
+			context = new DefaultStageContext<T>(this);
+		}
+		return context;
+	}
+
+	@Override
+	public IChannelStage<T> setChannelContainer(IChannelContainer<T> channel) {
+		assertNull(channel);
+		container = channel;
+		return this;
+	}
+
+	private void initializeHandlerChain() {
+		chain = new DefaultHandlerChain<T>();
+		chain.setContext(this.getContext());
+	}
+
+	@Override
+	public IChannelStage<T> addBefare(IHandler<T> handler) {
+		chain.addHead(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> addAfter(IHandler<T> handler) {
+		chain.addTail(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> setExecutor(IExecutor<T> executor) {
+		assertNull(executor);
+		return this;
+	}
+
+	@Override
+	public void shutdownAll() {
+		IChannelFuture<T> input = this.container.closeInput();
+		if(!input.isSuccess()){
+			throw input.error();
+		}
+		for(IChannelFuture<T> icf:this.container.closeAllOutput()){
+			if(!icf.isSuccess()){
+				throw icf.error();
+			}
+		}
+	}
+
+	@Override
+	public void shutdownAllInput() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAllOutput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownInput(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownOutput(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAll(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> writeEvent(IEvent<T> event,
+			String... channelOutputName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> writeMsg(T msg, String... channelOutputName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addListener(IListener listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeListener(IListener listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IChannelContainer<T> getChannelContainer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IHandlerChain<T> getHandlerChain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void start(SocketAddress inputAddress,
+			Map<String, SocketAddress> outputAddress) {
+		this.container.getInput().bind(inputAddress);
+		assertNull(inputAddress);
+		assertNull(outputAddress);
+		assertNull(executor);
+		assertNull(container);
+		Iterator<String> it = outputAddress.keySet().iterator();
+		while (it.hasNext()) {
+			String name = it.next();
+			this.container.getOutput(name).connect(outputAddress.get(name));
+		}
+	}
+
+}

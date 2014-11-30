@@ -1,0 +1,162 @@
+package org.jdataex.channel;
+
+import java.io.Serializable;
+import java.net.SocketAddress;
+import java.util.Map;
+
+import javax.naming.Referenceable;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.event.IListener;
+import org.jdataex.channel.executor.IExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.IHandler;
+import org.jdataex.channel.handler.IHandlerChain;
+
+/**
+ * channel框架主类，控制channel，excuter，handler的创建
+ * 和实例化,对外数据写入也通过channelStage完成.
+ * 操作模式说明,数据写入没什么好说的,直接调用writemsg方法.
+ * 如果是数据读取和处理有内部的channelContainer,executer和handler完成
+ * @author chaos
+ *
+ */
+/**
+ * @author Administrator
+ *
+ * @param <T>
+ */
+public interface IChannelStage<T> extends Serializable,Referenceable{
+	
+	/**
+	 * 得到注册的线程池
+	 * @return
+	 */
+	public IExecutor<T> getExecutor();
+	
+	/**
+	 * 返回上下文
+	 * @return
+	 */
+	public IStageContext<T> getContext();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public IChannelContainer<T> getChannelContainer();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public IHandlerChain<T> getHandlerChain();
+	
+	/**
+	 * 设置通道框架的channel
+	 * @param channel
+	 * @return
+	 */
+	public abstract IChannelStage<T> setChannelContainer(IChannelContainer<T> channel);
+	
+	/**
+	 * 添加handler,在链表头部添加
+	 * @param {@link IHandler}
+	 * @return
+	 */
+	public abstract IChannelStage<T> addBefare(IHandler<T> handler); 
+	
+	/**
+	 * 添加handler,在链表尾部添加<br>
+	 * @param handler
+	 * @return
+	 */
+	public abstract IChannelStage<T> addAfter(IHandler<T> handler);
+	
+	/**
+	 * 设置channel input和output的处理线程池
+	 * @param input  {@link IExecutor}
+	 * @param output {@link IExecutor}
+	 * @return
+	 */
+	public abstract IChannelStage<T> setExecutor(IExecutor<T> executor);
+	
+	/**
+	 * 启动stage,一般非metaData方式加载,需要独立启动的时候需要调用此方法
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract void start(SocketAddress inputAddress,Map<String,SocketAddress> outputAddress);
+	
+	/**
+	 * 关闭所有channel以及线程池,直接退出,不可恢复,阻塞方法
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract void shutdown();
+	
+	/**
+	 * 暂停channelInput的read功能,channel只接收消息不read
+	 */
+	public abstract void pauseInputRead();
+	
+	/**
+	 * 恢复channelInput的read功能,channel只接收消息不read
+	 */
+	public abstract void runInputRead();
+	
+	/**
+	 * 暂停所有channelOutput的写功能,不往目的组件写消息
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract void pauseAllOutputWrite();
+	
+	/**
+	 * 恢复所有channelOutput的写功能,不往目的组件写消息
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract void runAllOutputWrite();
+	
+	/**
+	 * 暂停channelStage的工作,不再接收和发送消息
+	 */
+	public abstract void pauseStage();
+	
+	/**
+	 * 恢复channelStage的到运行状态,能够正常处理消息
+	 */
+	public abstract void runStage();
+	
+//___________________________________________________________________________________
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||	
+	/**
+	 * 将数据写入channel,系统将不会独立开放channel对象用于数据写入.写入操作都必须
+	 * 通过channelStage完成.
+	 * @param event  
+	 * @param channelOutputName 如果有多个接收端(channelOutput),可以指定需要写入的
+	 * 接收端,如果只有一个接收端,可以写null
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract IChannelFuture<T>[] writeEvent(IEvent<T> event,String... channelOutputName);
+	
+	/**
+	 * 将数据写入channel,系统将不会独立开放channel对象用于数据写入.写入操作都必须
+	 * 通过channelStage完成.
+	 * @param IRowSet  
+	 * @param channelOutputName 如果有多个接收端(channelOutput),可以指定需要写入的
+	 * 接收端,如果只有一个接收端,可以写null
+	 * @return {@link IChannelFuture}
+	 */
+	public abstract IChannelFuture<T>[] writeMsg(T msg,String... channelOutputName);
+	
+	/**
+	 * 添加监听器
+	 * @param listener
+	 */
+	public abstract void addListener(IListener<T> listener);
+	
+	/**
+	 * 解除监听器
+	 * @param listener
+	 */
+	public abstract void removeListener(IListener<T> listener);
+	
+}

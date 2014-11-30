@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_鉴定评估系统.xsd"/>
+<CASE:complexType name="鉴定评估系统">
+<CASE:sequence>
+ <CASE:element name="JDPGXT_DWWTSFJDSJPGJGQDS" type="对外委托司法鉴定、审计、评估机构确定书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_SQHBSPB" type="申请回避审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_YJCLYQSPB" type="移交材料延期审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JKTZS" type="缴款通知书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JFDJB" type="缴费登记表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGSXKCB" type="鉴定、审计、评估审限扣除表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGGZZZBG" type="鉴定、审计、评估工作终止报告" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGQXYQSPB" type="鉴定、审计、评估期限延期审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGQXHFSPB" type="鉴定、审计、评估期限恢复审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGJGBGSPB" type="鉴定、审计、评估机构变更审批表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGPMLCKZB" type="鉴定审计评估拍卖流程控制表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDSJPGPMLCKZJL" type="鉴定审计评估拍卖流程控制记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDPGZTXX" type="鉴定评估主体信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDPGSTWJXX" type="鉴定评估实体文件信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="JDPGXT_JDFYJMHSPB" type="鉴定费用减、免、缓审批表" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="鉴定评估系统" type="鉴定评估系统"/>
+
+</CASE:schema>
+

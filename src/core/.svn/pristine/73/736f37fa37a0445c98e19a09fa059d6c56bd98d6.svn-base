@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_执行外网接口系统.xsd"/>
+<CASE:complexType name="执行外网接口系统">
+<CASE:sequence>
+ <CASE:element name="ZXWWJKXT_xmlBMZB" type="XML编码主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXWWJKXT_xmlBMMXB" type="XML编码明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXWWJKXT_ZXJKBDYXX" type="执行接口表定义信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXWWJKXT_ZXJKBDYXX2" type="执行接口表定义信息2" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="ZXWWJKXT_ZXJKBDYXX3" type="执行接口表定义信息3" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+
+  </CASE:complexType>
+
+  <CASE:element name="执行外网接口系统" type="执行外网接口系统"/>
+
+</CASE:schema>

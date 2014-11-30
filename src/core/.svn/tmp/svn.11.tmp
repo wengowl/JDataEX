@@ -1,0 +1,82 @@
+package org.jdataex.flow.component.step.xml;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.dom4j.DocumentException;
+import org.jdataex.flow.component.step.dataaccess.RowDataAccess;
+import org.jdataex.flow.component.step.dataquery.DataQuery;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.Row;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+@RunWith(Parameterized.class)
+public class TestXMLConverter {
+
+    @Parameters
+    public static Collection prepareData()
+    {
+        // 测试文件
+    	
+		 Object[][] objects={{"test/org/jdataex/flow/component/step/xml/resource/民事二审.xml","test/org/jdataex/flow/component/step/xml/resource/ts.xml",1231212423}};
+
+         return Arrays.asList(objects);// 将数组转换成集合返回
+
+    }
+    private String expectedpath;
+    private String  actualpath;
+    private int ajbs;
+    public TestXMLConverter(String input, String expected,int ajbss)
+    {
+    	expectedpath  = input;
+    	actualpath   = expected;
+    	ajbs=ajbss;
+  
+    }
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	
+
+	@Test
+	public void test() throws DocumentException, IOException {
+ System.err.println(expectedpath+"************"+actualpath +"******************"+ajbs);
+	
+	
+    XMLConverter converter = new XMLConverter();
+	Row row = converter.toRow(new File(expectedpath));
+	RowDataAccess as=new RowDataAccess(null);
+	as.doProcessRow(row);
+	DataQuery query = new DataQuery();
+	IRow actualrow = query.getAllSP("民事二审",1231212423);
+	converter.fromRow(actualrow, new File(actualpath));
+     
+		IRow irow = converter.toRow(new File(expectedpath));
+		String actual = irow.toString();
+		
+		IRow actualirow = converter.toRow(new File(actualpath));
+		String expected = actualirow.toString();
+		assertEquals(expected, actual);
+		
+	}
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+
+<CASE:include schemaLocation="_0_结构_法官个性空间.xsd"/>
+<CASE:complexType name="法官个性空间">
+<CASE:sequence>
+ <CASE:element name="FGGXKJ_GRXX" type="个人信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_GRFL" type="个人分类" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_GRDT" type="个人动态" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_GRFG" type="个人风格" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SQ" type="书签" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_HY" type="好友" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_HYFZ" type="好友分组" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SC" type="收藏" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_FYipFP" type="法院IP分配" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_LJL" type="浏览记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_YHCLSZ" type="用户侧栏设置" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_YHXCB" type="用户相册表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_XCZPB" type="相册照片表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_DXX" type="短消息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_KJLY" type="空间留言" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_KJFWJL" type="空间访问记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_XTGG" type="系统公告" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_XTFL" type="系统分类" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_JY" type="脚印" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_BQSZ" type="表情设置" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SPZJXX" type="视频专辑信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SPXX" type="视频信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_PLXX" type="评论信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SBXX" type="随笔信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGGXKJ_SBNR" type="随笔内容" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="法官个性空间" type="法官个性空间"/>
+
+</CASE:schema>
+

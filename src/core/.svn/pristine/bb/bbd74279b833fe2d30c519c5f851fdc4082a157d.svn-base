@@ -1,0 +1,52 @@
+package org.jdataex.channel.local;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import javax.naming.NamingException;
+
+import org.jdataex.channel.DefaultChannelStage;
+import org.jdataex.channel.IChannelStage;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class LocalNamingContextTest {
+
+	LocalNamingContext context;
+
+	@Before
+	public void setUp() {
+		context = LocalNamingContext.getInstance();
+	}
+
+	@After
+	public void clear() {
+		context.close();
+	}
+
+	@Test
+	public void testBind() throws NamingException {
+
+		IChannelStage<String> ics = new DefaultChannelStage<String>();
+
+		context.bind("test1", ics);
+
+		assertTrue(true);
+	}
+
+	@Test
+	public void testLookUp() throws NamingException {
+
+		IChannelStage<String> ics = new DefaultChannelStage<String>();
+
+		context.bind("test2", ics);
+
+		System.out.println(context.lookUp("test2"));
+		@SuppressWarnings("unchecked")
+		IChannelStage<String> ics1 = (IChannelStage<String>) context
+				.lookUp("test2");
+		assertNotNull(ics1);
+	}
+
+}

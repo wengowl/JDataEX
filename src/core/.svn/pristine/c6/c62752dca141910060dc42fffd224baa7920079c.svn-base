@@ -1,0 +1,29 @@
+package org.jdataex.channel;
+
+import org.jdataex.channel.exception.ExceptionFixer;
+import org.jdataex.channel.future.IChannelFuture;
+
+public class DefaultStageContext<T> implements IStageContext<T>{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4297680420544013532L;
+	private IChannelStage<T> stage;
+	
+	public DefaultStageContext(IChannelStage<T> stage){
+		this.stage = stage;
+	}
+
+	@Override
+	public IChannelFuture<T>[] writeMsg(T msg, String... channelOutputName) {
+		return stage.writeMsg(msg, channelOutputName);
+	}
+
+	@Override
+	public ExceptionFixer getHandlerFixer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

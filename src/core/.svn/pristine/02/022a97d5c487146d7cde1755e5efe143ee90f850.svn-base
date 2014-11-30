@@ -1,0 +1,116 @@
+package org.jdataex.engine.config;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.jdataex.util.FileUtil;
+import org.jdataex.util.XMLUtil;
+
+public class ControllerItem {
+
+	private String content;
+	private Document document;
+
+	private String id;
+	private String clazz;
+	private String loggerName;
+
+	private Map<String, ComponentItem> components;
+	private Map<String, StationItem> stations;
+
+	public ControllerItem(Element e) {
+		this.components = new HashMap<>();
+		this.stations = new HashMap<>();
+		
+		load(e);
+	}
+
+	public void load(Element e) {
+		loadBaseAttributes(e);
+
+		loadComponents(e);
+		
+		loadStations(e);
+	}
+
+	private void loadBaseAttributes(Element e) {
+		String id = XMLUtil.getAttributeValue(e, "id");
+		// TODO check
+		this.id = id;
+
+		String clazz = XMLUtil.getAttributeValue(e, "class");
+		// TODO check
+		this.clazz = clazz;
+	}
+
+	private void loadComponents(Element element) {
+		List<?> children = element.selectNodes("component");
+		for (Iterator<?> iterator = children.iterator(); iterator
+				.hasNext();) {
+			Element e = (Element) iterator.next();
+			ComponentItem item = new ComponentItem(e);
+			
+			this.components.put(item.getId(), item);
+		}
+	}
+	
+	private void loadStations(Element element) {
+		List<?> children = element.selectNodes("station");
+		for (Iterator<?> iterator = children.iterator(); iterator
+				.hasNext();) {
+			Element e = (Element) iterator.next();
+			StationItem item = new StationItem(e);
+			
+			this.stations.put(item.getId(), item);
+		}
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Map<String, ComponentItem> getComponents() {
+		return components;
+	}
+
+	public void setComponents(Map<String, ComponentItem> components) {
+		this.components = components;
+	}
+
+	public Map<String, StationItem> getStations() {
+		return stations;
+	}
+
+	public void setStations(Map<String, StationItem> stations) {
+		this.stations = stations;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
+	}
+
+}

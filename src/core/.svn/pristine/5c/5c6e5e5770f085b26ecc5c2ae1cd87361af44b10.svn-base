@@ -1,0 +1,48 @@
+package org.jdataex.flow.handler;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.component.IComponent;
+
+public abstract class BaseComponentHandler implements IComponentHandler {
+
+	private IComponent component;
+
+	private GUIC guic;
+
+	public BaseComponentHandler(IComponent component, GUIC guidc) {
+		super();
+		this.component = component;
+		this.guic = guidc;
+	}
+
+	public BaseComponentHandler(IComponent component) {
+		super();
+		this.component = component;
+		this.guic = new GUIC(component.getGUIC().getId() + "Handler",
+				component.getGUIC().getName() + "Handler");
+	}
+
+	public BaseComponentHandler() {
+		super();
+	}
+
+	@Override
+	public IComponent getComponent() {
+		return component;
+	}
+
+	@Override
+	public GUIC getGUIC() {
+		return guic;
+	}
+
+	@Override
+	public void setGUIC(GUIC guic) {
+		this.guic = guic;
+	}
+
+	public void setComponent(IComponent component) {
+		this.component = component;
+	}
+
+}

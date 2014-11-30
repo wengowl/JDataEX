@@ -1,0 +1,16 @@
+package org.jdataex.channel.event;
+
+import java.util.List;
+
+import org.jdataex.channel.exception.BaseNestedException;
+
+
+public interface IFuture<T> {
+
+	public boolean isSuccess();
+		
+	public List<BaseNestedException> errors();
+	
+	public T msg();
+	
+}

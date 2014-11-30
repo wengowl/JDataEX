@@ -1,0 +1,74 @@
+package org.jdataex.channel.executor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.flow.row.IRowSet;
+
+public class ExecutorTask<T> implements Task<T>{
+	
+	private IHandlerChain<T> chain;
+	
+	private IEvent<T> event;
+	
+	private IStageContext<T> context;
+	
+	private List<BaseNestedException> list;
+	
+	private boolean isComplete;
+	
+	public ExecutorTask(IHandlerChain<T> chain,IEvent<T> event,IStageContext<T> context){
+		this.chain = chain;
+		this.context = context;
+		this.event = event;
+	}
+
+	@Override
+	public void run() {
+		try{
+			this.chain.executeHandlers(event);
+			
+		}catch(HandlerException exp){
+			
+		}finally{
+			this.isComplete = true;
+			this.notifyAll();
+		}
+	}
+
+	@Override
+	public List<BaseNestedException> getExceptions() {
+		return list;
+	}
+
+	@Override
+	public boolean isSuccessed() {
+		if(list==null||list.size()==0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public IEvent<T> getEvent() {
+		return event;
+	}
+	
+	public void assException(BaseNestedException e){
+		if(list==null){
+			list = new ArrayList<BaseNestedException>();
+		}
+		list.add(e);
+	}
+
+	@Override
+	public boolean isCompleted() {
+		return isComplete;
+	}
+
+}

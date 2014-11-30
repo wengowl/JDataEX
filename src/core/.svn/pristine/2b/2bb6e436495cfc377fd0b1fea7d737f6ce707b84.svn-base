@@ -1,0 +1,15 @@
+package org.jdataex.flow;
+
+import org.jdataex.flow.controller.IComponentController;
+
+public interface IFlow {
+
+	public abstract void stopAll();
+
+	public abstract void startAll();
+
+	public abstract IComponentController getComponentController(String guic);
+
+	public abstract void putComponentController(IComponentController controller);
+
+}

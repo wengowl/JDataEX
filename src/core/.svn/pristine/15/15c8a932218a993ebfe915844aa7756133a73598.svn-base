@@ -1,0 +1,24 @@
+package org.jdataex.engine;
+
+import org.jdataex.core.GlobalInitializer;
+import org.jdataex.core.InitializationException;
+import org.jdataex.util.logger.LoggerFactory;
+
+public class Engine {
+
+	public static void main(String[] args) {
+		try {
+			GlobalInitializer.initialization();
+			
+			
+		} catch (InitializationException e) {
+			LoggerFactory.getRootLogger().infoI18nc(Engine.class,
+					"Engine.FileNotFoundOrNotLoaded", e);
+			return;
+		} 
+
+	}
+
+
+	
+}

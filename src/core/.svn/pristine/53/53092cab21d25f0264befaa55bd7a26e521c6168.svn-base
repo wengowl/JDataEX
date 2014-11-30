@@ -1,0 +1,234 @@
+package org.jdataex.channel.tlq;
+
+import static org.jdataex.channel.common.DefaultValues.DEFAULT_QCU_NAME;
+import static org.jdataex.channel.common.DefaultValues.TLQ_FILE;
+import static org.jdataex.channel.common.DefaultValues.TLQ_FILE_SIGN;
+import static org.jdataex.channel.common.DefaultValues.TLQ_MSG;
+import static org.jdataex.channel.util.ChannelClassUtil.*;
+
+import org.jdataex.channel.BaseAbstractChannelOutput;
+import org.jdataex.channel.IChannelOutput;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.CanNotConnectChannelException;
+import org.jdataex.channel.exception.CanNotDisConnectChannelException;
+import org.jdataex.channel.exception.CanNotWriteChannelException;
+import org.jdataex.channel.exception.IllegalNumberException;
+import org.jdataex.channel.exception.NoMessageTypeException;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.net.INetAddress;
+import org.jdataex.channel.util.ChannelClassUtil;
+import org.jdataex.channel.util.EventStringPropsUtil;
+import org.jdataex.channel.util.ObjectAndByte;
+import org.jdataex.util.AssertUtil;
+
+import com.tongtech.tlq.base.TlqConnection;
+import com.tongtech.tlq.base.TlqException;
+import com.tongtech.tlq.base.TlqMessage;
+import com.tongtech.tlq.base.TlqMsgOpt;
+import com.tongtech.tlq.base.TlqQCU;
+
+/**
+ * 基于TLQ的本地消息发送channelinput,据研发确认,本地接口单队列一个TLQConnection和<br>
+ * 多个TLQConnection发消息性能几乎相同,所以,tlqChannelInput内部只需要有一个<br>
+ * TLQConnection就行了,支持断网重连tlq,tlq重启重连,支持文件和buffer消息<br>
+ * 不管传入的buffer消息为哪种对象,统一转换为byte[]进行传输.
+ * 
+ * @author chaos
+ * 
+ * @param <T>
+ */
+public class TLQChannelOutput<T> extends BaseAbstractChannelOutput<T> implements
+		IChannelOutput<T> {
+
+	private int type;
+
+	private TlqConnection tlqConnection;
+
+	private TlqQCU qcu;
+
+	private String qcuName;
+
+	private String queueName;
+
+	private TlqConnection getTlqConnection() {
+		return tlqConnection;
+	}
+
+	private void setTlqConnection(TlqConnection tlqConnection) {
+		this.tlqConnection = tlqConnection;
+	}
+
+	private TlqQCU getQcu() {
+		return qcu;
+	}
+
+	private void setQcu(TlqQCU qcu) {
+		this.qcu = qcu;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getQcuName() {
+		return qcuName;
+	}
+
+	public void setQcuName(String qcuName) {
+		this.qcuName = qcuName;
+	}
+
+	public String getQueueName() {
+		return queueName;
+	}
+
+	public void setQueueName(String queueName) {
+		this.queueName = queueName;
+	}
+
+	public TLQChannelOutput(String name, int type, String qcuName,
+			String queueName) {
+		super(name);
+		AssertUtil.assertNullOrBlank(qcuName);
+		AssertUtil.assertNullOrBlank(queueName);
+		assertTLQMsgType(type);
+		setType(type);
+		setQcuName(qcuName);
+		setQueueName(queueName);
+	}
+
+	public TLQChannelOutput(String name, String qcuName, String queueName) {
+		this(name, TLQ_MSG, qcuName, queueName);
+	}
+
+	public TLQChannelOutput(String name, String queueName) {
+		this(name, TLQ_MSG, DEFAULT_QCU_NAME, queueName);
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8159396668540542096L;
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> writeAndFlush(IEvent<T> event) {
+		try {
+			switch (getType()) {
+			case TLQ_MSG:
+				putBuffMsg(event);
+				break;
+			case TLQ_FILE:
+				putFileMsg(event);
+				break;
+			default:
+				return (IChannelFuture<T>) ChannelClassUtil
+						.getInstance(
+								ERROR_CHANNEL_FUTURE,
+								new NoMessageTypeException(
+										"the message type is error only byteBuff or file"));
+			}
+
+			return (IChannelFuture<T>) ChannelClassUtil
+					.getInstance(TRUE_CHANNEL_FUTURE);
+
+		} catch (TlqException e) {
+			e.printStackTrace();
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(
+					ERROR_CHANNEL_FUTURE, new CanNotWriteChannelException(e));
+		} catch (BaseNestedException e) {
+			e.printStackTrace();
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(
+					ERROR_CHANNEL_FUTURE, e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(
+					ERROR_CHANNEL_FUTURE, new CanNotWriteChannelException(e));
+		}
+	}
+
+	@Override
+	/**
+	 * 连接本地的tlq或者远程的tlq,建议一般情况下连接本地的tlq 进行消息发送,如果是本地
+	 * 的tlq,直接传入 null
+	 */
+	public void connect(INetAddress remoteAddress) {
+		try {
+			if (remoteAddress == null) {
+				setTlqConnection(new TlqConnection());
+			} else {
+				setTlqConnection(new TlqConnection(remoteAddress.getHostName(),
+						remoteAddress.getPort()));
+			}
+			this.setQcu(getTlqConnection().openQCU(getQcuName()));
+
+		} catch (TlqException e) {
+			throw new CanNotConnectChannelException(e);
+		}
+	}
+
+	@Override
+	public void disConnect() {
+		try {
+			tlqConnection.close();
+			//一定要设置是否能写
+			setWrite(false);
+		} catch (TlqException e) {
+			throw new CanNotDisConnectChannelException(e);
+		}
+	}
+
+	private void assertTLQMsgType(int type) {
+		switch (type) {
+		case TLQ_MSG:
+			break;
+		case TLQ_FILE:
+			break;
+		default:
+			throw new IllegalNumberException(
+					"tlq message type error must be msg(" + TLQ_MSG
+							+ ") or file(" + TLQ_FILE + ")");
+		}
+	}
+
+	private void putBuffMsg(IEvent<T> event) throws TlqException {
+		TlqMessage msgInfo = new TlqMessage();
+		TlqMsgOpt msgOpt = new TlqMsgOpt();
+		msgInfo.MsgType = TlqMessage.BUF_MSG; // 消息类型
+		byte[] msgContent = ObjectAndByte.toByteArray(event.getMsg()); // 消息内容
+		msgInfo.MsgSize = msgContent.length; // 消息大小
+		msgInfo.setMsgData(msgContent);
+
+		msgInfo.Persistence = TlqMessage.TLQPER_Y; // 持久性
+		msgInfo.Priority = TlqMessage.TLQPRI_NORMAL; // 优先级
+		msgInfo.Expiry = 1000; // 生命周期
+		msgOpt.QueName = getQueueName(); // 队列名
+
+		getQcu().putMessage(msgInfo, msgOpt);
+	}
+
+	private void putFileMsg(IEvent<T> event) throws TlqException {
+		String file = EventStringPropsUtil
+				.getProperties(event.getStringProps()).get(TLQ_FILE_SIGN);
+		AssertUtil.assertNullOrBlank(file);
+		TlqMessage msgInfo = new TlqMessage();
+		TlqMsgOpt msgOpt = new TlqMsgOpt();
+
+		msgInfo.MsgType = TlqMessage.FILE_MSG;
+		// 文件必须在本地
+		msgInfo.MsgSize = file.getBytes().length;
+		msgInfo.setMsgData(file.getBytes());
+		msgOpt.RemoveFileFlag = TlqMsgOpt.REMOVEFILE; // 是否删除源文件标志
+		msgInfo.Persistence = TlqMessage.TLQPER_Y;// 持久
+		msgInfo.Priority = TlqMessage.TLQPRI_NORMAL;
+		msgInfo.Expiry = -1;
+		msgOpt.QueName = getQueueName();
+
+		getQcu().putMessage(msgInfo, msgOpt);
+	}
+}

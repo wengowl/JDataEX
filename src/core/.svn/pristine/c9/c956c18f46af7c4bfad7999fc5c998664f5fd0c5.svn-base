@@ -1,0 +1,72 @@
+package org.jdataex.engine.loader;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.dom4j.DocumentException;
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.config.FlowConfig;
+import org.jdataex.flow.IFlow;
+import org.jdataex.util.FileUtil;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.Test;
+
+public class FlowLoaderTest extends BaseJDataExTest{
+	private static File basedir = FileUtil
+			.findAbsoluteFile(FlowLoaderTest.class);
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testLoader() throws IOException, DocumentException,
+			InitializationException {
+
+		File file = new File(basedir, "flow-loader-test.xml");
+		FlowConfig fc = new FlowConfig(file);
+		IFlowLoader loader = new FlowLoader();
+
+		IFlow flow = loader.load(fc);
+		
+		flow.startAll();
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		flow.stopAll();
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test(expected = InitializationException.class)
+	public void testLoader4ErrorNotStation() throws IOException,
+			DocumentException, InitializationException {
+
+		File file = new File(basedir, "flow-loader-test-error-not-station.xml");
+		FlowConfig fc= new FlowConfig(file);
+		IFlowLoader loader = new FlowLoader();
+
+		IFlow flow = loader.load(fc);
+
+	}
+
+}

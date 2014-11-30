@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<project name="JDataex Core" default="" basedir=".">
+		<!--项目应用源码主目录-->
+		<property name="src.dir" location="${basedir}/src"/>
+		<property name="lib.dir" location="${basedir}/lib"/>
+		<property name="src.org" location="${src.dir}/org"/>
+		<property name="src.jdataex" location="${src.org}/jdataex"/>
+		<property name="config.dir" location="${basedir}/config"/>
+		<property name="java.home" value="${SystemVariable.JAVA_HOME}" /> 
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+		<!--项目构建输出目录-->
+		<property name="builder.dir" location="builder"/>
+		<property name="builder.lib" location="${builder.dir}/lib"/>
+		<property name="builder.config" location="${builder.dir}/config"/>
+		<property name="builder.log" location="${builder.dir}/log"/>
+		<property name="builder.classes" location="${builder.dir}/classes"/>
+		<property name="builder.dist" location="${builder.dir}/dist"/>
+		<property name="builder.zip" location="${builder.dir}/zip"/>
+		<path id="build.classpath">
+			<fileset dir="${builder.lib}">
+			<patternset refid="lib" /></fileset>
+		</path>
+		<path id="complie.classes">
+			<fileset dir="${lib.dir}" includes="*.jar"></fileset>
+		</path>
+		<!-- - - - - - - - - - - - - - - - - - 
+          target: init    重新构建路径                  
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+            <delete dir="${builder.dir}"></delete>
+			<mkdir dir="${builder.dir}"/>
+            <mkdir dir="${builder.config}"/>
+            <mkdir dir="${builder.classes}"/>	
+      		<mkdir dir="${builder.lib}"/>
+    		<mkdir dir="${builder.dist}"/>
+    		<mkdir dir="${builder.zip}"/>
+    </target>
+		
+	<!--编译文件-->
+      <target name="compile" depends="init">
+         <javac srcdir="${src.org}" 
+				destdir="${builder.classes}" 
+         		debug="${compile.debug}"
+         		deprecation="on"
+     		    failonerror="false" 
+         		executable="${java.home}/bin/javac"
+     		    classpathref="complie.classes"
+     			includeantruntime="on">
+      	 <include name="**/*.java" />
+      	</javac>
+      	<copy todir="${builder.classes}">
+      			<fileset dir="${src.dir}" 
+      				includes="**/*.*" 
+      				excludes="**/*.java">
+      			</fileset>
+      	</copy>
+       </target>
+		
+       	<!--将文件打成jar包-->
+       	<target name="jar" depends="compile" description="将项目的class文件以及资源文件打包为jar">
+       		<tstamp>
+       				<format property="now" pattern="yyyy=MM-dd HH:mm:ss"/>
+       		</tstamp>
+       		
+			<jar destfile="${builder.dist}/JDataCore.jar"
+					basedir="${builder.classes}">
+			</jar>   
+       		
+       	
+       	  </target>
+		<!--拷贝lib和config目录-->
+		<target name="copy" depends="jar">
+		<copy todir="${builder.lib}">
+			<fileset dir="${lib.dir}" includes="**/*.*"></fileset>
+		</copy>
+		<copy todir="${builder.config}">
+			<fileset dir="${config.dir}" includes="**/*.*"></fileset>
+		</copy>
+		</target>
+		<!--打包成zip-->
+		<target name="zip" depends="copy">
+			<zip destfile="${builder.zip}/JDataExCore.zip" duplicate="preserve">
+				<zipfileset dir="${builder.dir}" includes="**/*.*"></zipfileset>
+			</zip>
+		</target>
+	</project>

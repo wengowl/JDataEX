@@ -1,0 +1,62 @@
+package org.jdataex.engine.loader;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import oracle.jrockit.jfr.tools.ConCatRepository;
+
+import org.jdataex.flow.component.IComponent;
+import org.jdataex.flow.component.step.IStep;
+import org.jdataex.flow.component.step.file.monitor.MonitorFileStep;
+import org.jdataex.flow.component.step.xml.XMLConverterStep;
+import org.jdataex.flow.controller.ComponentController;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.handler.IStepHandler;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.jdataex.flow.station.IStation;
+import org.jdataex.flow.station.Station;
+import org.jdataex.flow.station.queue.FirstQueueStepStation;
+import org.jdataex.flow.station.queue.QueueStepStation;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+
+public class MonitorFileLoader implements IComponentHandlersLoader {
+
+	// 装载XML读取配置。
+	/* (non-Javadoc)
+	 * @see org.jdataex.engine.loader.IComponentHandlerLoader#load()
+	 */
+	@Override
+	public IComponentController load() {
+		IComponentController controller = new ComponentController();
+
+		int index = 0;
+		IStep step;
+		IStation input;
+		IStation output;
+
+		input = new FirstQueueStepStation();
+		output = new QueueStepStation();
+		step = new MonitorFileStep();
+		controller.addComponentHanlder(index++, prepareStepHandler(step, input, output));
+
+		input = output;
+		output = new QueueStepStation();
+		step = new XMLConverterStep();
+		controller.addComponentHanlder(index++,prepareStepHandler(step, input, output));
+
+		return controller;
+	}
+
+	private IComponentHandler prepareStepHandler(IStep com, IStation input,
+			IStation output) {
+		IStepHandler handler = new StepHandler(com, input, output);
+		((ILoggable) handler).setLogger(LoggerFactory.getDefaultLogger());
+
+		return handler;
+	}
+
+}

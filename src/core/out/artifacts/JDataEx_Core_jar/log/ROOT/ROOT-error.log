@@ -1,0 +1,26 @@
+2014-07-29 11:03:22.284 ERROR[main|ROOT] Start time:11:03:17 end time 11:03:22
+2014-07-29 11:06:10.174 ERROR[main|ROOT] ORA-12899: 列 "SGY"."XSYS_YASTML"."ZZJGDM" 的值太大 (实际值: 53, 最大值: 10)
+then try to update
+java.sql.SQLException: ORA-12899: 列 "SGY"."XSYS_YASTML"."ZZJGDM" 的值太大 (实际值: 53, 最大值: 10)
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897) ~[JDataEx%20Core.jar:na]
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361) ~[JDataEx%20Core.jar:na]
+	at com.jolbox.bonecp.PreparedStatementHandle.executeUpdate(PreparedStatementHandle.java:205) ~[JDataEx%20Core.jar:na]
+	at org.jdataex.flow.component.step.dataaccess.RowDataAccessProcess.insertProcess(RowDataAccessProcess.java:72) ~[JDataEx%20Core.jar:na]
+	at org.jdataex.flow.component.step.dataaccess.RowDataAccess.doInsert_Update(RowDataAccess.java:223) [JDataEx%20Core.jar:na]
+	at org.jdataex.flow.component.step.dataaccess.RowDataAccess.doProcessRow(RowDataAccess.java:37) [JDataEx%20Core.jar:na]
+	at org.jdataex.MainTest.xmlConvertertest(MainTest.java:56) [JDataEx%20Core.jar:na]
+	at org.jdataex.MainTest.main(MainTest.java:125) [JDataEx%20Core.jar:na]
+2014-07-29 11:06:10.253 ERROR[main|ROOT] update 0 rows,there's some errors, roll back all
+2014-07-29 11:06:10.451 ERROR[main|ROOT] Start time:11:06:08 end time 11:06:10

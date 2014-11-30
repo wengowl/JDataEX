@@ -1,0 +1,47 @@
+package org.jdataex.channel.handler;
+
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+
+/**
+ * Handler作为处理channel msg的类，定义了几种状态
+ * 一般业务handler只需要实现channelRead方法就行了，在channelread方法中实现 往其他stage
+ * write的逻辑。channelwrite是在写消息到其他stage的时候触发的方法。
+ * 
+ * @author chaos
+ * 
+ */
+public interface IHandler {
+
+	/**
+	 * channel连接成功的处理方法 output事件
+	 * 
+	 * @param pipe
+	 * @param Msg
+	 */
+	public void channelActive(IStageContext context, IEvent<?> Msg) throws Exception;
+
+	/**
+	 * inputChannel绑定成功后触发的方法 input事件
+	 * 
+	 * @param pipe
+	 */
+	public void channelBind(IStageContext context) throws Exception;
+
+	/**
+	 * inputChannel准备好后获取到消息出发的方法。input事件
+	 * 
+	 * @param context
+	 * @param Msg
+	 */
+	public void channelRead(IStageContext context, IEvent<?> Msg) throws Exception;
+
+	/**
+	 * outputChannel写入消息时候触发的方法 output事件
+	 * 
+	 * @param context
+	 * @param Msg
+	 */
+	public void channelWrite(IStageContext context, IEvent<?> Msg) throws Exception;
+
+}

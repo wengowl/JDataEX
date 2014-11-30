@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<民事一审 xmlns="http://dataexchange.court.gov.cn/2009/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dataexchange.court.gov.cn/2009/data民事一审.xsd" ACTION_TYPE="delete" DEPT_CODE="GF2009-01" APP_CODE="GF2009-01">
+  <AJBS>1231212423</AJBS>
+</民事一审>

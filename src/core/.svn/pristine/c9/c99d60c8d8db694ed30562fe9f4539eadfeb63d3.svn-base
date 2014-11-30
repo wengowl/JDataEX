@@ -1,0 +1,73 @@
+package org.jdataex.channel.store;
+
+/**
+ * 仓库类,一般远程channel都必须有仓库类,用于永久存放数据,
+ * 比如NioSocketChannel就有FiletStore
+ * TLQChannel没有Store,因为TLQ本身可持久化存储
+ * 本地channel连接没有Store,应为没有必要.当然也可以设置FileStore
+ * @author chaos
+ *
+ * @param <T>
+ */
+public interface IStore<T> {
+		
+	/**
+	 * 仓库是否已满
+	 * @return
+	 */
+	public boolean isFull();
+	
+	/**
+	 * 仓库是否为空
+	 * @return
+	 */
+	public boolean isEmpty();
+	
+	/**
+	 * 最大仓库存量
+	 * @return
+	 */
+	public long maxCapacity();
+	
+	/**
+	 * 当前仓库存量
+	 * @return
+	 */
+	public long currentCapacity();
+	
+	/**
+	 * 顺序将数据取出,取出后仓库中就不再有数据了
+	 * @return
+	 */
+	public T pop();
+	
+	/**
+	 * 顺序将数据给出,如果不进行remove操作,数据不会删除
+	 * @return
+	 */
+	public T get();
+	
+	/**
+	 * 将数据从仓库中删除
+	 * @param obj
+	 */
+	public void remove(T obj);
+	
+	/**
+	 * 回滚消息
+	 * @param obj
+	 */
+	public void rollBack(T obj);
+	
+	/**
+	 * 将数据存入store
+	 * @throws CannotPush2StoreException
+	 */
+	public void push(T obj);
+	
+	/**
+	 * 返回已经被业务get单还没有处理完的队列,相当于被标记的队列
+	 * @return
+	 */
+	public long getToDealWithNumber();
+}

@@ -1,0 +1,109 @@
+package org.jdataex.engine.loader;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.card.GUIC;
+import org.jdataex.core.entity.EntityFactory;
+import org.jdataex.engine.config.ComponentItem;
+import org.jdataex.engine.config.FlowConfig;
+import org.jdataex.engine.config.StationItem;
+import org.jdataex.engine.config.StationRefItem;
+import org.jdataex.flow.Flow;
+import org.jdataex.flow.IFlow;
+import org.jdataex.flow.component.IComponent;
+import org.jdataex.flow.component.step.file.monitor.MonitorFileStep;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.station.IStation;
+import org.jdataex.util.CommonUtil;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+
+public class FlowLoader implements IFlowLoader {
+
+	@Override
+	public IFlow load(FlowConfig config) throws InitializationException {
+		if (config == null) {
+			return null;// TODO other handle,ex throw exception;
+		}
+
+		IFlow flow = new Flow();
+
+		Map<String, IStation> stations = loadStations(config.getStations());
+		Map<String, ComponentItem> items = config.getComponents();
+
+		Map<String, IComponent> components = new HashMap<>();
+		ComponentItem item;
+		IComponent com;
+		for (String key : items.keySet()) {
+			item = items.get(key);
+
+			if (item != null && CommonUtil.isNotBlank(item.getClazz())) {
+				try {
+					com = (IComponent) ClassLoader.getSystemClassLoader()
+							.loadClass(item.getClazz()).newInstance();
+
+					IStation output = stations.get(item.getOutputStationRefItem()
+							.getId());
+					IStation input = stations.get(item.getInputStationRefItem()
+							.getId());
+
+					if (output == null) {
+						throw new InitializationException(
+								"Output station is null. Station id is "
+										+ item.getOutputStationRefItem().getId());
+					}
+					
+					if (input == null) {
+						throw new InitializationException(
+								"Input station is null. Station id is "
+										+ item.getInputStationRefItem().getId());
+					}
+					
+					IComponentHandler handler = new StepHandler(new MonitorFileStep(),input,output);
+					((ILoggable)handler).setLogger(LoggerFactory.getDefaultLogger());
+
+					components.put(key, com);
+				} catch (InstantiationException | IllegalAccessException
+						| ClassNotFoundException e) {
+					throw new InitializationException("Initialization station "
+							+ e.getMessage(), e);
+				}
+			}
+
+		}
+
+		return null;
+	}
+
+	private Map<String, IStation> loadStations(Map<String, StationItem> items)
+			throws InitializationException {
+		Map<String, IStation> stations = new HashMap<>();
+		StationItem item;
+		IStation st;
+		for (String key : items.keySet()) {
+			item = items.get(key);
+
+			if (item != null && CommonUtil.isNotBlank(item.getClazz())) {
+				try {
+					st = (IStation) ClassLoader.getSystemClassLoader()
+							.loadClass(item.getClazz()).newInstance();
+
+					stations.put(key, st);
+				} catch (InstantiationException | IllegalAccessException
+						| ClassNotFoundException e) {
+					throw new InitializationException("Initialization station "
+							+ e.getMessage(), e);
+				}
+			}
+
+		}
+
+		return stations;
+	}
+
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_司法统计接口系统.xsd"/>
+<CASE:complexType name="司法统计接口系统">
+
+
+<CASE:sequence>
+ <CASE:element name="SFTJJKXT_RMPSYCJSPAJQKTJB" type="人民陪审员参加审判案件情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_QGFYQLCSXAJQKTJB" type="全国法院清理超审限案件情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_JRZFQKQKTJB" type="军人罪犯情况情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_JJMJHJSSFQKTJB" type="减缴、免缴、缓缴诉讼费情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSYSAJTJB" type="刑事一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSESFHAJQKTJB" type="刑事二审（复核）案件情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSZSAJTJB" type="刑事再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSZSCQYSAJTJB" type="刑事知识产权一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSZSCQZSAJTJB" type="刑事知识产权再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XSBGRPJSXQKTJB" type="刑事被告人判决生效情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_DWFZQK" type="单位犯罪情况" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_GLAJSXQKTJB" type="各类案件审限情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HTJFYSAJTJB" type="合同纠纷一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HTJFESAJTJB" type="合同纠纷二审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HTJFZSAJTJB" type="合同纠纷再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HYJTJCJFYSAJTJB" type="婚姻家庭、继承纠纷一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HYJTJCJFESAJTJB" type="婚姻家庭、继承纠纷二审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HYJTJCJFZSAJTJB" type="婚姻家庭、继承纠纷再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZXYYFYDCZXAJTJB" type="执行异议、复议、督促执行案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZXAJZXQXTJB" type="执行案件执行期限统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZXAJTJB" type="执行案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_WCNRFZQKTJB" type="未成年人犯罪情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_QSQQJFJQTMSYSAJTJB" type="权属、侵权纠纷及其他民事一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_QSQQJFJQTMSESAJTJB" type="权属、侵权纠纷及其他民事二审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_QSQQJFJQTMSZSAJTJB" type="权属、侵权纠纷及其他民事再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HZSXZFQKTJB" type="核准死刑罪犯情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HZSXZFXJ" type="核准死刑罪犯细节" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_DPFZQKTJB" type="毒品犯罪情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_MSSQZSAJTJB" type="民事申请再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_MSZSCQYSAJTJB" type="民事知识产权一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_MSZSCQESZSAJTJB" type="民事知识产权二审、再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HSZSCQAJSXQKTJB" type="海事、知识产权案件审限情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HSYSAJTJB" type="海事一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_HSESZSAJTJB" type="海事二审、再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_SSSQZSAJTJB" type="申诉、申请再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_PCAJTJB" type="破产案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZHQKTJB" type="综合情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZFZYWXTJYSGBQKE" type="罪犯中原为县团级以上干部情况（二）" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_ZFQKTJB" type="罪犯情况统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XZYSAJTJB" type="行政一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XZESZSAJAJTJB" type="行政二审、再审案件案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XZZSCQYSAJTJB" type="行政知识产权一审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_XZZSCQESZSAJTJB" type="行政知识产权二审、再审案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_PCAJTJB" type="赔偿案件统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFTJJKXT_SYTBCXSLAJTJB" type="适用特别程序审理案件统计表" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+
+  </CASE:complexType>
+
+  <CASE:element name="司法统计接口系统" type="司法统计接口系统"/>
+
+</CASE:schema>

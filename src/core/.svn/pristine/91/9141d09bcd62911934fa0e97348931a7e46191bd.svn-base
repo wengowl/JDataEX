@@ -1,0 +1,2 @@
+class.org.jdataex.util.scheduler.IScheduler=org.jdataex.util.scheduler.LoopScheduler
+class.org.jdataex.flow.handler.IComponentHandler=org.jdataex.flow.handler.ComponentHandler

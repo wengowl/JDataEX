@@ -1,0 +1,64 @@
+package org.jdataex.channel.local;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import org.jdataex.channel.exception.BaseNestedException;
+
+public final class LocalNamingContext {
+
+	private static LocalNamingContext ln = new LocalNamingContext();
+
+	private static Context context;
+
+	private AtomicBoolean isClose = new AtomicBoolean(false);
+
+	private LocalNamingContext() {
+		try {
+			context = new InitialContext();
+		} catch (NamingException e) {
+		}
+	}
+
+	public final static LocalNamingContext getInstance() {
+		if (ln.isClose.get()) {
+			ln.rebuild();
+		}
+		return ln;
+	}
+
+	public void bind(String name, Object obj) throws NamingException {
+		context.rebind(name, obj);
+	}
+
+	public Object lookUp(String name) throws NamingException {
+		return context.lookup(name);
+	}
+
+	public void close() {
+		try {
+			context.close();
+			isClose.getAndSet(true);
+		} catch (NamingException e) {
+			throw new BaseNestedException("", e);
+		}
+	}
+
+	public void rebuild() {
+		synchronized (LocalNamingContext.class) {
+			try {
+				if (!isClose.get())
+					close();
+			} catch (Exception e) {
+			}
+			try {
+				context = new InitialContext();
+				isClose.getAndSet(false);
+			} catch (NamingException e) {
+			}
+		}
+	}
+}

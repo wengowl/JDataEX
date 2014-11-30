@@ -1,0 +1,83 @@
+package org.jdataex.channel;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.jdataex.channel.future.IChannelFuture;
+
+
+/**
+ * 传输管道具体实现类传输管道是channelStage的核心模块，初步将实现
+ * NIO管道和TLQ管道以及本地管道
+ * 规则:channelInput为了简便期间,考虑性能和实现的难易度,一个
+ * channelContainer只有一个channelInput,一个channelInput对应一个
+ * executor  
+ * @author chaos
+ *
+ */
+public interface IChannelContainer<T> extends Serializable{
+	
+	/**
+	 * 返回channelContainer名称
+	 * @return
+	 */
+	public String getName();
+	
+	/**
+	 * 设置名称
+	 * @param name
+	 */
+	public void setName(String name);
+	
+	/**
+	 * 根据名称返回channelOutput
+	 * @param name  Container中已经注册的ChannelOutput名称;
+	 * @return {@link IChannelOutput}
+	 */
+	public IChannelOutput<T> getOutput(String name);
+	
+	/**
+	 * 返回所有的channelOutput
+	 * @return
+	 */
+	public List<IChannelOutput<T>> getOutputs();
+	
+	/**
+	 * 根据名称返回channelInput
+	 * @return {@link IChannelInput}
+	 */
+	public IChannelInput<T> getInput();
+	
+	/**
+	 * 关闭指定名称的channelInput
+	 * @return {@link IChannelFuture}
+	 */
+	public IChannelFuture<T> closeInput();
+	
+	/**
+	 * 关闭所有channelOutput,为非阻塞,不抛异常方法,执行情况见<br>
+	 * {@link IChannelFuture}返回结果
+	 * @return {@link IChannelFuture}
+	 */
+	public List<IChannelFuture<T>> closeAllOutput();
+	
+	/**
+	 * 关闭指定名称的channelOutput
+	 * @param name channelOutput名称
+	 * @return {@link IChannelFuture}
+	 */
+	public IChannelFuture<T> closeOutput(String name);
+	
+	/**
+	 * 添加channelOutput
+	 * @param localOutput
+	 */
+	public void addOutput(IChannelOutput<T> localOutput);
+	
+	/**
+	 * 设置channelInput
+	 * @param input
+	 */
+	public void setInput(IChannelInput<T> input);
+	
+}

@@ -1,0 +1,65 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.flow.row.*;
+import org.jdataex.resource.databasepool.ShutDownPool;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class RowDataAccessTest {
+
+    @Test
+    public void testDoProcessRow() throws Exception {
+           IRow row = new Row();
+        IRowHeader rowHeader = new RowHeader();
+        rowHeader.put("actionType","insert");
+        IRow row3 = new Row();
+        IRowHeader header3 = new RowHeader();
+        header3.put("tableName","test1");
+        row3.setHeader(header3);
+        row3.insertColumn("id1",6);
+
+        IRow row1 = new Row();
+        IColumn column = new Column("id",3);
+        IColumn column1 = new Column("id1",5);
+        row1.insertColumn(column);
+        row1.insertColumn(column1);
+
+        IRowHeader header = new RowHeader();
+
+        header.put("tableName","ctest");
+        row1.setHeader(header);
+
+        IRow row2 = new Row();
+        IColumn column2 = new Column("ID",4);
+
+        row2.insertColumn(column2);
+       // row1.insertColumn(column1);
+        row2.insertColumn("te",4);
+        //row2.insertColumn("te",4);
+        IRowHeader header2 = new RowHeader();
+
+        header2.put("tableName","test");
+        row2.setHeader(header2);
+
+        IColumn columnx = new Column("ctest",row1);
+        row.insertColumn("xx",row3);
+        row.insertColumn(columnx);
+        row.insertColumn("test",row2);
+        row.setHeader(rowHeader);
+
+        RowDataAccess rowDataAccess= new RowDataAccess();
+        rowDataAccess.doProcessRow(row);
+        Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+    }
+
+    @Test
+    public void testDoInsert() throws Exception {
+
+    }
+
+    @Test
+    public void testDoDelete() throws Exception {
+
+    }
+}

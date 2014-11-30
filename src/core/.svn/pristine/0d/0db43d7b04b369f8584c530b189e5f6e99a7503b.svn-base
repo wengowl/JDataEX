@@ -1,0 +1,5 @@
+package org.jdataex.flow;
+
+public interface IFlow {
+
+}

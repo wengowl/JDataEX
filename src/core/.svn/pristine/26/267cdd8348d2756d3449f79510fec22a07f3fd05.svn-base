@@ -1,0 +1,22 @@
+package org.jdataex.flow.station;
+
+import org.jdataex.flow.row.IRowSet;
+
+public class MockStation implements IStation{
+
+	@Override
+	public IRowSet peek(String id) {
+		return null;
+	}
+
+	@Override
+	public boolean offer(String id, IRowSet e) {
+		return true;
+	}
+
+	@Override
+	public IRowSet poll(String id) {
+		return null;
+	}
+
+}

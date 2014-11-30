@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+	<id>xml2db</id>
+	<type>transition</type>
+	<controller id="controller">
+
+		<component id="monitor"
+			class="org.jdataex.flow.component.step.file.monitor.MonitorFileStep">
+			<monitor-dir>bin/org/jdataex/flow/scene/xml2db/resource</monitor-dir>
+		</component>
+
+		<component id="xml"
+			class="org.jdataex.flow.component.step.xml.XMLConverterStep">
+		</component>
+
+		<component id="dbaccess"
+			class="org.jdataex.flow.component.step.dataaccess.RowDataAccessStep">
+			<pool-name>pool</pool-name>
+		</component>
+
+		<channel-stage id="cs01" entry="true"
+			class="org.jdataex.channel.DefaultChannelStage">
+			<input name="cs01Input" class="org.jdataex.channel.local.LocalChannelInput"></input>
+			<outputs>
+				<output name="cs01Output01" class="org.jdataex.channel.local.LocalChannelOutput"
+					host="cs02" port="0"></output>
+			</outputs>
+			<handler-list>
+				<handler type="component" class="org.jdataex.flow.handler.ChannelStepHandler"
+					component-ref="monitor"></handler>
+			</handler-list>
+		</channel-stage>
+
+		<channel-stage id="cs02"
+			class="org.jdataex.channel.DefaultChannelStage">
+			<input name="cs02Input" class="org.jdataex.channel.local.LocalChannelInput"></input>
+			<outputs>
+				<output name="cs02Output01" class="org.jdataex.channel.local.LocalChannelOutput"
+					host="cs03" port="0">
+				</output>
+			</outputs>
+			<handler-list>
+				<handler type="component" class="org.jdataex.flow.handler.ChannelStepHandler"
+					component-ref="xml"></handler>
+			</handler-list>
+		</channel-stage>
+
+		<channel-stage id="cs03"
+			class="org.jdataex.channel.DefaultChannelStage">
+			<input name="cs03Input" class="org.jdataex.channel.local.LocalChannelInput"></input>
+			<outputs>
+				<output name="cs03Output01" class="org.jdataex.channel.local.LocalChannelOutput"
+					host="${null}" port="0">
+				</output>
+			</outputs>
+			<handler-list>
+				<handler type="component" class="org.jdataex.flow.handler.ChannelStepHandler"
+					component-ref="dbaccess"></handler>
+			</handler-list>
+		</channel-stage>
+	</controller>
+</flow>

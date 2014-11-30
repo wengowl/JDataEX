@@ -1,0 +1,135 @@
+package org.jdataex.flow.row;
+
+import java.io.Serializable;
+
+public interface IRow extends Comparable<IRow> , Serializable{
+	
+	/**
+	 * 根据名称返回对应名称的Column。
+	 * @param name 名称。
+	 * @return 有则返回，无则返回null。同时名称为空也返回null。
+	 */
+	public abstract IColumn getColumn(String name);
+
+	/**
+	 * 根据指定的位置index获取对应的Column。
+	 * @param index 指定位置
+	 * @return	返回指定位置的IColumn，否则返回null。
+	 */
+	public abstract IColumn getColumn(int index);
+
+	/**
+	 * 插入Column。
+	 * @param column 插入的IColumn。
+	 * @return 插入成功返回true，插入失败返回false。
+	 */
+	public abstract boolean insertColumn(IColumn column);
+	
+	/**
+	 * 根据名称和值来添加Column。名称为空，添加会失败。
+	 * @param name Column的名称。
+	 * @param value Column的值。 
+	 * @return 成功返回true，否则返回false。
+	 */
+	public abstract boolean insertColumn(String name, Object value);
+
+	/**
+	 * 更新同样名称的Column。将输入的column完全替代原有的column。
+	 * @param column 需要替代的column。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean updateColumn(IColumn column);
+	
+	/**
+	 * 只更新指定名称Column的value值。
+	 * @param name 指定名称。
+	 * @param value 指定的值。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean updateColumn(String name, Object value);
+
+	/**
+	 * 只更新指定序号Column的value值。
+	 * @param index 指定序号。
+	 * @param value 指定的值。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean updateColumn(int index, Object value);
+	
+
+	/**
+	 * 删除同样名称的column。
+	 * @param column 被删除的column。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean deleteColumn(IColumn column);
+	
+	/**
+	 * 删除指定名称的column。
+	 * @param name 指定名称
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean deleteColumn(String name);
+
+	/**
+	 * 删除指定序列的column
+	 * @param index 指定序列
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean deleteColumn(int index);
+
+	/**
+	 * 放入指定的column。如果存在同名称的，则替换该column，否则添加。
+	 * @param column 放入的column。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean putColumn(IColumn column);
+	
+	/**
+	 * 根据名称，更新或者添加column。如果存在这个column，更新其值，否则添加新的column。
+	 * @param name 指定的名称。
+	 * @param value 具体值。
+	 * @return 成功返回true，否则false。
+	 */
+	public abstract boolean putColumn(String name, Object value);
+	
+	/**
+	 * 判断是否包含指定名称的column。
+	 * @param name 指定名称。
+	 * @return 有返回true，否则false。
+	 */
+	public abstract boolean containsColumn(String name);
+	
+	/**
+	 * 清空columns。
+	 */
+	public abstract void clearColumns();
+	
+	/**
+	 * 获取column的大小。
+	 * @return 返回column的数量。
+	 */
+	public abstract int getColumnsSize();
+
+	public abstract void setHeader(IRowHeader header);
+
+	public abstract IRowHeader getHeader();
+
+	/**
+	 * 比较Row的大小。
+	 */
+	public abstract int compareTo(IRow o);
+
+	/**
+	 * 转换成能识别的概要内容。
+	 * @return 概要内容
+	 */
+	public abstract String toSummary();
+	
+	/**
+	 * 转换成能识别的数据内容。
+	 * @return 数据内容
+	 */
+	public abstract String toContent();		
+
+}

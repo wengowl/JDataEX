@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_案件质量评查系统.xsd"/>
+<CASE:complexType name="案件质量评查系统">
+<CASE:sequence>
+ <CASE:element name="AJZLPCXT_AJCWB" type="案件错误表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="AJZLPCXT_ZLPCZTXX" type="质量评查主体信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="AJZLPCXT_ZLPCST" type="质量评查实体" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="AJZLPCXT_ZLPCMXXX" type="质量评查明细信息" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="案件质量评查系统" type="案件质量评查系统"/>
+</CASE:schema>

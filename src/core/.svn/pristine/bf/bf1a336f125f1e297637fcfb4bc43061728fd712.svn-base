@@ -1,0 +1,33 @@
+package org.jdataex.flow.component.step.dataquery;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class ReadDataConfigTest {
+
+    @Test
+    public void testGetTablesByLX() throws Exception {
+           ReadConfig readDataConfig = ReadConfig.getInstance();
+          System.out.println(readDataConfig.getBSByLX("司法行政装备管理系统"));
+//        for (int i=0;i<readDataConfig.getTablesByLX("赔偿确认").size();i++){
+//            System.out.println(readDataConfig.getTablesByLX("赔偿确认").get(i));
+//        }
+
+    }
+
+    @Test
+    public void testGetColumnAndTypesByTable() throws Exception {
+
+    }
+
+    @Test
+    public void testGetColumnsByTable() throws Exception {
+
+    }
+
+    @Test
+    public void testGetBSByLX() throws Exception {
+
+    }
+}

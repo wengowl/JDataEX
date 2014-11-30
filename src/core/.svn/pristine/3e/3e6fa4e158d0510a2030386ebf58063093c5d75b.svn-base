@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_批办事项落实情况.xsd"/>
+<CASE:complexType name="批办事项落实情况">
+<CASE:sequence>
+ <CASE:element name="PBSXLSQK_PBSXXX" type="批办事项信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="PBSXLSQK_PBBLQKDJXX" type="批办办理情况登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="PBSXLSQK_PBST" type="批办实体" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="PBSXLSQK_PBSPJLXX" type="批办审批记录信息" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="批办事项落实情况" type="批办事项落实情况"/>
+
+</CASE:schema>

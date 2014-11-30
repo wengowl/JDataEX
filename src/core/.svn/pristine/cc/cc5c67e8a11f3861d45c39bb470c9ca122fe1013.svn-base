@@ -1,0 +1,133 @@
+package org.jdataex.engine.config;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.jdataex.util.FileUtil;
+import org.jdataex.util.XMLUtil;
+
+public class FlowConfig {
+
+	private String content;
+	private Document document;
+
+	private String id;
+	private String type;
+
+	private Map<String, ComponentItem> components;
+	private Map<String, StationItem> stations;
+
+	public FlowConfig(String content) throws DocumentException {
+		this.components = new HashMap<>();
+		this.stations = new HashMap<>();
+		load(content);
+	}
+
+	public void load(String content) throws DocumentException {
+		this.document = XMLUtil.createDocument(content);
+		this.content = content;
+		
+		Element root = this.document.getRootElement();
+		
+		loadBaseAttributes(root);
+
+		loadComponents(root);
+		
+		loadStations(root);
+	}
+
+	private void loadBaseAttributes(Element root) {
+		String id = XMLUtil.getStringValue(root, "id");
+		// TODO check
+		this.id = id;
+
+		String type = XMLUtil.getStringValue(root, "type");
+		// TODO check
+		this.type = type;
+	}
+
+	private void loadComponents(Element element) {
+		Node node = element.selectSingleNode("components");
+		List<?> children = node.selectNodes("component");
+		for (Iterator<?> iterator = children.iterator(); iterator
+				.hasNext();) {
+			Element e = (Element) iterator.next();
+			ComponentItem item = new ComponentItem(e);
+			
+			this.components.put(item.getId(), item);
+		}
+	}
+	
+	private void loadStations(Element element) {
+		Node node = element.selectSingleNode("stations");
+		List<?> children = node.selectNodes("station");
+		for (Iterator<?> iterator = children.iterator(); iterator
+				.hasNext();) {
+			Element e = (Element) iterator.next();
+			StationItem item = new StationItem(e);
+			
+			this.stations.put(item.getId(), item);
+		}
+	}
+
+	public void load(File file) throws DocumentException, IOException {
+		load(FileUtil.readFileToString(file));
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Map<String, ComponentItem> getComponents() {
+		return components;
+	}
+
+	public void setComponents(Map<String, ComponentItem> components) {
+		this.components = components;
+	}
+
+	public Map<String, StationItem> getStations() {
+		return stations;
+	}
+
+	public void setStations(Map<String, StationItem> stations) {
+		this.stations = stations;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
+	}
+
+}

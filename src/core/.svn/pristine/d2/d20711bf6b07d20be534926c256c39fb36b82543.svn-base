@@ -1,0 +1,70 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.flow.row.IRow;
+import org.jdataex.resource.databasepool.BasePoolConnection;
+import org.jdataex.util.logger.LoggerFactory;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ * Created by wengxf on 2014/5/30 0030.
+ */
+public class RowDataAccessProcess {
+
+
+    private SqlProcess sqlProcess = new SqlProcess();
+
+    public int insertProcess(BasePoolConnection connection,IRow row,PreparedStatement preparedStatement) throws SQLException {
+        int size = row.getColumnsSize();
+        if (size == 0) {
+            LoggerFactory.getRootLogger().info("没有字段记录！");
+            return 1;
+        }
+
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+
+        }
+        String sql = sqlProcess.insertSQL(row.getHeader().get("tableName"), names);
+       preparedStatement  = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++) {
+            preparedStatement.setObject(i, values[i - 1]);
+        }
+
+       int a= preparedStatement.executeUpdate();
+        preparedStatement.close();
+        return  a;
+    }
+
+    public int deleteProcess(BasePoolConnection connection,IRow row,PreparedStatement preparedStatement) throws SQLException {
+        int size = row.getColumnsSize();
+        if (size == 0) {
+            LoggerFactory.getRootLogger().info("没有字段记录！");
+            return 1;
+        }
+
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+
+        }
+        String sql = sqlProcess.deleteSQL(row.getHeader().get("tableName"), names);
+        preparedStatement = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++) {
+            preparedStatement.setObject(i, values[i - 1]);
+        }
+
+        int a= preparedStatement.executeUpdate();
+        preparedStatement.close();
+        return  a;
+    }
+
+}

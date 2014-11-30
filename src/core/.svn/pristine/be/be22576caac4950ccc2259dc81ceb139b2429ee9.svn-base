@@ -1,0 +1,75 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import junit.framework.TestCase;
+import org.jdataex.flow.row.*;
+import org.jdataex.resource.databasepool.DBManager;
+import org.jdataex.resource.databasepool.ShutDownPool;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReDataAccessTest extends TestCase {
+
+    public void testDoProcess() throws Exception {
+        DBManager.setPath("config/dsconfig.xml");
+        ReDataAccess reDataAccess = new ReDataAccess();
+        reDataAccess.doProcess();
+        Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+    }
+    public void testProccessInsert() throws Exception{
+        DBManager.setPath("config/dsconfig.xml");
+        MsgCacheBean msgCacheBean = new MsgCacheBean();
+        msgCacheBean.setMsgQueuedAt(new Timestamp(System.currentTimeMillis()));
+        msgCacheBean.setMsgFailedText("exception");
+        msgCacheBean.setMsgRetryTimes(2);
+        msgCacheBean.setMsgStatus("new");
+
+        IColumn column = new Column("id",2, ColumnType.INT);
+        IColumn column1 = new Column("id1",3,ColumnType.INT);
+
+        IRow row1 = new Row();
+        row1.insertColumn(column);
+        row1.insertColumn(column1);
+        row1.insertColumn(new Column("id1",2,ColumnType.INT));
+        IRowHeader header = new RowHeader();
+        header.put("referencekey","id1");
+       // header.put("operation","insert");
+        header.put("tablename","ctest");
+        row1.setHeader(header);
+        msgCacheBean.setDataObject(row1);
+        ReDataAccess reDataAccess = new ReDataAccess();
+        reDataAccess.processInsert(msgCacheBean);
+        Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+    }
+      public void testProcessCache() throws Exception{
+          DBManager.setPath("config/dsconfig.xml");
+          Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+          MsgCacheBean msgCacheBean = new MsgCacheBean();
+          msgCacheBean.setMsgQueuedAt(new Timestamp(System.currentTimeMillis()));
+          msgCacheBean.setMsgFailedText("exception");
+          msgCacheBean.setMsgRetryTimes(2);
+          msgCacheBean.setMsgStatus("new");
+
+          IColumn column = new Column("id",2, ColumnType.INT);
+          IColumn column1 = new Column("id1",3,ColumnType.INT);
+
+          IRow row1 = new Row();
+          row1.insertColumn(column);
+          row1.insertColumn(column1);
+          row1.insertColumn(new Column("id1",2,ColumnType.INT));
+          IRowHeader header = new RowHeader();
+          header.put("referencekey","id1");
+          //header.put("operation","insert");
+          header.put("tablename","ctest");
+          row1.setHeader(header);
+          msgCacheBean.setDataObject(row1);
+          msgCacheBean.setOperationType("update");
+          ReDataAccess reDataAccess = new ReDataAccess();
+          List<MsgCacheBean> list = new ArrayList<>();
+          list.add(msgCacheBean);
+          reDataAccess.processCaches(list);
+
+      }
+
+}

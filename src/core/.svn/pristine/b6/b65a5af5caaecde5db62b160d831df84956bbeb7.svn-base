@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_会议管理系统.xsd"/>
+<CASE:complexType name="会议管理系统">
+<CASE:sequence>
+ <CASE:element name="HYGLXT_HYXX" type="会议信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="HYGLXT_HYFBJL" type="会议发布记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="HYGLXT_HYSXX" type="会议室信息" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="会议管理系统" type="会议管理系统"/>
+
+</CASE:schema>

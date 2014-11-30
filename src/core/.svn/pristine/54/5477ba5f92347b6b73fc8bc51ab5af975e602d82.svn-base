@@ -1,0 +1,28 @@
+package org.jdataex.flow.handler;
+
+import static org.junit.Assert.*;
+
+import org.jdataex.BaseTest;
+import org.jdataex.flow.component.ComponentException;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TestBaseHandler extends BaseTest{
+
+	IComponentHandler handler = new StepHandler(new MockStep());
+
+	@Test
+	public void test() {
+		
+		try {
+			handler.execute();
+		} catch (ComponentException e) {
+			fail(e.getMessage());
+		}
+		
+	}
+
+}

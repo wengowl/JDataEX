@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dataexchange.court.gov.cn/2009/data" CASE:elementFormDefault="qualified" xsd:attributeFormDefault="unqualified">
+  <xsd:attribute name="ACTION_TYPE" type="c20" use="required"/>
+  <xsd:attribute name="DEPT_CODE" type="c20" use="required"/>
+  <xsd:attribute name="APP_CODE" type="c20" use="required"/>
+  <include schemaLocation="_0_结构组织机构.xsd"/>
+  <CASE:complexType name="组织机构">
+    <CASE:sequence>
+      <CASE:element name="ZZJG_JBXX" type="基本信息" minOccurs="0" maxOccurs="1"/>
+    </CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="组织机构" type="组织机构"/>
+</CASE:schema>

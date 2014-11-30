@@ -1,0 +1,267 @@
+package org.jdataex.flow.component;
+
+import org.jdataex.flow.component.step.dataaccess.ComplexAutoDataAccess;
+import org.jdataex.flow.component.step.dataaccess.ReDataAccess;
+import org.jdataex.flow.component.step.trigger.TriggerComponent;
+import org.jdataex.flow.row.*;
+import org.jdataex.resource.databasepool.BasePoolConnection;
+import org.jdataex.resource.databasepool.DBManager;
+import org.jdataex.resource.databasepool.ShutDownPool;
+
+import java.io.ByteArrayInputStream;
+import java.sql.*;
+import java.util.UUID;
+
+/**
+ * Created by wengxf on 14-4-28.
+ */
+public class Test {
+
+
+    public static void main(String[] args) {
+      /*  List<String> servicelist = new ArrayList<>();
+
+        for (int i = 0; i < 1002; i++) {
+            servicelist.add(" service " + i);
+        }
+        int count = (int) Math.round((float) servicelist.size() / 5.0);*/
+       /* TriggerCreateThread thread1 = new TriggerCreateThread(0, count, servicelist);
+        TriggerCreateThread thread2 = new TriggerCreateThread(count, count * 2, servicelist);
+        TriggerCreateThread thread3 = new TriggerCreateThread(2 * count, 3 * count, servicelist);
+        TriggerCreateThread thread4 = new TriggerCreateThread(3 * count, 4 * count, servicelist);
+        TriggerCreateThread thread5 = new TriggerCreateThread(4 * count, servicelist.size(), servicelist);
+        new Thread(thread1, "Thread 1 ").start();
+        new Thread(thread2, "Thread 2 ").start();
+        new Thread(thread3, "Thread 3 ").start();
+        new Thread(thread4, "Thread 4 ").start();
+        new Thread(thread5, "Thread 5 ").start();
+*/
+
+  /*      List<String> serviceList = new ArrayList<>();
+        List<TriggerDataBean> triggerDataBeanList = new ArrayList<>();  //映射关系列表
+        List<String> table = new ArrayList<>();
+        ExcelConfigLoad load = new ExcelConfigLoad();
+        load.createConfig("F:\\公司\\四川高院\\xxx.xls", "F:\\公司\\四川高院\\xxxxxx.xls");
+        load.deleteConfig("F:\\公司\\四川高院\\xxx.xls", "F:\\公司\\四川高院\\xxxxxx.xls");
+        load.updateConfig("F:\\公司\\四川高院\\xxx.xls", "F:\\公司\\四川高院\\xxxxxx.xls");
+*/
+         /*   List<String> exchanges = new ArrayList<>();
+            exchanges.add("a+b");
+            TriggerDataBean triggerDataBean = new TriggerDataBean();
+            triggerDataBean.setExchanges(exchanges);
+            List<String> field = new ArrayList<>();
+            field.add("a");
+            field.add("b");
+            Map<String, Object > sourcevalue = new HashMap<>();
+            sourcevalue.put("a",1);
+            sourcevalue.put("b",2);
+           triggerDataBean.setSourcevalue(sourcevalue);
+           triggerDataBean.setField(field);
+           String ex= "a+b";
+
+        String result =  AviatorEvaluator.execute(ex, triggerDataBean.getSourcevalue()).toString();
+        System.out.println(result);*/
+
+        // TriggerComponent triggerComponent = new TriggerComponent("F:\\公司\\四川高院\\",10,10,"sybase");
+        // triggerComponent.configHandler();
+        // int a = Math.round((float)1/(float)10);
+
+        /*double a =  (double)1/(double)10;
+        System.out.println(Math.ceil(a));*/
+//        ColumnType columnType = ColumnType.STRING;
+//        String s= columnType.getName();
+//        System.out.println(s);
+//
+//        int i =1;
+//        Test test = new Test();
+//        test.cont(i);
+//         System.out.println(i);
+        //DBManager.setPath("config/dsconfig.xml");
+        TriggerComponent triggerComponent = new TriggerComponent("F:\\公司\\四川高院\\",10,10,"sybase");
+       //triggerComponent.configHandler();
+        //triggerComponent.dataHandler();
+        RowSet rowSet = new RowSet();
+       // for (int b = 0; b < 5; b++) {
+            IRow row = new Row();
+//            for (int a = 0; a < 4; a++) {
+//                IColumn column = new Column("id"+(a+1), 2, ColumnType.INT);
+//                row.insertColumn(column);
+//
+//            }
+            IColumn column = new Column("id",2,ColumnType.INT);
+            IColumn column1 = new Column("id1",3,ColumnType.INT);
+
+            IRow row1 = new Row();
+            row1.insertColumn(column);
+            row1.insertColumn(column1);
+            row1.insertColumn(new Column("id1",2,ColumnType.INT));
+            IRowHeader header = new RowHeader();
+            header.put("referencekey","id1");
+            header.put("operation",row.getHeader().get("operation"));
+            header.put("tablename","ctest");
+            row1.setHeader(header);
+            IColumn column2= new Column("id1",row1,ColumnType.ComplexRow);
+            column2.putProperty("type",ColumnType.INT);
+            column2.putProperty("value",4);
+            row.insertColumn(column2);
+            // row.insertColumn(new Column("id1",2,ColumnType.INT));
+            IRowHeader rowHeader = new RowHeader();
+            rowHeader.put("tablename", "test1");
+            rowHeader.put("operation", "update");
+            rowHeader.put("referencekey","id1");
+            row.setHeader(rowHeader);
+
+      //  for(int i=0;i<30;i++){
+            rowSet.putRow(row);
+          //  System.out.println("put rowset  : "+i);
+      //  }
+        IRow nrow = new Row();
+//            for (int a = 0; a < 4; a++) {
+//                IColumn column = new Column("id"+(a+1), 2, ColumnType.INT);
+//                row.insertColumn(column);
+//
+//            }
+        IColumn ncolumn = new Column("id",2,ColumnType.INT);
+        IColumn ncolumn1 = new Column("id1",3,ColumnType.INT);
+
+        IRow nrow1 = new Row();
+        nrow1.insertColumn(ncolumn);
+       nrow1.insertColumn(ncolumn1);
+        nrow1.insertColumn(new Column("id1",2,ColumnType.INT));
+        IRowHeader nheader = new RowHeader();
+        nheader.put("referencekey","id1");
+        nheader.put("operation",nrow.getHeader().get("operation"));
+        nheader.put("tablename","ctest");
+        nrow1.setHeader(nheader);
+        IColumn ncolumn2= new Column("id1",nrow1,ColumnType.ComplexRow);
+        ncolumn2.putProperty("type",ColumnType.INT);
+        ncolumn2.putProperty("value",4);
+        row.insertColumn(ncolumn2);
+        // row.insertColumn(new Column("id1",2,ColumnType.INT));
+        IRowHeader nrowHeader = new RowHeader();
+        nrowHeader.put("tablename", "test1");
+        nrowHeader.put("operation", "update");
+        rowHeader.put("referencekey","id1");
+        nrow.setHeader(nrowHeader);
+        System.out.println("rowsetsize___"+rowSet.size());
+      //  }
+        rowSet.putRow(nrow);
+//        ComplexAutoDataAccess autoDataAccess = new ComplexAutoDataAccess();
+//
+//        autoDataAccess.processComplexRowset(rowSet);
+//        //autoDataAccess.processComplexRowset(rowSet);
+//        ReDataAccess reDataAccess = new ReDataAccess();
+        DBManager dbManager = DBManager.getInstance();
+
+        BasePoolConnection basePoolConnection = dbManager.getConnection(null);
+        /*String sql = "insert into JJJC_AJSLQK(ID,APP_CODE,DEPT_CODE,REG_TIME,UPDATE_TIME,AJBS)values(?,?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement= basePoolConnection.prepareStatement(sql);
+            preparedStatement.setObject(1, UUID.randomUUID().toString());
+            preparedStatement.setObject(2, "GF2009－01");
+            preparedStatement.setObject(3, "GF2009－01");
+            preparedStatement.setObject(4, "10:20:33", Types.TIMESTAMP);
+            preparedStatement.setObject(5, new Timestamp(System.currentTimeMillis()));
+            preparedStatement.setObject(6, 2428342);
+            preparedStatement.execute();
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+        String sql ="select BZ from JJJC_BSCRXX";
+        try {
+            ResultSet set = basePoolConnection.executeQuery(sql);
+            while (set.next()){
+                System.out.println(set.getBlob(1));
+                ByteArrayInputStream msgContent =(ByteArrayInputStream) set.getBlob(1).getBinaryStream();
+                byte[] byte_data = new byte[msgContent.available()];
+                msgContent.read(byte_data, 0,byte_data.length);
+                String result = new String(byte_data);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            basePoolConnection.release();
+        }
+        // reDataAccess.doProcess();
+        Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+//        AutoDataAccess autoDataAccess = new AutoDataAccess();
+//        autoDataAccess.processRowset(rowSet);
+//        Runtime.getRuntime().addShutdownHook(new ShutDownPool());
+
+        //  DBManager.close();
+//        String sql = "insert into test (id) values(?)";
+//        String sql1 = "select * from login_log";
+//        DBOperation dbOperation =new DBOperation();
+//        Object[] objects = {1};
+//        int a=0;
+//        int[] types ={Types.INTEGER};
+//        try {
+//          a=  dbOperation.sqlUpdate(sql,objects, types);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        ResultSet resultSet= dbOperation.sqlQuery(sql1);
+//        try {
+//            while(resultSet.next())
+//            System.out.println(a+resultSet.getString(1));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+/*
+
+        try {
+            Class.forName("com.sybase.jdbc4.jdbc.SybDriver").newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url="jdbc:sybase:Tds:10.10.22.21:5000/test";
+
+        String user="datatest";
+
+        String password="datatest";
+        Connection conn = null;
+        try {
+             conn= DriverManager.getConnection(url, user, password);
+            String sql = "select * from test0";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+                System.out.println("result" + resultSet.getString(1));
+            resultSet.close();
+            preparedStatement.close();
+           // conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+*/
+        /*Vector<Integer> a =null;
+        a = new Vector<>();
+        a.addElement(1);
+        a.addElement(1);
+        Enumeration enumeration = a.elements();
+        while(enumeration.hasMoreElements()){
+            int b = (int)enumeration.nextElement();
+                System.out.println();
+            a.removeElement(b);
+            System.out.println("Size a "+a.size());
+        }  */
+
+    }
+
+
+}

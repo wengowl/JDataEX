@@ -1,0 +1,42 @@
+package org.jdataex.channel.local;
+
+import junit.framework.Assert;
+
+import org.jdataex.channel.IChannelInput;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class LocalChannelInputTest {
+	
+	private IChannelInput<String> channelInput;
+	
+	@Before
+	public void serUp(){
+		channelInput = new LocalChannelInput<String>("test1");
+	}
+	
+	@After
+	public void clear(){
+		channelInput.close();
+		channelInput = null;
+	}
+
+	@Test
+	public void testBind() {
+		channelInput.bind(null);
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testSetRead() {
+		channelInput.setRead(false);
+		testDoReadMsg();
+	}
+
+	@Test
+	public void testDoReadMsg() {
+		Assert.assertFalse(channelInput.doReadMsg(null));
+	}
+
+}

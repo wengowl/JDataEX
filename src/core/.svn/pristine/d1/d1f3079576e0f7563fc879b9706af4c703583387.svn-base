@@ -1,0 +1,36 @@
+package org.jdataex.flow.station.queue;
+
+import org.jdataex.core.config.NodeConfig;
+import org.jdataex.core.entity.EntityFactory;
+import org.jdataex.flow.row.IRowSet;
+import org.jdataex.flow.row.Row;
+import org.jdataex.flow.row.RowSet;
+import org.jdataex.util.logger.LoggerFactory;
+import org.jdataex.util.scheduler.IScheduler;
+
+public class FirstQueueStepStation extends QueueStepStation {
+	private IScheduler scheduler;
+
+	public FirstQueueStepStation() {
+		try {
+			this.scheduler = (IScheduler) EntityFactory
+					.newInstance(IScheduler.class);
+
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
+			LoggerFactory.getRootLogger().error("Not constructor.");
+		}
+	}
+
+	@Override
+	public IRowSet poll(String id) {
+		if (this.scheduler.isRunTime()) {
+			this.scheduler.nextRunTime();
+			IRowSet rs = new RowSet();
+			rs.putRow(new Row());
+			return rs;
+		} else {
+			return null;
+		}
+	}
+}

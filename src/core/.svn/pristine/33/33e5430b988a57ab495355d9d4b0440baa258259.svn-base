@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<纪检监察 xmlns="http://dataexchange.court.gov.cn/2009/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dataexchange.court.gov.cn/2009/data 0_纪检监察.xsd" ACTION_TYPE="insert" DEPT_CODE="GF2009－01" APP_CODE="GF2009－01">
+	<AJBS>2428342</AJBS>
+	
+	<JJJC_AJSLQK>
+		<SCCLSJ>2013-01-01</SCCLSJ>
+		<CLLX>1</CLLX>
+		<CLJG>0</CLJG>
+	</JJJC_AJSLQK>
+	<JJJC_BSCRXX>
+		<XM>	姓名</XM>
+		<XB>	0	</XB>
+		<CSRQ>	2010-01-01</CSRQ>
+		<NL>	22	</NL>	
+		<MZ>	1	 </MZ>
+		<WHCD>	1</WHCD>
+		<ZZMM>	1</ZZMM>
+		<XZJB>1</XZJB>
+		<GZBM>	1</GZBM>
+		<ZW>	职务</ZW>
+		<FYGZSJ>	2010-01-01</FYGZSJ>
+		<CJGZSJ>	2001-01-01</CJGZSJ>
+		<WFWJLX>	1</WFWJLX>	
+		<FSSJ>	2014-10-09</FSSJ>
+		<FXSJ>	2014-10-08</FXSJ>	
+		<XSLY>	1</XSLY>
+		<CCJGLX>	1</CCJGLX>
+		<CCJGMC>	初查机关名称</CCJGMC>
+		<CQCS>	1</CQCS>	
+		<LYHZQL>1</LYHZQL>
+		<BZ>中国</BZ>
+	</JJJC_BSCRXX>
+	<JJJC_SAHLAXX>
+		<AH>审查起始日期</AH>
+		<SCQSRQ>2014-10-08</SCQSRQ>
+	</JJJC_SAHLAXX>
+	<JJJC_WFWJQK>
+		<XH>1</XH>
+		<WFWJLX>1</WFWJLX>
+		<FSSJ>2014-10-09</FSSJ>
+		<FXSJ>2014-10-09</FXSJ>	
+		<XSLY>	1</XSLY>
+		<CCJGLX>1</CCJGLX>
+		<CCJGMC>初查机关名称</CCJGMC>
+		<CQCS>1</CQCS>
+		<LYHZQL>1</LYHZQL>
+		<BZ	>世界</BZ>
+	</JJJC_WFWJQK>
+</纪检监察>

@@ -1,0 +1,42 @@
+package org.jdataex.flow.component;
+
+import java.util.UUID;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.ILogger;
+
+public abstract class BaseComponent implements IComponent ,ILoggable{
+
+	private ILogger logger;
+	private GUIC guic;
+	
+	public BaseComponent() {
+		this.guic = new GUIC(UUID.randomUUID());
+	}
+	
+	public BaseComponent(GUIC guic) {
+		super();
+		this.guic = guic;
+	}
+
+	@Override
+	public ILogger getLogger() {
+		return logger;
+	}
+
+	@Override
+	public void setLogger(ILogger logger) {
+		this.logger = logger;
+	}
+	
+	@Override
+	public GUIC getGUIC() {
+		return guic;
+	}
+
+	@Override
+	public void setGUIC(GUIC guic) {
+		this.guic = guic;
+	}
+}

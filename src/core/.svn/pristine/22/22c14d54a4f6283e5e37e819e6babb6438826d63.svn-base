@@ -1,0 +1,46 @@
+package org.jdataex.channel.future;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.executor.Task;
+
+/**
+ * 默认的channelFuture实现
+ * 
+ * @author chaos
+ * 
+ */
+public class DefaultChannelFuture<T> implements IChannelFuture<T> {
+
+	private IEvent<T> event;
+
+	private Task<T> task;
+
+	public DefaultChannelFuture(Task<T> task) {
+		this.task = task;
+		event = task.getEvent();
+	}
+
+	@Override
+	public boolean isSuccess() {		
+		while (task.isCompleted()) {
+			try {
+				task.wait();
+			} catch (InterruptedException e) {
+			}
+		}
+		return task.isSuccessed();
+	}
+
+	@Override
+	public BaseNestedException error() {
+		this.isSuccess();
+		return task.getException();
+	}
+
+	@Override
+	public IEvent<T> event() {
+		return event;
+	}
+
+}

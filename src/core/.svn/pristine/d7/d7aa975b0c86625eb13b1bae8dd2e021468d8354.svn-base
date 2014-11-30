@@ -1,0 +1,31 @@
+package org.jdataex.channel.local;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+public final class LocalNamingContext {
+
+	private static LocalNamingContext ln = new LocalNamingContext();
+	
+	private static Context context;
+	
+	private LocalNamingContext(){
+		try {
+			context = new InitialContext();
+		} catch (NamingException e) {
+		}
+	}
+	
+	public final static LocalNamingContext getInstance(){
+		return ln;
+	}
+	
+	public void bind(String name,Object obj) throws NamingException{
+		context.bind(name, obj);
+	}
+	
+	public Object lookUp(String name) throws NamingException{
+		return context.lookup(name);
+	}
+}

@@ -1,0 +1,92 @@
+package org.jdataex.channel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jdataex.channel.common.DefaultValues;
+import org.jdataex.channel.executor.TLQGroupInputExecutor;
+import org.jdataex.channel.executor.TLQOutputExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.mock.MockHandler;
+import org.jdataex.channel.mock.MockSystemHandler;
+import org.jdataex.channel.net.NetAddress;
+import org.jdataex.channel.tlq.TLQChannelGroupInput;
+import org.jdataex.channel.tlq.TLQChannelOutput;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class DefaultChannelStageTLQ2Test {
+	
+	static IChannelStage<String> stage1;
+
+	static IChannelStage<String> stage2;
+	
+	@BeforeClass
+	public static void setUp(){
+		stage1 = createStage("stage1", 1, 1, "input1", "output1", "lq2", "lq");
+
+		stage2 = createStage("stage2", 1, 0, "input2", "output2", "lq", "");
+
+		@SuppressWarnings("rawtypes")
+		Map map = new HashMap();
+		map.put("output1", new NetAddress("127.0.0.1", 10261));
+
+		stage1.start(new NetAddress("127.0.0.1", 10261), map);
+
+		stage2.start(new NetAddress("127.0.0.1", 10261), null);
+
+		System.out.println("start ok");
+	}
+	
+	static IChannelStage<String> createStage(String name, int inputExeNumber,
+			int outputExeNumber, String inputName, String outputName,
+			String inputQueue, String outputQueue) {
+		IChannelStage<String> stage = new DefaultChannelStage<String>(name);
+		IChannelContainer<String> cr = new DefaultChannelContainer<String>();
+		if (outputExeNumber == 0) {
+			outputExeNumber = 1;
+		} else {
+			IChannelOutput<String> out = new TLQChannelOutput<String>(
+					outputName, "qcu1", outputQueue);
+			out.setReConnectTimes(5, 1000);
+			cr.addOutput(out);
+		}
+		cr.setInput(new TLQChannelGroupInput<String>(inputName, 5, DefaultValues.TLQ_MSG, "qcu1",inputQueue));
+		stage.setChannelContainer(cr);
+		stage.setExecutor(new TLQGroupInputExecutor<String>(),
+				new TLQOutputExecutor<String>());
+		stage.addBefare(new MockHandler<String>());
+		stage.addAfter(new MockSystemHandler<String>());
+		return stage;
+	}
+	
+	@AfterClass
+	public static void clear(){
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		stage1.shutdown();
+		stage2.shutdown();
+	}
+	
+	@Test
+	public void testSend() {
+		for (int i = 0; i < 10; i++) {
+			IChannelFuture<String>[] iff = stage1.writeMsg("dddfdsafasf"+(i+1),
+					"output1");
+		}
+	}
+	
+	public static void main(String[] args){
+		DefaultChannelStageTLQ2Test tt = new DefaultChannelStageTLQ2Test();
+		
+		tt.setUp();
+		
+		//tt.testSend();
+		
+		tt.clear();
+	}
+}

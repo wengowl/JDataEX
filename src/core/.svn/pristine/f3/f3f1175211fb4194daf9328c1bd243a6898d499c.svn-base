@@ -1,0 +1,20 @@
+package org.jdataex.flow.component;
+
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.ILogger;
+
+public abstract class BaseComponent implements IComponent ,ILoggable{
+
+	private ILogger logger;
+
+	@Override
+	public ILogger getLogger() {
+		return logger;
+	}
+
+	@Override
+	public void setLogger(ILogger logger) {
+		this.logger = logger;
+	}
+	
+}

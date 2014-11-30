@@ -1,0 +1,294 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.flow.component.step.dataquery.ReadDataConfig;
+import org.jdataex.flow.row.ColumnType;
+import org.jdataex.flow.row.IColumn;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.resource.databasepool.BasePoolConnection;
+import org.jdataex.util.CommonUtil;
+import org.jdataex.util.logger.LoggerFactory;
+import sun.misc.BASE64Encoder;
+
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
+
+/**
+ * Created by wengxf on 2014/5/30 0030.
+ */
+public class RowDataAccessProcess {
+
+
+    private SqlProcess sqlProcess = new SqlProcess();
+
+    public int insertProcess(BasePoolConnection connection,IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        if (size == 0) {
+            LoggerFactory.getRootLogger().info("没有字段记录！");
+            return 1;
+        }
+
+
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+//            System.out.println("值："+values[i]);
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+        }
+        String sql = sqlProcess.insertSQL(row.getHeader().get("tableName"), names);
+        PreparedStatement preparedStatement  = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++) {
+            if (types[i-1]==Types.BLOB){
+
+                try {
+//                   // 首先转换编码为UTF-8，然后再BASE64化,存为blob
+                    BASE64Encoder encoder = new BASE64Encoder();
+                    byte[] cert_dataBytes = encoder.encode(values[i - 1].toString().getBytes("utf-8")).getBytes();
+                    ByteArrayInputStream bais1 = new ByteArrayInputStream(cert_dataBytes);
+                    preparedStatement.setBinaryStream(i,bais1);
+                    try {
+                        bais1.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+        }
+
+       int a= preparedStatement.executeUpdate();
+        preparedStatement.close();
+        return  a;
+    }
+
+    public int deleteProcess(BasePoolConnection connection,IRow row) throws SQLException {
+        int size = row.getColumnsSize();
+        if (size == 0) {
+            LoggerFactory.getRootLogger().info("没有字段记录！");
+            return 1;
+        }
+
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+       /* for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+            System.out.println("值："+values[i]);
+            types[i]=columnTypetoSQLType(row.getColumn(i).getType());
+        }
+        String sql = sqlProcess.deleteSQL(row.getHeader().get("tableName"), names);
+       PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++) {
+            if (types[i-1]==Types.BLOB){
+
+                try {
+                    // 首先转换编码为UTF-8，然后再BASE64化,存为blob
+                    BASE64Encoder encoder = new BASE64Encoder();
+                    byte[] cert_dataBytes = encoder.encode(values[i - 1].toString().getBytes("utf-8")).getBytes();
+                    ByteArrayInputStream bais1 = new ByteArrayInputStream(cert_dataBytes);
+                    preparedStatement.setBinaryStream(i,bais1);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+        }*/
+        int a=0;
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+//            System.out.println("值："+values[i]);
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            if (types[i]!=Types.BLOB){
+                a=a+1;
+            }
+
+        }
+        String[] con = new String[a];    //去除blob字段作为更新的条件，blob无法作为条件
+        Object[] convalues = new Object[a];
+        int[] contypes = new int[a];
+        for (int i=0,b=0;i<values.length&&b<a;i++){
+            if (types[i]!=Types.BLOB){
+                con[b]=names[i];
+                convalues[b]=values[i];
+                contypes[b]=types[i];
+                b++ ;
+            }
+        }
+        String sql = sqlProcess.deleteSQL(row.getHeader().get("tableName"), con);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        去除blob字段作为条件
+        for (int i=1;i<=convalues.length;i++){
+            preparedStatement.setObject(i, convalues[i - 1], contypes[i - 1]);
+        }
+        int n= preparedStatement.executeUpdate();
+        preparedStatement.close();
+        return  n;
+    }
+
+    public int updateProcess(BasePoolConnection connection,IRow row) throws SQLException {
+       /* IColumn column = row.getColumn("REG_TIME") ;
+        row.deleteColumn(column);*/
+        System.out.println("totalMemory（）"+Runtime.getRuntime().totalMemory() );
+       System.out.println("freeMemory（）"+Runtime.getRuntime().freeMemory() );
+        int size = row.getColumnsSize();
+        if (size == 0) {
+            LoggerFactory.getRootLogger().info("没有字段记录！");
+            return 1;
+        }
+        if (size<=4&& row.getColumn(0).getName().equalsIgnoreCase("AJBS")){
+
+           if(size==4 ) {
+               LoggerFactory.getRootLogger().info("只有案件标识");
+               return 1;
+           }
+            if (size<=3){
+                LoggerFactory.getRootLogger().info("没有字段记录");
+                return 1;
+            }
+        }
+         int a=0;
+        boolean flag =false;
+        List<String> conditons_column = ReadDataConfig.getInstance().getConditionColumnByTable(row.getHeader().get("tableName"));
+        if (conditons_column!=null){
+          //  a=conditons_column.size();
+            flag=true;
+        }
+        String[] names = new String[size];
+        Object[] values = new Object[size];
+        int[] types = new int[size];
+        for (int i = 0; i < size; i++) {
+            names[i] = row.getColumn(i).getName();
+            values[i] = row.getColumn(i).getValue();
+//            System.out.println("值："+values[i]+"  "+ CommonUtil.isNullValue(values[i]));
+            types[i] = columnTypetoSQLType(row.getColumn(i).getType());
+            if (types[i]!=Types.BLOB&&CommonUtil.isNotNullValue(values[i])){
+                a=a+1;
+            }
+
+        }
+        String[] con = new String[a];    //去除blob字段作为更新的条件，blob无法作为条件
+        Object[] convalues = new Object[a];
+        int[] contypes = new int[a];
+
+        for (int i=0,b=0;i<values.length&&b<a;i++){
+            if (types[i]!=Types.BLOB&&CommonUtil.isNotNullValue(values[i])){
+               con[b]=names[i];
+                convalues[b]=values[i];
+                contypes[b]=types[i];
+                b++ ;
+            }
+        }
+        /*names[size] = names[0];//row.getColumn(0).getName();
+        values[size] = values[0];//row.getColumn(0).getValue();
+        types[size] = types[0];//columnTypetoSQLType(row.getColumn(0).getType());*/
+        String sql = sqlProcess.updateSQLinsert(row.getHeader().get("tableName"), names,con);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++) {
+            if (types[i-1]==Types.BLOB){
+
+                try {
+                    // 首先转换编码为UTF-8，然后再BASE64化,存为blob
+
+                    BASE64Encoder encoder = new BASE64Encoder();
+                    byte[] cert_dataBytes = encoder.encode(values[i - 1].toString().getBytes("utf-8")).getBytes();
+                    ByteArrayInputStream bais1 = new ByteArrayInputStream(cert_dataBytes);
+                    preparedStatement.setBinaryStream(i,bais1);
+                    try {
+                        bais1.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                   /* if (i<=(values.length-5)) {
+                        ByteArrayInputStream bais2 =new ByteArrayInputStream(cert_dataBytes);
+                        preparedStatement.setBinaryStream(i+values.length,bais2);
+                    }*/
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                preparedStatement.setObject(i, values[i - 1], types[i - 1]);
+            }
+
+        }
+        for (int i=1;i<=con.length-3;i++){
+            preparedStatement.setObject(i+values.length, convalues[i - 1], contypes[i - 1]);
+        }
+
+        int n= preparedStatement.executeUpdate();
+        preparedStatement.close();
+       // row.insertColumn(column);
+        return  n;
+
+    }
+
+    /**
+     * 把类型转换为JDBC类型
+     */
+    //TODO 可能还缺少一些类型
+    public int columnTypetoSQLType(ColumnType columnType) {
+        //String type = columnType.getName();
+        switch (columnType) {
+            case STRING:
+                return Types.VARCHAR;
+            case BIGDECIMAL:
+                return Types.DECIMAL;
+            case BOOLEAN:
+                return Types.BOOLEAN;
+            case BYTE:
+                return Types.TINYINT;
+            case SHORT:
+                return Types.SMALLINT;
+            case INT:
+                return Types.INTEGER;
+            case LONG:
+                return Types.BIGINT;
+            case FLOAT:
+                return Types.FLOAT;
+            case BYTES:
+                return Types.VARBINARY;
+            case DOUBLE:
+                return Types.DOUBLE;
+            case DATE:
+                return Types.DATE;
+            case TIME:
+                return Types.TIME;
+            case TIMESTAMP:
+                return Types.TIMESTAMP;
+            case CLOB:
+                return Types.CLOB;
+            case BLOB:
+                return Types.BLOB;
+            case ARRAY:
+                return Types.ARRAY;
+            case STRUCT:
+                return Types.STRUCT;
+            case REF:
+                return Types.REF;
+            case URL:
+                return Types.VARCHAR;
+            case JAVA_OBJECT:
+                return Types.JAVA_OBJECT;
+
+        }
+
+        return Types.JAVA_OBJECT;
+    }
+
+
+}

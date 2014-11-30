@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="发送内容配置信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PZBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DXNR" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BLDY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRLX" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSLB" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SMCS" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="短信发送记录表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PZBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DHHM" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DXJSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DXNR" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFFSZT" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

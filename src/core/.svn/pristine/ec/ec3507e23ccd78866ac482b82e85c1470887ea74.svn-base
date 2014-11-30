@@ -1,0 +1,48 @@
+package org.jdataex.util;
+
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.IllegalNumberException;
+
+public class AssertUtil {
+
+	public static void assertNull(String message, Object object) {
+		if(CommonUtil.isNull(object)) throw new NullPointerException(message);
+	}
+
+	public static void assertNullSingleMessage(String partMessage,Object value) {
+		assertNull(partMessage + " is null.", value);
+	}
+	
+	public static void assertNull(Object object) {
+	    assertNull("", object);
+	}
+	
+	public static void assertNullOrBlank(String message, String text) {
+		if(CommonUtil.isNullOrBlank(text)) throw new NullPointerException(message);
+	}
+
+	public static void assertNullOrBlank(String text) {
+		assertNullOrBlank("", text);
+	}
+	
+	public static void assertNullOrBlankSingleMessage(String partMessage,String text) {
+		assertNullOrBlank(partMessage + " is null or blank.", text);
+	}
+	
+	public static void assertNegativeInt(String msg,int number){
+		if(number <=0) throw new IllegalNumberException(msg);
+	}
+	
+	public static void assertNegativeInt(int number){
+		assertNegativeInt("Illegal number exception: number must > 0 but its "+number,number);
+	}
+	
+	public static void assertTrue(String msg,boolean value){
+		assertFalse(msg,!value);
+	}
+	
+	public static void assertFalse(String msg,boolean value){
+		if(value==true) throw new BaseNestedException(msg);
+	}
+
+}

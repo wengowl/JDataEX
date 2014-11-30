@@ -1,0 +1,99 @@
+package org.jdataex.engine.config;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.dom4j.Element;
+import org.jdataex.util.XMLUtil;
+
+public class ComponentItem {
+
+	private String id;
+	private String clazz;
+	private Map<String, String> attributes;
+	private Map<String, AttributeItem> attributeItems;
+	private StationRefItem inputStationRefItem;
+	private StationRefItem outputStationRefItem;
+
+	public ComponentItem(Element e) {
+
+		String id = XMLUtil.getAttributeValue(e, "id");
+		this.id = id;
+		String clazz = XMLUtil.getAttributeValue(e, "class");
+		this.clazz = clazz;
+
+		this.attributes = new HashMap<>();
+		this.attributeItems = new HashMap<>();
+		
+		List<Element> list = e.elements();
+		for (Element element : list) {
+			if ("station-ref".equalsIgnoreCase(element.getName())) {
+				if ("input".equalsIgnoreCase(XMLUtil.getAttributeValue(element,
+						"type"))) {
+					this.inputStationRefItem = new StationRefItem(element);
+				} else if ("output".equalsIgnoreCase(XMLUtil.getAttributeValue(
+						element, "type"))) {
+					this.outputStationRefItem = new StationRefItem(element);
+				}
+			} else {
+				if (element.elements().size() == 0) {
+					this.attributes.put(element.getName(),
+							element.getStringValue());
+				} else {
+					this.attributeItems.put(element.getName(),
+							new AttributeItem(element));
+				}
+			}
+		}
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
+	}
+
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Map<String, String> attributes) {
+		this.attributes = attributes;
+	}
+
+	public Map<String, AttributeItem> getAttributeItems() {
+		return attributeItems;
+	}
+
+	public void setAttributeItems(Map<String, AttributeItem> attributeItems) {
+		this.attributeItems = attributeItems;
+	}
+
+	public StationRefItem getInputStationRefItem() {
+		return inputStationRefItem;
+	}
+
+	public void setInputStationRefItem(StationRefItem inputStation) {
+		this.inputStationRefItem = inputStation;
+	}
+
+	public StationRefItem getOutputStationRefItem() {
+		return outputStationRefItem;
+	}
+
+	public void setOutputStationRefItem(StationRefItem outputStation) {
+		this.outputStationRefItem = outputStation;
+	}
+
+}

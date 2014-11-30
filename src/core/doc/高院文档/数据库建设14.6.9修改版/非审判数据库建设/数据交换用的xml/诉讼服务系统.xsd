@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_诉讼服务系统.xsd"/>
+<CASE:complexType name="诉讼服务系统">
+<CASE:sequence>
+ <CASE:element name="SSFWXT_SSFWZTXX" type="诉讼服务主体信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWCLQKXX" type="诉讼服务处理情况信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWCLQKXX2" type="诉讼服务处理情况信息2" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWCLQKXX3" type="诉讼服务处理情况信息3" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWCXKTXX" type="诉讼服务外网查询开庭信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWCXAJJBXX" type="诉讼服务外网查询案件基本信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWCXAJDSRXX" type="诉讼服务外网查询案件当事人信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWCXAJJDJDXX" type="诉讼服务外网查询案件进度节点信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWCXAJJDJL" type="诉讼服务外网查询案件进度记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWLY-SY" type="诉讼服务外网留言、释疑" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWYYLASQ" type="诉讼服务外网预约立案申请" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWYYLAZJCL" type="诉讼服务外网预约立案证据材料" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWWWYYLASSRYGC" type="诉讼服务外网预约立案诉讼人员构成" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWST" type="诉讼服务实体" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWYQSQ" type="诉讼服务延期申请" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWRZXX" type="诉讼服务日志信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWLCRZ" type="诉讼服务流程日志" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWLCPZXX" type="诉讼服务流程配置信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWYSLZJL" type="诉讼服务移送流转记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWQZJL" type="诉讼服务签字记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWCCQK" type="诉讼服务财产情况" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SSFWXT_SSFWSDJL" type="诉讼服务送达记录" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+ </CASE:complexType>
+
+  <CASE:element name="诉讼服务系统" type="诉讼服务系统"/>
+
+</CASE:schema>
+

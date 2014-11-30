@@ -1,0 +1,61 @@
+package org.jdataex.channel;
+
+import java.net.SocketAddress;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.future.IChannelFuture;
+
+/**
+ * 由于发消息
+ * @author chaos
+ *
+ */
+public interface IChannelOutput<T>{
+	
+	/**
+	 * 返回channelOutput名称
+	 * @return
+	 */
+	public String getName();
+	
+	/**
+	 * 是否可写，如果消息队列满了或者管道关闭写功能时不能写
+	 * @return  true 可写 false 不可写
+	 */
+	public boolean canWrite();
+	
+	/**
+	 * 设置管道是否可写,通常在系统执行监控或者收到event指令的时候执行操作.
+	 * @param value  true 可读  false 不可读
+	 */
+	public void setWrite(boolean value);
+	
+	
+	/**
+	 * 将消息写入channel并刷新，object必须包含消息类型说明
+	 * File 文件类型
+	 * Msg  消息类型
+	 * @param msg
+	 * @return {@link IChannelFuture} 返回回执信息。
+	 */
+	public IChannelFuture<T> writeAndFlush(IEvent<T> event);
+	
+	/**
+	 * 连接到其他{@link IChannelStage} 的{@link IChannelInput}
+	 * 这里面需要特别说明的就是如果连接的下一个{@link IChannelStage} 是本地的
+	 * remoteAddress将是本地类型,同时IChannelOutput也必须是本地类型,不然{@link IChannelFuture}
+	 * 将返回错误信息
+	 * @param remoteAddress 
+	 * @return {@link IChannelFuture}
+	 */
+	public IChannelFuture<T> connect(SocketAddress remoteAddress);
+	
+	/**
+	 * 关闭指定的连接
+	 * @param remoteAddress
+	 * @return {@link IChannelFuture}
+	 */
+	public IChannelFuture<T> disConnect(SocketAddress remoteAddress);	
+	
+	
+}

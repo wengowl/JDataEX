@@ -1,0 +1,82 @@
+package org.jdataex.flow.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.IComponentRunner.RunnerState;
+import org.jdataex.flow.runner.SchedulerRunner;
+
+public class ComponentController implements IComponentController {
+
+	private GUIC guic = new GUIC(UUID.randomUUID());
+
+	private Map<GUIC, IComponentHandler> componentHandlers = new HashMap<>();
+
+	private Map<GUIC, IComponentRunner> componentRunners = new HashMap<>();
+
+	@Override
+	public IComponentHandler addComponentHanlder(IComponentHandler handler) {
+		return this.componentHandlers.put(handler.getGUIC(), handler);
+	}
+
+	@Override
+	public boolean startAll() {
+		for (IComponentHandler handler : this.componentHandlers.values()) {
+			IComponentRunner runner = this.componentRunners.get(handler
+					.getGUIC());
+
+			if (runner == null
+					|| !RunnerState.RUNNING.equals(runner.getState())) {
+				runner = new SchedulerRunner(handler);
+				this.componentRunners.put(handler.getGUIC(), runner);
+				// TODO 改成线程池？？？
+				new Thread(runner).start();
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean stopAll() {
+		boolean result = true;
+		for (IComponentHandler handler : this.componentHandlers.values()) {
+			IComponentRunner runner = this.componentRunners.get(handler
+					.getGUIC().getUUID().toString());
+
+			if (runner != null && RunnerState.RUNNING.equals(runner.getState())) {
+				if (!runner.notifyStopping()) {
+					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	public Map<GUIC, IComponentRunner> getComponentRunners() {
+		return componentRunners;
+	}
+
+	@Override
+	public void setComponentRunners(
+			Map<GUIC, IComponentRunner> componentRunners) {
+		this.componentRunners = componentRunners;
+	}
+
+	@Override
+	public void setGUIC(GUIC guic) {
+		this.guic = guic;
+	}
+
+	@Override
+	public GUIC getGUIC() {
+		return this.guic;
+	}
+
+}

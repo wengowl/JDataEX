@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="接待主体信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDBH" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BHNF" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FYJC" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BHZH" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFJB" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DWXZ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZYX" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFS" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFZ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFQ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFDW" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DDLD" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DDLDZW" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DDLDLXFS" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFLXR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LXRLXFS" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QTLFRY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFCS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDBM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LFMD" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JLNR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDFS" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDYJ" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDYJPS" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CBBM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LJBS" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LJRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="接待办理记录">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="N" minOccurs="0" maxOccurs="1"/>
+		<xsd:element name="JDBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GZMC" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="接待实体">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="SN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="STLX" type="C10" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WJMC" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="STWJM" type="BB" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="接待计划">
+    <xsd:sequence>
+      <xsd:element name="XH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDKSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JDJSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CJRY" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="APSX" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFZT" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZTDD" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BZ" type="C250" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

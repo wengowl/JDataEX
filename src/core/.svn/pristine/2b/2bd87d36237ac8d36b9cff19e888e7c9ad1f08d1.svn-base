@@ -1,0 +1,26 @@
+package org.jdataex.flow.runner;
+
+import org.jdataex.BaseTest;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TestComponentRunner extends BaseTest{
+
+	@Test
+	public void testRunning() {
+		IComponentRunner thread = new SchedulerRunner();
+		new Thread(thread).start();
+
+	}
+
+	public static void main(String[] args) {
+		init();
+		IComponentRunner thread = new SchedulerRunner();
+		new Thread(thread).start();
+	}
+}

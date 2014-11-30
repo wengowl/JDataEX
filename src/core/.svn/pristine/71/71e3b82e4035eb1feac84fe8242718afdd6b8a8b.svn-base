@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_人大代表一对一联络系统.xsd"/>
+<CASE:complexType name="人大代表一对一联络系统">
+<CASE:sequence>
+ <CASE:element name="RDDBYDYLLXT_RDDBXX" type="人大代表信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RDDBYDYLLXT_LLYXX" type="联络员信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RDDBYDYLLXT_LLQKJL" type="联络情况记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RDDBYDYLLXT_LLFJ" type="联络附件" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="人大代表一对一联络系统" type="人大代表一对一联络系统"/>
+
+</CASE:schema>

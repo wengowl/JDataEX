@@ -1,0 +1,17 @@
+package org.jdataex.flow.component.step.dataquery;
+
+import org.jdataex.flow.row.IRow;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class DataQueryTest {
+
+    @Test
+    public void testGetAllSP() throws Exception {
+                DataQuery query = new DataQuery();
+        IRow row = query.getAllSP("纪检监察",2428342);
+        System.out.println(row.toString());
+
+    }
+}

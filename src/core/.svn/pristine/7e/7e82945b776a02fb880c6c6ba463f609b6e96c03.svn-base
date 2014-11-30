@@ -1,0 +1,147 @@
+package org.jdataex.flow.handler;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.core.ReleaseException;
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.IComponent;
+import org.jdataex.flow.component.step.IStep;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.IRowSet;
+import org.jdataex.flow.row.Row;
+import org.jdataex.flow.row.RowSet;
+import org.jdataex.flow.station.IStation;
+import org.jdataex.i18n.Messages;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.ILogger;
+
+public class StepHandler extends BaseComponentHandler implements IStepHandler, ILoggable {
+
+	private ILogger logger;
+
+	IStep step;
+	
+	private IStation stationInput;
+	private IStation stationOutput;
+
+	@Override
+	public ILogger getLogger() {
+		return logger;
+	}
+
+	@Override
+	public IComponent getComponent() {
+		return this.step;
+	}
+	
+	@Override
+	public void setLogger(ILogger logger) {
+		this.logger = logger;
+	}
+
+	public StepHandler(IStep step, IStation stationInput,
+			IStation stationOutput) {
+		super(step);
+		this.step = step;
+		this.stationInput = stationInput;
+		this.stationOutput = stationOutput;
+	}
+
+	public StepHandler(IStep step) {
+		super();
+		this.step = step;
+	}
+
+	public void setStep(IStep step) {
+		this.step = step;
+	}
+
+	@Override
+	public void execute() throws ComponentException {
+		step.beforeTurnOn();
+
+		try {
+			doExecutingStep();
+		} catch (Exception e) {
+			throw new ComponentException(Messages.getMessage(getClass(),
+					"Handler.ExecutingException"), e);
+		} finally {
+			step.afterTurnOff();
+		}
+
+	}
+
+	private void doExecutingStep() throws ComponentException {
+		step.beforeBatchProcessing();
+
+		try {
+			System.out.println(System.currentTimeMillis()+ "1234567=" + this.stationInput.toString());
+			//TODO 调整取Row的时候，需要传输身份信息。
+			IRowSet set = this.stationInput.poll("");
+			while (null != set) {
+				doProcessing(set);
+				
+				set = this.stationInput.poll("");
+			}
+
+		} catch (Exception e) {
+			throw new ComponentException(Messages.getMessage(getClass(),
+					"Handler.ExecutingException"), e);
+		} finally {
+			step.afterBatchProcessing();
+		}
+	}
+
+	private void doProcessing(IRowSet set) throws ComponentException {
+		step.setRowSetInput(set);
+		step.setRowSetOuput(new RowSet());
+
+		step.beginRowSet();
+		try {
+			while (step.hasNextRow()) {
+				doProcessingRow(step.pullRow());
+			}
+
+			if(!offer()){
+				throw new ComponentException("Offer failed.");
+			}
+		}catch(ComponentException e){
+			step.rollbackRowSet();
+			throw e;
+		} catch (Exception e) {
+			step.rollbackRowSet();
+		}
+
+		step.commitRowSet();
+	}
+
+	private boolean offer() {
+		// TODO 添加判断RowSet大小的逻辑。目前暂时就是有就推送。
+		return this.stationOutput.offer("", step.getRowSetOuput());
+	}
+
+	private void doProcessingRow(IRow row) throws ComponentException {
+		step.beginRow(row);
+
+		try {
+			this.getLogger().info("processRow");
+			step.processRow(row);
+
+		} catch (Exception e) {
+			step.rollbackRow(row);
+		}
+
+		step.commitRow(row);
+	}
+
+	@Override
+	public void init() throws InitializationException {
+		step.init();
+	}
+
+	@Override
+	public void release() throws ReleaseException {
+		step.release();
+	}
+
+}

@@ -1,0 +1,13 @@
+package org.jdataex.flow.station;
+
+import org.jdataex.flow.row.IRowSet;
+
+public interface IStation {
+
+	public abstract IRowSet peek(String id);
+
+	public abstract boolean offer(String id, IRowSet e);
+
+	public abstract IRowSet poll(String id);
+
+}

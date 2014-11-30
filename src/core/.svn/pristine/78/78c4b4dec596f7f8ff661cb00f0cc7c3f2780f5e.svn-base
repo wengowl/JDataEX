@@ -1,0 +1,40 @@
+package org.jdataex.channel.mock;
+
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.handler.IHandlerChain;
+
+/**
+ * 这个task要模拟hander执行需要花费一定时间的情况
+ * @author chaos
+ *
+ */
+public class MockTask<T> extends ExecutorTask<T>{
+	
+	private int time;
+
+	public MockTask(IHandlerChain<T> chain, IEvent<T> event, IStageContext<T> context,int time) {
+		super(chain, event, context);
+		this.time = time;
+	}
+
+	public void run() {
+		try {
+			super.chain.executeHandlers(event);
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} catch (HandlerException exp) {
+
+		} finally {
+			isComplete = true;
+			synchronized (this) {
+				this.notifyAll();
+			}
+		}
+	}
+}

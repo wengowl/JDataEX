@@ -1,0 +1,147 @@
+package org.jdataex.channel;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.event.IListener;
+import org.jdataex.channel.executor.IExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.IHandler;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.channel.handler.ISystemHandler;
+import org.jdataex.channel.metadata.Metadata;
+
+public class DefaultChannelStage<T> implements IChannelStage<T> {
+
+	@Override
+	public IExecutor<T> getExecutor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IStageContext<T> getContext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> startWithConfig(String configFile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Metadata getMetadata() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> setChannelContainer(IChannelContainer<T> channel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> addBefare(ISystemHandler handler) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> addAfter(ISystemHandler handler) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> addHandler(IHandler handler) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelStage<T> setExecutor(IExecutor<T> executor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> start() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAllInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAllOutput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownInput(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownOutput(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> shutdownAll(long timeMils) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> writeEvent(IEvent<T> event,
+			String... channelOutputName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IChannelFuture<T> writeMsg(T msg, String... channelOutputName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addListener(IListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeListener(IListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IChannelContainer<T> getChannelContainer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IHandlerChain<T> getHandlerChain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

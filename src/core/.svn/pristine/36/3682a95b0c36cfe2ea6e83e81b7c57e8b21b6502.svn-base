@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="借阅登记表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DJR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SYJSJBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYRLX" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XB" type="F" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DWMC" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZJLX" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZJHM" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYMD" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYAJAH" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYAJBH" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DYXX" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YDLS" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYKSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JYJSRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="计算机信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSJBH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YHLX" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YHM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DLM" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JS" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CXM" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YXCS" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MC" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DASMC" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ipDZ" type="C30" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="macDZ" type="C30" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="xZB" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="yZB" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYX" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

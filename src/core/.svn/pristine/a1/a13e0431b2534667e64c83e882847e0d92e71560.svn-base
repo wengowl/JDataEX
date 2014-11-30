@@ -1,0 +1,96 @@
+package org.jdataex.channel.executor;
+
+import java.util.concurrent.RejectedExecutionException;
+
+import org.jdataex.channel.IChannelOutput;
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.ExecutorClosedExcpetion;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.IHandlerChain;
+
+public class ChannelOutputTask<T> extends ExecutorTask<T> {
+
+	private String outputName;
+
+	private IChannelFuture<T> ic;
+	
+	//判断是否运行,如果任务还没有被执行的话,调用端是不能调用issuccess等方法的,必须wait
+	private boolean isRun = false;
+	
+	private Object lock = new Object();
+
+	public ChannelOutputTask(IHandlerChain<T> chain, IEvent<T> event,
+			IStageContext<T> context, String outputName) {
+		super(chain, event, context);
+		this.outputName = outputName;
+	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1855972629955644445L;
+
+	public void run() {
+		try {
+			this.chain.executeHandlers(event);
+			IChannelOutput<T> ilf;
+			if ((ilf = context.getContainer().getOutput(outputName)) != null) {
+				ic = ilf.writeAndFlush(event);
+			}else{
+				throw new HandlerException("bad channeloutputName there is no channeloutput named ["+outputName+"]");
+			}
+		} catch (HandlerException exp) {
+			exp.printStackTrace();
+			setException(exp);
+		}
+		//如果为本地output,当目标stage关闭的时候应当抛出线程池关闭异常这样排错较为清晰
+		catch(RejectedExecutionException exp){
+			//exp.printStackTrace();
+			setException(new ExecutorClosedExcpetion("target stage executor is closed!", exp));
+		}catch (Throwable exp) {
+			exp.printStackTrace();
+			setException(new BaseNestedException(exp.getMessage(),exp));
+		}finally {
+			isRun = true;
+			synchronized(lock){
+				lock.notifyAll();
+			}
+		}
+	}
+
+	/**
+	 * 阻塞方式,在调用future中就不会再wait
+	 */
+	public boolean isCompleted() {
+		this.isSuccessed();
+		return true;
+	}
+
+	@Override
+	public boolean isSuccessed() {
+		if(!isRun){
+			synchronized(lock){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		if (ic != null) {
+			ic.isSuccess();
+			setError(ic.error());
+		}
+		if (getException() != null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private void setError(BaseNestedException error) {
+		this.error = error;
+	}
+}

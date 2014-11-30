@@ -1,0 +1,40 @@
+package org.jdataex.flow;
+
+import static org.junit.Assert.*;
+
+import org.jdataex.BaseJDataExTest;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TestFlow extends BaseJDataExTest{
+
+	@Test
+	public void testRegister() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testManager() {
+		fail("Not yet implemented");
+	}
+
+	
+	@Test
+	public void testStart() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testStop() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testRestart() {
+		fail("Not yet implemented");
+	}
+	
+}

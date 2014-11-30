@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="签字记录">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WSBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="QZNR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CJRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XGRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="自定义文书">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WSBH" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WSMC" type="C200" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJ" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WJJLRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WJJLR" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JLRQ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="AJBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYYa" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYEb" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSc" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSd" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYWe" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYLf" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYQg" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYBh" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYJi" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSj" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSYk" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSEm" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSl" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSn" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSWa" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSLb" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSQc" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSBd" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSJe" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESf" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESYg" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESEh" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESSi" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESSij" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESWj" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESLk" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESQl" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESBm" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYESJn" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSa" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSYb" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSEc" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSSd" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSSe" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSWf" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSLg" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSQh" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSBi" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSJj" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSk" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSYl" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSEm" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSSn" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSSa" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSWb" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSLc" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSQd" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSBe" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYSSJf" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYWSg" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDYWSYh" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CLBS" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TSBS" type="C150" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

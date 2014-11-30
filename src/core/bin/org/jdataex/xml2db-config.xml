@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+	<id>xml2db</id>
+	<type>transition</type>
+	<controller id="controller">
+
+		<component id="monitor"
+			class="org.jdataex.flow.component.step.file.monitor.MonitorFileStep">
+			<station-ref type="input" id="sid1" />
+			<station-ref type="output" id="sid2" />
+			<monitor-dir>C:/test/xml/</monitor-dir>
+		</component>
+
+		<component id="xml"
+			class="org.jdataex.flow.component.step.xml.XMLConverterStep">
+			<station-ref type="input" id="sid2" />
+			<station-ref type="output" id="sid3" />
+		</component>
+
+		<component id="dbaccess"
+			class="org.jdataex.flow.component.step.dataaccess.RowDataAccessStep">
+			<station-ref type="input" id="sid3" />
+			<station-ref type="output" id="sid4" />
+			<pool-name>pool</pool-name>
+		</component>
+
+		<station id="sid1" class="org.jdataex.flow.station.queue.FirstQueueStation" />
+		<station id="sid2" class="org.jdataex.flow.station.queue.QueueStation" />
+		<station id="sid3" class="org.jdataex.flow.station.queue.QueueStation" />
+		<station id="sid4" class="org.jdataex.flow.station.queue.QueueStation" />
+	</controller>
+</flow>

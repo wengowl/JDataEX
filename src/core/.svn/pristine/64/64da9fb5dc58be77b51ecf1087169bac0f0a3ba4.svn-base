@@ -1,0 +1,24 @@
+package org.jdataex.channel.future;
+
+import java.util.List;
+
+import org.jdataex.channel.exception.BaseNestedException;
+
+public class TrueChannelFuture<T> implements IChannelFuture<T>{
+
+	@Override
+	public boolean isSuccess() {
+		return true;
+	}
+
+	@Override
+	public List<BaseNestedException> errors() {
+		return null;
+	}
+
+	@Override
+	public T msg() {
+		return null;
+	}
+
+}

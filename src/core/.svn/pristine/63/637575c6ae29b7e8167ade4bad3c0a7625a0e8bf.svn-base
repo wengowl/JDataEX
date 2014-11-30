@@ -1,0 +1,26 @@
+package org.jdataex.flow.row;
+
+
+/**
+ * 组件内部Row集合相关操作。
+ * 
+ * @author TwelveFoldEr
+ * 
+ */
+public interface IRowSet {
+
+	public abstract boolean isEmpty();
+
+	public abstract int size();
+	
+	/**
+	 * 校验集合里面的Row是否类型一致。
+	 */
+	public abstract void verifyRowType();
+
+	/**
+	 * 集合里面的Row类型是否一致。
+	 * @return
+	 */
+	public abstract boolean isSameRowType();
+}

@@ -1,0 +1,29 @@
+package org.jdataex.channel.future;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.CanNotReadChannelException;
+
+public class CanNotReadChannelFuture<T> implements IChannelFuture<T>{
+
+	@Override
+	public boolean isSuccess() {
+		return false;
+	}
+
+	@Override
+	public List<BaseNestedException> errors() {
+		// TODO Auto-generated method stub
+		List<BaseNestedException> list = new ArrayList<BaseNestedException>();
+		list.add(new CanNotReadChannelException(""));
+		return list;
+	}
+
+	@Override
+	public T msg() {
+		return null;
+	}
+
+}

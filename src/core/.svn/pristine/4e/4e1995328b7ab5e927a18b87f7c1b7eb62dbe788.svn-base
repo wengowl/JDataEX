@@ -1,0 +1,47 @@
+package org.jdataex.flow.scene.xml2db;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.loader.FlowLoader;
+import org.jdataex.engine.loader.FlowLoaderTest;
+import org.jdataex.engine.loader.IFlowLoader;
+import org.jdataex.flow.IFlow;
+import org.jdataex.flow.component.step.MockStep;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.util.FileUtil;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class XML2DBTest extends BaseJDataExTest{
+	private static File basedir = FileUtil
+			.findAbsoluteFile(XML2DBTest.class);
+	
+	@Test
+	public void test() throws InitializationException {
+		
+		File file = new File(basedir, "xml2db-config.xml");
+		IFlowLoader loader = new FlowLoader();
+
+		IFlow flow = loader.load(file);
+		
+		IComponentController controller = flow
+				.getFirstComponentController();
+		controller.startAll();
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		fail("Not yet implemented");
+	}
+
+}

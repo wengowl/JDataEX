@@ -1,0 +1,93 @@
+package org.jdataex.resource.databasepool;
+
+/**
+ * Created by wengxf on 2014/5/8 0008.
+ */
+public class ConfigDatabasePoolBean {
+    private String poolname = new String();//连接池名字
+    private String jdbcDriver = "";//jdbc driver
+    private String databaseType ="";
+    private String dbUrl = "";//database url
+
+    private String dbUsername = "";//database user name
+
+    private String dbPassword = "";//database password
+
+    private int minConnections = 2;//最小连接数
+
+    private int incrConnections = 1;//连接池自动增加的大小
+
+    private int maxConnections = 10;//最大连接数
+
+    public String getPoolname() {
+        return poolname;
+    }
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+    }
+
+    public void setPoolname(String poolname) {
+        this.poolname = poolname;
+    }
+
+    public int getMaxConnections() {
+        return maxConnections;
+    }
+
+    public void setMaxConnections(int maxConnections) {
+        this.maxConnections = maxConnections;
+    }
+
+    public int getIncrConnections() {
+        return incrConnections;
+    }
+
+    public void setIncrConnections(int incrConnections) {
+        this.incrConnections = incrConnections;
+    }
+
+    public int getMinConnections() {
+        return minConnections;
+    }
+
+    public void setMinConnections(int minConnections) {
+        this.minConnections = minConnections;
+    }
+
+    public String getDbPassword() {
+        return dbPassword;
+    }
+
+    public void setDbPassword(String dbPassword) {
+        this.dbPassword = dbPassword;
+    }
+
+    public String getDbUsername() {
+        return dbUsername;
+    }
+
+    public void setDbUsername(String dbUsername) {
+        this.dbUsername = dbUsername;
+    }
+
+    public String getDbUrl() {
+        return dbUrl;
+    }
+
+    public void setDbUrl(String dbUrl) {
+        this.dbUrl = dbUrl;
+    }
+
+    public String getJdbcDriver() {
+        return jdbcDriver;
+    }
+
+    public void setJdbcDriver(String jdbcDriver) {
+        this.jdbcDriver = jdbcDriver;
+    }
+}

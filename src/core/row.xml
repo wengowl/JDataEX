@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<row>
+    <headers>
+        <header>
+            <key>tablename</key>
+            <value>test</value>
+        </header>
+        <header>
+            <key>operation</key>
+            <value>insert</value>
+        </header>
+    </headers>
+    <columns>
+        <column>
+            <name>ID</name>
+            <value>1</value>
+            <type>int</type>
+        </column>
+    </columns>
+</row>

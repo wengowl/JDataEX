@@ -1,0 +1,24 @@
+package org.jdataex.flow;
+
+import java.util.Map;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.controller.IComponentController;
+
+public interface IFlow {
+
+	public abstract void stopAll();
+
+	public abstract void startAll();
+
+	public abstract Map<GUIC,IComponentController> getComponentControllers();
+	
+	public abstract IComponentController getComponentController(GUIC guic);
+
+	public abstract void putComponentController(IComponentController controller);
+
+	public abstract IComponentController getComponentControllerByID(String id);
+
+	public abstract IComponentController getFirstComponentController();
+
+}

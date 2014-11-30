@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dataexchange.court.gov.cn/2009/data" CASE:elementFormDefault="qualified" xsd:attributeFormDefault="unqualified">
+  <xsd:attribute name="ACTION_TYPE" type="c20" use="required"/>
+  <xsd:attribute name="DEPT_CODE" type="c20" use="required"/>
+  <xsd:attribute name="APP_CODE" type="c20" use="required"/>
+  <include schemaLocation="_0_结构执行案件.xsd"/>
+  <CASE:complexType name="执行案件">
+    <CASE:sequence>
+	 <CASE:element  name="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_YWDZ" type="以物抵债" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CH " type="传唤 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZQPZ" type="债权凭证" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QTZCCS" type="其他制裁措施" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QTQZCS" type="其他强制措施" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_DJ" type="冻结" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FPFAFDYJ " type="分配方案反对意见 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_HB " type="划拨 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_BAQX" type="办案期限" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_XZRPCZR" type="协助人赔偿责任" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_XZZX" type="协助执行" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_YSQK" type="原审情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CYFPXX" type="参与分配信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_BM" type="变卖" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SFZC " type="司法制裁 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SFSJ " type="司法审计 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SFJY" type="司法建议" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_HBQK" type="回避情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FYCL" type="复议处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FAZXXWCL" type="妨碍执行行为处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_WTZXYSTHF" type="委托执行与受托回复" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SWHTL" type="审委会讨论" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_DXWDZX" type="对行为的执行" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_YCZXQX" type="延长执行期限" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QZZX" type="强制执行" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QZGL" type="强制管理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QZQCYTC" type="强制迁出与退出" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_QZXZ " type="强制限制 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_DSR" type="当事人" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_DSRSSHD" type="当事人诉讼活动" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_XSZX" type="悬赏执行" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_KY " type="扣押 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_KLYTQ " type="扣留与提取 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_KCZXQXJL" type="扣除执行期限记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXDQZQ" type="执行到期债权" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXYY" type="执行异议" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXDBQK " type="执行担保情况 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXKW" type="执行款物" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXXSCL" type="执行线索处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXZZCY" type="执行组织成员" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXFJNJL" type="执行费交纳记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXFJCDQK" type="执行费及承担情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZXFSFJZQK" type="执行费司法救助情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_PBJL" type="批办记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_PM " type="拍卖 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_JC" type="拘传" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_JL" type="拘留" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SC" type="搜查" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SAHLAXX" type="收案和立案信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CF" type="查封" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CMCC" type="查明财产" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CXCK " type="查询存款 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_AJCLQK" type="案件处理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_AJZXQK" type="案件执行情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_AJPY" type="案件评议" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FTSYJL" type="法庭使用记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FZYS" type="犯罪移送" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SQRBG" type="申请人变更" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_LAYJHTAQK" type="立案移交和退案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_JAQK" type="结案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_FK " type="罚款 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZDLX " type="自动履行 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_BZXRBGHZJ" type="被执行人变更或追加" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZRXX" type="证人信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZJXX" type="证据信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_ZJLT" type="证据链条" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_PG" type="评估" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SSBQHXYZX" type="诉讼保全和先予执行" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_CCDC" type="财产调查" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_SDJL" type="送达记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_JDXX" type="鉴定信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_LTZDZJ" type="链条中的证据" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="ZXAJ_XAQK" type="销案情况" minOccurs="0" maxOccurs="1"/>
+    </CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="执行案件案件" type="执行案件"/>
+</CASE:schema>

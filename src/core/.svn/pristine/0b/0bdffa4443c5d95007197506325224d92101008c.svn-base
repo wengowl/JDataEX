@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_司法行政装备管理系统.xsd"/>
+<CASE:complexType name="司法行政装备管理系统">
+<CASE:sequence>
+ <CASE:element name="SFXZZBGLXT_BGYPXX" type="办公用品信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BGYPPDZB" type="办公用品盘点主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BGYPPDMXB" type="办公用品盘点明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BGYPLYZB" type="办公用品领用主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BGYPLYMXB" type="办公用品领用明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ABJQ" type="安保接洽" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_WYSBWXXX" type="文印设备维修信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_YDXHHZDJZB" type="月度消耗汇总登记主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_YDXHHZDJMXB" type="月度消耗汇总登记明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_SDGLXX" type="水电管理信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_FGTZXX" type="法官体征信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_FGTZBGSQ" type="法官体征变更申请" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_FYFTTP" type="法院（法庭）图片" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_FYFTJSXX" type="法院（法庭）建设信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_HSTJB" type="海事统计表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_WZCGGYS" type="物资采购供应商" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_WZCGXX" type="物资采购信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZRKZB" type="被装入库主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZRKMXB" type="被装入库明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZCKZB" type="被装出库主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZCKMXB" type="被装出库明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZFFJL" type="被装发放记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZNDJHZB" type="被装年度计划主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZNDJHMXB" type="被装年度计划明细表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_BZKCXXB" type="被装库存信息表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_CWGL(JK)" type="财务管理(借款)" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_CWGL(CC)" type="财务管理(出差)" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_CWGL(KZ)" type="财务管理(开支)" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_CWGL(FLFG)" type="财务管理(法律法规)" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCRKZB" type="资产入库主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCRKMX" type="资产入库明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCCKZB" type="资产出库主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCCKMX" type="资产出库明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCBDB" type="资产变动表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCTZ" type="资产台账" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCCZZB" type="资产处置主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCCZMX" type="资产处置明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCKCB" type="资产库存表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCDJB" type="资产登记表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCPDZB" type="资产盘点主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="SFXZZBGLXT_ZCPDMX" type="资产盘点明细" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="司法行政装备管理系统" type="司法行政装备管理系统"/>
+
+</CASE:schema>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="XML编码主表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DMLX" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MC" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SM" type="BB" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="XML编码明细表">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZBBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="KZ" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MC" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJDM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FJM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LX" type="C100" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SM" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DMLX" type="C50" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="执行接口表定义信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DMLX" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SM" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SJ" type="C255" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYX" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="执行接口表定义信息2">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BBH" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDBH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="xmlM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZDLX" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="DM" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZWM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYXK" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYXSC" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYXBZ" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="执行接口表定义信息3">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BBH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="xmlM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="TJ" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZWM" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GJZ1" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GJZ2" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFYXBZ" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

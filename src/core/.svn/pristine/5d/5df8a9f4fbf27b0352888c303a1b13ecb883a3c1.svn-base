@@ -1,0 +1,73 @@
+package org.jdataex.channel.util;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import org.jdataex.channel.exception.Array2ObjectException;
+import org.jdataex.channel.exception.Object2ArrayException;
+
+/**
+ * 对象和byte之间进行互转,channel收发消息需要用到,JNDI注册需要用到.
+ * @author chaos
+ * 
+ */
+public final class ObjectAndByte {
+	/**
+	 * 对象转数组
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public static byte[] toByteArray(Object obj) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(bos);
+			oos.writeObject(obj);
+			oos.flush();
+			return bos.toByteArray();
+		} catch (Exception ex) {
+			throw new Object2ArrayException("Object to array error ",ex);
+		} finally {
+			try {
+				if (oos != null)
+					oos.close();
+			} catch (IOException e) {
+			}
+			try {
+				if (bos != null)
+					bos.close();
+			} catch (IOException e) {
+			}
+		}
+	}
+
+	/**
+	 * 数组转对象
+	 * 
+	 * @param bytes
+	 * @return
+	 */
+	public static Object toObject(byte[] bytes) {
+		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(bis);
+			return ois.readObject();
+		} catch (Exception ex) {
+			throw new Array2ObjectException("Object to array error ",ex);
+		} finally {
+			try {
+				ois.close();
+			} catch (IOException e) {
+			}
+			try {
+				bis.close();
+			} catch (IOException e) {
+			}
+		}
+	}
+}

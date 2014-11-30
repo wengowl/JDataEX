@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="1.7" jdk_type="JavaSDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="ehcache-2.8.1.jar" scope="COMPILE">
+		<srcroot url="file:///ehcache.src/src"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/cache/ehcache-2.8.1.jar!/"/>
+	</lib>
+	<lib name="commons-io-2.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/commons-io-2.4.jar!/"/>
+	</lib>
+	<lib name="quartz-2.2.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/quartz-2.2.1.jar!/"/>
+	</lib>
+	<lib name="quartz-jobs-2.2.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/quartz-jobs-2.2.1.jar!/"/>
+	</lib>
+	<lib name="slf4j-api-1.7.6.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/lib/logger/slf4j-api-1.7.6-sources.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/lib/logger/slf4j-api-1.7.6-sources.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/logger/slf4j-api-1.7.6.jar!/"/>
+	</lib>
+	<lib name="logback-access-1.1.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/logger/logback-access-1.1.2.jar!/"/>
+	</lib>
+	<lib name="logback-classic-1.1.2.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/lib/logger/logback-classic-1.1.2-sources.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/lib/logger/logback-classic-1.1.2-sources.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/logger/logback-classic-1.1.2.jar!/"/>
+	</lib>
+	<lib name="logback-core-1.1.2.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/lib/logger/logback-core-1.1.2-sources.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/lib/logger/logback-core-1.1.2-sources.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/logger/logback-core-1.1.2.jar!/"/>
+	</lib>
+	<lib name="ojdbc7.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/ojdbc7.jar!/"/>
+	</lib>
+	<lib name="poi-scratchpad-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-scratchpad-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="poi-ooxml-schemas-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-ooxml-schemas-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="poi-ooxml-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="poi-excelant-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-excelant-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="poi-examples-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-examples-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="poi-3.10-FINAL-20140208.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/poi-3.10-FINAL-20140208.jar!/"/>
+	</lib>
+	<lib name="aviator-2.3.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/aviator-2.3.2.jar!/"/>
+	</lib>
+	<lib name="jtds-1.3.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jtds-1.3.1.jar!/"/>
+	</lib>
+	<lib name="jconn4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jconn4.jar!/"/>
+	</lib>
+	<lib name="jackson-annotations-2.2.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/json/jackson-annotations-2.2.0.jar!/"/>
+	</lib>
+	<lib name="jackson-core-2.2.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/json/jackson-core-2.2.0.jar!/"/>
+	</lib>
+	<lib name="jackson-databind-2.2.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/json/jackson-databind-2.2.0.jar!/"/>
+	</lib>
+	<lib name="hamcrest-library-1.3.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/hamcrest-library-1.3.jar!/"/>
+	</lib>
+	<lib name="easymock-3.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/easyMock/easymock-3.2.jar!/"/>
+	</lib>
+	<lib name="tlclient.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/tlq/tlclient.jar!/"/>
+	</lib>
+	<lib name="bonecp-0.8.0.RELEASE.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/bonecp-0.8.0.RELEASE.jar!/"/>
+	</lib>
+	<lib name="guava-17.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/guava-17.0.jar!/"/>
+	</lib>
+	<levels>
+		<level name="lib" value="project"/>
+	</levels>
+</component>

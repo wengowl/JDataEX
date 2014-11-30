@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_人事系统.xsd"/>
+<CASE:complexType name="人事系统">
+<CASE:sequence>
+ <CASE:element name="RSXT_RYXX" type="人员信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYPXXX" type="人员培训信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYCFXX" type="人员处分信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYJLXX" type="人员奖励信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYJTCYXX" type="人员家庭成员信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYJLXX" type="人员简历信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="RSXT_RYDDXX" type="人员调动信息" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="人事系统" type="人事系统"/>
+
+</CASE:schema>
+

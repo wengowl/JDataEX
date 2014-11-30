@@ -1,0 +1,32 @@
+package org.jdataex.channel.util;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * 非线程安全
+ * 
+ * @author chaos
+ * 
+ * @param <T>
+ */
+public class MyLinkedList<T> extends LinkedList<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -691090911481042010L;
+
+	@SuppressWarnings("unchecked")
+	public T[] toArray(@SuppressWarnings("rawtypes") Class clasz) {
+		T[] array = (T[]) toArray();
+		List<T> list = new ArrayList<T>();
+		for (T t : array) {
+			if (t.getClass().isInstance(clasz)) {
+				list.add(t);
+			}
+		}
+		return (T[]) list.toArray();
+	}
+}

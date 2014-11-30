@@ -1,0 +1,104 @@
+package org.jdataex.engine.config;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+
+import org.jdataex.util.FileUtil;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class FlowConfigTest {
+	private static FlowConfig fc;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		File file = FileUtil.findAbsoluteFile(FlowConfigTest.class,
+				"flow-config-test.xml");
+		String content = FileUtil.readFileToString(file);
+		fc = new FlowConfig(content);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testGetInputStation() {
+		String expected = "stid1";
+
+		ComponentItem item = fc.getComponents().get("cid1");
+		String actual = item.getInputStationRefItem().getId();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGetAttribute() {
+		String expected = "attCheckValue";
+
+		ComponentItem item = fc.getComponents().get("cid1");
+		String actual = item.getAttributes().get("attCheck");
+
+		assertEquals(expected, actual);
+		
+		String expected2 = "att3";
+		ComponentItem item2 = fc.getComponents().get("cid3");
+		String actual2 = item2.getAttributes().get("attCheck3");
+
+		assertEquals(expected2, actual2);
+	}
+
+	@Test
+	public void testGetAttributeItem() {
+		String expected = "catt1Value";
+
+		ComponentItem item = fc.getComponents().get("cid1");
+		String actual = item.getAttributeItems().get("complexAtt")
+				.getAttribute("catt1");
+
+		assertEquals(expected, actual);
+		
+		expected = "ccatt";
+		actual = item.getAttributeItems().get("complexAtt").getAttributeItem("cc")
+				.getAttribute("ccatt");
+
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testGetStationRef() {
+		String expected = "stid1";
+
+		ComponentItem item = fc.getComponents().get("cid1");
+		String actual = item.getInputStationRefItem().getId();
+
+		assertEquals(expected, actual);
+
+		String expected2 = "stid22";
+		ComponentItem item2 = fc.getComponents().get("cid2");
+		String actual2 = item2.getOutputStationRefItem().getId();
+
+		assertEquals(expected2, actual2);
+	}
+
+	
+	@Test
+	public void testGetStation() {
+		StationItem item = fc.getStations().get("stid2");
+
+		assertEquals("stid2", item.getId());
+		assertEquals("org.test.MockStation", item.getClazz());
+	}
+}

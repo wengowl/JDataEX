@@ -1,0 +1,171 @@
+package org.jdataex.channel;
+
+import com.tongtech.tlq.base.*;
+
+import java.util.*;
+import java.io.*;
+
+public class SendMsg {
+	private String myQcuName;
+	private String myQueName;
+	private String myMsgType;
+	private int myCount;
+	private String myFileName;
+	private TlqConnection tlqConnection = null;
+	private TlqQCU tlqQcu = null;
+
+	static int id = 0;
+
+	public SendMsg(String QcuName, String QName, String MsgType, String FileName)
+			throws TlqException {
+		myQcuName = QcuName;
+		myQueName = QName;
+		myMsgType = MsgType;
+		myFileName = FileName;
+		myCount = 2;
+
+		tlqConnection = new TlqConnection("127.0.0.1",10252);
+		tlqQcu = tlqConnection.openQCU(myQcuName);
+
+	}
+
+	public static synchronized String createID() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(System.currentTimeMillis());
+		sb.append("_");
+		sb.append(id);
+		++id;
+		return sb.toString();
+	}
+
+	public static byte[] createBytes(int size) { // ����Buffer��Ϣ����
+		StringBuffer sb = new StringBuffer(size);
+		for (int i = 0; i < size; i++) {
+			sb.append('a');
+		}
+		return sb.toString().getBytes();
+	}
+
+	void sendBuffMsg(int size) throws TlqException { // ����Buffer��Ϣ size
+														// ��Ϣ��С
+		TlqMessage msgInfo = new TlqMessage();
+		TlqMsgOpt msgOpt = new TlqMsgOpt();
+		msgInfo.MsgType = TlqMessage.BUF_MSG; // ��Ϣ����
+		msgInfo.MsgSize = size; // ��Ϣ��С
+		byte[] msgContent = createBytes(msgInfo.MsgSize); // ��Ϣ����
+		msgInfo.setMsgData(msgContent);
+
+		msgInfo.Persistence = TlqMessage.TLQPER_Y; // �־���
+		msgInfo.Priority = TlqMessage.TLQPRI_NORMAL; // ���ȼ�
+		msgInfo.Expiry = 1000; // ��������
+		msgOpt.QueName = myQueName; // ������
+
+		tlqQcu.putMessage(msgInfo, msgOpt);
+	}
+
+	void sendFileMsg(String fName) throws TlqException { // �����ļ���Ϣ
+		TlqMessage msgInfo = new TlqMessage();
+		TlqMsgOpt msgOpt = new TlqMsgOpt();
+
+		msgInfo.MsgType = TlqMessage.FILE_MSG;
+		int newfilename = myFileName.lastIndexOf("\\");
+		String shortFileName = myFileName.substring(newfilename + 1);
+		fName = "\"" + myFileName + "\"" + " " + "\"" + shortFileName + "_"
+				+ createID() + "\"";
+		msgInfo.MsgSize = fName.getBytes().length;
+		msgInfo.setMsgData(fName.getBytes());
+		msgOpt.RemoveFileFlag = TlqMsgOpt.NOTREMOVEFILE; // �Ƿ�ɾ��Դ�ļ���־
+
+		msgInfo.Persistence = TlqMessage.TLQPER_Y;
+		msgInfo.Priority = TlqMessage.TLQPRI_NORMAL;
+		msgInfo.Expiry = 1000;
+		msgOpt.QueName = myQueName;
+
+		tlqQcu.putMessage(msgInfo, msgOpt);
+	}
+
+	public void sendMsg() {
+		System.out.println("myMsgType is :" + myMsgType);
+		try {
+			for (int i = 0; i < myCount; i++) {
+				if (myMsgType.equals("B") == true) {
+					sendBuffMsg(10);
+				} else {
+					sendFileMsg(myFileName);
+				}
+
+			}
+
+			System.out.println("--------------��������Ϣ" + myCount
+					+ "��!-----------");
+			System.out.println("-----------sendmsg over!!-----------");
+
+		} catch (TlqException tlqEx) {
+			tlqEx.printStackTrace();
+		} finally {
+			try {
+				tlqQcu.close();
+				tlqConnection.close();
+			} catch (TlqException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void sendGroupMsg(int commitFlag) {
+		try {
+			for (int i = 0; i < myCount; i++) {
+				tlqQcu.beginGroup(); // ��ʼ����Ϣ
+				System.out.println("��" + (i + 1) + "������Ϣ��ʼ����...");
+				for (int j = 0; j < 3; j++) {
+					if (myMsgType.equals("B") == true) {
+						sendBuffMsg(10);
+					} else {
+						sendFileMsg(myFileName);
+					}
+				}
+				if (commitFlag == 1) {
+					tlqQcu.commitGroup();
+					System.out.println("����Ϣ�ύ�ɹ�...");
+				} else {
+					tlqQcu.rollbackGroup();
+					System.out.println("����Ϣ�ع��ɹ�...");
+				}
+			}
+
+			System.out.println("-----------sendmsg over!!-----------");
+
+		} catch (TlqException tlqEx) {
+			tlqEx.printStackTrace();
+		} finally {
+			try {
+				tlqQcu.close();
+				tlqConnection.close();
+			} catch (TlqException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String[] argv) throws Exception {
+		String QcuName;
+		String QName;
+		String FileName;
+		String MsgType;
+		int GroupFlag;
+		int GroupCommitflag;
+
+		QcuName = "qcu1";
+		QName = "lq";
+		MsgType = "B";
+		FileName = "";
+		GroupFlag = 0;
+		GroupCommitflag = 1;
+
+		SendMsg sm = new SendMsg(QcuName, QName, MsgType, FileName);
+		if (GroupFlag == 0)
+			sm.sendMsg();
+		else
+			sm.sendGroupMsg(GroupCommitflag);
+	}
+}

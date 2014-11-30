@@ -1,0 +1,116 @@
+package org.jdataex.channel;
+
+import org.jdataex.channel.executor.DefaultExecutor;
+import org.jdataex.channel.executor.TLQGroupInputExecutor;
+import org.jdataex.channel.executor.TLQInputExecutor;
+import org.jdataex.channel.executor.TLQOutputExecutor;
+import org.jdataex.channel.local.LocalChannelInput;
+import org.jdataex.channel.local.LocalChannelOutput;
+import org.jdataex.channel.mock.MockHandler;
+import org.jdataex.channel.mock.MockSystemHandler;
+import org.jdataex.channel.tlq.TLQChannelGroupInput;
+import org.jdataex.channel.tlq.TLQChannelInput;
+import org.jdataex.channel.tlq.TLQChannelOutput;
+
+public class StageCreater {
+	
+	public static IChannelStage<String> createLocalStage(String name, int inputExeNumber,
+			int outputExeNumber, String inputName, String outputName) {
+		IChannelStage<String> stage = new DefaultChannelStage<String>(name);
+		IChannelContainer<String> cr = new DefaultChannelContainer<String>("testc");
+		
+		//input
+		DefaultExecutor<String> input = null;
+		if(inputName!=null){
+			cr.setInput(new LocalChannelInput<String>(inputName));
+			input = new DefaultExecutor<String>(inputExeNumber);
+		}
+		
+		//output
+		DefaultExecutor<String> output = null;
+		if(outputName!=null){
+			IChannelOutput<String> out = new LocalChannelOutput<String>(
+					outputName);
+			out.setReConnectTimes(5, 1000);
+			cr.addOutput(out);
+			output = new DefaultExecutor<String>(outputExeNumber);
+		}
+
+		stage.setExecutor(input,output);
+		
+		stage.setChannelContainer(cr);
+		
+		stage.addBefore(new MockHandler<String>());
+		stage.addAfter(new MockSystemHandler<String>());
+		
+		return stage;
+	}
+	
+	
+	public static IChannelStage<String> createStage(String name, int msgType,
+			String inputName, String outputName, String inputQueue,
+			String outputQueue) {
+
+		IChannelStage<String> stage = new DefaultChannelStage<String>(name);
+		IChannelContainer<String> cr = new DefaultChannelContainer<String>("testc");
+
+		// input
+		TLQInputExecutor<String> inputExecutor = null;
+		if (inputName != null) {
+			inputExecutor = new TLQInputExecutor<String>();
+			cr.setInput(new TLQChannelInput<String>(inputName, msgType, "qcu1",
+					inputQueue));
+		}
+
+		// output
+		TLQOutputExecutor<String> outputExecutor = null;
+		if (outputName != null) {
+			outputExecutor = new TLQOutputExecutor<String>();
+			IChannelOutput<String> out = new TLQChannelOutput<String>(
+					outputName, msgType, "qcu1", outputQueue);
+			out.setReConnectTimes(5, 1000);
+			cr.addOutput(out);
+		}
+
+		// executor
+		stage.setExecutor(inputExecutor, outputExecutor);
+		stage.setChannelContainer(cr);
+		// handler
+		stage.addBefore(new MockHandler<String>());
+		stage.addAfter(new MockSystemHandler<String>());
+
+		return stage;
+	}
+
+	static IChannelStage<String> createStageTLQChannelGroup(String name,
+			int msgType, int inputExeNumber, String inputName,
+			String outputName, String inputQueue, String outputQueue) {
+		IChannelStage<String> stage = new DefaultChannelStage<String>(name);
+		IChannelContainer<String> cr = new DefaultChannelContainer<String>("testc");
+
+		// output
+		TLQOutputExecutor<String> outputExecutor = null;
+		if (outputName != null) {
+			outputExecutor = new TLQOutputExecutor<String>();
+			IChannelOutput<String> out = new TLQChannelOutput<String>(
+					outputName, msgType, "qcu1", outputQueue);
+			out.setReConnectTimes(5, 1000);
+			cr.addOutput(out);
+		}
+		// input
+		TLQGroupInputExecutor<String> tier = null;
+		if (inputName != null) {
+			tier = new TLQGroupInputExecutor<String>();
+			cr.setInput(new TLQChannelGroupInput<String>(inputName, inputExeNumber, msgType,
+					"qcu1", inputQueue));
+		}
+
+		stage.setExecutor(tier, outputExecutor);
+		stage.setChannelContainer(cr);
+		
+		stage.addBefore(new MockHandler<String>());
+		stage.addAfter(new MockSystemHandler<String>());
+
+		return stage;
+	}
+}

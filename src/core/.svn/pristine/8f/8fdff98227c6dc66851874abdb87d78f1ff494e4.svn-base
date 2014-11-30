@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dataexchange.court.gov.cn/2009/data" CASE:elementFormDefault="qualified" xsd:attributeFormDefault="unqualified">
+  <xsd:attribute name="ACTION_TYPE" type="c20" use="required"/>
+  <xsd:attribute name="DEPT_CODE" type="c20" use="required"/>
+  <xsd:attribute name="APP_CODE" type="c20" use="required"/>
+  <include schemaLocation="_0_结构诉前保全案件.xsd"/>
+  <CASE:complexType name="诉前保全案件">
+    <CASE:sequence>
+	 <CASE:element  name="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_BQSQJBL" type="保全申请及办理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_FYCL" type="复议处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SPZZCY" type="审判组织成员" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_DSR " type="当事人 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_DSRSSHD" type="当事人诉讼活动" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_PBJL" type="批办记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SAHLAXX" type="收案和立案信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_AJCLQK" type="案件处理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_AJSLQK" type="案件审理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_JAQK" type="结案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SSFJNJL" type="诉讼费交纳记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SSFJCDQK" type="诉讼费及承担情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="SQBQAJ_SSFSFJZQK" type="诉讼费司法救助情况" minOccurs="0" maxOccurs="1"/>
+    </CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="诉前保全案件" type="诉前保全案件"/>
+</CASE:schema>

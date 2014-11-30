@@ -1,0 +1,184 @@
+package org.jdataex.flow.component.step.dataquery;
+
+import org.jdataex.flow.component.DBOperation;
+import org.jdataex.flow.row.*;
+import org.jdataex.util.FileUtil;
+import org.jdataex.util.logger.LoggerFactory;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.*;
+
+/**
+ * 数据查询
+ * Created by wengxf on 2014/5/28 0028.
+ */
+public class DataQuery {
+
+    private DBOperation dbOperation = new DBOperation();
+    private ReadDataConfig readDataConfig = ReadDataConfig.getInstance();
+
+    /**
+     * 获取审判业务，相关案件类型表对应案件标识的所有记录
+     */
+    public IRow getAllSP(String ajlx, int ajbs) {
+        List<String> tables = readDataConfig.getTablesByLX(ajlx);
+        IRow row = new Row();
+        IRowHeader rowHeader = new RowHeader();
+        rowHeader.put("LX",ajlx);
+        row.setHeader(rowHeader);
+        for (int i = 0; i < tables.size(); i++) {
+            RowSet rowSet1 = getRowSetSP(tables.get(i), ajbs);
+            if (rowSet1.size()>1){   //若该表有多条记录，则插入RowSet
+                IColumn column = new Column(tables.get(i),rowSet1,ColumnType.ComplexRowSet);
+                row.insertColumn(column);
+            }else if (rowSet1.size()==1){  //若该表只有一条记录，则插入Row
+                IColumn column = new Column(tables.get(i),rowSet1.getRow(0),ColumnType.ComplexRow);
+                row.insertColumn(column);
+            }
+        }
+        return row;
+    }
+
+    /**
+     * 获取非审判业务，相应系统相关表对应条件的所有记录
+     */
+    public IRow getALLFSP(String lx, Map<String, Object> tj) {
+        List<String> tables = readDataConfig.getTablesByLX(lx);
+        IRow row = new Row();
+        IRowHeader rowHeader = new RowHeader();
+        rowHeader.put("LX",lx);
+        row.setHeader(rowHeader);
+        for (int i = 0; i < tables.size(); i++) {
+            RowSet rowSet1 = getRowSetFSP(tables.get(i), tj);
+            if (rowSet1.size()>1){
+                IColumn column = new Column(tables.get(i),rowSet1,ColumnType.ComplexRowSet);
+                row.insertColumn(column);
+            }else if (rowSet1.size()==1){
+                IColumn column = new Column(tables.get(i),rowSet1.getRow(0),ColumnType.ComplexRow);
+                row.insertColumn(column);
+            }
+        }
+        return row;
+    }
+
+    public String querySQLByColumn(String tablename, String[] columns, String referencekey) {
+        String values = columns[0];
+        for (int i = 1; i < columns.length; i++) {
+            values = values + "," + columns[i];
+        }
+        String sql = "select " + values + " from " + tablename + " where " + referencekey + "=?";
+        return sql;
+    }
+
+    /**
+     * 根据案件标识获取表的所有记录，查询语句
+     */
+    public String querySQLAllByAjbs(String tablename, int ajbs) {
+        String sql = "select * from " + tablename + " where AJBS = " + ajbs;
+        return sql;
+    }
+
+    /**
+     * 根据条件map获取表的所有记录，查询语句
+     */
+    public String querySQLAllByConditions(String tablename, String[] conditionkey) {
+        String values = conditionkey[0] + "= ?";
+        for (int i = 1; i < conditionkey.length; i++) {
+            values = values + " and  " + conditionkey[i] + "=? ";
+        }
+        String sql = "select * from " + tablename + " where " + values;
+        return sql;
+    }
+
+
+
+    /**
+     * 获取非审判业务，表对应条件的所有记录
+     */
+    public RowSet getRowSetFSP(String tablename, Map<String, Object> conditions) {
+        String[] conditionkey = new String[conditions.size()];
+        conditions.keySet().toArray(conditionkey);
+        Object[] conditionvalue = conditions.values().toArray();
+        String sql = querySQLAllByConditions(tablename, conditionkey);
+        RowSet rowSet = new RowSet();
+        ResultSet resultSet = dbOperation.sqlQuery(sql, conditionvalue, null);
+        try {
+            while (resultSet.next()) {
+                IRow row = new Row();
+                IRowHeader rowHeader = new RowHeader();
+                rowHeader.put("tablename", tablename);
+                row.setHeader(rowHeader);
+                ResultSetMetaData rsm = resultSet.getMetaData();
+                for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                    //                    判断该值是否需要反回，默认全是需要
+                    if (readDataConfig.getColumnsByTable(tablename).contains(rsm.getColumnName(i))) {
+                        if (resultSet.getMetaData().getColumnType(i)== Types.BLOB){
+                            ByteArrayInputStream msgContent =(ByteArrayInputStream) resultSet.getBlob(i).getBinaryStream();
+                            byte[] byte_data = new byte[msgContent.available()];
+                            msgContent.read(byte_data, 0,byte_data.length);
+                            String result = new String(byte_data);
+                           row.putColumn(rsm.getColumnName(i),result);
+                        }else {
+                            row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+                        }
+                    }
+                }
+                rowSet.putRow(row);
+            }
+        } catch (SQLException e) {
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+
+        return rowSet;
+    }
+
+    /**
+     * 获取审判业务，表对应案件标识的所有记录
+     */
+    public RowSet getRowSetSP(String tablename, int ajbs) {
+        String sql = querySQLAllByAjbs(tablename, ajbs);
+        ResultSet resultSet = dbOperation.sqlQuery(sql, null);
+        RowSet rowSet = new RowSet();
+        try {
+            while (resultSet.next()) {
+                IRow row = new Row();
+                IRowHeader rowHeader = new RowHeader();
+                rowHeader.put("tablename", tablename);
+                row.setHeader(rowHeader);
+                ResultSetMetaData rsm = resultSet.getMetaData();
+                for (int i = 1; i <= rsm.getColumnCount(); i++) {
+//                    判断该值是否需要反回，默认全是需要
+                    if (readDataConfig.getColumnsByTable(tablename).contains(rsm.getColumnName(i))) {
+                        System.out.println(rsm.getColumnName(i)+" : "+rsm.getColumnTypeName(i));
+                        if (rsm.getColumnType(i)== Types.BLOB&&resultSet.getObject(rsm.getColumnName(i))!=null){
+                            ByteArrayInputStream msgContent =(ByteArrayInputStream) resultSet.getBlob(rsm.getColumnName(i)).getBinaryStream();
+                            byte[] byte_data = new byte[msgContent.available()];
+                            msgContent.read(byte_data, 0,byte_data.length);
+                            String result = new String(byte_data);
+                            row.putColumn(rsm.getColumnName(i),result);
+                        }else {
+                            row.putColumn(rsm.getColumnName(i), resultSet.getObject(rsm.getColumnName(i)));
+                        }
+                    }
+                }
+                rowSet.putRow(row);
+            }
+        } catch (SQLException e) {
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+        return rowSet;
+    }
+
+
+}

@@ -1,0 +1,23 @@
+package org.jdataex.flow.station;
+
+import org.jdataex.flow.component.ComponentException;
+import org.jdataex.flow.component.step.MockStep;
+import org.jdataex.flow.row.Column;
+import org.jdataex.flow.row.IColumn;
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.Row;
+
+public class MockSecondStep extends MockStep {
+
+
+	@Override
+	public void processRow(IRow row) throws ComponentException {
+		super.processRow(row);
+
+		IRow result = this.pullRow();
+
+		IColumn col  = result.getColumn(MockFirstStep.COLNAME_CHECK_COUNT);
+		System.out.println(col.getValue());
+		
+	}
+}

@@ -1,0 +1,220 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.flow.row.IRow;
+import org.jdataex.flow.row.IRowSet;
+import org.jdataex.resource.databasepool.BasePoolConnection;
+import org.jdataex.resource.databasepool.DBManager;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+
+/**
+ * Created by wengxf on 2014/5/30 0030.
+ */
+public class RowDataAccess extends RowDataAccessProcess {
+    DBManager dbManager = DBManager.getInstance();
+
+    public void doProcessRow(IRow row) {
+
+        if (row.getHeader().get("actionType").equalsIgnoreCase("insert")) {
+                doInsert(row);
+        }else if (row.getHeader().get("actionType").equalsIgnoreCase("delete"))
+        {
+            doDelete(row);
+        }
+
+
+    }
+
+    public void doInsert(IRow row) {
+
+        BasePoolConnection basePoolConnection = dbManager.getConnection(null);
+        try {
+            basePoolConnection.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int n = 0;
+        boolean flag = true;
+        PreparedStatement preparedStatement=null;
+        String failtext = "0 rows has changed";
+        try {
+        for (int i = 0; i < row.getColumnsSize(); i++) {
+            if (row.getColumn(i).getValue() instanceof IRow) {
+                IRow nrow = (IRow) row.getColumn(i).getValue();
+                Savepoint savepoint = null;
+               try {
+                   savepoint = basePoolConnection.setSavepoint();
+                   n=updateProcess(basePoolConnection,nrow);
+                    System.out.println("update rows :"+n);
+             } catch (SQLException e) {
+                    flag = false;
+                   n=0;
+                    e.printStackTrace();
+                    try {
+                        System.out.println("roll back savepoint");
+                        basePoolConnection.rollback(savepoint);
+                       // basePoolConnection.commit();
+
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+                if (n == 0) {
+                   n = insertProcess(basePoolConnection, nrow);
+                }
+            } else if (row.getColumn(i).getValue() instanceof IRowSet) {
+                IRowSet rowSet = (IRowSet) row.getColumn(i).getValue();
+                while (rowSet.hasNextRow()) {
+                    IRow row1 = rowSet.nextRow();
+                  //  try {
+                    Savepoint savepoint = null;
+                    try {
+                      savepoint = basePoolConnection.setSavepoint();
+                        n=updateProcess(basePoolConnection,row1);
+
+                    } catch (SQLException e) {
+                        flag = false;
+                        n=0;
+                        e.printStackTrace();
+                        try {
+                            System.out.println("roll back savepoint");
+                            basePoolConnection.rollback(savepoint);
+                          //  basePoolConnection.commit();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                    if (n == 0) {
+                        n = insertProcess(basePoolConnection,row1);
+                    }
+                }
+            }
+        }
+
+            basePoolConnection.commit();
+        } catch (SQLException e) {
+            flag=false;
+             failtext= e.getMessage();
+            try {
+                System.out.println("roll back all");
+                basePoolConnection.rollback();
+                //basePoolConnection.commit();
+
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        if (!flag) {
+            if (n==0){
+             failtext = "0 rows has changed";
+            }
+            System.out.println("flag:"+flag );
+            try {
+                basePoolConnection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        try {
+
+        } finally {
+            basePoolConnection.release();
+            try {
+                basePoolConnection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public void doDelete(IRow row){
+        BasePoolConnection basePoolConnection = dbManager.getConnection(null);
+        try {
+            basePoolConnection.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int n = 0;
+        boolean flag = true;
+        PreparedStatement preparedStatement=null;
+        try {
+            for (int i = 0; i < row.getColumnsSize(); i++) {
+                if (row.getColumn(i).getValue() instanceof IRow) {
+                    IRow nrow = (IRow) row.getColumn(i).getValue();
+
+//                try {
+                    n = deleteProcess(basePoolConnection, nrow);
+                    if (n == 0) {
+                        flag = false;
+                    }
+/*//                } catch (SQLException e) {
+                    flag = false;
+                    e.printStackTrace();
+                    try {
+                        basePoolConnection.rollback();
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }*/
+                } else if (row.getColumn(i).getValue() instanceof IRowSet) {
+                    IRowSet rowSet = (IRowSet) row.getColumn(i).getValue();
+                    while (rowSet.hasNextRow()) {
+                        IRow row1 = rowSet.nextRow();
+                        //  try {
+                        n = deleteProcess(basePoolConnection, row1);
+                        if (n == 0) {
+                            flag = false;
+                        }
+                  /*  } catch (SQLException e) {
+                        flag = false;
+                        e.printStackTrace();
+                        try {
+                            basePoolConnection.rollback();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }*/
+                    }
+                }
+            }
+
+            basePoolConnection.commit();
+        } catch (SQLException e) {
+            flag=false;
+            try {
+                basePoolConnection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        if (!flag) {
+
+            System.out.println("flag:"+flag );
+            try {
+                basePoolConnection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        try {
+
+        } finally {
+            basePoolConnection.release();
+            try {
+                basePoolConnection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}

@@ -1,0 +1,14 @@
+package org.jdataex.engine.loader;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.config.FlowConfig;
+import org.jdataex.flow.controller.IComponentController;
+
+@Deprecated
+public interface IComponentControllerLoader {
+
+	// 装载XML读取配置。
+	public abstract IComponentController load(String configContent);
+
+	public abstract IComponentController load(FlowConfig config) throws InitializationException;
+}

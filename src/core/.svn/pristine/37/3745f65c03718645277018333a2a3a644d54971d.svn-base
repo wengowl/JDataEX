@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="咨询信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZXBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZXRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZXR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZXSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BT" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WTLB" type="C50" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="WTNR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="LXDH" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JJYF" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFJS" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="JSSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="BJSYY" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFFB" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FBSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFSC" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="YFSJSR" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SFFF" type="TN" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="XZFRY" type="C200" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="咨询回复信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HFBH" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ZXBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HFSJ" type="DT" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HFNR" type="BB" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HFRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="HFR" type="C40" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

@@ -1,0 +1,119 @@
+package org.jdataex.channel;
+
+import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import junit.framework.Assert;
+
+import org.jdataex.channel.executor.DefaultExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.local.LocalChannelInput;
+import org.jdataex.channel.local.LocalChannelOutput;
+import org.jdataex.channel.mock.MockHandler;
+import org.jdataex.channel.mock.MockSystemHandler;
+import org.jdataex.channel.net.LocalAddress;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class DefaultChannelStageTest {
+	
+	 IChannelStage<String> stage1;
+	
+	 IChannelStage<String> stage2;
+
+	@Before
+	public void setUp() {
+		stage1 = new DefaultChannelStage<String>("stage1");
+		IChannelContainer<String> cr = new DefaultChannelContainer<String>();
+		cr.setInput(new LocalChannelInput<String>("test1"));
+		cr.addOutput(new LocalChannelOutput<String>("testout1"));
+		stage1.setChannelContainer(cr);
+		stage1.setExecutor(new DefaultExecutor<String>(1),new DefaultExecutor<String>(100));
+		stage1.addBefare(new MockHandler<String>());
+		stage1.addAfter(new MockSystemHandler<String>());
+		Map<String,SocketAddress> map = new HashMap<String,SocketAddress>();
+		map.put("testout1", new LocalAddress("stage2"));
+		
+		stage2 = new DefaultChannelStage<String>("stage2");
+		IChannelContainer<String> cr2 = new DefaultChannelContainer<String>();
+		cr2.setInput(new LocalChannelInput<String>("test2"));
+		stage2.setChannelContainer(cr2);
+		stage2.setExecutor(new DefaultExecutor<String>(100),new DefaultExecutor<String>(1));
+		stage2.addBefare(new MockHandler<String>());
+		stage2.addAfter(new MockSystemHandler<String>());
+		
+		stage2.start(null, null);
+		stage1.start(null, map);
+	}
+
+	@After
+	public void clear() {
+		stage1.shutdown();
+		stage2.shutdown();
+	}
+
+	@Test
+	public void testWrite() {
+		IChannelFuture<String>[] ic = stage1.writeMsg("[[[this is a test msg", "testout1");
+		Assert.assertEquals(ic[0].isSuccess(), true);
+	}
+	
+	@Test
+	public void testWriteSome(){
+		List<IChannelFuture<String>> list = new ArrayList<IChannelFuture<String>>();
+		for(int i=0;i<5000;i++){
+			list.add(stage1.writeMsg("[[[this is a test msg", "testout1")[0]);
+		}
+		for(IChannelFuture<String> ilf:list){
+			if(ilf.isSuccess()){
+			}
+		}
+	}
+	
+	@Test
+	public void testBadWriteMsg(){
+		IChannelFuture<String>[] ic = stage1.writeMsg("error this is a bad write msg", "testout1");
+		Assert.assertEquals(ic[0].isSuccess(), false);
+		//ic[0].error().printStackTrace();
+		System.out.println(ic[0].error().getMessage());
+	}
+	
+	//@Test
+	public void testBadReadMsg(){
+		
+	}
+	
+	public static void main(String[] args){
+		//testList();
+		testStage();
+	}
+	
+	@SuppressWarnings({ "unused", "unchecked" })
+	private static void testList(){
+		long start = System.currentTimeMillis();
+		@SuppressWarnings("rawtypes")
+		List list = new ArrayList();
+		for(int i=0;i<5000;i++){
+			//System.out.println("stage2 sys channelRead...[[[this is a test msg");
+			//System.out.println("stage2 channelRead...[[[this is a test msg");
+			list.add("stage2 channelRead...[[[this is a test msg");
+		}
+		
+		System.out.println("用时:   "+ (System.currentTimeMillis()-start));
+	}
+	
+	public static void testStage(){
+		long start = System.currentTimeMillis();
+		
+		DefaultChannelStageTest t = new DefaultChannelStageTest();
+		t.setUp();
+		t.testWriteSome();
+		
+		System.out.println("用时:   "+ (System.currentTimeMillis()-start));
+	}
+
+}

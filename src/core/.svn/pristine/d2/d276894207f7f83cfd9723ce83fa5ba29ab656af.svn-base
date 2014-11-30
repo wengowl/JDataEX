@@ -1,0 +1,33 @@
+package org.jdataex.channel;
+
+import junit.framework.Assert;
+
+import org.jdataex.channel.local.LocalChannelOutput;
+import org.jdataex.channel.tlq.TLQChannelOutput;
+import org.junit.Test;
+
+public class DefaultChannelContainerTest {
+
+	@Test
+	public void testAddOutputBad() {
+		try{
+		DefaultChannelContainer<String> test = new DefaultChannelContainer<String>("testc");
+		
+		test.addOutput(new LocalChannelOutput<String>("test1"));
+		test.addOutput(new TLQChannelOutput<String>("test2", "qcu1"));
+		}catch(Exception e ){
+			e.printStackTrace();
+			Assert.assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void testAddOutputGood() {
+		DefaultChannelContainer<String> test = new DefaultChannelContainer<String>("testc");
+		test.addOutput(new LocalChannelOutput<String>("test1"));
+		test.addOutput(new LocalChannelOutput<String>("test2"));
+		test.addOutput(new LocalChannelOutput<String>("test3"));
+		Assert.assertTrue(true);
+	}
+
+}

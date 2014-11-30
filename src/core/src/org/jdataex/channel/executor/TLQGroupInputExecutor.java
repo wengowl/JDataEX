@@ -1,0 +1,184 @@
+package org.jdataex.channel.executor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.tlq.TLQChannelGroupInput;
+import org.jdataex.channel.tlq.TLQChannelInput;
+import org.jdataex.channel.util.ChannelClassUtil;
+import org.jdataex.util.AssertUtil;
+/**
+ * 为了解决TLQ 不能多线程处理的问题,特别开发了Group类型的executor
+ * groupExecutor必须与TLQGroupinput对应使用,它将根据TLQGroupinput
+ * 的内置TLQInput个数来一一创建线程.
+ * @author chaos
+ *
+ * @param <T>
+ */
+public class TLQGroupInputExecutor<T> implements IExecutor<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3054496500687499013L;
+
+	private List<SignExecutor> list = new ArrayList<SignExecutor>();
+	
+	private AtomicBoolean shutdown = new AtomicBoolean(false);
+
+	public TLQGroupInputExecutor() {
+
+	}
+
+	@Override
+	public long getTeskCount() {
+		long count = 0;
+		for (SignExecutor sign : list) {
+			count += sign.taskCount;
+		}
+		return count;
+	}
+
+	@Override
+	public int getMaxThreadNum() {
+		return list.size();
+	}
+
+	@Override
+	public int getCoreThreadNum() {
+		return list.size();
+	}
+
+	@Override
+	public int getCurrentThreadSize() {
+		return list.size();
+	}
+
+	@Override
+	public int getActiveThreadSize() {
+		return list.size();
+	}
+
+	@Override
+	/**
+	 * 此方法无用
+	 */
+	public IChannelFuture<T> execute(ITask<T> task) {
+		return null;
+	}
+
+	@Override
+	public boolean isAllWorksFinish() {
+		for (SignExecutor sign : list) {
+			if (!sign.isStoped())
+				return false;
+		}
+		return true;
+	}
+
+	@Override
+	public void shutdown() {
+		for (SignExecutor sign : list) {
+			sign.stop0();;
+		}
+		while (!isAllWorksFinish()) {
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+			}
+		}
+		synchronized (this) {
+			this.notifyAll();
+			shutdown.set(true);
+		}
+	}
+	
+	@Override
+	public boolean isShutdown() {
+		return shutdown.get();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	/**
+	 * 此方法内部线程初始化完毕后应该处于阻塞状态
+	 */
+	public IChannelFuture<T> select(IChannelStage<T> stage) {
+		AssertUtil.assertNotClass(stage.getChannelContainer().getInput(),
+				TLQChannelGroupInput.class);
+
+		TLQChannelGroupInput<T> inputs = (TLQChannelGroupInput<T>) stage
+				.getChannelContainer().getInput();
+
+		for (int i = 0; i < inputs.getSize(); i++) {
+			SignExecutor sign = new SignExecutor(new TLQInputExecutor<T>(),
+					stage, inputs.getChannel(i));
+			list.add(sign);
+			sign.start();
+		}
+
+		synchronized (this) {
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+			}
+		}
+		return (IChannelFuture<T>) ChannelClassUtil
+				.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+	}
+
+	/**
+	 * 执行单个TLQChannelinput的executor类的包装类
+	 * 
+	 * @author chaos
+	 * 
+	 */
+	class SignExecutor extends Thread {
+
+		IChannelStage<T> stage;
+		TLQChannelInput<T> input;
+		TLQInputExecutor<T> executor;
+		
+		boolean stop=false;
+
+		long taskCount = 0;
+
+		public SignExecutor(TLQInputExecutor<T> executor,
+				IChannelStage<T> stage, TLQChannelInput<T> input) {
+			this.executor = executor;
+			this.stage = stage;
+			this.input = input;
+		}
+
+		public void run() {
+			while (!isStoped()) {
+				if (input.canRead()) {
+					// input读取本身会阻塞
+					executor.select(stage, input);
+					taskCount++;
+				} else {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+					}
+				}
+			}
+		}
+
+		public TLQInputExecutor<T> getExecutor() {
+			return executor;
+		}
+		
+		public void stop0(){
+			this.stop = true;
+		}
+		
+		public boolean isStoped(){
+			return stop;
+		}
+	}
+
+}

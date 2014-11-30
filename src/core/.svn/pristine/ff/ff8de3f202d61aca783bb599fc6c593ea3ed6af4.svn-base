@@ -1,0 +1,35 @@
+package org.jdataex.channel.executor;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+/**
+ * task接口类
+ * @author chaos
+ *
+ */
+public interface Task<T> extends Runnable{
+	
+	/**
+	 * 返回错误信息
+	 * @return
+	 */
+	public BaseNestedException getException();
+	
+	/**
+	 * 判断任务是否完成
+	 * @return
+	 */
+	public boolean isCompleted();
+	
+	/**
+	 * task是否执行成功
+	 * @return
+	 */
+	public boolean isSuccessed();
+	
+	/**
+	 * 返回包装的 event
+	 * @return
+	 */
+	public IEvent<T> getEvent();
+}

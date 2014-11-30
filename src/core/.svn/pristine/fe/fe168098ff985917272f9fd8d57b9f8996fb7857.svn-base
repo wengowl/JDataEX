@@ -1,0 +1,10 @@
+package org.jdataex.flow.row;
+
+import java.util.List;
+
+public interface IColumnSet extends IColumn {
+
+	public abstract List<IColumn> getColumns();
+	
+	public abstract void setColumns(List<IColumn> list);
+}

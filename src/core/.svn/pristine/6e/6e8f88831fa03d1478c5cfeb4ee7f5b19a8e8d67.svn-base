@@ -1,0 +1,114 @@
+package org.jdataex.flow.scene.xml2db;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.core.InitializationException;
+import org.jdataex.flow.FlowUtil;
+import org.jdataex.flow.IFlow;
+import org.jdataex.flow.controller.ControllerException;
+import org.jdataex.resource.databasepool.DBManager;
+import org.jdataex.util.AssertUtil;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+//import org.jdataex.flow.FlowUtil;
+
+public class XML2DBTest extends BaseJDataExTest {
+	private static Connection conn;
+	private static QueryRunner queryRunner;
+
+	private String[] handlerTables = { "MSYS_SKSQK", "MSYS_SDJL", "MSYS_SFJY",
+			"MSYS_XAQK" };
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		init();
+
+		conn = DBManager.getInstance().getConnection("pool");
+		queryRunner = new QueryRunner(true);
+	}
+
+	@Before
+	public void setUp() throws SQLException {
+		clearTables();
+	}
+
+	@Before
+	public void tearDown() throws SQLException {
+		// clearTables();
+	}
+
+	private void clearTables() throws SQLException {
+		for (int i = 0; i < handlerTables.length; i++) {
+			queryRunner.update(conn, "DELETE FROM " + handlerTables[i]);
+		}
+	}
+
+	@Test
+	public void testInsert() throws InitializationException, SQLException, ControllerException {
+		IFlow flow = FlowUtil.loadFlowAndRunning(this.getClass(),
+				"xml2db-test-config.xml",1);
+
+		List<Map<String, Object>> expectedList = new ArrayList<>();
+		Map<String, Object> expectedMap = new HashMap<>();
+		expectedList.add(expectedMap);
+		List<Map<String, Object>> actualList;
+
+		expectedMap.clear();
+		expectedMap.put("SSFW", "1");
+		expectedMap.put("SSLX", "1");
+		actualList = query("SELECT SSFW,SSLX FROM MSYS_SKSQK");
+
+		AssertUtil.assertData(expectedList, actualList);
+
+		expectedMap.clear();
+		expectedMap.put("XH", "1");
+		expectedMap.put("WS", "1");
+		expectedMap.put("WSDYY", "未送达原因");
+		expectedMap.put("GGRQ", "2014-06-09 00:00:00.0");
+		expectedMap.put("QSSJ", "2014-06-09 12:12:12.0");
+		actualList = query("SELECT XH,WS,WSDYY,GGRQ,QSSJ FROM MSYS_SDJL");
+
+		AssertUtil.assertData(expectedList, actualList);
+
+		expectedMap.clear();
+		expectedMap.put("SQXARQ", "2014-06-09 00:00:00.0");
+		expectedMap.put("XASY", "1");
+		expectedMap.put("XAYY", "销案具体原因");
+		expectedMap.put("SQXABG", "1");
+		expectedMap.put("TYXARQ", "2014-06-09 00:00:00.0");
+		expectedMap.put("SPR", "1");
+		actualList = query("SELECT SQXARQ,XASY,XAYY,SQXABG,TYXARQ,SPR FROM MSYS_XAQK");
+
+		AssertUtil.assertData(expectedList, actualList);
+
+		expectedMap.clear();
+		expectedMap.put("XH", "1");
+		expectedMap.put("TCRQ", "2014-06-09 00:00:00.0");
+		expectedMap.put("FKRQ", "2014-06-09 00:00:00.0");
+
+		Map<String, Object> expectedMap2 = new HashMap<>();
+		expectedMap2.put("XH", "2");
+		expectedMap2.put("TCRQ", "2014-06-09 00:00:00.0");
+		expectedMap2.put("FKRQ", "2014-06-12 00:00:00.0");
+		expectedList.add(expectedMap2);
+
+		actualList = query("SELECT XH,TCRQ,FKRQ FROM MSYS_SFJY");
+
+		AssertUtil.assertData(expectedList, actualList);
+	}
+
+	private List<Map<String, Object>> query(String sql) throws SQLException {
+		return queryRunner.query(conn, sql, new MapListHandler(),
+				(Object[]) null);
+	}
+
+}

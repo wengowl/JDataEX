@@ -1,0 +1,43 @@
+package org.jdataex.flow;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jdataex.core.card.GUIC;
+import org.jdataex.flow.controller.IComponentController;
+
+public class Flow implements IFlow {
+
+	private Map<String, IComponentController> controllers = new HashMap<>();
+
+	@Override
+	public void putComponentController(IComponentController controller) {
+		if (null != controller) {
+			controllers.put(controller.getGUIC().toString(), controller);
+		}
+	}
+
+	@Override
+	public IComponentController getComponentController(String guic) {
+		if (null != guic) {
+			return controllers.get(guic);
+		}
+		return null;
+	}
+
+	@Override
+	public void startAll() {
+		for (String key : this.controllers.keySet()) {
+			IComponentController controller = controllers.get(key);
+			controller.startAll();
+		}
+	}
+
+	@Override
+	public void stopAll() {
+		for (String key : this.controllers.keySet()) {
+			IComponentController controller = controllers.get(key);
+			controller.stopAll();
+		}
+	}
+}

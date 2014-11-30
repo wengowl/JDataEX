@@ -1,0 +1,82 @@
+package org.jdataex.channel.tlq;
+
+import static org.jdataex.channel.common.ChannelParameters.TLQ_MSG;
+import static org.jdataex.channel.common.DefaultValues.NULL_STRING;
+
+import org.jdataex.channel.BaseAbstractChannelOutput;
+import org.jdataex.channel.IChannelOutput;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.TLQConnectException;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.net.INetAddress;
+import org.jdataex.channel.util.ChannelClassUtil;
+
+import com.tongtech.tlq.base.TlqConnection;
+import com.tongtech.tlq.base.TlqException;
+
+/**
+ * 基于TLQ的本地消息发送channelinput,据研发确认,本地接口单队列一个TLQConnection和<br>
+ * 多个TLQConnection发消息性能几乎相同,所以,tlqChannelInput内部只需要有一个<br>
+ * TLQConnection就行了
+ * 
+ * @author chaos
+ * 
+ * @param <T>
+ */
+public class TLQChannelOutput<T> extends BaseAbstractChannelOutput<T> implements
+		IChannelOutput<T> {
+
+	private int type = TLQ_MSG;
+
+	private TlqConnection tlqConnection;
+
+	public TLQChannelOutput(String name, int type) {
+		super(name);
+		this.type = type;
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8159396668540542096L;
+
+	@Override
+	public IChannelFuture<T> writeAndFlush(IEvent<T> event) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	/**
+	 * 连接本地的tlq或者远程的tlq,建议一般情况下连接本地的tlq 进行消息发送,如果是本地
+	 * 的tlq,直接传入 null
+	 */
+	public IChannelFuture<T> connect(INetAddress remoteAddress) {
+		// TODO Auto-generated method stub
+		try {
+			if (remoteAddress == null) {
+				tlqConnection = new TlqConnection();
+			} else {
+				tlqConnection = new TlqConnection(remoteAddress.getHostName(),
+						remoteAddress.getPort());
+			}
+		} catch (TlqException e) {
+			throw new TLQConnectException(NULL_STRING, e);
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> disConnect() {
+		try {
+			tlqConnection.close();
+			return (IChannelFuture<T>) ChannelClassUtil
+					.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+		} catch (TlqException e) {
+			return (IChannelFuture<T>) ChannelClassUtil.getInstance(
+					ChannelClassUtil.CLOSE_ERROR_FUTURE, e);
+		}
+	}
+
+}

@@ -1,0 +1,11 @@
+package org.jdataex.flow.controller;
+
+import org.jdataex.flow.component.IComponentLinkInfo;
+
+public interface IComponentController {
+
+	public abstract void setLinkInfo(IComponentLinkInfo linkInfo);
+
+	public abstract IComponentLinkInfo getLinkInfo();
+
+}

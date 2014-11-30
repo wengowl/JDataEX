@@ -1,0 +1,30 @@
+package org.jdataex.flow.station;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
+
+import org.jdataex.flow.row.IRowSet;
+
+/**
+ * 重复站。每个订阅者获取的数据都是独立拷贝过的复制记录。
+ * @author TwelveFoldEr
+ *
+ */
+public class DuplicateStepStation extends BaseStation {
+	
+	private Map<String,Queue<IRowSet>> queues = new HashMap<>();
+	
+	public Queue<IRowSet> getQueue(String id){
+		return queues.get(id);
+	}
+
+	@Override
+	public boolean addListener(String id) {
+		if(!queues.containsKey(id)){
+			queues.put(id, createQueue());
+		}
+		
+		return true;
+	}
+}

@@ -1,0 +1,169 @@
+package org.jdataex.flow.component.step.dataaccess;
+
+import org.jdataex.flow.row.IRow;
+import org.jdataex.util.logger.LoggerFactory;
+
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * 重新入库，缓冲表数据处理
+ * Created by wengxf on 2014/5/20 0020.
+ */
+public class ReDataAccess extends MsgCacheProcess {
+
+
+    /**
+     * 处理缓冲表
+     */
+
+    public void doProcess() {
+        clearMsgCache();
+        try {
+            List<MsgCacheBean> caches = queryMsgCache();
+            processCaches(caches);
+        } catch (SQLException e) {
+            LoggerFactory.getRootLogger().error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 缓冲表数据处理
+     */
+    public void processCaches(List<MsgCacheBean> caches) {
+        for (MsgCacheBean msgCacheBean : caches) {
+            if (MsgCacheBean.OPERATION_TYPE_INUP.equalsIgnoreCase(msgCacheBean.getOperationType())) {
+                processInsert(msgCacheBean);
+            } else if (MsgCacheBean.OPERATION_TYPE_UPIN.equalsIgnoreCase(msgCacheBean.getOperationType())) {
+                processUpdate(msgCacheBean);
+
+            } else if (MsgCacheBean.OPERATION_TYPE_INSERT.equalsIgnoreCase(msgCacheBean.getOperationType())) {
+                processInsert(msgCacheBean);
+            } else if (MsgCacheBean.OPERATION_TYPE_UPDATE.equalsIgnoreCase(msgCacheBean.getOperationType())) {
+                processUpdate(msgCacheBean);
+            } else if (MsgCacheBean.OPERATION_TYPE_DELETE.equalsIgnoreCase(msgCacheBean.getOperationType())) {
+                processDelete(msgCacheBean);
+            }
+        }
+    }
+
+    /**
+     * 缓冲表数据入库插入
+     */
+    public void processInsert(MsgCacheBean msgCacheBean) {
+        IRow row = msgCacheBean.getDataObject();
+        int i = 0;
+        String failedtxt = "0 rows has changed";
+        try {
+            i = updateProcess(row);
+            LoggerFactory.getRootLogger().info("update " + i + " rows");
+        } catch (SQLException e2) {
+            //TODO
+            //LoggerFactory.getRootLogger().traceI18nc(AutoDataAccess.class, "SQLException", e2);
+            LoggerFactory.getRootLogger().error(e2.getMessage(), e2);
+            LoggerFactory.getRootLogger().info("in up");
+
+            //  e2.printStackTrace();
+        }
+
+        if (i == 0) {
+            // System.out.println("开始插入");
+            try {
+                i = insertProcess(row);
+                // System.out.println(i + "has changed");
+            } catch (SQLException e1) {
+                //TODO
+                // e1.printStackTrace();
+                // LoggerFactory.getRootLogger().traceI18nc(AutoDataAccess.class, "SQLException", e1);
+                i = 0;
+                failedtxt = e1.getMessage();
+                LoggerFactory.getRootLogger().error(e1.getMessage(), e1);
+                LoggerFactory.getRootLogger().info("in in");
+
+
+            }
+        }
+        if (i == 0) {
+            try {
+                LoggerFactory.getRootLogger().info("updatemsgcache");
+                updateMsgCache(msgCacheBean, failedtxt);
+            } catch (SQLException e) {
+                this.setLogger(LoggerFactory.getRootLogger());
+                getLogger().error(e.getMessage(), e);
+            }
+        } else {
+            deleteMsgCache(msgCacheBean.getMsgId());
+        }
+
+    }
+
+    /**
+     * 缓冲表数据入库更新
+     */
+    public void processUpdate(MsgCacheBean cacheBean) {
+        IRow row = cacheBean.getDataObject();
+        int i = 0;
+        String failedtxt = "0 rows has changed";
+        try {
+            i = updateProcess(row);
+        } catch (SQLException e2) {
+            //TODO
+            //  LoggerFactory.getRootLogger().traceI18nc(AutoDataAccess.class, "SQLException", e2);
+            LoggerFactory.getRootLogger().error(e2.getMessage(), e2);
+            failedtxt = e2.getMessage();
+            // e2.printStackTrace();
+        }
+
+        if (i == 0) {
+            try {
+                i = insertProcess(row);
+            } catch (SQLException e1) {
+//                e1.printStackTrace();
+                i = 0;
+                //TODO
+                //  LoggerFactory.getRootLogger().traceI18nc(AutoDataAccess.class, "SQLException", e1);
+                failedtxt = e1.getMessage();
+                LoggerFactory.getRootLogger().error(e1.getMessage(), e1);
+
+            }
+        }
+        if (i == 0) {
+            try {
+                updateMsgCache(cacheBean, failedtxt);
+            } catch (SQLException e) {
+                getLogger().error(e.getMessage(), e);
+            }
+        } else {
+            deleteMsgCache(cacheBean.getMsgId());
+        }
+    }
+
+    /**
+     * 缓冲表数据入库删除
+     */
+    public void processDelete(MsgCacheBean msgCacheBean) {
+        IRow row = msgCacheBean.getDataObject();
+        int i = 0;
+        String failedtxt = "0 rows has changed";
+        try {
+            i = deleteProcess(row);
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            i = 0;
+
+            failedtxt = e.getMessage();
+            getLogger().error(e.getMessage(), e);
+
+        }
+
+        if (i == 0) {
+            try {
+                updateMsgCache(msgCacheBean, failedtxt);
+            } catch (SQLException e) {
+                getLogger().error(e.getMessage(), e);
+            }
+        } else {
+            deleteMsgCache(msgCacheBean.getMsgId());
+        }
+    }
+}

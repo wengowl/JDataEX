@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://dataexchange.court.gov.cn/2009/data" targetNamespace="http://dataexchange.court.gov.cn/2009/data" elementFormDefault="qualified">
+
+  <xsd:group name="安排信息">
+    <xsd:sequence>
+      <xsd:element name="FYBM" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="APBS" type="ID" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GZRQ" type="D" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GZSJ" type="T" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="GZSX" type="C250" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SYFW" type="C20" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RYBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="RY" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="APRBS" type="N" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="APR" type="C40" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SXWBS" type="TN" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>

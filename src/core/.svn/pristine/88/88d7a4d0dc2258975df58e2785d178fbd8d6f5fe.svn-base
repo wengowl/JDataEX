@@ -1,0 +1,128 @@
+package org.jdataex.channel.executor;
+
+import java.util.Random;
+
+import junit.framework.Assert;
+
+import org.easymock.EasyMock;
+import org.easymock.EasyMockSupport;
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.DefaultHandlerChain;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.channel.mock.MockTask;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class DefaultExecutorTest extends EasyMockSupport {
+
+	private IExecutor<String> exer;
+
+	private IHandlerChain<String> chain;
+
+	private IEvent<String> event;
+
+	@SuppressWarnings("unchecked")
+	@Before
+	public void before() {
+		exer = new DefaultExecutor<String>();
+		chain = createMock(DefaultHandlerChain.class);
+		event = new DefaultEvent<String>("this is a test", null,
+				ChannelEventType.ChannelWrite, null);
+		chain.executeHandlers(event);
+		EasyMock.expectLastCall().anyTimes();
+		replayAll();
+	}
+
+	public ITask<String> createTask() {
+		return new ExecutorTask<String>(chain, event, null);
+	}
+
+	public ITask<String> createTimeTask(int time) {
+		return new MockTask<String>(chain, event, null, time);
+	}
+
+	@After
+	public void after() {
+		exer.shutdown();
+	}
+
+	@Test
+	public void testExec() throws InterruptedException {
+		Assert.assertEquals(exer.getCoreThreadNum(), 1);
+		Assert.assertEquals(exer.getCurrentThreadSize(), 0);
+		IChannelFuture<String> returnIF = exer.execute(createTask());
+		Assert.assertEquals(returnIF.isSuccess(), true);
+		Assert.assertEquals(exer.getCoreThreadNum(), 1);
+		Assert.assertEquals(exer.getCurrentThreadSize(), 1);
+		//太快了还不一定释放了呢..等等吧
+		Thread.sleep(100);
+		Assert.assertEquals(exer.getActiveThreadSize(), 0);
+	}
+
+	@Test
+	public void testCount() {
+		for (int i = 0; i < 1000; i++) {
+			exer.execute(createTask());
+		}
+		Assert.assertEquals(exer.getTeskCount(), 1000);
+	}
+
+	/**
+	 * 测试当task需要执行一段时间的时候,futrue返回阻塞等待完成方法的情况;
+	 */
+	@Test
+	public void testlongTimeTask() {
+		IChannelFuture<String> returnIF = exer.execute(createTimeTask(6000));
+		Assert.assertEquals(returnIF.isSuccess(), true);
+	}
+
+	/**
+	 * 当执行一个task,马上会返回(线程),但是任务还没有执行完毕,<br>
+	 * junit触发 @ after 调用线程池的 shutdown应该能够等待所有任务完成.
+	 */
+	@Test
+	public void testShutdown() {
+		// 只需要执行一个task
+		exer.execute(createTimeTask(8000));
+	}
+
+	@Test
+	public void testMultithreading() {
+		exer = new DefaultExecutor<String>(10);
+		for (int i = 0; i < 15; i++) {
+			exer.execute(createTimeTask(new Random().nextInt(2000) + 1));
+		}
+		//马上查看应该就有10个线程处于活跃状态
+		Assert.assertEquals(exer.getActiveThreadSize(), 10);
+		Assert.assertEquals(exer.getCoreThreadNum(), 10);
+		Assert.assertEquals(exer.getCurrentThreadSize(), 10);
+		
+		//等待一定时间让所有任务执行完毕
+		while(true){
+			if(exer.isAllWorksFinish()){
+				break;
+			}
+		}
+		Assert.assertEquals(exer.getActiveThreadSize(), 0);
+		Assert.assertEquals(exer.getCoreThreadNum(), 10);
+		Assert.assertEquals(exer.getCurrentThreadSize(), 10);
+	}
+	
+	/**
+	 * 测试shutdown后再执行exec的情况
+	 */
+	@Test
+	public void testShutdownToExe(){
+		exer.shutdown();
+		try{
+			IChannelFuture<String> ifs = exer.execute(createTask());
+		}catch(Exception e){
+			System.out.println("关闭后就应该错误");
+			Assert.assertTrue(true);
+		}
+	}
+}

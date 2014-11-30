@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CASE:schema xmlns:CASE="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dataexchange.court.gov.cn/2009/data" CASE:elementFormDefault="qualified" xsd:attributeFormDefault="unqualified">
+  <xsd:attribute name="ACTION_TYPE" type="c20" use="required"/>
+  <xsd:attribute name="DEPT_CODE" type="c20" use="required"/>
+  <xsd:attribute name="APP_CODE" type="c20" use="required"/>
+  <include schemaLocation="_0_结构刑事复核.xsd"/>
+  <CASE:complexType name="刑事复核">
+    <CASE:sequence>
+	 <CASE:element  name="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+      <CASE:element name="XSFH_XSPJCLQK" type="刑事判决处理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_XSFDMSSSGK" type="刑事附带民事诉讼概况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_QKLJQK" type="前科劣迹情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_BAQX" type="办案期限" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_YSQK" type="原审情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SFJY" type="司法建议" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_HBQK" type="回避情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FYCL" type="复议处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FASSXWCL" type="妨碍诉讼行为处理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_DZZM" type="定罪罪名" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_DZLXXX" type="定罪量刑信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SPZZCY" type="审判组织成员" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SWHTL" type="审委会讨论" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_YCSXJL" type="延长审限记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_QZCSJL" type="强制措施记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_KCSXJL" type="扣除审限记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_PBJL" type="批办记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_BHXX" type="报核信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZKZM " type="指控罪名 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SAHLAXX" type="收案和立案信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZHZXSXQK" type="暂缓执行死刑情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_AJCLQK" type="案件处理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_AJSLQK" type="案件审理情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_AJPY" type="案件评议" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_JCJGJSPWFCXTCYJ " type="检察机关就审判违反程序提出意见 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SXFHQK" type="死刑复核情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SXZXQK" type="死刑执行情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FTSYJL" type="法庭使用记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FZSSGK" type="犯罪事实概况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FZCYJL" type="犯罪参与记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FZDX " type="犯罪对象 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_LAYJHTAQK" type="立案移交和退案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_JAQK" type="结案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZYXZXQK" type="自由刑执行情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZSR " type="自诉人 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_BGR " type="被告人 " minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_BHR" type="被害人" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZRXX" type="证人信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZJXX" type="证据信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_ZJLT" type="证据链条" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SSDBQK" type="诉讼担保情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_SDJL" type="送达记录" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_LXQJXX" type="量刑情节信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_JDXX" type="鉴定信息" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_LTZDZJ" type="链条中的证据" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_XAQK" type="销案情况" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FDMSSSDSR" type="附带民事诉讼当事人" minOccurs="0" maxOccurs="1"/>
+      <CASE:element name="XSFH_FDMSSSPCXX" type="附带民事诉讼赔偿信息" minOccurs="0" maxOccurs="1"/>
+    </CASE:sequence>
+  </CASE:complexType>
+  <CASE:element name="刑事复核案件" type="刑事复核"/>
+</CASE:schema>

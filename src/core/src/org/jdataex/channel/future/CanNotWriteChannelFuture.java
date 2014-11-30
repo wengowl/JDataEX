@@ -1,0 +1,24 @@
+package org.jdataex.channel.future;
+
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.CanNotWriteChannelException;
+
+public class CanNotWriteChannelFuture<T> implements IChannelFuture<T>{
+	@Override
+	public boolean isSuccess() {
+		return false;
+	}
+	
+	private BaseNestedException error = new CanNotWriteChannelException("can not write msg to channel,because its not writeable!");
+
+	@Override
+	public BaseNestedException error() {
+		return error;
+	}
+
+	@Override
+	public IEvent<T> event() {
+		return null;
+	}
+}

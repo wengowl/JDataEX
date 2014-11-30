@@ -1,0 +1,89 @@
+package org.jdataex.flow.component.step.file.monitor;
+
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.core.GlobalInitializer;
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.loader.MonitorFileLoader;
+import org.jdataex.flow.component.step.dataaccess.DataAccessStep;
+import org.jdataex.flow.component.step.xml.XMLConverterStep;
+import org.jdataex.flow.controller.IComponentController;
+import org.jdataex.flow.handler.IStepHandler;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.jdataex.flow.station.IStation;
+import org.jdataex.flow.station.queue.FirstQueueStepStation;
+import org.jdataex.flow.station.queue.QueueStepStation;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+import org.junit.Test;
+
+public class TestXMLComverterFlow extends BaseJDataExTest{
+
+	@Test
+	public void test() {
+		running();
+	}
+	
+	@Test
+	public void testRunning(){
+		MonitorFileLoader loader = new MonitorFileLoader();
+		
+		IComponentController controller = loader.load();
+		
+		controller.startAll();
+		
+		try {
+			Thread.sleep(60000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	
+	protected void running() {
+		IStation st = new QueueStepStation();
+		IStation fst = new FirstQueueStepStation();
+		IStation last = new QueueStepStation();
+		IStation nlast = new QueueStepStation();
+		IStepHandler monitorHandler = new StepHandler(new MonitorFileStep(),fst,st);
+		((ILoggable)monitorHandler).setLogger(LoggerFactory.getDefaultLogger());
+		
+		
+		IStepHandler converterHandler = new StepHandler(new XMLConverterStep(),st,last);
+		((ILoggable)converterHandler).setLogger(LoggerFactory.getDefaultLogger());
+
+        IStepHandler dataaccessHandler = new StepHandler(new DataAccessStep(),last,nlast);
+        ((ILoggable)dataaccessHandler).setLogger(LoggerFactory.getDefaultLogger());
+
+        IComponentRunner dataaccessRunner = new SchedulerRunner(dataaccessHandler);
+        new Thread(dataaccessRunner).start();
+
+
+        IComponentRunner converterRunner = new SchedulerRunner(converterHandler);
+		new Thread(converterRunner).start();
+
+
+
+		IComponentRunner monitorRunner = new SchedulerRunner(monitorHandler);
+		new Thread(monitorRunner).start();
+
+
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	public static void main(String[] args) {
+		try {
+			GlobalInitializer.initialization();
+		} catch (InitializationException e) {
+			e.printStackTrace();
+		}
+		new TestXMLComverterFlow().running();
+	}
+
+}

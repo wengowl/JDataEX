@@ -1,0 +1,152 @@
+package org.jdataex.flow.component.trigger;
+
+import com.googlecode.aviator.AviatorEvaluator;
+import org.jdataex.flow.component.DBOperation;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by wengxf on 14-4-23.
+ * 数据处理
+ */
+public class DataHandler {
+
+    private TriggerDataBean triggerDataBean = new TriggerDataBean();
+    private Map<String, TriggerDataBean> serv_bean = new HashMap<>();
+    private String path;
+
+    public DataHandler(TriggerDataBean triggerDataBean) {
+        this.triggerDataBean = triggerDataBean;
+    }
+
+    public TriggerDataBean getTriggerDataBean() {
+        ExcelConfigLoad load = new ExcelConfigLoad();
+        load.loadConfig(path);
+        return load.getServ_bean().get(triggerDataBean.getService());
+    }
+
+    /**
+     * 设置处
+     */
+
+    public void updateMsgid(int msgid, String field) {
+        String sql = "Update Tr_Msgids set " + field + "=" + msgid;
+        DBOperation dbOperation = new DBOperation();
+        dbOperation.sqlExecute(sql);
+    }
+
+    /**
+     * 获取当前中间表记录的表对应关系
+     *
+     * @param msgid  先前一次处理的序号
+     * @param tr_msg 中间表名
+     */
+
+    public TriggerDataBean middleDataGet(int msgid, String tr_msg) {
+        String[] msgparam = new String[5];
+
+        String sql = "select * from " + tr_msg + " where msgid=" + msgid;
+        DBOperation dbOperation = new DBOperation();
+        ResultSet rs = dbOperation.sqlQuery(sql);
+        if (rs == null) {
+            return null;
+        }
+
+        try {
+            triggerDataBean.setAction(rs.getString("Action"));
+            triggerDataBean.setService(rs.getString("MsgService"));
+            triggerDataBean.setTablename(rs.getString("MsgSourceTableName"));
+            msgparam[0] = rs.getString("MsgParam");
+            for (int i = 1; i < 5 && msgparam[i - 1] != null; i++)
+                msgparam[i] = rs.getString("MsgParam" + i);
+            triggerDataBean.setMsgparam(msgparam);
+            triggerDataBean.setPrimarykey();
+            triggerDataBean.setDestfield(getTriggerDataBean().getDestfield());
+            triggerDataBean.setDestaction(getTriggerDataBean().getDestaction());
+            triggerDataBean.setDesttablename(getTriggerDataBean().getDesttablename());
+            triggerDataBean.setDesttype(getTriggerDataBean().getDesttype());
+            triggerDataBean.setExchanges(getTriggerDataBean().getExchanges());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return triggerDataBean;
+    }
+
+    /**
+     * 源表数据值获取
+     */
+    public void souDataGet(TriggerDataBean triggerDataBean) {
+        String[] msg = triggerDataBean.getMsgparam();
+        String sql = "select * from " + triggerDataBean.getTablename();
+        String sql1=" where " + triggerDataBean.getPrimarykey().get(0) + "=" + msg[0];
+        for (int i = 1; i < triggerDataBean.getPrimarykey().size(); i++) {
+            sql1 = sql1 + "and" + triggerDataBean.getPrimarykey().get(i) + "=" + msg[i];
+        }
+        triggerDataBean.setSql(sql1);
+        sql = sql+sql1;
+        DBOperation dbOperation = new DBOperation();
+        ResultSet rs = dbOperation.sqlQuery(sql);
+        Map<String, Object> value = new HashMap<>();
+        try {
+            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                value.put(rs.getMetaData().getColumnName(i), rs.getObject(i)); //获取记录对应表字段和对应的值
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        triggerDataBean.setSourcevalue(value);  //设置源表字段和值
+        this.triggerDataBean = triggerDataBean;
+    }
+
+    /**
+     * 源表数据转换为目标数据
+     */
+    public DestData SouToDest() {
+        int[] a = new int[20];
+        Map<String, Object> field_value = new HashMap<>();
+        DestData destData = new DestData();
+        boolean flag = true;
+        for (int i = 0; i < triggerDataBean.getExchanges().size(); i++) {
+            if (triggerDataBean.getExchanges().get(i) != null) {
+                flag = false;
+            }
+        }
+        if (flag) {
+        //如果没有转换关系表示，全是一一对应
+            if (triggerDataBean.getDestfield().isEmpty()) {
+                destData.setField_value(triggerDataBean.getSourcevalue());
+            }
+            /*所需的值为配置文件上的几个字段*/
+            if (!triggerDataBean.getDestfield().isEmpty()) {
+                for (int i = 0; i < triggerDataBean.getDestfield().size(); i++) {
+                    field_value.put(triggerDataBean.getDestfield().get(i), triggerDataBean.getSourcevalue().get(triggerDataBean.getField().get(i)));
+                }
+            }
+
+        } else {
+            //不是一一对应的情况
+            for(int i =0;i<triggerDataBean.getDestfield().size();i++){
+                if (triggerDataBean.getExchanges().get(i) != null){
+//                    用aviator根据表达式进行转换
+                    Object obj = AviatorEvaluator.execute(triggerDataBean.getExchanges().get(i), triggerDataBean.getSourcevalue());
+                    field_value.put(triggerDataBean.getDestfield().get(i),obj) ;
+                }else {
+                    field_value.put(triggerDataBean.getDestfield().get(i), triggerDataBean.getSourcevalue().get(triggerDataBean.getField().get(i)));
+                }
+
+            }
+
+
+        }
+
+        return destData;
+    }
+
+
+
+
+}

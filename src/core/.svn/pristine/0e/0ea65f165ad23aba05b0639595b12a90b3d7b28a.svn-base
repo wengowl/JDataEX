@@ -1,0 +1,25 @@
+package org.jdataex.channel;
+
+import java.util.Hashtable;
+
+import javax.naming.Context;
+import javax.naming.Name;
+import javax.naming.Reference;
+import javax.naming.spi.ObjectFactory;
+
+import org.jdataex.channel.util.ObjectAndByte;
+
+public class ChannelStageFactory implements ObjectFactory{
+
+	@Override
+	public Object getObjectInstance(Object obj, Name name, Context nameCtx,
+			Hashtable<?, ?> environment){
+		if(obj instanceof Reference){
+			 Reference ref = (Reference)obj;
+			 byte[] by = (byte[]) ref.get("channelStage").getContent();
+			 return ObjectAndByte.toObject(by);
+		}
+		return null;
+	}
+
+}

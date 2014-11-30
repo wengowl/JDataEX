@@ -1,0 +1,13 @@
+package org.jdataex.channel.common;
+
+/**
+ * 用于存储channel框架所有的默认值
+ * @author chaos
+ *
+ */
+public final class DefaultValues {
+	
+	//store
+	public final static int DEFAULT_THREAD_SIZE = 1;
+
+}

@@ -1,0 +1,93 @@
+package org.jdataex.flow.controller;
+
+import static org.junit.Assert.*;
+
+import org.jdataex.BaseJDataExTest;
+import org.jdataex.flow.component.ComponentLinkInfo;
+import org.jdataex.flow.component.IComponentLinkInfo;
+import org.jdataex.flow.component.step.MockStep;
+import org.jdataex.flow.component.step.file.monitor.MonitorFileStep;
+import org.jdataex.flow.component.step.xml.XMLConverterStep;
+import org.jdataex.flow.handler.IComponentHandler;
+import org.jdataex.flow.handler.IStepHandler;
+import org.jdataex.flow.handler.MockComponentHandler;
+import org.jdataex.flow.handler.StepHandler;
+import org.jdataex.flow.runner.IComponentRunner;
+import org.jdataex.flow.runner.SchedulerRunner;
+import org.jdataex.flow.station.IStation;
+import org.jdataex.flow.station.queue.FirstQueueStepStation;
+import org.jdataex.flow.station.queue.QueueStepStation;
+import org.jdataex.util.logger.ILoggable;
+import org.jdataex.util.logger.LoggerFactory;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestComponentController extends BaseJDataExTest{
+	
+	private IComponentController controller;
+	
+	@Before
+	public void init(){
+		controller = new ComponentController();
+	}
+
+	@Test
+	public void testAddComponentHandler() {
+		IComponentHandler ch = new MockComponentHandler("0", new MockStep());
+		IComponentHandler ch1 = new MockComponentHandler("1", new MockStep());
+		IComponentHandler ch21 = new MockComponentHandler("20", new MockStep());
+		IComponentHandler ch22 = new MockComponentHandler("21", new MockStep());
+		
+		controller.addComponentHanlder(0,ch);
+		controller.addComponentHanlder(1,ch1);
+		controller.addComponentHanlder(2,ch21);
+		controller.addComponentHanlder(2,ch22);
+		
+		IComponentHandler actual = controller.getComponentHandler(2,0);
+		
+		assertEquals(ch21, actual);
+	}
+	
+	@Test
+	public void testManager() {
+		fail("Not yet implemented");
+	}
+
+	
+	@Test
+	public void testStart() {
+		
+		IComponentHandler ch = new MockComponentHandler("0", new MockStep());
+		IComponentHandler ch1 = new MockComponentHandler("1", new MockStep());
+		
+		controller.addComponentHanlder(0,ch);
+		controller.addComponentHanlder(1,ch1);
+		
+		controller.startAll();
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+		}
+		
+		assertEquals(2,controller.getComponentRunners().size());
+	}
+	
+	@Test
+	public void testStop() {
+		IComponentHandler ch = new MockComponentHandler("0", new MockStep());
+		IComponentHandler ch1 = new MockComponentHandler("1", new MockStep());
+		
+		controller.addComponentHanlder(0,ch);
+		controller.addComponentHanlder(1,ch1);
+		
+		controller.startAll();
+		assertTrue(controller.stopAll());
+	}
+	
+	@Test
+	public void testRestart() {
+		fail("Not yet implemented");
+	}
+	
+}

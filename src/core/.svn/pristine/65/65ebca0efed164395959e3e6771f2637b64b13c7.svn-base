@@ -1,0 +1,118 @@
+package org.jdataex.channel.executor;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import org.jdataex.channel.IChannelStage;
+import org.jdataex.channel.common.DefaultValues;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.future.DefaultChannelFuture;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.util.ChannelClassUtil;
+import org.jdataex.util.logger.ILogger;
+import org.jdataex.util.logger.LoggerFactory;
+
+/**
+ * 默认实现的线程池,他将包装java的ThreadPoolExecutor 本地channel和TLQ采用默认线程池
+ * 
+ * @author chaos
+ * 
+ */
+public class DefaultExecutor<T> implements IExecutor<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5916560941772234652L;
+
+	private ThreadPoolExecutor tp;
+
+	private ILogger logger = LoggerFactory.getLogger(this.toString());
+
+	public DefaultExecutor() {
+		tp = (ThreadPoolExecutor) Executors
+				.newFixedThreadPool(DefaultValues.DEFAULT_THREAD_SIZE);
+	}
+	
+	public DefaultExecutor(String poolSize) {
+		this(new Integer(poolSize));
+	}
+	
+	public DefaultExecutor(int poolSize) {
+		tp = (ThreadPoolExecutor) Executors.newFixedThreadPool(poolSize);
+	}
+
+	@Override
+	public long getTeskCount() {
+		return tp.getTaskCount();
+	}
+
+	@Override
+	public int getMaxThreadNum() {
+		return 0;
+	}
+
+	@Override
+	public int getCoreThreadNum() {
+		return tp.getCorePoolSize();
+	}
+
+	@Override
+	public int getCurrentThreadSize() {
+		return tp.getPoolSize();
+	}
+
+	@Override
+	public int getActiveThreadSize() {
+		return tp.getActiveCount();
+	}
+
+	public IChannelFuture<T> execute(ITask<T> task) {
+		tp.execute(task);
+		return new DefaultChannelFuture<T>(task);
+	}
+	
+	public int getQueueNumber(){
+		return tp.getQueue().size();
+	}
+
+	@Override
+	public void shutdown() {
+		logger.debug("shut down executor!");
+		tp.shutdown();
+		while (true) {
+			if (isShutdown()) {
+				logger.debug("executor stopped!");
+				return;
+			}
+		}
+	}
+	
+	@Override
+	public boolean isShutdown() {
+		return tp.isShutdown() && tp.isTerminated();
+	}
+
+	@Override
+	public boolean isAllWorksFinish() {
+		if (getActiveThreadSize() == 0) {
+			return true;
+		} else
+			return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T> select(IChannelStage<T> stage) {
+		IEvent<T> event = new DefaultEvent<T>();
+		// 必须是阻塞方法
+		if (stage.getChannelContainer().getInput().doReadMsg(event)) {
+			return execute(new ExecutorTask<T>(stage.getHandlerChain(), event,
+					stage.getContext()));
+		} else {
+			return (IChannelFuture<T>) ChannelClassUtil
+					.getInstance(ChannelClassUtil.TRUE_CHANNEL_FUTURE);
+		}
+	}
+}

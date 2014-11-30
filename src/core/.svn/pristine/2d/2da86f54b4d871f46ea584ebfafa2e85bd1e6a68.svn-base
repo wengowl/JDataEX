@@ -1,0 +1,197 @@
+package org.jdataex.channel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.net.INetAddress;
+import org.jdataex.util.AssertUtil;
+
+public class DefaultChannelContainer<T> implements IChannelContainer<T> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3129092996841777266L;
+
+	private String name;
+
+	private final Map<String, IChannelOutput<T>> outputs = new HashMap<String, IChannelOutput<T>>();
+
+	private IChannelInput<T> input;
+
+	private IChannelStage<T> stage;
+
+	private String classType = null;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	public IChannelStage<T> getStage() {
+		return stage;
+	}
+
+	@Override
+	public IChannelOutput<T> getOutput(String name) {
+		return outputs.get(name);
+	}
+
+	@Override
+	public IChannelInput<T> getInput() {
+		return this.input;
+	}
+
+	@Override
+	public void closeInput() {
+		this.input.close();
+	}
+
+	@Override
+	public void closeAllOutput() {
+
+		Iterator<String> it = outputs.keySet().iterator();
+		while (it.hasNext()) {
+			IChannelOutput<T> output = outputs.get(it.next());
+			output.disConnect();
+		}
+	}
+
+	@Override
+	public void closeOutput(String name) {
+		outputs.get(name).disConnect();
+	}
+
+	public void addOutput(IChannelOutput<T> localOutput) {
+		outputs.put(localOutput.getName(), localOutput);
+		if (classType == null) {
+			classType = localOutput.getClass().getName();
+		} else {
+			if (!classType.equals(localOutput.getClass().getName())) {
+				throw new BaseNestedException(
+						"only one type of channelOutput can added!");
+			}
+		}
+	}
+
+	public void setInput(IChannelInput<T> input) {
+		this.input = input;
+	}
+
+	@Override
+	public List<IChannelOutput<T>> getOutputs() {
+		Iterator<String> it = this.outputs.keySet().iterator();
+		List<IChannelOutput<T>> list = new ArrayList<IChannelOutput<T>>();
+		while (it.hasNext()) {
+			list.add(outputs.get(it.next()));
+		}
+		return list;
+	}
+
+	@Override
+	public void registerStage(IChannelStage<T> stage) {
+		AssertUtil.assertNull(stage);
+		AssertUtil.assertNull(getInput());
+		this.stage = stage;
+		getInput().registerStage(stage);
+		Iterator<String> it = outputs.keySet().iterator();
+		while (it.hasNext()) {
+			outputs.get(it.next()).registerStage(stage);
+		}
+	}
+
+	@Override
+	public void channelInputBind(INetAddress address) {
+
+		this.getInput().bind(address);
+
+		// 绑定完成后应该执行handler;
+		getStage().getInputExecutor().execute(
+				new ExecutorTask<T>(getStage().getHandlerChain(),
+						new DefaultEvent<T>(null, null,
+								ChannelEventType.ChannelBind, null), getStage()
+								.getContext()));
+	}
+
+	@Override
+	public void channelOutputsConnect(Map<String, INetAddress> outputAddress) {
+
+		// 如果本身没有channelOutput 直接返回
+		if (outputAddress == null)
+			return;
+
+		Iterator<String> it = outputAddress.keySet().iterator();
+		while (it.hasNext()) {
+			String name = it.next();
+			assertChannelOutputExist(getOutput(name), name);
+			getOutput(name).connect(outputAddress.get(name));
+			// 连接过后应该执行handler方法
+			this.getStage()
+					.getHandlerChain()
+					.executeHandlers(
+							new DefaultEvent<T>(null, null,
+									ChannelEventType.channelActive, null));
+		}
+	}
+
+	private void assertChannelOutputExist(IChannelOutput<T> output, String name) {
+		if (output == null) {
+			throw new BaseNestedException("there is no channeloutput named  ["
+					+ name + "] . please check you channeloutput name");
+		}
+	}
+
+	@Override
+	public boolean isInputClosed() {
+		return this.getInput().isClosed();
+	}
+
+	@Override
+	public void closeInputRead() {
+		this.input.setRead(false);
+	}
+
+	@Override
+	public void closeAllOutputWrite() {
+		Iterator<String> it = this.outputs.keySet().iterator();
+		while (it.hasNext()) {
+			outputs.get(it.next()).setWrite(false);
+		}
+
+	}
+
+	@Override
+	public void closeOutputWrite(String name) {
+		outputs.get(name).setWrite(false);
+	}
+
+	@Override
+	public void openInputRead() {
+		input.setRead(true);
+	}
+
+	@Override
+	public void openAllOutputWrite() {
+		Iterator<String> it = this.outputs.keySet().iterator();
+		while (it.hasNext()) {
+			outputs.get(it.next()).setWrite(true);
+		}
+	}
+
+	@Override
+	public void openOutputWrite(String name) {
+		outputs.get(name).setWrite(true);
+	}
+
+}

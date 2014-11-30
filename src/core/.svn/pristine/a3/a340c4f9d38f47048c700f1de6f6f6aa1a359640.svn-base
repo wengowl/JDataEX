@@ -1,0 +1,36 @@
+package org.jdataex.engine.config;
+
+import org.dom4j.Element;
+import org.jdataex.util.XMLUtil;
+
+
+public class StationItem {
+
+	private String id;
+	private String clazz;
+
+	public StationItem(Element e) {
+		String id = XMLUtil.getAttributeValue(e, "id");
+		this.id = id;
+		String clazz = XMLUtil.getAttributeValue(e, "class");
+		this.clazz = clazz;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
+	}
+
+
+}

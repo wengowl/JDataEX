@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_车辆管理系统.xsd"/>
+<CASE:complexType name="车辆管理系统">
+<CASE:sequence>
+ <CASE:element name="CLGLXT_HZNSDJXX" type="换证年审登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_PCJL" type="派车记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_YCSQ" type="用车申请" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLBYDJXX" type="车辆保养登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLYHDJXX" type="车辆油耗登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLDJXX" type="车辆登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLWXDJXX" type="车辆维修登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLWXDJMX" type="车辆维修登记明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLJFDJXX" type="车辆缴费登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLLCDJXX" type="车辆里程登记信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="CLGLXT_CLJSYDJXX" type="车辆驾驶员登记信息" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+ </CASE:complexType>
+
+  <CASE:element name="车辆管理系统" type="车辆管理系统"/>
+
+</CASE:schema>

@@ -1,0 +1,72 @@
+package org.jdataex.channel.handler;
+
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.util.MyLinkedList;
+
+public class DefaultHandlerChain<T> implements IHandlerChain<T> {
+
+	private MyLinkedList<IHandler<T>> list = new MyLinkedList<IHandler<T>>();
+
+	private IStageContext<T> context;
+
+	public void setContext(IStageContext<T> context) {
+		this.context = context;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IHandler<T>[] getAllHandlers() {
+		return (IHandler<T>[]) list.toArray();
+	}
+
+	@Override
+	public IHandler<T>[] getAllBusinessHandlers() {
+		return list.toArray(IBusinessHandler.class);
+	}
+
+	@Override
+	public IHandler<T>[] getAllSystemHandlers() {
+		return list.toArray(ISystemHandler.class);
+	}
+
+	@Override
+	public boolean removeHandler(IHandler<T> handler) {
+		return list.remove(handler);
+	}
+
+	@Override
+	public void addHead(IHandler<T> handler) {
+		list.addFirst(handler);
+	}
+
+	@Override
+	public void addTail(IHandler<T> handler) {
+		list.addLast(handler);
+	}
+
+	@Override
+	public void executeHandlers(IEvent<T> event) throws HandlerException {
+		try {
+			for (IHandler<T> handler : list) {
+				switch (event.getEventType()) {
+				case channelActive:
+					handler.channelActive(context, event);
+					break;
+				case ChannelBind:
+					handler.channelBind(context);
+					break;
+				case ChannelRead:
+					handler.channelRead(context, event);
+					break;
+				case ChannelWrite:
+					handler.channelWrite(context, event);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			throw new HandlerException(e.getMessage(), e);
+		}
+	}
+}

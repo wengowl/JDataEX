@@ -1,0 +1,9 @@
+<SPYW>
+<AJLX name="">
+    <table name="">
+        <type>false</type><!--含有该字段为false表示这些column查询不需提供-->
+        <column></column>
+    </table>
+  <table></table>
+</AJLX>
+</SPYW>

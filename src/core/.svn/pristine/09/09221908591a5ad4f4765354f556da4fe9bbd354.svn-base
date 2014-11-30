@@ -1,0 +1,26 @@
+package org.jdataex.flow;
+
+import java.io.File;
+
+import org.jdataex.core.InitializationException;
+import org.jdataex.engine.loader.FlowLoader;
+import org.jdataex.engine.loader.IFlowLoader;
+
+public class FlowUtil {
+
+	private static IFlowLoader loader = new FlowLoader();
+	
+	public static IFlow loadFlow(File file) throws InitializationException{
+		IFlow flow = loader.load(file);
+
+		return flow;
+	}
+	
+	public static IFlow loadFlowAndStart(File file) throws InitializationException{
+		IFlow flow = loadFlow(file);
+		
+		flow.startAll();
+		
+		return flow;
+	}
+}

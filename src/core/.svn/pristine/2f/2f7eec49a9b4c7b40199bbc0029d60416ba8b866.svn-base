@@ -1,0 +1,13 @@
+package org.jdataex.channel.common;
+
+/**
+ * channel 框架所有对象或者小的类型参数都在这里
+ * @author chaos
+ *
+ */
+public final class ChannelParameters {
+	
+	public final static int TLQ_MSG = 1;
+	
+	public final static int TLQ_FILE = 2;
+}

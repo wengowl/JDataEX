@@ -1,0 +1,67 @@
+package org.jdataex.channel.executor;
+
+import org.jdataex.channel.IStageContext;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.handler.IHandlerChain;
+
+public class ExecutorTask<T> implements Task<T>{
+	
+	private IHandlerChain<T> chain;
+	
+	private IEvent<T> event;
+	
+	private IStageContext<T> context;
+	
+	private BaseNestedException error;
+	
+	private boolean isComplete;
+	
+	public ExecutorTask(IHandlerChain<T> chain,IEvent<T> event,IStageContext<T> context){
+		this.chain = chain;
+		this.context = context;
+		this.event = event;
+	}
+
+	@Override
+	public void run() {
+		try{
+			this.chain.executeHandlers(event);
+			
+		}catch(HandlerException exp){
+			
+		}finally{
+			this.isComplete = true;
+			this.notifyAll();
+		}
+	}
+
+	@Override
+	public BaseNestedException getException() {
+		return error;
+	}
+
+	@Override
+	public boolean isSuccessed() {
+		if(error==null){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public IEvent<T> getEvent() {
+		return event;
+	}
+	
+	public void setException(BaseNestedException e){
+		this.error = e;
+	}
+
+	@Override
+	public boolean isCompleted() {
+		return isComplete;
+	}
+
+}

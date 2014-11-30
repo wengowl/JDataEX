@@ -1,0 +1,51 @@
+package org.jdataex.flow.component.dataaccess;
+
+/**
+ * Created by wengxf on 14-4-30.
+ */
+public class SqlProcess {
+
+    /**
+     *
+     * 用于组合字符串
+     */
+    public String getSqlList(String[] args,String reg){
+        String values = " ";
+             for(int i=0;i<args.length-1;i++){
+                    values= values+args[i]+reg;
+             }
+
+          return values +args[args.length-1]+" ";
+    }
+    /**
+     * 组合插入语句
+     */
+    public  String insertSQL(String inserttable, String[] field){
+        String[] a=new String[field.length];
+        for(int i=0;i<field.length;i++){
+            a[i]="?";
+        }
+
+           String sql = "insert into "+inserttable+" （"+getSqlList(field," ,")+"） values ("+getSqlList(a,",")+")";
+        return sql;
+    }
+    /**
+     * 组合更新语句
+     */
+    public String updateSQL(String updatetable,String[] field,String condition){
+        String sql = "update "+ updatetable+ " set "+getSqlList(field,"=?, ")+condition;
+
+        return sql;
+    }
+    /**
+     * 组合删除语句
+     */
+    public String deleteSQL(String deletetable,String condition){
+        String sql = "delete from "+deletetable+condition;
+
+        return sql;
+    }
+
+
+
+}

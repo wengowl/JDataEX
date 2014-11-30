@@ -1,0 +1,27 @@
+package org.jdataex.flow.station.queue;
+
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import org.jdataex.flow.row.IRowSet;
+import org.jdataex.flow.station.BaseStation;
+
+/**
+ * 分发站。一条数据，只会被一个订阅者取走。
+ * @author TwelveFoldEr
+ *
+ */
+public class QueueStation extends BaseStation {
+	
+	private Queue<IRowSet> queue = new LinkedBlockingQueue<>();
+	
+	@Override
+	public Queue<IRowSet> getQueue(String id){
+		return queue;
+	}
+
+	@Override
+	public boolean addListener(String id) {
+		return true;
+	}
+}

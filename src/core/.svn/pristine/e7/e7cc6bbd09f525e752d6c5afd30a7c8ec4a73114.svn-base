@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+
+  <CASE:include schemaLocation="_0_结构民事特殊.xsd"/>
+
+  <CASE:complexType name="民事特殊">
+<CASE:sequence>
+		<CASE:elementname="AJBS" type="案件标识" minOccurs="1" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSXX" type="上诉信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_ZQR" type="债权人" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_GSCG" type="公示催告" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_GSCGSQSX" type="公示催告申请事项" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_BAQX" type="办案期限" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SFJY" type="司法建议" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_HBQK" type="回避情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_FYCL" type="复议处理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_FASSXWCL" type="妨碍诉讼行为处理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_STWJ" type="实体文件" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SPZZCY" type="审判组织成员" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SWHTL" type="审委会讨论" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SLJD" type="审理阶段" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_YCSXJL" type="延长审限记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_DSR " type="当事人 " minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_DSRSSHD" type="当事人诉讼活动" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_KCSXJL" type="扣除审限记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_PBJL" type="批办记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_KBYJ" type="控辩意见" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SAHLAXX" type="收案和立案信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_WS" type="文书" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_AJCLQK" type="案件处理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_AJSLQK" type="案件审理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_AJPY" type="案件评议" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_FTSYJL" type="法庭使用记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_TBCX" type="特别程序" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SQCBYXQCG" type="申请船舶优先权催告" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SQSLHSPCZRXZJJ" type="申请设立海事赔偿责任限制基金" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_DCAJSQSX " type="督促案件申请事项 " minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_DCCX" type="督促程序" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_LAYJHTAQK" type="立案移交和退案情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_GXCLQK" type="管辖处理情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_JAQK" type="结案情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_ZRXX" type="证人信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_ZJXX" type="证据信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_ZJLT" type="证据链条" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSBQHXYZX" type="诉讼保全和先予执行" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSDBQK" type="诉讼担保情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSDAGL" type="诉讼档案管理" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSFJNJL" type="诉讼费交纳记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSFJCDQK" type="诉讼费及承担情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SSFSFJZQK" type="诉讼费司法救助情况" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_SDJL" type="送达记录" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_JDXX" type="鉴定信息" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_LTZDZJ" type="链条中的证据" minOccurs="0" maxOccurs="1"/>
+        <CASE:elementname="MSTS_XAQK" type="销案情况" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+  </CASE:complexType>
+
+  <CASE:element name="民事特殊案件" type="民事特殊"/>
+
+</CASE:schema>

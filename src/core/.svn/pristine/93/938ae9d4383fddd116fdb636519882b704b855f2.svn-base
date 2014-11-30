@@ -1,0 +1,84 @@
+package org.jdataex.channel;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class DefaultChannelStageTest {
+
+	@Test
+	public void testRun() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetChannelContainer() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddBefare() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddAfter() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetExecutor() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShutdown() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testWriteEvent() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testWriteMsg() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStartSocketAddressMapOfStringSocketAddress() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPauseInputRead() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRunInputRead() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPauseAllOutputWrite() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRunAllOutputWrite() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPauseStage() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRunStage() {
+		fail("Not yet implemented");
+	}
+
+}

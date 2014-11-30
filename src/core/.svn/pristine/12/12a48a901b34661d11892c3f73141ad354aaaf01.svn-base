@@ -1,0 +1,9 @@
+package org.jdataex.flow.component.dataaccess;
+
+/**
+ * Created by wengxf on 14-4-30.
+ * 自动入库
+ */
+public class AutoDataAccess {
+
+}

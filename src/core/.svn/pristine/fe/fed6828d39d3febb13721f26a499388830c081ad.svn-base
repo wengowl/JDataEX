@@ -1,0 +1,14 @@
+package org.jdataex.channel;
+
+
+public final class ChannelFactory<T>{
+
+	@SuppressWarnings("unchecked")
+	public T newInstance(Class clasz){
+		try {
+			return (T) clasz.newInstance();
+		} catch (Exception e) {
+		}
+		return null;
+	}
+}

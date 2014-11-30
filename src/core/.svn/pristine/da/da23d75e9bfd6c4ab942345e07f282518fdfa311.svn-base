@@ -1,0 +1,20 @@
+package org.jdataex.flow.controller;
+
+import org.jdataex.flow.component.IComponentLinkInfo;
+
+public class ComponentController implements IComponentController {
+
+	private IComponentLinkInfo linkInfo;
+
+	@Override
+	public IComponentLinkInfo getLinkInfo() {
+		return linkInfo;
+	}
+
+	@Override
+	public void setLinkInfo(IComponentLinkInfo linkInfo) {
+		this.linkInfo = linkInfo;
+	}
+	
+	
+}

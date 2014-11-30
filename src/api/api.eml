@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/api"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test/org.jdataex.message"/>
+		<testFolder url="file://$MODULE_DIR$/test"/>
+	</contentEntry>
+	<lib name="G:\code\j2se\workspace\JDataEx\src\api\lib\ojdbc7.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/ojdbc7.jar!/"/>
+	</lib>
+	<lib name="G:\code\j2se\workspace\JDataEx\src\api\lib" scope="COMPILE">
+		<relative-module-cls project-related="file://$PROJECT_DIR$/lib"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/ojdbc7.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/tlclient.jar!/"/>
+	</lib>
+</component>

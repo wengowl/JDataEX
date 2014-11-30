@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CASE:schema   xmlns="http://dataexchange.court.gov.cn/2009/data"
+          xmlns:CASE="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://dataexchange.court.gov.cn/2009/data"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+ <xsd:attribute name="ACTION_TYPE" type="C20" use="required"/>
+ <xsd:attribute name="DEPT_CODE" type="C20" use="required"/>
+ <xsd:attribute name="APP_CODE" type="C20" use="required"/>
+<CASE:include schemaLocation="_0_结构_法官业绩评价系统.xsd"/>
+<CASE:complexType name="FGYJPJXT">
+<CASE:sequence>
+ <CASE:element name="FGYJPJXT_SJYJNPF" type="书记员技能评分" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_SJYBLPF" type="书记员笔录评分" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_SJYBLPFMX" type="书记员笔录评分明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_SJYBLPFBZ" type="书记员笔录评分标准" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_SJYZHCPMX" type="书记员综合测评明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_RYJBXXB" type="人员基本信息表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_YXTSWS" type="优秀庭审、文书" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_GYWYHDDJSB" type="公益文艺活动登记（申报）" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_PXXX" type="培训信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_CFXX" type="处分信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_JLXX" type="奖励信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_SPZFJC" type="审判作风检查" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_NDKH" type="年度考核" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_TSWSJLFS" type="庭审、文书记录分数" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_LZJCDXXBLB" type="廉政监察等信息补录表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_ZXJBANLSJJL" type="执行局办案能力数据记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_PPJL" type="批判记录" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_WMXXDJ" type="文秘信息登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_DBXX" type="督办信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_CXJSZB" type="程序计算主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_CXJSMX" type="程序计算明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_CXJSXMB" type="程序计算项目表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_ZHCPZB" type="综合测评主表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_ZHCPMX" type="综合测评明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_WSDYDJ" type="网上答疑登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_WSYYDJ" type="网上预约登记" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_JSCLGL" type="计算常量管理" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_JSXYGL" type="计算校验管理" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_JSJCRZ" type="计算检查日志" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_JSMB" type="计算模板" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_PJJGZX" type="评价结果咨询" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_PJJGZXMX" type="评价结果咨询明细" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_DYXX" type="调研信息" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_DYXXSBB" type="调研信息申报表" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_BMJJF" type="部门加减分" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_BMNDYJ" type="部门年度业绩" minOccurs="0" maxOccurs="1"/>
+ <CASE:element name="FGYJPJXT_GWPMSXB" type="（岗位）排名顺序表" minOccurs="0" maxOccurs="1"/>
+</CASE:sequence>
+ </CASE:complexType>
+
+  <CASE:element name="法官业绩评价系统" type="法官业绩评价系统"/>
+
+</CASE:schema>
+

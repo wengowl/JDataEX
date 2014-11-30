@@ -1,0 +1,245 @@
+package org.jdataex.channel;
+
+import static org.jdataex.util.AssertUtil.assertNull;
+
+import java.net.SocketAddress;
+import java.util.Iterator;
+import java.util.Map;
+
+import org.jdataex.channel.common.ChannelEventType;
+import org.jdataex.channel.event.DefaultEvent;
+import org.jdataex.channel.event.IEvent;
+import org.jdataex.channel.event.IListener;
+import org.jdataex.channel.exception.BaseNestedException;
+import org.jdataex.channel.exception.ChannelStagehasStartedException;
+import org.jdataex.channel.exception.HandlerException;
+import org.jdataex.channel.executor.ChannelOutputTask;
+import org.jdataex.channel.executor.ExecutorTask;
+import org.jdataex.channel.executor.IExecutor;
+import org.jdataex.channel.future.IChannelFuture;
+import org.jdataex.channel.handler.DefaultHandlerChain;
+import org.jdataex.channel.handler.IHandler;
+import org.jdataex.channel.handler.IHandlerChain;
+import org.jdataex.channel.naming.LocalNamingContext;
+import org.jdataex.channel.util.ChannelClassUtil;
+
+public class DefaultChannelStage<T> extends Thread implements IChannelStage<T> {
+
+	private IExecutor<T> inputExecutor;
+	
+	private IExecutor<T> outputExecutor;
+
+	private IStageContext<T> context;
+
+	private IChannelContainer<T> container;
+
+	private IHandlerChain<T> chain;
+
+	public DefaultChannelStage(String name) {
+		setName(name);
+		this.initializeHandlerChain();
+	}
+
+	@Override
+	public IExecutor<T> getInputExecutor() {
+		return this.inputExecutor;
+	}
+
+	@Override
+	public IStageContext<T> getContext() {
+		if (context == null) {
+			context = new DefaultStageContext<T>(this);
+		}
+		return context;
+	}
+
+	@Override
+	public IChannelStage<T> setChannelContainer(IChannelContainer<T> channel) {
+		assertNull(channel);
+		container = channel;
+		container.registerStage(this);
+		return this;
+	}
+
+	private void initializeHandlerChain() {
+		chain = new DefaultHandlerChain<T>();
+		chain.setContext(this.getContext());
+	}
+
+	@Override
+	public IChannelStage<T> addBefare(IHandler<T> handler) {
+		chain.addHead(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> addAfter(IHandler<T> handler) {
+		chain.addTail(handler);
+		return this;
+	}
+
+	@Override
+	public IChannelStage<T> setExecutor(IExecutor<T> inputExecutor,IExecutor<T> outputExecutor) {
+		assertNull(inputExecutor);
+		assertNull(outputExecutor);
+		this.inputExecutor = inputExecutor;
+		this.outputExecutor = outputExecutor;
+		return this;
+	}
+
+	@Override
+	public void shutdown() {
+		IChannelFuture<T> input = this.container.closeInput();
+		if (!input.isSuccess()) {
+			throw input.error();
+		}
+		for (IChannelFuture<T> icf : this.container.closeAllOutput()) {
+			if (!icf.isSuccess()) {
+				throw icf.error();
+			}
+		}
+		this.shutdownExecutors();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IChannelFuture<T>[] writeEvent(IEvent<T> event,
+			String... channelOutputNames) {
+		IChannelFuture<T>[] ifs = new IChannelFuture[channelOutputNames.length];
+//      老方式,单线程发送数据,性能较低
+/* 		for (int i = 0; i < channelOutputNames.length; i++) {
+			// 执行handlers方法
+			try {
+				this.chain.executeHandlers(event);
+			} catch (HandlerException e) {
+				ifs[i] = (IChannelFuture<T>) ChannelClassUtil
+						.getInstance(ChannelClassUtil.ERROR_CHANNEL_FUTURE,e);
+				continue;
+			}
+			if(ifs[i]==null){
+				ifs[i] = this.container.getOutput(channelOutputNames[i]).writeAndFlush(event);
+			}
+		}*/
+		for (int i = 0; i < channelOutputNames.length; i++) {
+			ifs[i] = this.getOutputExecutor().execute(new ChannelOutputTask<T>(getHandlerChain(),event,getContext(),channelOutputNames[i]));
+		}
+		return ifs;
+	}
+
+	@Override
+	public IChannelFuture<T>[] writeMsg(T msg, String... channelOutputName) {
+		return writeEvent(new DefaultEvent<T>(msg, this,
+				ChannelEventType.ChannelWrite, null), channelOutputName);
+	}
+
+	@Override
+	public IChannelContainer<T> getChannelContainer() {
+		return this.container;
+	}
+
+	@Override
+	public IHandlerChain<T> getHandlerChain() {
+		return this.chain;
+	}
+
+	@Override
+	public void start(SocketAddress inputAddress,
+			Map<String, SocketAddress> outputAddress) {
+		if (this.isAlive()) {
+			throw new ChannelStagehasStartedException("");
+		}
+		this.container.getInput().bind(inputAddress);
+		assertNull(inputExecutor);
+		assertNull(outputExecutor);
+		assertNull(container);
+		if (outputAddress != null) {
+			Iterator<String> it = outputAddress.keySet().iterator();
+			while (it.hasNext()) {
+				String name = it.next();
+				this.container.getOutput(name).connect(outputAddress.get(name));
+			}
+		}
+		// 注册
+		try {
+			LocalNamingContext.getInstance().bind(this.getName(), this);
+		} catch (Exception e) {
+			throw new BaseNestedException(e.getMessage(), e);
+		}
+		// 开始执行线程轮训消息
+		super.start();
+	}
+
+	private void shutdownExecutors() {
+		this.inputExecutor.shutdown();
+		this.outputExecutor.shutdown();
+	}
+
+	/**
+	 * 线程定时轮训,这个方法必须改造,不然采用轮训是方式消耗cpu太大
+	 */
+	public void run() {
+		while (!this.isInterrupted()) {
+			IEvent<T> event = null;
+			// 读取消息
+			//必须是阻塞方法
+			while (this.container.getInput().doReadMsg(event)) {
+				getInputExecutor().execute(
+						new ExecutorTask<T>(this.chain, event, this
+								.getContext()));
+			}
+		}
+	}
+
+	@Override
+	public void pauseInputRead() {
+		this.container.getInput().setRead(false);
+	}
+
+	@Override
+	public void runInputRead() {
+		this.container.getInput().setRead(true);
+	}
+
+	@Override
+	public void pauseAllOutputWrite() {
+		for (IChannelOutput<T> out : this.container.getOutputs()) {
+			out.setWrite(false);
+		}
+	}
+
+	@Override
+	public void runAllOutputWrite() {
+		for (IChannelOutput<T> out : this.container.getOutputs()) {
+			out.setWrite(true);
+		}
+	}
+
+	@Override
+	public void pauseStage() {
+		pauseInputRead();
+		pauseAllOutputWrite();
+	}
+
+	@Override
+	public void runStage() {
+		runInputRead();
+		runAllOutputWrite();
+	}
+
+	@Override
+	public void addListener(IListener<T> listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeListener(IListener<T> listener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IExecutor<T> getOutputExecutor() {
+		return this.outputExecutor;
+	}
+}

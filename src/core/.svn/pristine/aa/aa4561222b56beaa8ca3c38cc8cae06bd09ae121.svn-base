@@ -1,0 +1,7 @@
+package org.jdataex.flow.component;
+
+import org.jdataex.core.card.IGUICable;
+
+public interface IComponent extends IGUICable{
+
+}
